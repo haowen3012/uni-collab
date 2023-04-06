@@ -19,14 +19,14 @@ public class UserService {
 
 
     @Transactional
-    public User getUserById(long id) {
+    public User getUser(long id) {
         Optional<User> result = this.userRepository.findById(id);
         return result.orElse(null);
     }
 
 
     @Transactional
-    public User getUserByUsername(String username){
+    public User getUser(String username){
         Optional<User> result = this.userRepository.findByUserName(username);
         return result.orElse(null);
 
