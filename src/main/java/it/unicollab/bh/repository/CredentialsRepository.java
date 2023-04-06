@@ -1,2 +1,4 @@
-package it.unicollab.bh.repository;public class CredentialsRepository {
+package it.unicollab.bh.repository;
+
+public class CredentialsRepository {
 }
