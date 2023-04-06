@@ -2,7 +2,7 @@ package it.unicollab.bh.model;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
+
 import java.util.Set;
 
 @Entity
