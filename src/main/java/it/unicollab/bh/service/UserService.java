@@ -32,6 +32,12 @@ public class UserService {
 
     }
 
+    /**
+     *
+     * @param user
+     * @return the saved user
+     * @throws org.springframework.dao.DataIntegrityViolationException if a User with the same username as the passed User already existed in the DB
+     */
     @Transactional
     public User saveUser(User user){
         return this.userRepository.save(user);

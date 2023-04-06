@@ -6,9 +6,11 @@ import jakarta.transaction.Transactional;
 import org.hibernate.boot.jaxb.cfg.spi.JaxbCfgMappingReferenceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.spel.ast.OpAnd;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class CredentialsService {
 
     @Autowired
