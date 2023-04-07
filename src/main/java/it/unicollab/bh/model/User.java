@@ -1,6 +1,8 @@
 package it.unicollab.bh.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,8 +30,10 @@ public class User {
     @Column(nullable = false, length = 100)
     private String lastName;
 
+    @CreationTimestamp
     private LocalDateTime creationTimestamp;
 
+    @UpdateTimestamp
     private LocalDateTime lastUpdateTimestamp;
 
     /**
