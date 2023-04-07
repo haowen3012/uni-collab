@@ -1,4 +1,4 @@
-package it.unicollab.bh.controller;
+package it.unicollab.bh.validation;
 
 import it.unicollab.bh.model.Credentials;
 import it.unicollab.bh.model.User;

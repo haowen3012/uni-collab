@@ -1,4 +1,4 @@
-package it.unicollab.bh.controller;
+package it.unicollab.bh.validation;
 
 import com.fasterxml.jackson.databind.type.ClassStack;
 import it.unicollab.bh.model.User;
