@@ -21,6 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import javax.sql.DataSource;
 
 import static it.unicollab.bh.model.Credentials.ADMIN_ROLE;
+import static it.unicollab.bh.model.Credentials.DEFAULT_ROLE;
 
 @Configuration
 @EnableWebSecurity
@@ -44,11 +45,11 @@ public class WebSecurityConfig  {
         return new BCryptPasswordEncoder();
     }
 
-/*
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
         return authenticationConfiguration.getAuthenticationManager();
-    }*/
+    }
 
 
 
@@ -59,13 +60,16 @@ public class WebSecurityConfig  {
               .authorizeHttpRequests()
               .requestMatchers(HttpMethod.GET,"/","/index","/login","/users/register").permitAll()
               .requestMatchers(HttpMethod.POST,"/login","/users/register").permitAll()
-              .requestMatchers(HttpMethod.GET,"/admin").hasAnyAuthority(ADMIN_ROLE)
+              .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
+              .requestMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
               .anyRequest().authenticated()
               .and().formLogin()
               .defaultSuccessUrl("/user")
               .and().logout()
               .logoutUrl("/logout")
-              .logoutSuccessUrl("/index");
+              .logoutSuccessUrl("/index")
+              .invalidateHttpSession(true)
+              .clearAuthentication(true).permitAll();
 
       return httpSecurity.build();
     }

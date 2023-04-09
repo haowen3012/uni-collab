@@ -23,16 +23,16 @@ public class SessionData {
 
 
     public Credentials getLoggedCredentials(){
-        if(this.credentials == null) {
-            this.update();
-        }
+
+        this.update();
+
         return this.credentials;
     }
 
     public User getLoggedUser(){
-        if(this.user == null){
-            this.update();
-        }
+
+        this.update();
+
         return this.user;
     }
 
