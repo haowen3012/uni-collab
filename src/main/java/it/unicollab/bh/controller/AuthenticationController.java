@@ -1,5 +1,6 @@
 package it.unicollab.bh.controller;
 
+import it.unicollab.bh.controller.session.SessionData;
 import it.unicollab.bh.model.Credentials;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.service.CredentialsService;
@@ -26,9 +27,13 @@ public class AuthenticationController {
     @Autowired
     CredentialsValidator credentialsValidator;
 
+    @Autowired
+    SessionData sessionData;
 
     @RequestMapping(value={"/user"}, method = RequestMethod.GET)
-    public String user(){
+    public String user(Model model){
+        User loggedUser = this.sessionData.getLoggedUser();
+        model.addAttribute("user",loggedUser);
         return "user.html";
     }
 

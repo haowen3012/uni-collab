@@ -24,7 +24,7 @@ import static it.unicollab.bh.model.Credentials.ADMIN_ROLE;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig {
+public class WebSecurityConfig  {
 
     @Autowired
     DataSource dataSource;
@@ -53,7 +53,7 @@ public class WebSecurityConfig {
 
 
     @Bean
-    public SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception{
+    protected SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception{
       httpSecurity
               .csrf().and().cors().disable()
               .authorizeHttpRequests()

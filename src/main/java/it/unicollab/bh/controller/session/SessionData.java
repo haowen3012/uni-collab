@@ -1,11 +1,13 @@
 package it.unicollab.bh.controller.session;
 
 import it.unicollab.bh.model.Credentials;
+import it.unicollab.bh.model.User;
 import it.unicollab.bh.repository.CredentialsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,9 +24,25 @@ public class SessionData {
 
     public Credentials getLoggedCredentials(){
         if(this.credentials == null) {
+            this.update();
         }
         return this.credentials;
     }
 
+    public User getLoggedUser(){
+        if(this.user == null){
+            this.update();
+        }
+        return this.user;
+    }
+
+    private void update(){
+        Object object = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails loggedUserDetails = (UserDetails) object;
+
+        this.credentials = this.credentialsRepository.findByUserName(loggedUserDetails.getUsername()).get();
+        this.credentials.setPassword("[PROTECTED]");
+        this.user = this.credentials.getUser();
+    }
 
 }
