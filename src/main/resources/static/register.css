@@ -1,0 +1,94 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Jost', sans-serif;
+  outline: none;
+  color: #135480 ;
+}
+
+body{
+  background: linear-gradient(to right, #f4b661, #135480 );
+}
+
+.wrapper{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form{
+  width: 425px;
+  height: 500px;
+  background: #fff;
+  padding: 35px 50px;
+  border-radius: 10px;
+}
+
+.form .title{
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.form .input_wrap{
+  margin-bottom: 500px;
+  width: 325px;
+  position: relative;
+}
+
+.form .input_wrap:last-child{
+  margin-bottom: 0;
+}
+
+.form .input_wrap label{
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form .input_wrap input{
+  padding: 15px;
+  width: 100%;
+  border: 1px solid transparent;
+  font-size: 16px;
+  border-radius: 3px;
+}
+
+.form .input_wrap .input{
+  background: #f5f4f4;
+  padding-right: 35px;
+}
+
+
+.form .input_wrap .input:focus{
+  border-color: #1dbf73;
+  margin-bottom: 5px; 
+}
+
+.form .input_wrap .input_field{
+  position: relative;
+}
+
+
+h6{
+ text-align: center;   
+  color: #1dbf73;
+}
+p{
+text-align: center;   
+}
+#container{
+    margin-bottom:25px;
+}
+.btn-circle.btn-sm { 
+            width: 40px; 
+            height: 40px; 
+            padding: 2px 1px; 
+            border-radius: 27px; 
+            font-size: 10px; 
+            text-align: center; 
+            margin: 7px;
+        }

@@ -1,49 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Uni-Collab</title>
-</head>
+	 <title>Uni-Collab</title>
+	   
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+  <link rel="stylesheet" href="/register.css?version=2" />
+</head>   
 <body>
-<h1>Register new User</h1>
-<form id="registerForm"
-  th:action="@{/users/register}"method="POST">
-
-<table>
-   <tr>
-      <td><label for="userNameInput">Username</label>
-        <td><input id=userNameInput type="text" placeholder="USERNAME" required th:field="${credentialsForm.userName}"/></td>
+<div class="wrapper">
+  <div class="form">
+    <div class="title">
+      Sign Up To Uni-Collab
+    </div>
+    <form method="post" action="successpage.html" onsubmit="return validation();">
+      <div class="input_wrap">
+       <tr>
+      <td><label for="userNameInput"></label>
+        <td><input id=userNameInput class="input" type="text" placeholder="Username" required th:field="${credentialsForm.userName}"/></td>
      <td th:if="${#fields.hasErrors('credentialsForm.userName')}"
      th:errors="${credentialsForm.userName}" th:style="'color:red'"></td>
    </tr>
-
-   <tr>
-    <td><label for="passwordInput">Password</label>
-    <td><input id=passwordInput type="password" placeholder="PASSWORD" required th:field="${credentialsForm.password}"/></td>
-    <td th:if="${#fields.hasErrors('credentialsForm.password')}"
-        th:errors="${credentialsForm.password}" th:style="'color:red'"></td>
-   </tr>
-
   <tr>
-    <td><label for="firstNameInput">First Name</label>
-    <td><input id=firstNameInput type="text" placeholder="FIRST NAME" required th:field="${userForm.firstName}"/></td>
+    <td><label for="firstNameInput"></label>
+    <td><input id=firstNameInput class="input" type="text" placeholder="First Name" required th:field="${userForm.firstName}"/></td>
     <td th:if="${#fields.hasErrors('userForm.firstName')}"
         th:errors="${userForm.firstName}" th:style="'color:red'"></td>
   </tr>
-
+<div>
   <tr>
-    <td><label for="lastNameInput">Last Name</label>
-    <td><input id=lastNameInput type="text" placeholder="LAST NAME" required th:field="${userForm.lastName}"/></td>
+    <td><label for="lastNameInput"></label>
+    <td><input id=lastNameInput class="input" type="text" placeholder="Last Name" required th:field="${userForm.lastName}"/></td>
     <td th:if="${#fields.hasErrors('userForm.lastName')}"
-        th:errors="${userForm.lastName}" th:style="'color:red'"></td>
-  </tr>
-
+        th:errors="${userForm.lastName}" th:style="'color:red'">
+       </td>  
+     </tr>
+   <tr>
+    <td><label for="passwordInput"></label>
+    <td><input id=passwordInput class="input" type="password" placeholder="Password" required th:field="${credentialsForm.password}"/></td>
+    <td th:if="${#fields.hasErrors('credentialsForm.password')}"
+        th:errors="${credentialsForm.password}" th:style="'color:red'"></td>
+   </tr>
+</div>
   <tr>
     <td>
-      <button type="submit">Register</button>
+    <input type="submit" name="" value="Login">
     </td>
   </tr>
-</table>
-</form>
+<div><p><h6>Already have an account?  <a href="/">Sign in</a></h6></p> <div>
+
+    <div id="btn" class="text-center">
+   <a href="/"> <button type="button" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-facebook"></i></button></a>
+   <a href="/"> <button type="button" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-google"></i></button></a>
+   <a href="/"> <button type="button" class="btn btn-info btn-circle btn-sm"><i class="fa fa-twitter"></i></button></a>
+   </div>
+    </form>
+
 </body>
 </html>

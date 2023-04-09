@@ -46,6 +46,8 @@ public class AuthenticationController {
 
          return "registerUser.html";
      }
+ 
+
 
      @RequestMapping(value = {"/users/register"}, method = RequestMethod.POST)
     public String registerUser(@Valid @ModelAttribute("userForm") User user,
