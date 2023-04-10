@@ -38,6 +38,13 @@ public class AuthenticationController {
         model.addAttribute("user",loggedUser);
         return "user.html";
     }
+    @RequestMapping(value ={"/users/login"}, method = RequestMethod.GET)
+    public String showSigninFrom(Model model){
+         model.addAttribute("userForm", new User());
+         model.addAttribute("credentialsForm", new Credentials());
+
+         return "login.html";
+     }
 
      @RequestMapping(value ={"/users/register"}, method = RequestMethod.GET)
     public String showRegisterFrom(Model model){
@@ -48,6 +55,9 @@ public class AuthenticationController {
      }
  
 
+     
+     
+     
 
      @RequestMapping(value = {"/users/register"}, method = RequestMethod.POST)
     public String registerUser(@Valid @ModelAttribute("userForm") User user,

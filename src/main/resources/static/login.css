@@ -37,7 +37,7 @@ li{
 li a {
   color: #fff;
   text-decoration: none;
-   padding: 18px 20px;
+    padding: 18px 20px;
   font-family: verdana;
   font-weight: lighter;
   font-size: 24px;
@@ -55,6 +55,15 @@ background-color: #135485;
   align-items: center;
 }
 
+
+
+.wrapper{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .form{
   width: 425px;
   height: 500px;
@@ -62,15 +71,12 @@ background-color: #135485;
   padding: 35px 50px;
   border-radius: 10px;
 }
-
-
 .form .title{
   text-align: center;
   margin-bottom: 20px;
   font-weight: 700;
   font-size: 24px;
 }
-
 .form .input_wrap{
   margin-bottom: 500px;
   width: 325px;
@@ -83,11 +89,11 @@ background-color: #135485;
 
 .form .input_wrap label{
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .form .input_wrap input{
-  padding: 15px;
+  padding: 17px;
   width: 100%;
   border: 1px solid transparent;
   font-size: 16px;
@@ -97,8 +103,8 @@ background-color: #135485;
 .form .input_wrap .input{
   background: #f5f4f4;
   padding-right: 35px;
-  
-}
+
+  }
 
 
 .form .input_wrap .input:focus{
@@ -107,10 +113,12 @@ background-color: #135485;
   
 }
 
+
 .form .input_wrap .input_field{
   position: relative;
-  
+
 }
+
 button{
  background-image: linear-gradient(to right, #f4b661 0%, #135480 100%);
       border-radius: 40px;
@@ -149,28 +157,12 @@ button{
 }
 
 
-.container{
-  display: flex;
-  justify-content: center;
 
-  
-}
-
-.container .btn-circle.btn-sm { 
-            width: 40px; 
-            height: 40px;
-            border-radius: 27px; 
-            font-size: 10px; 
-            text-align: center; 
-             margin: 7px;
-             
-        }
-
-h4{
- text-align: center;   
-  color: #1dbf73;
-}
 p{
-text-align: center;   
+	padding: 5px;
+	text-align: center;
+}
+h6{
+	text-align: center;
 }
 

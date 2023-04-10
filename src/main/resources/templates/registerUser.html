@@ -2,7 +2,7 @@
 <html>
 <head>
 	 <title>Uni-Collab</title>
-	   
+	   <link rel"icon" type="image/x-icon" href="/logo.ico">
    <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,11 +10,16 @@
 
 <head>
 <body>
+	<ul>
+<li><p><a href="/">Home</a></p></li>
+<li><p><a href="/users/register">Register</a></p></li>
+<li><p><a href="/users/login">Sign in</a></p></li>
+
+</ul>
 <div class="wrapper">
   <div class="form">
-    <div class="title">
-      Sign Up
-    </div>
+    <div class="title">Sign Up</div>
+    
     <form method="post" action="successpage.html" onsubmit="return validation();">
       <div class="input_wrap">
        <tr>
@@ -47,12 +52,13 @@
         th:errors="${credentialsForm.password}" th:style="'color:red'"></td>
    </tr>
 </div>
-  <tr>
+ <tr>
     <td>
-    <input type="submit" name="" value="Register">
+   <a class="button" href="registrationSuccessful"><span class="buttonspan">sign up</span></a>
     </td>
   </tr>
-<div><p><h6>Already have an account?  <a href="/">Log in</a></h6></p> </div>
+  
+<div><p><h4>Already have an account?  <a href="login">Log in</a></h4></p> </div>
 
     <div class="container">
     

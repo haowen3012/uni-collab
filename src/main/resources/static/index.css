@@ -1,5 +1,45 @@
 body {
-	background-color:#135480;
+	background-color:#135485;
+}
+ul {
+  list-style-type: none;
+  display: flex;
+  padding: 18px 0;
+  background-size: 400% 400%;
+  
+  border-radius: 40px;
+  
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
+ul li{
+	width: 100%;
+	float: left;
+   padding: 16px;
+	background-color: gold;
+}
+li{
+   display: inline;
+}
 
+li a {
+  color: #fff;
+  text-decoration: none;
+    padding: 18px 20px;
+  font-family: verdana;
+  font-weight: lighter;
+  font-size: 24px;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+li a:hover{
+background-color: rgb(36, 95, 129);
+  color: white;
+}
+
+h1{
+  color: gold;
+text-align: center;
+
+}

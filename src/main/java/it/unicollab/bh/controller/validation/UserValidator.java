@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.validation.annotation.Validated;
-
 import javax.swing.*;
 
 @Component
@@ -28,14 +27,14 @@ public class UserValidator implements Validator {
         String firstName = user.getFirstName().trim();
         String lastName = user.getLastName().trim();
 
-        if(firstName.isBlank()){
+        if(firstName.isEmpty()){
             errors.rejectValue("firstname","required");
         }
         else if(firstName.length() < MIN_NAME_LENGTH || firstName.length() > MAX_NAME_LENGTH){
             errors.rejectValue("firstName","size");
         }
 
-        if(lastName.isBlank()){
+        if(lastName.isEmpty()){
             errors.rejectValue("lastname","required");
         }
         else if(firstName.length() < MIN_NAME_LENGTH || firstName.length() > MAX_NAME_LENGTH){
