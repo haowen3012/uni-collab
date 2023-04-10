@@ -6,13 +6,13 @@
    <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
    
-  <link rel="stylesheet" href="/register.css?version=2" />
+  <link rel="stylesheet" th:href="@{/register.css}" />
 </head>   
 <body>
 <div class="wrapper">
   <div class="form">
     <div class="title">
-      Sign Up To Uni-Collab
+      Sign Up
     </div>
     <form method="post" action="successpage.html" onsubmit="return validation();">
       <div class="input_wrap">
@@ -48,14 +48,16 @@
     <input type="submit" name="" value="Login">
     </td>
   </tr>
-<div><p><h6>Already have an account?  <a href="/">Sign in</a></h6></p> <div>
+<div><p><h6>Already have an account?  <a href="/">Log in</a></h6></p> </div>
 
     <div id="btn" class="text-center">
    <a href="/"> <button type="button" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-facebook"></i></button></a>
    <a href="/"> <button type="button" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-google"></i></button></a>
    <a href="/"> <button type="button" class="btn btn-info btn-circle btn-sm"><i class="fa fa-twitter"></i></button></a>
    </div>
+      </div>
     </form>
-
+  </div>
+</div>
 </body>
 </html>
