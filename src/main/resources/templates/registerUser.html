@@ -6,7 +6,13 @@
    <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
    
+<<<<<<< HEAD
   <link rel="stylesheet" th:href="@{/register.css}" />
+=======
+
+  <link rel="stylesheet" type="text/css"  href="/Users/bishoyzakhary/git/uni-collab/src/main/resources/static/register.css">
+
+>>>>>>> 48d532121a8762b1ac3583a8eb7be1448a1e2599
 </head>   
 <body>
 <div class="wrapper">
@@ -24,7 +30,10 @@
    </tr>
   <tr>
     <td><label for="firstNameInput"></label>
-    <td><input id=firstNameInput class="input" type="text" placeholder="First Name" required th:field="${userForm.firstName}"/></td>
+    <td><input id=firstNameInput class="input" type="text" placeholder="First Name" required th:field="${userForm.firstName}"/>
+ 
+    </td>
+    
     <td th:if="${#fields.hasErrors('userForm.firstName')}"
         th:errors="${userForm.firstName}" th:style="'color:red'"></td>
   </tr>
@@ -50,10 +59,12 @@
   </tr>
 <div><p><h6>Already have an account?  <a href="/">Log in</a></h6></p> </div>
 
-    <div id="btn" class="text-center">
+    <div class="container">
+    
    <a href="/"> <button type="button" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-facebook"></i></button></a>
-   <a href="/"> <button type="button" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-google"></i></button></a>
-   <a href="/"> <button type="button" class="btn btn-info btn-circle btn-sm"><i class="fa fa-twitter"></i></button></a>
+   <a href="/"> <button type="button" class="btn btn-danger btn-circle btn-sm"><i class="fa  fa-google"></i></button></a>
+   <a href="/"> <button type="button" class="btn btn-info btn-circle btn-sm"><i class="fa    fa-twitter"></i></button></a>
+   <a href="/"> <button type="button" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-github"></i></button></a>
    </div>
       </div>
     </form>

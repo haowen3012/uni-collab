@@ -25,7 +25,9 @@ body{
   background: #fff;
   padding: 35px 50px;
   border-radius: 10px;
+
 }
+
 
 .form .title{
   text-align: center;
@@ -33,6 +35,10 @@ body{
   font-weight: 700;
   font-size: 24px;
 }
+
+
+
+
 
 .form .input_wrap{
   margin-bottom: 500px;
@@ -60,18 +66,32 @@ body{
 .form .input_wrap .input{
   background: #f5f4f4;
   padding-right: 35px;
+  
 }
 
 
 .form .input_wrap .input:focus{
   border-color: #1dbf73;
   margin-bottom: 5px; 
+  
 }
 
 .form .input_wrap .input_field{
   position: relative;
+  
+}
+.container{
+  text-align: center; 
 }
 
+.btn-circle.btn-sm { 
+            width: 40px; 
+            height: 40px;
+            border-radius: 27px; 
+            font-size: 10px; 
+            text-align: center; 
+             margin: 7px;
+        }
 
 h6{
  text-align: center;   
@@ -80,15 +100,3 @@ h6{
 p{
 text-align: center;   
 }
-#container{
-    margin-bottom:25px;
-}
-.btn-circle.btn-sm { 
-            width: 40px; 
-            height: 40px; 
-            padding: 2px 1px; 
-            border-radius: 27px; 
-            font-size: 10px; 
-            text-align: center; 
-            margin: 7px;
-        }
