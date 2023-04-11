@@ -17,27 +17,27 @@ ul {
   display: flex;
   padding: 18px 0;
   background-size: 400% 400%;
-  
+
   border-radius: 40px;
-  
+
   border-top-left-radius: 0px;
   border-bottom-right-radius: 0px;
 }
 
 ul li{
-	width: 100%;
-	float: left;
-   padding: 16px;
-	background-color: gold;
+  width: 100%;
+  float: left;
+  padding: 16px;
+  background-color: gold;
 }
 li{
-   display: inline;
+  display: inline;
 }
 
 li a {
   color: #fff;
   text-decoration: none;
-    padding: 18px 20px;
+  padding: 18px 20px;
   font-family: verdana;
   font-weight: lighter;
   font-size: 24px;
@@ -45,7 +45,7 @@ li a {
   opacity: 0.9;
 }
 li a:hover{
-background-color: #135485;
+  background-color: #135485;
   color: white;
 }
 .wrapper{
@@ -104,13 +104,13 @@ background-color: #135485;
   background: #f5f4f4;
   padding-right: 35px;
 
-  }
+}
 
 
 .form .input_wrap .input:focus{
   border-color: #1dbf73;
-  margin-bottom: 5px; 
-  
+  margin-bottom: 5px;
+
 }
 
 
@@ -120,15 +120,16 @@ background-color: #135485;
 }
 
 button{
- background-image: linear-gradient(to right, #f4b661 0%, #135480 100%);
-      border-radius: 40px;
-    
-      box-sizing: border-box;
- color: #135480;
+  background-image: linear-gradient(to right, #f4b661 0%, #135480 100%);
+  border-radius: 40px;
+
+  box-sizing: border-box;
+  color: #135480;
   display: block;
   height: 50px;
   font-size: 1.8em;
   margin-top: 15px;
+  margin-left: 60px;
   padding: 6px;
   position: relative;
   text-decoration: none;
@@ -136,13 +137,13 @@ button{
   z-index: 2;
 }
 .button:hover{
-	 color: #fff;
+  color: #fff;
 }
 
 .button .buttonspan {
   align-items: center;
-   margin-top: 15px;
-  background: #808080;
+  /*  margin-top: px;*/
+  /* background: #808080;*/
   border-radius: 40px;
   display: flex;
   padding: 17px;
@@ -159,10 +160,10 @@ button{
 
 
 p{
-	padding: 5px;
-	text-align: center;
+  padding: 5px;
+  text-align: center;
 }
-h6{
-	text-align: center;
+h4{
+  text-align: center;
 }
 
