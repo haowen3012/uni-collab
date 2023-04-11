@@ -41,12 +41,12 @@ public class WebSecurityConfig  {
                 .usersByUsernameQuery("SELECT user_name, password, 1 as enabled FROM credentials WHERE user_name=?");
     }
 
-/*
+
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/**");
+        return (web) -> web.ignoring().requestMatchers("/static/**");
     }
-*/
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -63,6 +63,8 @@ public class WebSecurityConfig  {
 
     @Bean
     protected SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception{
+
+
       httpSecurity
               .csrf().and().cors().disable()
               .authorizeHttpRequests()
@@ -81,6 +83,8 @@ public class WebSecurityConfig  {
               .logoutSuccessUrl("/index")
               .invalidateHttpSession(true)
               .clearAuthentication(true).permitAll();
+
+
 
 
       return httpSecurity.build();
