@@ -14,7 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.print.DocFlavor;
 import java.security.Principal;
 
 @Controller
@@ -38,13 +40,14 @@ public class AuthenticationController {
         model.addAttribute("user",loggedUser);
         return "user.html";
     }
-    @RequestMapping(value ={"/users/login"}, method = RequestMethod.GET)
+  /*  @RequestMapping(value ={"/user/login"}, method = RequestMethod.GET)
     public String showSigninFrom(Model model){
-         model.addAttribute("userForm", new User());
-         model.addAttribute("credentialsForm", new Credentials());
+    //     model.addAttribute("userForm", new User());
+    //     model.addAttribute("credentialsForm", new Credentials());
 
          return "login.html";
-     }
+     }*/
+
 
      @RequestMapping(value ={"/user/register"}, method = RequestMethod.GET)
     public String showRegisterFrom(Model model){

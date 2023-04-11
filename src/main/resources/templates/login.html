@@ -2,7 +2,7 @@
 <html>
 <head>
 	 <title>Uni-Collab</title>
-	   <link rel"icon" type="image/x-icon" href="/logo.ico">
+<!--	   <link rel"icon" type="image/x-icon" href="/logo.ico">-->
    <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,39 +10,35 @@
 
 <head>
 <body>
-	
-		<ul>
+
+<ul>
 <li><p><a href="/">Home</a></p></li>
-<li><p><a href="/users/register">Register</a></p></li>
-<li><p><a href="/users/login">Sign in</a></p></li>
+<li><p><a href="/user/register">Register</a></p></li>
+<li><p><a href="/user/login">Sign in</a></p></li>
 
 </ul>
 <div class="wrapper">
   <div class="form">
     <div class="title">Sign in </div>
-    <form method="post" action="successpage.html" onsubmit="return validation();">
+    <form  th:action="@{/login}" method='post'>
       <div class="input_wrap">
        <tr>
       <td><label for="userNameInput"></label>
-        <td><input id=userNameInput class="input" type="text" placeholder="Username" required th:field="${credentialsForm.userName}"/></td>
-     <td th:if="${#fields.hasErrors('credentialsForm.userName')}"
-     th:errors="${credentialsForm.userName}" th:style="'color:red'"></td>
+        <td><input id=userNameInput class="input" type="text" name="username" required /></td>
    </tr>
 
    <tr>
     <td><label for="passwordInput"></label>
-    <td><input id=passwordInput class="input" type="password" placeholder="Password" required th:field="${credentialsForm.password}"/></td>
-    <td th:if="${#fields.hasErrors('credentialsForm.password')}"
-        th:errors="${credentialsForm.password}" th:style="'color:red'"></td>
+    <td><input id=passwordInput class="input" type="password" name="password"  required/></td>
    </tr>
 
   <tr>
     <td>
-   <a class="button" href="/"><span class="buttonspan">Login</span></a>
+   <button class="button" type="submit" value="Login"><span class="buttonspan">Login</span></button>
     </td>
   </tr>
   <div><p> <a href="/">Forgotten password?</a></p> </div>
-  <div><p><h4>Dosen't have an account?  <a href="registerUser">sign up</a></h4></p> </div>
+  <div><p><h4>Doesn't have an account?  <a href="registerUser">sign up</a></h4></p> </div>
       </div>
     </form>
   </div>

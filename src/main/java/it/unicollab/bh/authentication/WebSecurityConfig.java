@@ -41,12 +41,12 @@ public class WebSecurityConfig  {
                 .usersByUsernameQuery("SELECT user_name, password, 1 as enabled FROM credentials WHERE user_name=?");
     }
 
-
+/*
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().requestMatchers("/**");
     }
-
+*/
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -66,19 +66,21 @@ public class WebSecurityConfig  {
       httpSecurity
               .csrf().and().cors().disable()
               .authorizeHttpRequests()
-              .requestMatchers(HttpMethod.GET,"/","/index","/login","/users/register").permitAll()
-              .requestMatchers(HttpMethod.POST,"/login","/users/register").permitAll()
+              .requestMatchers(HttpMethod.GET,"/","/index","/user/register").permitAll()
+              .requestMatchers(HttpMethod.POST,"/user/register").permitAll()
               .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
               .requestMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
               .anyRequest().authenticated()
               .and().formLogin()
+              .loginProcessingUrl("/login")
+              .loginPage("/login")
+              .permitAll()
               .defaultSuccessUrl("/user")
               .and().logout()
               .logoutUrl("/logout")
               .logoutSuccessUrl("/index")
               .invalidateHttpSession(true)
-              .clearAuthentication(true).permitAll()
-              .and().oauth2Login();
+              .clearAuthentication(true).permitAll();
 
 
       return httpSecurity.build();
