@@ -2,13 +2,13 @@
 <html>
 <head>
 	 <title>Uni-Collab</title>
-	   <link rel"icon" type="image/x-icon" href="/logo.ico">
+	<!--   <link rel=icon" type="image/x-icon" href="/logo.ico">-->
    <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" th:href="@{/register.css}" />
 
-<head>
+</head>
 <body>
 	<ul>
 <li><p><a href="/">Home</a></p></li>
@@ -20,7 +20,7 @@
   <div class="form">
     <div class="title">Sign Up</div>
     
-    <form method="post" action="successpage.html" onsubmit="return validation();">
+    <form method="POST" th:action="@{/user/register}" >
       <div class="input_wrap">
        <tr>
       <td><label for="userNameInput"></label>
@@ -54,7 +54,7 @@
 </div>
  <tr>
     <td>
-   <a class="button" href="registrationSuccessful"><span class="buttonspan">sign up</span></a>
+        <button class="button" type="submit "><span class="buttonspan">Sign up</span></button>
     </td>
   </tr>
   

@@ -77,7 +77,9 @@ public class WebSecurityConfig  {
               .logoutUrl("/logout")
               .logoutSuccessUrl("/index")
               .invalidateHttpSession(true)
-              .clearAuthentication(true).permitAll();
+              .clearAuthentication(true).permitAll()
+              .and().oauth2Login();
+
 
       return httpSecurity.build();
     }
