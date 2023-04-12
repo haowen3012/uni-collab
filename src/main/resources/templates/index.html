@@ -2,7 +2,7 @@
 <html>
 <head>
 	 <title>Uni-Collab</title>
-	   <link rel"icon" type="image/x-icon" href="/logo.ico">
+	   <link rel="icon" type="image/x-icon" href="/logo.ico">
 	   <meta charset="UTF-8">
     <link rel="stylesheet"  href="/index.css" />
   
@@ -13,9 +13,19 @@
 <li><p><a href="/">Home</a></p></li>
 <li><p><a href="/user/register">Register</a></p></li>
 <li><p><a href="/login">Sign in</a></p></li>
-
 </ul>
-
-
+<div class="container unauthenticated">
+	With GitHub: <a href="/oauth2/authorization/github">click here</a>
+</div>
+<div class="container authenticated" style="display:none">
+	Logged in as: <span id="user"></span>
+</div>
+<script type="text/javascript">
+	$.get("/aouth2/user", function(data) {
+		$("#user").html(data.name);
+		$(".unauthenticated").hide()
+		$(".authenticated").show()
+	});
+</script>
 </body>
 </html>
