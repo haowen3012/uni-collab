@@ -41,12 +41,11 @@ public class WebSecurityConfig  {
                 .usersByUsernameQuery("SELECT user_name, password, 1 as enabled FROM credentials WHERE user_name=?");
     }
 
-
-    @Bean
+/*
+   @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/static/**");
-    }
-
+        return (web) -> web.ignoring().requestMatchers("/resources/**");
+    }*/
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -64,17 +63,16 @@ public class WebSecurityConfig  {
     @Bean
     protected SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception{
 
-
       httpSecurity
               .csrf().and().cors().disable()
               .authorizeHttpRequests()
+              .requestMatchers("/**").permitAll()
               .requestMatchers(HttpMethod.GET,"/","/index","/user/register").permitAll()
               .requestMatchers(HttpMethod.POST,"/user/register").permitAll()
               .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
               .requestMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
               .anyRequest().authenticated()
               .and().formLogin()
-              .loginProcessingUrl("/login")
               .loginPage("/login")
               .permitAll()
               .defaultSuccessUrl("/user")
