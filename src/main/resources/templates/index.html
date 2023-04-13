@@ -14,18 +14,6 @@
 <li><p><a href="/user/register">Register</a></p></li>
 <li><p><a href="/login">Sign in</a></p></li>
 </ul>
-<div class="container unauthenticated">
-	With GitHub: <a href="/oauth2/authorization/github">click here</a>
-</div>
-<div class="container authenticated" style="display:none">
-	Logged in as: <span id="user"></span>
-</div>
-<script type="text/javascript">
-	$.get("/oauth2/user", function(data) {
-		$("#user").html(data.name);
-		$(".unauthenticated").hide()
-		$(".authenticated").show()
-	});
-</script>
+
 </body>
 </html>

@@ -1,5 +1,6 @@
 package it.unicollab.bh.model;
 
+import it.unicollab.bh.model.oauth.AuthenticationProvider;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -17,16 +18,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false, length = 100)
+
     private String userName;
 
-    @Column(nullable = false, length = 100)
+
     private String password;
 
-    @Column(nullable = false, length = 100)
+
     private String firstName;
 
-    @Column(nullable = false, length = 100)
+
     private String lastName;
 
     @CreationTimestamp
@@ -122,6 +123,14 @@ public class User {
 
     public void setLastUpdateTimestamp(LocalDateTime lastUpdateTimestamp) {
         this.lastUpdateTimestamp = lastUpdateTimestamp;
+    }
+
+    public AuthenticationProvider getoAuthProvider() {
+        return oAuthProvider;
+    }
+
+    public void setoAuthProvider(AuthenticationProvider oAuthProvider) {
+        this.oAuthProvider = oAuthProvider;
     }
 
     @Override

@@ -1,6 +1,9 @@
 package it.unicollab.bh.authentication;
 
 
+import it.unicollab.bh.model.CustomOAuth2User;
+import it.unicollab.bh.model.oauth.OAuth2LoginSuccessHandler;
+import it.unicollab.bh.service.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +34,11 @@ public class WebSecurityConfig  {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    CustomOAuth2UserService customOAuth2UserService;
+
+    @Autowired
+    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)
@@ -66,7 +74,7 @@ public class WebSecurityConfig  {
       httpSecurity
               .csrf().and().cors().disable()
               .authorizeHttpRequests()
-              .requestMatchers("/**","/webjars/**").permitAll()
+              .requestMatchers("/**").permitAll()
               .requestMatchers(HttpMethod.GET,"/","/index","/user/register").permitAll()
               .requestMatchers(HttpMethod.POST,"/user/register").permitAll()
               .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
@@ -82,7 +90,11 @@ public class WebSecurityConfig  {
               .invalidateHttpSession(true)
               .clearAuthentication(true).permitAll()
               .and()
-              .oauth2Login();
+              .oauth2Login()
+              .loginPage("/login")
+              .userInfoEndpoint().userService(customOAuth2UserService)
+              .and()
+              .successHandler(oAuth2LoginSuccessHandler);
 
 
 

@@ -1,13 +1,17 @@
 package it.unicollab.bh.service;
 
 import it.unicollab.bh.model.User;
+import it.unicollab.bh.model.oauth.AuthenticationProvider;
 import it.unicollab.bh.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,4 +58,22 @@ public class UserService {
 
 
     }
+
+    public void registerNewCustomerAfterOAuthLoginSuccess(String loginName, String displayName, AuthenticationProvider provider) {
+        User user = new User();
+        user.setUserName(loginName);
+        user.setFirstName(displayName);
+        user.setCreationTimestamp(LocalDateTime.now());
+        user.setoAuthProvider(provider);
+
+        userRepository.save(user);
+    }
+
+    public void updateExistingUser(User user, String displayName, AuthenticationProvider provider){
+        user.setFirstName(displayName);
+        user.setoAuthProvider(provider);   // probabilmente da modificare
+
+        userRepository.save(user);
+    }
+
 }
