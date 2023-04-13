@@ -40,13 +40,12 @@ public class AuthenticationController {
         model.addAttribute("user",loggedUser);
         return "user.html";
     }
-  /*  @RequestMapping(value ={"/user/login"}, method = RequestMethod.GET)
-    public String showSigninFrom(Model model){
-    //     model.addAttribute("userForm", new User());
-    //     model.addAttribute("credentialsForm", new Credentials());
 
-         return "login.html";
-     }*/
+    @RequestMapping(value={"/oauth2/user"}, method = RequestMethod.GET)
+    public String oauthUser(Model model){
+
+        return "registrationSuccessful.html"; // da modificare  domani  14/04
+    }
 
 
      @RequestMapping(value ={"/user/register"}, method = RequestMethod.GET)
