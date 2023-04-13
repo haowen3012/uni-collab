@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
@@ -35,6 +34,10 @@ public class User {
 
     @UpdateTimestamp
     private LocalDateTime lastUpdateTimestamp;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "auth_provider")
+    private AuthenticationProvider oAuthProvider;
 
     /**
      * The profile associated to this user

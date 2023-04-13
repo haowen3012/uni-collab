@@ -18,7 +18,7 @@ public class UserValidator implements Validator {
     @Override
     public boolean supports(Class<?> clazz) {
         return User.class.equals(clazz);
-    }
+    } // specifica la classe su cui opera il validator
 
     @Override
     public void validate(Object o, Errors errors) {

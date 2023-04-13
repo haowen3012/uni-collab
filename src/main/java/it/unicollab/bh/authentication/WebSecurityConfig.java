@@ -66,7 +66,7 @@ public class WebSecurityConfig  {
       httpSecurity
               .csrf().and().cors().disable()
               .authorizeHttpRequests()
-              .requestMatchers("/**").permitAll()
+              .requestMatchers("/**","/webjars/**").permitAll()
               .requestMatchers(HttpMethod.GET,"/","/index","/user/register").permitAll()
               .requestMatchers(HttpMethod.POST,"/user/register").permitAll()
               .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)

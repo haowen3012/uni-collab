@@ -1,5 +1,5 @@
 package it.unicollab.bh.model;
 
-public enum oAuthProvider {
+public enum AuthenticationProvider {
     LOCAL, GITHUB
 }
