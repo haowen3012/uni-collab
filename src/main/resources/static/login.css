@@ -167,3 +167,19 @@ h4{
   text-align: center;
 }
 
+
+.container{
+  display: flex;
+  justify-content: center;
+}
+
+
+.container .btn-circle.btn-sm {
+  width: 40px;
+  height: 40px;
+  border-radius: 27px;
+  font-size: 10px;
+  text-align: center;
+  margin: 7px;
+
+}
