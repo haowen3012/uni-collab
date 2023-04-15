@@ -1,28 +1,24 @@
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Jost', sans-serif;
-    outline: none;
-    color: #135480 ;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Jost', sans-serif;
+  outline: none;
+  color: #135480 ;
 }
 
-body{
-background:url('/foto.jpg')no-repeat;
-  background-size:cover;
-   background-position:center;
-}
 
 #abc{
   width:100%;
   height:10h;
- 
+  font-size : 70%;
+
 }
 
 nav{
   width: 100%;
   height: 50px;
- 
+
   line-height: 50px;
 }
 nav ul{
@@ -36,172 +32,44 @@ nav ul li{
 }
 
 a {
-  color: #000;
+  color: white;
   text-transform: uppercase;
   text-decoration: none;
-  letter-spacing: 0.15em;
-  
+  letter-spacing: 0.16em;
+
   display: inline-block;
   padding: 15px 20px;
   position: relative;
 }
-a:after {    
+a:after {
   background: none repeat scroll 0 0 transparent;
-  bottom: 0;
   content: "";
   display: block;
   height: 2px;
   left: 50%;
   position: absolute;
-  background: rgb(255, 255, 255);
+  background: gold;
+  border-radius:40px;
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
-a:hover:after { 
-  width: 100%; 
-  left: 0; 
-}
-.btnLogin-popup{
-  background: #000;
-  color: #fff;
-    
- 
-}
-.overlay {
-
-position: absolute;
-
-height: 100%;
-
-width: 100%;
-
-background: Orgba(e, 0, 0, 0.9);
-
-}
-.wrapper{
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+a:hover:after {
+  width: 100%;
+  left: 0;
 }
 
-.form{
-    width: 425px;
-    height: 500px;
-    background: #fff;
-    padding: 35px 50px;
-    border-radius: 10px;
+.bg-img {
+  /* The image used */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)),url("/indexPic.jpg");
+
+  min-height: 300px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* Needed to position the navbar */
+  position: relative;
 }
 
-
-.form .title{
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: 700;
-    font-size: 24px;
-}
-
-.form .input_wrap{
-    margin-bottom: 500px;
-    width: 325px;
-    position: relative;
-}
-
-.form .input_wrap:last-child{
-    margin-bottom: 0;
-}
-
-.form .input_wrap label{
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form .input_wrap input{
-    padding: 15px;
-    width: 100%;
-    border: 1px solid transparent;
-    font-size: 16px;
-    border-radius: 25px;
-}
-
-.form .input_wrap .input{
-    background: #f5f4f4;
-    padding-right: 35px;
-
-}
-
-
-.form .input_wrap .input:focus{
-    border-color: #1dbf73;
-    margin-bottom: 5px;
-
-}
-
-.form .input_wrap .input_field{
-    position: relative;
-
-}
-button {
-    background-image: linear-gradient(to right, #f4b661 0%, #135480 100%);
-    border-radius: 40px;
-
-    box-sizing: border-box;
-    color: #135480;
-    display: block;
-    height: 50px;
-    font-size: 1.8em;
-    margin-top: 15px;
-    margin-left:60px;
-    padding: 6px;
-    position: relative;
-    text-decoration: none;
-    width: 7em;
-    z-index: 2;
-}
-.button:hover{
-    color: #fff;
-}
-
-.button .buttonspan {
-    align-items: center;
-    /*background: #808080;*/
-    border-radius: 40px;
-    display: flex;
-    padding: 17px;
-    justify-content: center;
-    height: 100%;
-    transition: background 0.4s ease;
-    width: 100%;
-}
-
-.button:hover .buttonspan {
-    background:#f4b661 ;
-}
-
-
-.container{
-    display: flex;
-    justify-content: center;
-
-
-}
-
-.container .btn-circle.btn-sm {
-    width: 40px;
-    height: 40px;
-    border-radius: 27px;
-    font-size: 10px;
-    margin: 7px;
-    
-}
-
-
-
-h4{
-    margin:15px;
-    text-align: center;
-    color: #1dbf73;
-}
-p{
-    text-align: center;
-}
