@@ -4,7 +4,8 @@
   box-sizing: border-box;
   font-family: 'Jost', sans-serif;
   outline: none;
-  color: #135480 ;
+ /* color: #135480 ;*/
+  color : #000;
 }
 
 
@@ -59,7 +60,7 @@ a:hover:after {
 
 }
 
-.bg-img {
+#bg-img {
   /* The image used */
   background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)),url("/indexPic.jpg");
 
@@ -74,3 +75,138 @@ a:hover:after {
   position: relative;
 }
 
+/*****************Login**********************/
+
+#myForm{
+  width: 100%;
+  top:0;
+  position: absolute;
+
+}
+
+.wrapper{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form{
+  background: #fff;
+  padding: 20px 50px;
+  border-radius: 10px;
+}
+.form .title{
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 24px;
+}
+.form .input_wrap{
+  margin-bottom: 500px;
+  width: 325px;
+  position: relative;
+}
+
+.form .input_wrap:last-child{
+  margin-bottom: 0;
+}
+
+.form .input_wrap label{
+  display: block;
+  margin-bottom: 15px;
+}
+
+.form .input_wrap input{
+  padding: 17px;
+  width: 100%;
+  border: 1px solid transparent;
+  font-size: 16px;
+  border-radius: 25px;
+}
+
+.form .input_wrap .input{
+  background: #f5f4f4;
+  padding-right: 35px;
+
+}
+
+
+.form .input_wrap .input:focus{
+  border-color: gold;
+  box-shadow: 0 1px 7px 0 rgba(233, 191, 34, 0.75);
+  margin-bottom: 5px;
+
+}
+
+
+.form .input_wrap .input_field{
+  position: relative;
+
+}
+
+button{
+  background-image: linear-gradient(to right,gold,gold, yellow, gold );
+  border-radius: 50px;
+  border: none;
+  /* color: #135480;*/
+  display: block;
+  height: 50px;
+  cursor: pointer;
+  font-size: 1.8em;
+  margin-top: 15px;
+  margin-left: 60px;
+  padding: 6px;
+  position: relative;
+  width: 7em;
+  z-index: 2;
+  background-size: 300% 200%;
+
+  -moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  box-shadow: 0 1px 7px 0 rgba(233, 191, 34, 0.75);
+}
+
+.button .buttonspan{
+  color: white;
+}
+
+
+.button:hover {
+
+  background-position: 100% 0;
+  -moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  box-shadow: 0 4px 15px 0 rgba(233, 191, 34, 0.75);
+}
+
+p{
+  padding: 5px;
+  text-align: center;
+}
+
+
+.container{
+  display: flex;
+  justify-content: center;
+}
+
+.cancel{
+  text-align : right;
+
+  padding: 0;
+
+}
+
+.container .btn-circle.btn-sm {
+  width: 40px;
+  height: 40px;
+  border-radius: 27px;
+  font-size: 10px;
+  text-align: center;
+  margin: 7px;
+}
