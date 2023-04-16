@@ -101,6 +101,7 @@ a:hover:after {
   background: #fff;
   padding: 20px 50px;
   border-radius: 10px;
+  width: 200%;
   box-shadow: 0 1px 30px 0 rgba(233, 191, 34, 0.75);
 }
 .form .title{
@@ -152,7 +153,7 @@ a:hover:after {
 
 }
 
-button{
+.wrapper button{
   background-image: linear-gradient(to right,gold,gold, yellow, gold );
   border-radius: 50px;
   border: none;
@@ -191,7 +192,7 @@ button{
   box-shadow: 0 4px 15px 0 rgba(233, 191, 34, 0.75);
 }
 
-p{
+.wrapper p{
   padding: 5px;
   text-align: center;
 }
