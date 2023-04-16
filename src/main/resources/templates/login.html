@@ -10,48 +10,49 @@
 
 <head>
 <body>
-	<div id="abc">
-<nav>
-<ul>
-<li><a href="/">Home</a></li>
-<li><a href="/user/register">Register</a></li>
-<li><a href="/login">Sign in</a></li>
-</ul>
-  </nav>
-</div>
+<a class="open-button" onclick="openForm()">Open Form</a>
+<div class="form-popup" id="myForm">
+    <div class="wrapper">
+        <div class="form">
+            <div  class="cancel" onclick="closeForm()"><a>Close</a></div>
+            <div class="title" >Sign in </div>
+            <form  th:action="@{/login}" method='post'>
+                <div class="input_wrap">
+                    <tr>
+                        <td><label for="userNameInput"></label>
+                        <td><input id=userNameInput class="input" type="text" name="username" placeholder="username" required /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="passwordInput"></label>
+                        <td><input id=passwordInput class="input" type="password" name="password" placeholder="password" required/></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="button" type="submit" value="Login"><span class="buttonspan">Login</span></button>
+                        </td>
+                    </tr>
+                    <div><p> <a href="/">Forgot password?</a></p> </div>
 
-<div class="wrapper">
-  <div class="form">
-    <div class="title">Sign in </div>
-    <form  th:action="@{/login}" method='post'>
-      <div class="input_wrap">
-       <tr>
-      <td><label for="userNameInput"></label>
-        <td><input id=userNameInput class="input" type="text" name="username" placeholder="username" required /></td>
-   </tr>
-   <tr>
-    <td><label for="passwordInput"></label>
-    <td><input id=passwordInput class="input" type="password" name="password" placeholder="password" required/></td>
-   </tr>
-  <tr>
-    <td>
-   <button class="button" type="submit" value="Login"><span class="buttonspan">Login</span></button>
-    </td>
-  </tr>
-  <div><p> <a href="/">Forgotten password?</a></p> </div>
-  <div><p><h4>Doesn't have an account?  <a href="/user/register">sign up</a></h4></p> </div>
+                    <div class="container">
 
-          <div class="container">
+                        <a href="/"> <button type="button" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-facebook"></i></button></a>
+                        <a href="/oauth2/authorization/github"> <button type="button" class="btn btn-danger btn-circle btn-sm"><i class="fa  fa-google"></i></button></a>
+                        <a href="/"> <button type="button" class="btn btn-info btn-circle btn-sm"><i class="fa    fa-twitter"></i></button></a>
+                        <a href="/"> <button type="button" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-github"></i></button></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
 
-              <a href="/"> <button type="button" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-facebook"></i></button></a>
-              <a href="/oauth2/authorization/github"> <button type="button" class="btn btn-danger btn-circle btn-sm"><i class="fa  fa-google"></i></button></a>
-              <a href="/"> <button type="button" class="btn btn-info btn-circle btn-sm"><i class="fa    fa-twitter"></i></button></a>
-              <a href="/"> <button type="button" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-github"></i></button></a>
-          </div>
-      </div>
-    </form>
-  </div>
-</div>
-</div>
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>
 </body>
 </html>
