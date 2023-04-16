@@ -8,10 +8,12 @@ import it.unicollab.bh.controller.validation.CredentialsValidator;
 import it.unicollab.bh.controller.validation.UserValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,7 +43,7 @@ public class AuthenticationController {
         return "user.html";
     }
 
-    @RequestMapping(value={"/oauth2/user"}, method = RequestMethod.GET)
+    @RequestMapping(value={"login/oauth2/user"}, method = RequestMethod.GET)
     public String oauthUser(Model model){
 
         return "registrationSuccessful.html"; // da modificare  domani  14/04

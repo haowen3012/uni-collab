@@ -4,7 +4,7 @@
   box-sizing: border-box;
   font-family: 'Jost', sans-serif;
   outline: none;
- /* color: #135480 ;*/
+  /* color: #135480 ;*/
   color : #000;
 }
 
@@ -33,18 +33,23 @@ nav ul li{
 }
 
 a {
-  color: white;
-  text-transform: uppercase;
+  /*  text-transform: uppercase;*/
   text-decoration: none;
   letter-spacing: 0.16em;
-
+  pointer: cursor;
   display: inline-block;
   padding: 15px 20px;
   position: relative;
 }
+
+#abc a{
+  color:#fff;
+}
+
 a:after {
   background: none repeat scroll 0 0 transparent;
   content: "";
+  bottom: 0;
   display: block;
   height: 2px;
   left: 50%;
@@ -81,6 +86,7 @@ a:hover:after {
   width: 100%;
   top:0;
   position: absolute;
+  display : none;
 
 }
 
@@ -95,6 +101,7 @@ a:hover:after {
   background: #fff;
   padding: 20px 50px;
   border-radius: 10px;
+  box-shadow: 0 1px 30px 0 rgba(233, 191, 34, 0.75);
 }
 .form .title{
   text-align: center;
