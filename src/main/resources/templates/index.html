@@ -55,16 +55,86 @@
         </div>
     </div>
 </div>
+
+<!--Login popup with slider---->
+<div id="auth">
+    <div class="slider">
+        <div class="container" id="main">
+            <div class="sign-up">
+                <form action="#">
+                    <h1>Sign Up</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+
+                    <input type="text" name="username" placeholder="username" required="">
+                    <input type="password" name="password" placeholder="password" required="">
+                    <input type="text" name="firstName" placeholder="first name" required="">
+                    <input type="text" name="lastName" placeholder="last name" required="">
+                    <button>Sign Up</button>
+                </form>
+            </div>
+            <div class="sign-in">
+                <form action="#">
+                    <h1>Sign In</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f">i</i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g">a</i></a>
+                        <a href="#" class="social"><i class="fab fa-github">b</i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in">c</i></a>
+                    </div>
+                    <input type="text" name="username" placeholder="username" required="">
+                    <input type="password" name="password" placeholder="password" required="">
+                    <a href="#">Forgot  your password?</a>
+
+                    <button>Sign Up</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your credentials</p>
+                        <button id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-right">
+                        <h1>Hello Friend</h1>
+                        <p>Enter your personal details to start your experience</p>
+                        <button id="signUp">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---->
 <script>
     function openForm() {
-        document.getElementById("myForm").style.display = "block";
+        document.getElementById("auth").style.display = "flex";
         document.getElementById("bg-img").style.filter = "blur(8px)";
     }
 
     function closeForm() {
-        document.getElementById("myForm").style.display = "none";
+        document.getElementById("auth").style.display = "none";
         document.getElementById("bg-img").style.filter = "none";
     }
+</script>
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const main = document.getElementById('main');
+
+    signUpButton.addEventListener('click',()=>{
+        main.classList.add("right-panel-active");
+    });
+    signInButton.addEventListener('click',()=>{
+        main.classList.remove("right-panel-active");
+    });
+
 </script>
 <!---->
 </body>

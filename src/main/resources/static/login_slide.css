@@ -21,13 +21,13 @@ body{
 
     position:relative;
     width:768px;
-    max-width:100%;
+    max-width: 100%;
     min-height:480px;
     background: #fff;
     border-radius:10px;
     overflow: hidden;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25),
-    0 10px 10px rgba(0,0,0,0.22)
+    0 10px 10px rgba(0,0,0,0.22);
 
 }
 
@@ -44,7 +44,7 @@ body{
 .sign-up{
     width: 50%;
     opacity:0;
-    z-index: 1
+    z-index: 1;
 }
 
 .sign-in{
@@ -87,6 +87,12 @@ input{
     outline: none;
 }
 
+input:focus{
+    box-shadow: 0 1px 7px 0 rgba(233, 191, 34, 0.75);
+    margin-bottom: 5px;
+
+}
+
 a{
     color:#333;
     font-size: 14px;
@@ -95,26 +101,37 @@ a{
 }
 
 
+
 button{
     color: #fff;
-    background: #ff4b2b;
+    background: linear-gradient(to right,orange,gold, yellow, orange);
     font-size: 12px;
     font-weight: bold;
     padding: 12px 55px;
     margin: 20px;
     border-radius: 20px;
-    border: 1px solid #ff4b2b;
+    border: 1px solid gold;
     outline: none;
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
     cursor: pointer;
+
+    background-size: 300% 200%;
+
+
+    transition: all .4s ease-in-out;
+    box-shadow: 0 1px 7px 0 rgba(233, 191, 34, 0.75);
 }
-
-
 
 button:active{
     transform: scale(0.90);
+}
+
+button:hover{
+    background-position: 100% 0;
+    transition: all .4s ease-in-out;
+    box-shadow: 0 4px 15px 0 rgba(233, 191, 34, 0.75);
 }
 
 #signIn, #signUp{
@@ -123,11 +140,11 @@ button:active{
 
 }
 
-.container.right-panel-active -sign-in{
+.container.right-panel-active .sign-in{
     transform: translateX(100%);
 }
 
-.container.right-panel-active -sign-up{
+.container.right-panel-active .sign-up{
     transform: translateX(100%);
     opacity : 1;
     z-index: 5;
@@ -157,7 +174,7 @@ button:active{
     left: -100%;
     height: 100%;
     width: 200%;
-    background: linear-gradient(to right, #ff4b28, #ff228c);
+    background: linear-gradient(135deg, rgb(255, 168, 168) 10%, rgb(252, 255, 0) 100%);
     transform: translateX(0);
     transition : transform 0.6s ease-in-out;
 
@@ -205,7 +222,7 @@ button:active{
 
 }
 
-social-container{
+.social-container{
     margin: 20px 0;
 
 
