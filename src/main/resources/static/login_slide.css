@@ -14,13 +14,26 @@ body {
     justify-content: center;
     align-items : center;
     flex-direction: column;
-    background: #f6f5f7;
+    background: linear-gradient(-45deg,dodgerblue,gold, rgb(255, 168, 168) ,orange);
+    background-size: 400% 400%;
     font-family: 'monserrat', sans-serif;
     min-height: 100%;
     margin: 10%;
-
+    animation: gradient 10s ease infinite;
 }
 
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 
 
 
