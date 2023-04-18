@@ -244,10 +244,50 @@ button:hover{
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #ccc;
+    border: 1px solid gold;
     border-radius : 50px;
 }
 
+
+
+.social{
+    font-size : 24px;
+}
+
+.social:hover{
+    transform: scale(1.10);
+    box-shadow: 0 1px 7px 0 rgba(233, 191, 34, 0.75);
+}
+
+
+.fa-facebook, .fa-linkedin, .fa-google {
+
+    color: white;
+}
+
+#facebook{
+    background: #3B5998;
+}
+
+#faceb{
+    background: #3B5998;
+}
+
+#google{
+    background: #dd4b39;
+}
+
+#goog{
+    background: #dd4b39;
+}
+
+#linkedin{
+    background: #007bb5;
+}
+
+#link{
+    background: #007bb5;
+}
 
 
 
