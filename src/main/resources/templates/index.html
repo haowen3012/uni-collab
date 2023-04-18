@@ -12,47 +12,11 @@
         <nav>
             <ul>
                 <li><a href="/">HOME</a></li>
-                <li><a onClick="openForm()">LOG IN</a></li>
+                <li><a id="login-button" th:href="@{/login}" >LOG IN</a></li>
                 <li><a href="/user/register">SIGN UP</a></li>
 
             </ul>
         </nav>
-    </div>
-</div>
-
-<!--Login Pop-up -->
-<div class="form-popup" id="myForm">
-    <div class="wrapper">
-        <div class="form">
-            <div  class="cancel" onclick="closeForm()"><a>Close</a></div>
-            <div class="title" >Sign in </div>
-            <form  th:action="@{/login}" method='post'>
-                <div class="input_wrap">
-                    <tr>
-                        <td><label for="userNameInput"></label>
-                        <td><input id=userNameInput class="input" type="text" name="username" placeholder="username" required /></td>
-                    </tr>
-                    <tr>
-                        <td><label for="passwordInput"></label>
-                        <td><input id=passwordInput class="input" type="password" name="password" placeholder="password" required/></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="button" type="submit" value="Login"><span class="buttonspan">Login</span></button>
-                        </td>
-                    </tr>
-                    <div><p> <a href="/">Forgot password?</a></p> </div>
-
-                    <div class="container">
-
-                        <a href="/"> <button type="button" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-facebook"></i></button></a>
-                        <a href="/oauth2/authorization/github"> <button type="button" class="btn btn-danger btn-circle btn-sm"><i class="fa  fa-google"></i></button></a>
-                        <a href="/"> <button type="button" class="btn btn-info btn-circle btn-sm"><i class="fa    fa-twitter"></i></button></a>
-                        <a href="/"> <button type="button" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-github"></i></button></a>
-                    </div>
-                </div>
-            </form>
-        </div>
     </div>
 </div>
 
@@ -112,7 +76,7 @@
 </div>
 
 <!---->
-<script>
+<!--<script>
     function openForm() {
         document.getElementById("auth").style.display = "flex";
         document.getElementById("bg-img").style.filter = "blur(8px)";
@@ -135,7 +99,6 @@
         main.classList.remove("right-panel-active");
     });
 
-</script>
-<!---->
+</script>-->
 </body>
 </html>
