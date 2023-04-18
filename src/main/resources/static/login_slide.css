@@ -2,26 +2,22 @@
 
 
 *{
-    margin: 0;
-    padding: 0;
+
     box-sizing: border-box;
-    font-family: 'Jost', sans-serif;
-    outline: none;
-    /* color: #135480 ;*/
-    color : #000;
 }
 
 
 
-#auth{
-    align-items : center;
+body {
+
     display:flex;
     justify-content: center;
+    align-items : center;
     flex-direction: column;
     background: #f6f5f7;
     font-family: 'monserrat', sans-serif;
     min-height: 100%;
-
+    margin: 10%;
 
 }
 

@@ -55,7 +55,7 @@ public class AuthenticationController {
          model.addAttribute("userForm", new User());
          model.addAttribute("credentialsForm", new Credentials());
 
-         return "registerUser.html";
+         return "login_slide.html";
      }
  
 
