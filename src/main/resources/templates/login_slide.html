@@ -19,37 +19,45 @@
           <a href="#" class="social" id="link"><i class="fa fa-linkedin"></i></a>
         </div>
 
-        <div class="input-container">
+        <div class="input-container" id="id-username">
           <i class="fa fa-user icon"></i>
           <input type="text" name="username" id="username" placeholder="username" onkeydown="validation('username')" required th:field="${credentialsForm.userName}"/>
+          <div class="check" id="check-username"><i class="fa fa-check"></i></div>
+          <div class="times" id="times-username"><i class="fa fa-times"></i></div>
         </div>
+
         <span id="username-valid"></span>
         <td th:if="${#fields.hasErrors('credentialsForm.userName')}"
             th:errors="${credentialsForm.userName}" th:style="'color:red'"></td>
 
-        <div class="input-container">
+        <div class="input-container" id="id-password">
           <i class="fa fa-key icon"></i>
           <input type="password" name="password" id="password" placeholder="password" required onkeydown="validation('password')"   th:field="${credentialsForm.password}"/>
+          <div class="check" id="check-password"><i class="fa fa-check"></i></div>
+          <div class="times" id="times-password"><i class="fa fa-times"></i></div>
         </div>
         <span id="password-valid"></span>
         <td th:if="${#fields.hasErrors('credentialsForm.password')}"
             th:errors="${credentialsForm.password}" th:style="'color:red'"></td>
 
 
-        <div class="input-container">
+        <div class="input-container"  id="id-firstname">
           <i class="fa fa-user icon"></i>
           <input type="text" name="firstName"  id="firstname" placeholder="first name" required  onkeydown="validation('firstname')" th:field="${userForm.firstName}"/>
+          <div class="check" id="check-firstname"><i class="fa fa-check"></i></div>
+          <div class="times" id="times-firstname"><i class="fa fa-times"></i></div>
         </div>
         <span id="firstname-valid"></span>
         <td th:if="${#fields.hasErrors('userForm.firstName')}"
             th:errors="${userForm.firstName}" th:style="'color:red'"></td>
 
 
-        <div class="input-container">
+        <div class="input-container"   id="id-lastname">
 
           <i class="fa fa-user icon"></i>
           <input type="text" name="lastName" id="lastname" placeholder="last name" required  onkeydown="validation('lastname')" th:field="${userForm.lastName}"/>
-
+          <div class="check" id="check-lastname"><i class="fa fa-check"></i></div>
+          <div class="times" id="times-lastname"><i class="fa fa-times"></i></div>
         </div>
         <span id="lastname-valid"></span>
         <td th:if="${#fields.hasErrors('userForm.lastName')}"
@@ -119,6 +127,14 @@
     var variable = document.getElementById(stringa);
     var variable_valid = document.getElementById(stringa + '-valid');
 
+    var check = document.getElementById('check-'+ stringa);
+    var times = document.getElementById('times-' + stringa);
+
+    var container = document.getElementById('id-' + stringa);
+
+
+
+
     variable_valid.style.fontSize ="9px";
     variable_valid.style.fontStyle ="italic";
     variable_valid.style.fontWeight ="300";
@@ -140,6 +156,10 @@
       form.classList.add("valid");
       form.classList.remove("invalid");
 
+      check.style.display = "block";
+      times.style.display ="none";
+      container.style.boxShadow="0 1px 7px 0 rgba(124, 252, 0)";
+
       switch(stringa){
         case 'username':variable_valid.innerHTML = "Your username is valid!"; break;
         case 'password': variable_valid.innerHTML = "Your password is valid!";break;
@@ -154,6 +174,12 @@
       form.classList.add("invalid");
       form.classList.remove("valid");
 
+      check.style.display = "none";
+      times.style.display ="block";
+
+      container.style.boxShadow="0 1px 7px 0 red";
+
+
       switch(stringa){
         case 'username':variable_valid.innerHTML = "Your username must be between 4 and 20 characters long!"; break;
 
@@ -162,9 +188,10 @@
         case 'lastname':variable_valid.innerHTML = "Your lastname must be between 2 and 100 characters long!"; break;
       }
       variable_valid.style.color = "#ff0000";
+
+
     }
   }
-
 </script>
 </body>
 </html>

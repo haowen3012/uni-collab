@@ -103,6 +103,7 @@ input{
     justify-content: center;
     align-items: center;
     width: 100%;
+    box-shadow: 0 1px 7px 0 rgba(233, 191, 34, 0.75);
 
     margin: 8px 15px;
 
@@ -119,11 +120,11 @@ input{
 }
 
 
-input:focus{
+/*input:focus{
     box-shadow: 0 1px 7px 0 rgba(233, 191, 34, 0.75);
     margin-bottom: 5px;
 
-}
+}*/
 
 a{
     color:#333;
@@ -355,7 +356,15 @@ button:hover{
 
 }
 
+.check{
+    display: none;
+    color: green;
+}
 
+.times{
+    display: none;
+    color: red;
+}
 
 
 
