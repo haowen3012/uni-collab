@@ -83,7 +83,7 @@ public class AuthenticationController {
 
              return "registrationSuccessful.html";
          }
-         return "registerUser.html";
+         return "login_slide.html";
      }
 
 

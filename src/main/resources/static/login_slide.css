@@ -14,25 +14,13 @@ body {
     justify-content: center;
     align-items : center;
     flex-direction: column;
-    background: linear-gradient(-45deg,dodgerblue,gold, rgb(255, 168, 168) ,orange);
-    background-size: 400% 400%;
+    background-color: #ccc;
+    /*  background-size: 400% 400%;*/
     font-family: 'monserrat', sans-serif;
     min-height: 100%;
     margin: 10%;
-    animation: gradient 10s ease infinite;
-}
-
-
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    /*  animation: gradient 10s ease infinite;*/
+    backdrop-filter: blur(8px);
 }
 
 
@@ -101,12 +89,35 @@ p{
 input{
     background: #eee;
     padding: 12px 15px;
-    margin: 8px 15px;
-    width: 100%;
+    width: 80%;
     border-radius: 15px;
     border:none;
     outline: none;
+
 }
+
+.input-container {
+    background: #eee;
+    border-radius: 15px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    margin: 8px 15px;
+
+}
+
+/* Style the form icons */
+.icon {
+
+    color: #000;
+    width: 10%;
+
+    text-align: center;
+
+}
+
 
 input:focus{
     box-shadow: 0 1px 7px 0 rgba(233, 191, 34, 0.75);
@@ -119,6 +130,7 @@ a{
     font-size: 14px;
     text-decoration: none;
     margin: 15px 0;
+
 }
 
 
@@ -191,16 +203,29 @@ button:hover{
 .overlay{
     position : relative;
     color: #fff;
-    background: #ff416c;
     left: -100%;
     height: 100%;
     width: 200%;
-    background: linear-gradient(135deg, rgb(255, 168, 168) 10%, rgb(252, 255, 0) 100%);
+    background: linear-gradient(45deg ,orangered,gold, yellow, orangered);
+    /*linear-gradient(135deg, rgb(255, 168, 168) 10%, rgb(252, 255, 0) 100%);*/
     transform: translateX(0);
     transition : transform 0.6s ease-in-out;
-
-
+    animation: gradient 5s ease infinite;
+    background-size: 400% 400%;
 }
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 
 .container.right-panel-active .overlay{
     transform: translateX(50%);
@@ -303,13 +328,32 @@ button:hover{
 }
 
 
+#no-pwd{
+    padding: 10px 10px;
+    letter-spacing: 0.16em;
+    position: relative;
+
+}
+
+#no-pwd:after {
+    background: none repeat scroll 0 0 transparent;
+    content: "";
+    bottom: 0;
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: gold;
+    border-radius:40px;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+#no-pwd:hover:after {
+    width:100%;
+    left: 0;
 
 
-
-
-
-
-
+}
 
 
 

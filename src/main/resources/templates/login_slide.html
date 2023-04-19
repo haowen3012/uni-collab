@@ -10,7 +10,7 @@
 <div class="slider">
   <div class="container" id="main">
     <div class="sign-up">
-      <form action="#">
+      <form  id="form" method="POST" th:action="@{/user/register}" >
         <h1>Sign Up</h1>
         <div class="social-container">
           <a href="#" class="social" id="faceb"><i class="fa fa-facebook"></i></a>
@@ -19,15 +19,48 @@
           <a href="#" class="social" id="link"><i class="fa fa-linkedin"></i></a>
         </div>
 
-        <input type="text" name="username" placeholder="username" required="">
-        <input type="password" name="password" placeholder="password" required="">
-        <input type="text" name="firstName" placeholder="first name" required="">
-        <input type="text" name="lastName" placeholder="last name" required="">
+        <div class="input-container">
+          <i class="fa fa-user icon"></i>
+          <input type="text" name="username" id="username" placeholder="username" onkeydown="validation('username')" required th:field="${credentialsForm.userName}"/>
+        </div>
+        <span id="username-valid"></span>
+        <td th:if="${#fields.hasErrors('credentialsForm.userName')}"
+            th:errors="${credentialsForm.userName}" th:style="'color:red'"></td>
+
+        <div class="input-container">
+          <i class="fa fa-key icon"></i>
+          <input type="password" name="password" id="password" placeholder="password" required onkeydown="validation('password')"   th:field="${credentialsForm.password}"/>
+        </div>
+        <span id="password-valid"></span>
+        <td th:if="${#fields.hasErrors('credentialsForm.password')}"
+            th:errors="${credentialsForm.password}" th:style="'color:red'"></td>
+
+
+        <div class="input-container">
+          <i class="fa fa-user icon"></i>
+          <input type="text" name="firstName"  id="firstname" placeholder="first name" required  onkeydown="validation('firstname')" th:field="${userForm.firstName}"/>
+        </div>
+        <span id="firstname-valid"></span>
+        <td th:if="${#fields.hasErrors('userForm.firstName')}"
+            th:errors="${userForm.firstName}" th:style="'color:red'"></td>
+
+
+        <div class="input-container">
+
+          <i class="fa fa-user icon"></i>
+          <input type="text" name="lastName" id="lastname" placeholder="last name" required  onkeydown="validation('lastname')" th:field="${userForm.lastName}"/>
+
+        </div>
+        <span id="lastname-valid"></span>
+        <td th:if="${#fields.hasErrors('userForm.lastName')}"
+            th:errors="${userForm.lastName}" th:style="'color:red'"></td>
+
+
         <button>Sign Up</button>
       </form>
     </div>
     <div class="sign-in">
-      <form action="#">
+      <form  th:action="@{/login}" method='post'>
         <h1>Sign In</h1>
         <div class="social-container">
           <a href="#" class="social" id="facebook"><i class="fa fa-facebook"></i></a>
@@ -35,9 +68,17 @@
           <a href="/oauth2/authorization/github" class="social" ><i class="fa fa-github"></i></a>
           <a href="#" class="social" id="linkedin"><i class="fa fa-linkedin"></i></a>
         </div>
-        <input type="text" name="username" placeholder="username" required="">
-        <input type="password" name="password" placeholder="password" required="">
-        <a href="#">Forgot  your password?</a>
+
+        <div class="input-container">
+          <i class="fa fa-user icon"></i>
+          <input type="text" name="username" placeholder="username" required="">
+        </div>
+
+        <div class="input-container">
+          <i class="fa fa-key icon"></i>
+          <input type="password" name="password" placeholder="password" required="">
+        </div>
+        <a id="no-pwd" href="#">Forgot  your password?</a>
 
         <button>Sign In</button>
       </form>
@@ -69,6 +110,60 @@
   signInButton.addEventListener('click',()=>{
     main.classList.remove("right-panel-active");
   });
+
+</script>
+<script>
+
+  function validation(stringa){
+    var form = document.getElementById('form');
+    var variable = document.getElementById(stringa);
+    var variable_valid = document.getElementById(stringa + '-valid');
+
+    variable_valid.style.fontSize ="9px";
+    variable_valid.style.fontStyle ="italic";
+    variable_valid.style.fontWeight ="300";
+
+
+    var pattern;
+
+    switch(stringa){
+
+      case 'username': pattern = /.{4,20}/; break;
+      case 'password': pattern = /.{6,20}/; break;
+      case 'firstname': pattern = /.{2,100}/; break;
+      case 'lastname': pattern = /.{2,100}/; break;
+
+    }
+
+
+    if(variable.value.match(pattern)){
+      form.classList.add("valid");
+      form.classList.remove("invalid");
+
+      switch(stringa){
+        case 'username':variable_valid.innerHTML = "Your username is valid!"; break;
+        case 'password': variable_valid.innerHTML = "Your password is valid!";break;
+        case 'firstname':variable_valid.innerHTML = "Your firstname is valid!"; break;
+        case 'lastname':variable_valid.innerHTML = "Your lastname is valid!";break;
+      }
+      variable_valid.style.color= "#00ff00";
+
+
+
+    }else{
+      form.classList.add("invalid");
+      form.classList.remove("valid");
+
+      switch(stringa){
+        case 'username':variable_valid.innerHTML = "Your username must be between 4 and 20 characters long!"; break;
+
+        case 'password': variable_valid.innerHTML = "Your password must be between 6 and 20 characters long!"; break;
+        case 'firstname':variable_valid.innerHTML = "Your firstname must be between 2 and 100 characters long!"; break;
+        case 'lastname':variable_valid.innerHTML = "Your lastname must be between 2 and 100 characters long!"; break;
+      }
+      variable_valid.style.color = "#ff0000";
+    }
+  }
 
 </script>
 </body>
