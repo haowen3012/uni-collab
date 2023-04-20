@@ -1,10 +1,8 @@
 package it.unicollab.bh.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.io.File;
 
 
 @Entity
@@ -14,7 +12,14 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String urlImage;
+    private File profileImage;
+
+    @OneToOne
+    private Curriculum curriculum;
+
+    public Profile() {
+    }
+
 
     public Long getId() {
         return id;
@@ -24,11 +29,19 @@ public class Profile {
         this.id = id;
     }
 
-    public String getUrlImage() {
-        return urlImage;
+    public File getProfileImage() {
+        return profileImage;
     }
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
+    public void setProfileImage(File profileImage) {
+        this.profileImage = profileImage;
+    }
+
+    public Curriculum getCurriculum() {
+        return curriculum;
+    }
+
+    public void setCurriculum(Curriculum curriculum) {
+        this.curriculum = curriculum;
     }
 }

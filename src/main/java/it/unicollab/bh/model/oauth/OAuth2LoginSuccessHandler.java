@@ -1,6 +1,5 @@
 package it.unicollab.bh.model.oauth;
 
-import it.unicollab.bh.model.CustomOAuth2User;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.service.UserService;
 import jakarta.servlet.ServletException;
@@ -9,10 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.DefaultRedirectStrategy;
-import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -36,6 +32,7 @@ public class OAuth2LoginSuccessHandler  implements AuthenticationSuccessHandler 
         String displayName = oAuth2User.getName();
         System.out.println("Login name: " + loginName );
         System.out.println("Display name: " + displayName );
+
 
         User user = userService.getUser(loginName);
 

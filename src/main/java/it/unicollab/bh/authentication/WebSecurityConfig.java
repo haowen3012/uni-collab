@@ -1,7 +1,6 @@
 package it.unicollab.bh.authentication;
 
 
-import it.unicollab.bh.model.CustomOAuth2User;
 import it.unicollab.bh.model.oauth.OAuth2LoginSuccessHandler;
 import it.unicollab.bh.service.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,21 +12,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 import javax.sql.DataSource;
 
 import static it.unicollab.bh.model.Credentials.ADMIN_ROLE;
-import static it.unicollab.bh.model.Credentials.DEFAULT_ROLE;
 
 @Configuration
 @EnableWebSecurity

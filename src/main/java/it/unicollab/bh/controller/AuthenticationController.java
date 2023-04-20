@@ -9,6 +9,7 @@ import it.unicollab.bh.controller.validation.UserValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,9 +45,9 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value={"login/oauth2/user"}, method = RequestMethod.GET)
-    public String oauthUser(Model model){
-
-        return "registrationSuccessful.html"; // da modificare  domani  14/04
+    public String oauthUser(Model model, Authentication authentication){
+       model.addAttribute("user",authentication.getName());
+        return "user.html"; // da modificare  domani  14/04
     }
 
 

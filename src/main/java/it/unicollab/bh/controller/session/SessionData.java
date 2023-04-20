@@ -43,6 +43,15 @@ public class SessionData {
         this.credentials = this.credentialsRepository.findByUserName(loggedUserDetails.getUsername()).get();
         this.credentials.setPassword("[PROTECTED]");
         this.user = this.credentials.getUser();
+
+
     }
 
+ /*   private void oauthUpdate(){
+        Object object = SecurityContextHolder.getContext().getAuthentication();
+        OAuth2User customOAuth2User = (OAuth2User) object;
+
+        this.credentials
+    }
+*/
 }
