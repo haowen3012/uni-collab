@@ -68,6 +68,7 @@
       </form>
     </div>
     <div class="sign-in">
+      <div th:if="${param.error}"><p>Invalid username or password</p></div>
       <form  th:action="@{/login}" method='post'>
         <h1>Sign In</h1>
         <div class="social-container">
@@ -76,10 +77,10 @@
           <a href="/oauth2/authorization/github" class="social" ><i class="fa fa-github"></i></a>
           <a href="#" class="social" id="linkedin"><i class="fa fa-linkedin"></i></a>
         </div>
-
         <div class="input-container">
           <i class="fa fa-user icon"></i>
           <input type="text" name="username" placeholder="username" required="">
+
         </div>
 
         <div class="input-container">
