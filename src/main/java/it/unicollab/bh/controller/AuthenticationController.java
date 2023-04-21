@@ -13,10 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.print.DocFlavor;
@@ -51,8 +48,9 @@ public class AuthenticationController {
     }
 
 
-     @RequestMapping(value ={"/user/register"}, method = RequestMethod.GET)
-    public String showRegisterFrom(Model model){
+    @RequestMapping(value ={"/user/register"}, method = RequestMethod.GET)
+    public String showLoginAndRegisterForm(Model model ){
+
          model.addAttribute("userForm", new User());
          model.addAttribute("credentialsForm", new Credentials());
 
