@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+      <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width">
+  
+  <title>Feed|UniCOlla</title>
+  <link rel="stylesheet"  href="/homepage.css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+<body>
+<div id="navbar">
+  <li><input class="search-input" type="text" placeholder="Search.."> </li>
+<li> <a href="#home">Home</a>  </li>
+
+  <li>     <div class="dropdown">
+    <a><span>Me</span><i class="fa fa-caret-down"></i> </a>
+    
+    <div class="dropdown-content">
+      <section>
+         <h4> Account</h4>
+        <h1 th:text="${user.firstName} + ${user.lastName} + '!'"></h1>
+              <a href="#">Profile</a>
+        </section>
+        <section>
+       <h4> Gestisci</h4>
+      <a href="#">post</a>
+        </section>
+      <section>
+       <a href="#">Log out</a>
+        </section>
+  </li>
+  <script> // When the user scrolls the page, execute myFunction 
+window.onscroll = function() {myFunction()};
+
+// Get the navbar
+var navbar = document.getElementById("navbar");
+
+// Get the offset position of the navbar
+var sticky = navbar.offsetTop;
+
+// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}</script>
+    </div>
+</div>
+
+</body>
+</html>
