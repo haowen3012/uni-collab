@@ -61,7 +61,8 @@ body{
     justify-content: center;
     flex-direction: column;
 
-    border-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 
     background: linear-gradient(45deg ,orangered,gold, yellow, orangered);
     /*linear-gradient(135deg, rgb(255, 168, 168) 10%, rgb(252, 255, 0) 100%);*/
