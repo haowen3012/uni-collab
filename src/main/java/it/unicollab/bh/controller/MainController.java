@@ -40,10 +40,10 @@ public class MainController {
 
         User user = userService.getUser(user_id);
       University university = universityService.getUniversity(uni_id);
-       List<Course> courseList =  courseService.getCourseByUniversity(university);
+      List<Course> courseList =  courseService.getCourseByUniversity(university);
 
-        model.addAttribute(user);
-        model.addAttribute(courseList);
+        model.addAttribute("user", user);
+        model.addAttribute("courses",courseList);
 
         return "completeRegistration.html";
     }

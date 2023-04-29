@@ -13,10 +13,9 @@
       <h1>Complete your Registration </h1>
       <div class="selections">
         <div class="selection">
-          <select onclick="rotateUp('2')">
+          <select onclick="rotateUp('2')" name="selected-courseId">
             <option value="0">Select your course of study</option>
-            <option value="1">Audi</option>
-            <option value="2">BMW</option>
+            <option  th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}">Audi</option>
           </select>
           <i class="fa fa-caret-down" id ="triangle-2" ></i>
         </div>
