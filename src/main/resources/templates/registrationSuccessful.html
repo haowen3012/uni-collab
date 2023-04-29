@@ -10,11 +10,11 @@
 <form th:action="@{'/addCourse' +'/' + ${user.id} }" method="post">
     <div class="container">
         <div class="cont-1">
-            <h1>Complete your Registration </h1>
+            <h1>Complete your Registration</h1>
             <div class="selections">
                 <div class="selection">
-                    <select onclick="rotateUp('1')"   name="selected-universityId" >
-                        <option value="0">Select your University</option>
+                    <select onclick="rotateUp('1')"  required  name="selected-universityId" >
+                        <option value="">Select your University</option>
                         <option th:each="university:${universities}" th:value="${university.id}" th:text="${university.name}">Select  your university</option>
                     </select>
                     <i class="fa fa-caret-down"  id="triangle-1"></i>

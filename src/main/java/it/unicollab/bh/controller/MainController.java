@@ -48,9 +48,9 @@ public class MainController {
         return "completeRegistration.html";
     }
 
-    @RequestMapping(value={"setCourse/{user_id}/{course_id}"}, method = RequestMethod.GET)
+    @RequestMapping(value={"setCourse/{user_id}"}, method = RequestMethod.POST)
     public String setCourseToUser(Model model, @PathVariable Long user_id,
-                                  @PathVariable Long course_id){
+                                  @RequestParam("selected-courseId") Long course_id){
 
         User user = userService.getUser(user_id);
         Course course =  courseService.getCourse(course_id);

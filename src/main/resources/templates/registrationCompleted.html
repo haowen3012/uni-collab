@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uni-Collab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/registrationSuccessful.css}" />
+</head>
+<body>
+<div id="container">
+    <div class="cont-1">
+        <h1 id="welcome" th:text="'Welcome ' + ${user.userName}">Welcome</h1>
+    </div>
+    <div class="cont-2">
+        <div id="finish"> <h1 style="color:#fff">
+            <div id="go-next">Let's Finish</div>
+            <div id="arrow-next"> >>> </div>
+        </h1></div>
+        <div id="button"><button id="next" href="/user" onclick="fade_out()">Finish</button></div>
+    </div>
+</div>
+</body>
+<script>
+    function fade_out(){
+
+        var container = document.getElementById('container');
+        var welcome = document.getElementById('welcome');
+        var finish = document.getElementById('finish');
+        var go_next = document.getElementById('go-next');
+        var arrow_next = document.getElementById('arrow-next');
+        var button = document.getElementById('button');
+
+
+        container.style.animation ="slide-out-anim 1.5s ease-out forwards";
+        welcome.style.animation ="slide-out-anim 1.5s ease-out forwards";
+        finish.style.animation ="slide-out-anim 1.5s ease-out forwards";
+        go_next.style.animation ="slide-out-anim 1.5s ease-out forwards";
+        arrow_next.style.animation ="slide-out-anim 1.5s ease-out forwards";
+        button.style.animation ="slide-out-anim 1.5 ease-out forwards";
+
+    }
+</script>
+</html>
