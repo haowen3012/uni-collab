@@ -198,7 +198,7 @@ button:hover{
     text-shadow: 0.5px 0.5px 0.5px #919191,
     0.5px 1px 0.5px #919191;
 
-    animation: slide-in-anim 1.2s ease-out forwards;
+    animation: slide-in-anim 1.5s ease-out forwards;
 }
 
 @keyframes slide-in-anim {
@@ -219,14 +219,19 @@ button:hover{
 }
 
 .go-next{
+    display: inline-block;
+
+    animation: slide-in-anim 1.5s ease-out forwards;
     text-shadow: 1px 1px 1px #919191,
     1px 3px 1px #919191;
 }
 
 .arrow-next{
+
     display: inline-block;
-    animation: slide 1.2s ease-out infinite;
     padding: 5px;
+    animation: slide-in-anim 1.5s ease-out forwards;
+    animation: slide 1.2s ease-out infinite;
     text-shadow: 1px 1px 1px #919191,
     1px 3px 1px #919191;
 }
