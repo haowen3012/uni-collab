@@ -1,10 +1,9 @@
 package it.unicollab.bh.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jdk.jfr.Enabled;
+
+import java.util.List;
 
 @Entity
 public class University {
@@ -14,6 +13,10 @@ public class University {
     private Long id;
 
     private String name;
+
+    @OneToMany(mappedBy = "university")
+    private List<Course>  courses;
+
 
     public Long getId() {
         return id;
@@ -31,5 +34,5 @@ public class University {
         this.name = name;
     }
 
-    
+
 }
