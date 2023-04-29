@@ -1,3 +1,5 @@
+@import url('http://fonts.googleapis.com/css?family=Monserrat:400,800');
+
 *{
 
     box-sizing: border-box;
@@ -13,7 +15,7 @@ body{
     background-color: #ccc;
     /*  background-size: 400% 400%;*/
     font-family: 'monserrat', sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     min-height: 100%;
     margin: 10%;
     /*  animation: gradient 10s ease infinite;*/
@@ -42,10 +44,9 @@ body{
     left: 0;
     top: 0;
     z-index: 1;
-
     display:flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
 
 }
@@ -86,12 +87,14 @@ body{
 
 h1{
     color: rgb(8, 14, 44);
-
+    padding: 5%;
+    font-size: 30px;
 
 }
 
 .selections{
 
+    position: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,14 +108,14 @@ h1{
     align-items: center;
     justify-content: center;
     margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 1px 7px 0 rgb(249, 191, 59);
+    border-radius: 15px;
+    box-shadow: 0 1px 7px 0 rgb(249, 191, 59),  0px 4px  rgb(249, 191, 59);
 
 }
 
 .selection i{
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 15px;
     color: orange;
 
 }
@@ -121,16 +124,15 @@ select{
 
     margin-right: 0;
     width: 100%;
-    padding: 10px;
-    font-family: Arial , sans-serif;
+    padding: 15px;
+    border-radius: 15px;
     border: none;
     outline: none;
+
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 1px;
     text-overflow: '';
-    border-radius: 10px;
-
 }
 
 input{
@@ -174,7 +176,7 @@ button:active{
 button:hover{
     background-position: 100% 0;
     transition: all .4s ease-in-out;
-    box-shadow: 0 4px 15px 0 rgba(233, 191, 34, 0.75);
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,0.25);
 }
 
 
@@ -192,8 +194,11 @@ button:hover{
     animation: slide-in-anim 1.5s ease-out forwards;
 }
 
-#sign-up{
-    animation: slide-in-anim 1.5s ease-out forwards;
+#next{
+    text-shadow: 0.5px 0.5px 0.5px #919191,
+    0.5px 1px 0.5px #919191;
+
+    animation: slide-in-anim 1.2s ease-out forwards;
 }
 
 @keyframes slide-in-anim {
@@ -212,4 +217,39 @@ button:hover{
         transform: translateX(0%);
     }
 }
+
+.go-next{
+    text-shadow: 1px 1px 1px #919191,
+    1px 3px 1px #919191;
+}
+
+.arrow-next{
+    display: inline-block;
+    animation: slide 1.2s ease-out infinite;
+    padding: 5px;
+    text-shadow: 1px 1px 1px #919191,
+    1px 3px 1px #919191;
+}
+
+
+@keyframes slide{
+    0%{
+        opacity: 0.7;
+        transform: translateX(30%);
+    }
+
+    50%{
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    100% {
+        opacity: 0.7;
+        transform: translateX(30%);
+    }
+
+}
+
+
+
+
 
