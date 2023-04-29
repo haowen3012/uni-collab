@@ -7,26 +7,17 @@
     <link rel="stylesheet" th:href="@{/registrationSuccessful.css}" />
 </head>
 <body>
-<form>
+<form th:action="@{'addCourse' +'/' + ${user.id} }">
     <div class="container">
         <div class="cont-1">
             <h1>Complete your Registration </h1>
             <div class="selections">
                 <div class="selection">
-                    <select onclick="rotateUp('1')" th:field="${universities}">
+                    <select onclick="rotateUp('1')"   name="selected-universityId" >
                         <option value="0">Select your University</option>
                         <option th:each="university:${universities}" th:value="${university.id}" th:text="${university.name}">Select  your university</option>
                     </select>
                     <i class="fa fa-caret-down"  id="triangle-1"></i>
-                </div>
-
-                <div class="selection">
-                    <select onclick="rotateUp('2')">
-                        <option value="0">Select your course of study</option>
-                        <option value="1">Audi</option>
-                        <option value="2">BMW</option>
-                    </select>
-                    <i class="fa fa-caret-down" id ="triangle-2" ></i>
                 </div>
             </div>
         </div>
@@ -35,7 +26,8 @@
                 <span class="go-next">Go Next </span>
                 <span class="arrow-next">>>></span>
             </h1>
-            <button id="next">Next</button></div>
+            <button id="next" type="submit" >Next</button>
+        </div>
     </div>
 </form>
 </body>

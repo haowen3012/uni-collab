@@ -9,10 +9,7 @@ import it.unicollab.bh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,12 +35,12 @@ public class MainController {
 
 
 
-    @RequestMapping(value={"AddCourse/{user_id}/{uni_id}"}, method = RequestMethod.GET)
-    public String AddCourseToUser(Model model, @PathVariable Long user_id, @PathVariable Long uni_id){
+    @RequestMapping(value={"AddCourse/{user_id}"}, method = RequestMethod.GET)
+    public String AddCourseToUser(Model model, @PathVariable Long user_id, @RequestParam("selected-universityId") Long uni_id){
 
         User user = userService.getUser(user_id);
-        University university = universityService.getUniversity(uni_id);
-        List<Course> courseList =  courseService.getCourseByUniversity(university);
+      University university = universityService.getUniversity(uni_id);
+       List<Course> courseList =  courseService.getCourseByUniversity(university);
 
         model.addAttribute(user);
         model.addAttribute(courseList);

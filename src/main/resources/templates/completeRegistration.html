@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Uni-Collab</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" th:href="@{/registrationSuccessful.css}" />
+</head>
+<body>
+<form>
+  <div class="container">
+    <div class="cont-1">
+      <h1>Complete your Registration </h1>
+      <div class="selections">
+        <div class="selection">
+          <select onclick="rotateUp('2')">
+            <option value="0">Select your course of study</option>
+            <option value="1">Audi</option>
+            <option value="2">BMW</option>
+          </select>
+          <i class="fa fa-caret-down" id ="triangle-2" ></i>
+        </div>
+      </div>
+    </div>
+    <div class="cont-2">
+      <h1 style="color:#fff">
+        <span class="go-next">Go Next </span>
+        <span class="arrow-next">>>></span>
+      </h1>
+      <button id="next">Next</button></div>
+  </div>
+</form>
+</body>
+<script>
+  let down = true;
+
+
+  function rotateUp(id){
+
+    var arrow = document.getElementById('triangle-' + id);
+
+
+    if(down){
+      arrow.style.transform = "rotateX(180deg)";
+      down = false;
+
+    }else{
+
+      arrow.style.transform = "rotateX(360deg)";
+      down = true;
+
+    }
+
+
+  }
+
+</script>
+</html>
