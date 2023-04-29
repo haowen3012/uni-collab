@@ -61,7 +61,7 @@ public class SessionData {
     }
 
   private void   oauth2Update(){
-        Object object = SecurityContextHolder.getContext().getAuthentication();
+        Object object = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         CustomOAuth2User loggedOAuth2User = (CustomOAuth2User) object;
 
         this.user = userRepository.findByUserName(loggedOAuth2User.getLogin()).get();

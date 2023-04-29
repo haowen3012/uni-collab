@@ -37,6 +37,7 @@ public class MainController {
     }
 
 
+
     @RequestMapping(value={"AddCourse/{user_id}/{uni_id}"}, method = RequestMethod.GET)
     public String AddCourseToUser(Model model, @PathVariable Long user_id, @PathVariable Long uni_id){
 
@@ -47,10 +48,10 @@ public class MainController {
         model.addAttribute(user);
         model.addAttribute(courseList);
 
-        return "completeRegistration2.html";
+        return "completeRegistration.html";
     }
 
-    @RequestMapping(value={"setCourse/{user_id}/{course_id"}, method = RequestMethod.GET)
+    @RequestMapping(value={"setCourse/{user_id}/{course_id}"}, method = RequestMethod.GET)
     public String setCourseToUser(Model model, @PathVariable Long user_id,
                                   @PathVariable Long course_id){
 
@@ -64,6 +65,6 @@ public class MainController {
 
         model.addAttribute(user);
 
-        return "successful.html";
+        return "registrationCompleted.html";
     }
 }
