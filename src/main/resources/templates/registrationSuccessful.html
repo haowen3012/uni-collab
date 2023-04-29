@@ -7,7 +7,7 @@
     <link rel="stylesheet" th:href="@{/registrationSuccessful.css}" />
 </head>
 <body>
-<form th:action="@{'addCourse' +'/' + ${user.id} }">
+<form th:action="@{'/addCourse' +'/' + ${user.id} }" method="post">
     <div class="container">
         <div class="cont-1">
             <h1>Complete your Registration </h1>
