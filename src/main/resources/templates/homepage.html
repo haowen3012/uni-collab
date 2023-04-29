@@ -5,7 +5,7 @@
       <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <meta name="viewport" content="width=device-width">
   
-  <title>Feed|UniCOlla</title>
+  <title>Feed|UniCollab</title>
   <link rel="stylesheet"  href="/homepage.css" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -13,48 +13,109 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   </head>
 <body>
 <div id="navbar">
+ <img class="logo-img" src="logo.ico" width="70" height="70" ALT="align box" ALIGN=CENTER>
+  
   <li><input class="search-input" type="text" placeholder="Search.."> </li>
-<li> <a href="#home">Home</a>  </li>
+<li> <a href="#home">Home</a></li>
 
-  <li>     <div class="dropdown">
+  <li><div class="dropdown">
+	  	 <!-- <span><img width="100%" src="logo.ico" /></span>-->
+	    <!-- <span><img width="100%" th:src=${usr.url} /></span> -->  
+
     <a><span>Me</span><i class="fa fa-caret-down"></i> </a>
     
     <div class="dropdown-content">
       <section>
          <h4> Account</h4>
-        <h1 th:text="${user.firstName} + ${user.lastName} + '!'"></h1>
-              <a href="#">Profile</a>
+                <h5 th:text="${user.firstName}  +' ' + ${user.lastName} "></h5>
+              <a href="profile">Profile</a>
         </section>
         <section>
-       <h4> Gestisci</h4>
+       <h4> Your Posts</h4>
       <a href="#">post</a>
         </section>
-      <section>
-       <a href="#">Log out</a>
-        </section>
+      
+       <a href="index">Log out</a>
+     
   </li>
-  <script> // When the user scrolls the page, execute myFunction 
-window.onscroll = function() {myFunction()};
-
-// Get the navbar
-var navbar = document.getElementById("navbar");
-
-// Get the offset position of the navbar
-var sticky = navbar.offsetTop;
-
-// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-function myFunction() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky")
-  } else {
-    navbar.classList.remove("sticky");
-  }
-}</script>
-    </div>
+  </div>
 </div>
+<!-- finito navibar  --> 
+   <div class='container'>   
+<!-- left side bar -->  
+   <div class="left-sidebar">
+   <div class="sidebar-profile-box">
+   <div class="sidebar-profile-info">
+	     <section>
+			 <span><img width="100%" src="logo.ico" /></span>
+	    <!-- <span><img width="100%" th:src=${user.url} /></span> -->  
+	      <h5 th:text="${user.firstName}  +' ' + ${user.lastName} "></h5>
+	     </section>
+	       
+  </div>
+   </div>
+   </div>
+  
+<!-- main-content here --> 
+    <div class="main-content">
+		<div class="creat-post">
+		
+		<div class="creat-post-input">
+			<img width="100%" src="logo.ico" />
+			<textarea rows="2" placeholder="Create an event"></textarea>	
+	</div>
 
+	<div class="create-post-links">
+	
+
+	    <li><i class="fa fa-camera"></i> Photo</li>
+		<li><i class="fa fa-video-camera"></i> Video</li>
+	
+		<li><i class="fa fa-calendar-o" ></i> Date</li>
+		<li><i class="fa fa-archive" aria-hidden="true"></i>post</li>
+	   
+	</div>
+	</div>
+	
+	<div class="sort-by">
+	
+	<hr>
+	<p>Sort by:<span>top</span></p>
+	</hr>
+	</div>
+	<div class="post">
+	<div class="post-author">
+		 <!-- <span><img width="100%" th:src=${user.url} /></span> -->  
+	<img src="logo.ico" />
+	<div>
+		<h5 th:text="${user.firstName}  +' ' + ${user.lastName} "></h5>
+	</div>
+	</div>
+	<section>
+	<p> prova per capire se funziona prova per capire se funziona  prova per capire se funziona prova per capire se funziona
+		prova per capire se funziona prova per capire se funziona 	 prova per capire se funziona prova per capire se funziona  prova per capire se funziona prova per capire se funziona
+		prova per capire se funziona prova per capire se funziona 	 prova per capire se funziona prova per capire se funziona  prova per capire se funziona prova per capire se funziona
+		prova per capire se funziona prova per capire se funziona 
+	</section>
+	</p>
+	
+	<img src=" indexPic.jpg" width="100%" />
+	
+
+	</div>
+		
+	</div>
+  <!--right side bar -->  
+    <div class="right-sidebar">
+   <div class="sidebar-news">
+	   <img src="" class="info-icon">
+	   <h1>Trending news</h1>
+     </div>
+ </div>
+</div>
 </body>
 </html>

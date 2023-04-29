@@ -38,7 +38,7 @@ public class AuthenticationController {
     public String user(Model model){
         User loggedUser = this.sessionData.getLoggedUser();
         model.addAttribute("user",loggedUser);
-        return "user.html";
+        return "homepage.html";
     }
 
     @RequestMapping(value={"login/oauth2/user"}, method = RequestMethod.GET)

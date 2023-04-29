@@ -2,12 +2,14 @@ body{
   background-color:  rgb(243, 242, 239);
 }
 #navbar {
-  overflow: hidden;
+overflow: hidden; 
   background-color: #fff;
 text-align: center;
-  
- 
+   padding: 14px;
+
+
 }
+
 #navbar li{
 list-style-type: none;
   display: inline-block;
@@ -16,12 +18,20 @@ list-style-type: none;
 /* Navbar links */
 #navbar a {
   display: block;
-
   text-align: center;
-  padding: 14px;
+  padding: 17px;
+  font-size:20px;
   text-decoration: none;
+ color: #000;
+ border-bottom: 3px solid transparent;
+}
+#navbar a:hover {
+  border-bottom: 3px solid gold;
 }
 
+#navbar a.active {
+  border-bottom: 3px solid gold;
+}
 /* Page content */
 .content {
   padding: 16px;
@@ -38,16 +48,42 @@ list-style-type: none;
 .sticky + .content {
   padding-top: 60px;
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-   line-height: 50px;
+  border-radius:15px;
+ width: 250px;
    z-index: 1;
+}
+section{
+ display: block;
+    padding: 5px;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  
+
+}
+.logo-img{
+    float: left;
+    position: relative;
+    margin: 10px 15px 15px 10px;
+}
+.bg-div{
+   background:#333;
+   overflow: hidden;
 }
 .search-input{
 background-color: rgb(292, 294, 290);
+ 
+
+ position: absolute;
+  left: 120px;
+  top: 40px;
+
+  
+  
 }
 .dropdown-content a {
   border-radius:10px;
@@ -56,17 +92,184 @@ background-color: rgb(292, 294, 290);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-   line-height: 50px;
+
   text-align: left;
 }
 
 .dropdown-content a:hover {
   background-color: #ddd;
- line-height: 50px;
+
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
-   line-height: 50px;
+
 }
+/*---  finito navbar  ---*/
+.container{
+  padding: 20px,6%;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+}	
+/*----------  left side bar  -------*/
+.left-sidebar{
+  flex-basis: 25%;
+  align-self:flex-start;
+
+}
+
+.sidebar-profile-box{
+	background-color: #fff;
+	margin-top: 33px;
+	text-align: center;
+}
+
+.sidebar-profile-info{
+	padding: 0 25px ;
+
+}
+.sidebar-profile-info img{
+	width: 90px;
+	border-radius:100px ;
+	background-color: #fff;
+	padding: 4px ;
+	
+}
+.sidebar-profile-info h5{
+	font-size: 20px;
+	font-weight: 600;
+	color: #222;
+}
+
+/*----------  right side bar  -------*/
+.right-sidebar{
+  flex-basis: 25%;
+  align-self:flex-start;
+	
+
+}
+
+.sidebar-news{
+	background-color: #fff;
+	padding: 10px 25px;
+	margin-top: 33px;
+}
+.sidebar-news h1{
+text-align: center;
+
+}
+.info-icon{
+	width: 15px;
+	float: right;
+	margin-top: 15px;
+}
+/*----------  main-content  -------*/
+.main-content{
+	 flex-basis: 47%;
+  }
+.creat-post{
+background-color:#fff ;	
+margin-top:33px ;
+}
+.creat-post-input{
+padding: 20px 25px 10px;	
+display:flex;
+align-items: flex-start;
+}
+.creat-post-input img{
+	width: 36px;
+	border-radius:100px ;
+	background-color: #fff;
+	margin-right: 10px;
+	
+}
+
+.creat-post-input textarea{
+	
+	width: 100%;
+	resize: none;
+	border: 0;
+	outline: 0;
+	background:transparent ;
+	margin-top:8px ;
+}
+.create-post-links{
+display: flex;
+align-items: flex-start;
+}
+.create-post-links li{
+	list-style: none;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	flex-basis: 25%;
+	height: 40px;
+	font-size: 13px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	
+}
+.create-post-links li:last-child{
+	background-color: gold;
+	color: #fff;
+	border-top: 0;
+	border-right:0; 
+}
+::placeholder{
+	font-weight: 500;
+}
+.sort-by{
+	display: flex;
+	align-items: center;
+	margin:10px 0;
+	}
+	.sort-by hr{
+		flex:1;
+		border:0;
+		height: 1px ;
+		background:#ccc ;
+	}
+	.sort-by p{
+		font-size: 13px;
+		padding-left: 5px;
+	}
+	.sort-by p span{
+		font-weight: 600;
+		cursor: pointer;
+	}
+.post{
+		
+background: #fff;
+padding: 20px 25px 5px;
+margin:50px 0 15px;
+	}
+	
+	
+.post-author{
+	display: flex;
+	align-items: flex-start;
+	margin-bottom: 20px;
+}
+.post-author img{
+	width: 35px;
+	border-radius: 50px;
+	margin-right: 10px;
+	margin-top: 5px;
+}
+
+.post-author h1{
+font-size: 18px;
+font-weight: 600;
+color: #333;
+}
+
+.post p{
+	font-size: 14px;
+	margin-bottom: 15px;
+}
+
+
+
 
