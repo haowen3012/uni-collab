@@ -34,7 +34,6 @@ public class UserService {
     public User getUser(String username){
         Optional<User> result = this.userRepository.findByUserName(username);
         return result.orElse(null);
-
     }
 
     /**
