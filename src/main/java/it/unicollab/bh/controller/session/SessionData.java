@@ -2,12 +2,15 @@ package it.unicollab.bh.controller.session;
 
 import it.unicollab.bh.model.Credentials;
 import it.unicollab.bh.model.User;
+import it.unicollab.bh.model.oauth.CustomOAuth2User;
 import it.unicollab.bh.repository.CredentialsRepository;
+import it.unicollab.bh.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,6 +23,9 @@ public class SessionData {
 
     @Autowired
     private CredentialsRepository credentialsRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
 
     public Credentials getLoggedCredentials(){
@@ -36,6 +42,13 @@ public class SessionData {
         return this.user;
     }
 
+    public User getLoggedOAuth2User(){
+
+        this.oauth2Update();
+        return this.user;
+    }
+
+
     private void update(){
         Object object = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails loggedUserDetails = (UserDetails) object;
@@ -47,11 +60,11 @@ public class SessionData {
 
     }
 
-  /*void oauthUpdate(){
+  private void   oauth2Update(){
         Object object = SecurityContextHolder.getContext().getAuthentication();
-        OAuth2User customOAuth2User = (OAuth2User) object;
+        CustomOAuth2User loggedOAuth2User = (CustomOAuth2User) object;
 
-        this.credentials
+        this.user = userRepository.findByUserName(loggedOAuth2User.getLogin()).get();
     }
-*/
+
 }

@@ -47,6 +47,11 @@ public class User {
     private Profile profile;
 
 
+    @ManyToOne
+    private Course courseAttended;
+
+
+
     /**
      * The listv of
      */
@@ -133,16 +138,11 @@ public class User {
         this.oAuthProvider = oAuthProvider;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(userName, user.userName) && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(creationTimestamp, user.creationTimestamp) && Objects.equals(lastUpdateTimestamp, user.lastUpdateTimestamp) && Objects.equals(profile, user.profile) && Objects.equals(projects, user.projects);
+    public Course getCourseAttended() {
+        return courseAttended;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(userName, password, firstName, lastName, creationTimestamp, lastUpdateTimestamp, profile, projects);
+    public void setCourseAttended(Course courseAttended) {
+        this.courseAttended = courseAttended;
     }
 }

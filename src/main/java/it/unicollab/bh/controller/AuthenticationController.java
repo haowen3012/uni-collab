@@ -6,10 +6,13 @@ import it.unicollab.bh.model.User;
 import it.unicollab.bh.service.CredentialsService;
 import it.unicollab.bh.controller.validation.CredentialsValidator;
 import it.unicollab.bh.controller.validation.UserValidator;
+import it.unicollab.bh.service.UniversityService;
+import it.unicollab.bh.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,6 +37,12 @@ public class AuthenticationController {
     @Autowired
     SessionData sessionData;
 
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    UniversityService universityService;
+
     @RequestMapping(value={"/user"}, method = RequestMethod.GET)
     public String user(Model model){
         User loggedUser = this.sessionData.getLoggedUser();
@@ -42,9 +51,12 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value={"login/oauth2/user"}, method = RequestMethod.GET)
-    public String oauthUser(Model model, Authentication authentication){
-       model.addAttribute("user",authentication.getName());
-        return "registrationSuccessful.html"; // da modificare  domani  14/04
+    public String oauthUser(Model model){
+
+        User loggedUser = this.sessionData.getLoggedOAuth2User();
+        model.addAttribute("user",loggedUser);
+        model.addAttribute("university",universityService.getAllUniversities());
+        return "registrationSuccessful.html";
     }
 
 
@@ -57,10 +69,6 @@ public class AuthenticationController {
          return "login_slide.html";
      }
  
-
-     
-     
-     
 
      @RequestMapping(value = {"/user/register"}, method = RequestMethod.POST)
     public String registerUser(@Valid @ModelAttribute("userForm") User user,
@@ -79,6 +87,9 @@ public class AuthenticationController {
              //this also stores the User, thanks to Cascade.ALL polocy
              credentials.setUser(user);
              credentialsService.saveCredentials(credentials);
+
+             User loggedUser = this.sessionData.getLoggedUser();
+             model.addAttribute("user",loggedUser);
 
              return "registrationSuccessful.html";
          }

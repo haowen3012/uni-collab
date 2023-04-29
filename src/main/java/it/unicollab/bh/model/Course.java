@@ -3,6 +3,8 @@ package it.unicollab.bh.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CollectionIdJdbcTypeCode;
 
+import java.util.List;
+
 @Entity
 public class Course {
 
@@ -14,6 +16,9 @@ public class Course {
 
     @ManyToOne
     private University university;
+
+    @OneToMany(mappedBy = "courseAttended")
+    private List<User> students;
 
     public Long getId() {
         return id;
@@ -37,5 +42,13 @@ public class Course {
 
     public void setUniversity(University university) {
         this.university = university;
+    }
+
+    public List<User> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<User> students) {
+        this.students = students;
     }
 }

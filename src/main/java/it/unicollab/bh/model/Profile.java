@@ -17,8 +17,6 @@ public class Profile {
     @OneToOne
     private Curriculum curriculum;
 
-    public Profile() {
-    }
 
 
     public Long getId() {
