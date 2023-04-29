@@ -1,0 +1,72 @@
+body{
+  background-color:  rgb(243, 242, 239);
+}
+#navbar {
+  overflow: hidden;
+  background-color: #fff;
+text-align: center;
+  
+ 
+}
+#navbar li{
+list-style-type: none;
+  display: inline-block;
+  transition: 0.7s all;
+}
+/* Navbar links */
+#navbar a {
+  display: block;
+
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+/* Page content */
+.content {
+  padding: 16px;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 60px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+   line-height: 50px;
+   z-index: 1;
+}
+.search-input{
+background-color: rgb(292, 294, 290);
+}
+.dropdown-content a {
+  border-radius:10px;
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+   line-height: 50px;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+ line-height: 50px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+   line-height: 50px;
+}
+

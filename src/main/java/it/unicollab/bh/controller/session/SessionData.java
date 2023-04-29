@@ -47,7 +47,7 @@ public class SessionData {
 
     }
 
- /*   private void oauthUpdate(){
+  /*void oauthUpdate(){
         Object object = SecurityContextHolder.getContext().getAuthentication();
         OAuth2User customOAuth2User = (OAuth2User) object;
 
