@@ -50,6 +50,8 @@ public class AuthenticationController {
         return "homepage.html";
     }
 
+
+
     @RequestMapping(value={"login/oauth2/user"}, method = RequestMethod.GET)
     public String addUniversityToUser(Model model){
 

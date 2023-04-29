@@ -89,6 +89,8 @@ h1{
     color: rgb(8, 14, 44);
     padding: 5%;
     font-size: 30px;
+    animation: slide-in-anim 1.2s ease-out forwards;
+
 
 }
 
@@ -99,7 +101,6 @@ h1{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
 
 }
 .selection{
@@ -243,8 +244,6 @@ button:hover{
     }
 
 }
-
-
 
 
 
