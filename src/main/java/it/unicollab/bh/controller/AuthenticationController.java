@@ -51,11 +51,11 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value={"login/oauth2/user"}, method = RequestMethod.GET)
-    public String oauthUser(Model model){
+    public String addUniversityToUser(Model model){
 
         User loggedUser = this.sessionData.getLoggedOAuth2User();
         model.addAttribute("user",loggedUser);
-        model.addAttribute("university",universityService.getAllUniversities());
+        model.addAttribute("universities",universityService.getAllUniversities());
         return "registrationSuccessful.html";
     }
 

@@ -17,8 +17,6 @@ public class Course {
     @ManyToOne
     private University university;
 
-    @OneToMany(mappedBy = "courseAttended")
-    private List<User> students;
 
     public Long getId() {
         return id;
@@ -44,11 +42,4 @@ public class Course {
         this.university = university;
     }
 
-    public List<User> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<User> students) {
-        this.students = students;
-    }
 }
