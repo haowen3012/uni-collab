@@ -45,8 +45,15 @@ public class AuthenticationController {
 
     @RequestMapping(value={"/user"}, method = RequestMethod.GET)
     public String user(Model model){
-        User loggedUser = this.sessionData.getLoggedUser();
-        model.addAttribute("user",loggedUser);
+
+       try {
+           User loggedUser = this.sessionData.getLoggedUser();
+           model.addAttribute("user",loggedUser);
+       }catch(ClassCastException e){
+            User loggedUser = this.sessionData.getLoggedOAuth2User();
+             model.addAttribute("user",loggedUser);
+        }
+
         return "homepage.html";
     }
 
