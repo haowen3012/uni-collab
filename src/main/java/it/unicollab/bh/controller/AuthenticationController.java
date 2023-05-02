@@ -59,11 +59,11 @@ public class AuthenticationController {
 
 
 
-    @RequestMapping(value={"login/oauth2/user"}, method = RequestMethod.GET)
-    public String addUniversityToUser(Model model){
+/***************************************************************************************/
 
-
-        User loggedUser = this.sessionData.getLoggedOAuth2User();
+    @RequestMapping(value ={"/successful"}, method = RequestMethod.GET)
+    public String successful(Model model){
+        User loggedUser = this.sessionData.getLoggedUser();
         model.addAttribute("user",loggedUser);
 
         if(loggedUser.getCourseAttended()!=null ){
@@ -75,18 +75,36 @@ public class AuthenticationController {
         return "registrationSuccessful.html";
     }
 
+    @RequestMapping(value={"login/oauth2/user"}, method = RequestMethod.GET)
+    public String oAuth2Successful(Model model){
+
+
+        User loggedUser = this.sessionData.getLoggedOAuth2User();
+        model.addAttribute("user",loggedUser);
+
+        if(loggedUser.getCourseAttended()!=null ){
+            return "homepage.html";
+        }
+
+
+
+        model.addAttribute("universities",universityService.getAllUniversities());
+        return "registrationSuccessful.html";
+    }
+
+/**************************************************************************************************/
 
     @RequestMapping(value ={"/login"}, method = RequestMethod.GET)
     public String showLoginAndRegisterForm(Model model ){
 
-         model.addAttribute("userForm", new User());
-         model.addAttribute("credentialsForm", new Credentials());
+        model.addAttribute("userForm", new User());
+        model.addAttribute("credentialsForm", new Credentials());
 
-         return "login_slide.html";
-     }
- 
+        return "login_slide.html";
+    }
 
-     @RequestMapping(value = {"/user/register"}, method = RequestMethod.POST)
+
+    @RequestMapping(value = {"/user/register"}, method = RequestMethod.POST)
     public String registerUser(@Valid @ModelAttribute("userForm") User user,
                                BindingResult userBindingResult,
                                @Valid @ModelAttribute("credentialsForm") Credentials credentials,
@@ -104,10 +122,10 @@ public class AuthenticationController {
              credentials.setUser(user);
              credentialsService.saveCredentials(credentials);
 
-             User loggedUser = this.sessionData.getLoggedUser();
-             model.addAttribute("user",loggedUser);
+             model.addAttribute("user",user);
+             model.addAttribute("universities",universityService.getAllUniversities());
 
-             return "registrationSuccessful.html";
+             return "login_slide.html";
          }
          return "login_slide.html";
      }
