@@ -26,7 +26,7 @@
         <span class="go-next">Let's Finish</span>
         <span class="arrow-next">>>></span>
       </h1>
-      <button id="next">Finish</button></div>
+      <button id="next" onclick="fade_out()">Finish</button></div>
   </div>
 </form>
 </body>
@@ -53,5 +53,14 @@
 
   }
 
+</script>
+<script>
+  function fade_out(){
+
+    var main = document.getElementById('main');
+
+
+    main.style.animation ="slide-out-anim 1.5s ease-out forwards";
+  }
 </script>
 </html>

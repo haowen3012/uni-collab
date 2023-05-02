@@ -247,3 +247,25 @@ button:hover{
 
 
 
+@keyframes slide-out-anim {
+    0%{
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    50%{
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-150%);
+    }
+}
+
+
+
+
+
+
+
+
+

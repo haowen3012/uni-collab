@@ -64,12 +64,13 @@
             th:errors="${userForm.lastName}" th:style="'color:red'"></td>
 
 
-        <button>Sign Up</button>
+        <button onclick="fade_out()">Sign Up</button>
       </form>
     </div>
     <div class="sign-in">
-      <div th:if="${param.error}"><p>Invalid username or password</p></div>
       <form  th:action="@{/login}" method='post'>
+        <div th:if="${param.error}">
+          Invalid username and password.</div>
         <h1>Sign In</h1>
         <div class="social-container">
           <a href="#" class="social" id="facebook"><i class="fa fa-facebook"></i></a>
@@ -89,7 +90,7 @@
         </div>
         <a id="no-pwd" href="#">Forgot  your password?</a>
 
-        <button>Sign In</button>
+        <button onclick="fade_out()">Sign In</button>
       </form>
     </div>
     <div class="overlay-container">
@@ -199,8 +200,15 @@
 
   }
 
+</script>
+<script>
+  function fade_out(){
+
+    var main = document.getElementById('main');
 
 
+    main.style.animation ="slide-out-anim 1s ease-out forwards";
+  }
 </script>
 </body>
 </html>

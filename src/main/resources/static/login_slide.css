@@ -4,6 +4,7 @@
 *{
 
     box-sizing: border-box;
+
 }
 
 
@@ -38,6 +39,7 @@ body {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25),
     0 10px 10px rgba(0,0,0,0.22);
 
+
 }
 
 .sign-up, .sign-in{
@@ -59,6 +61,7 @@ body {
 .sign-in{
     width: 50%;
     z-index: 2;
+
 }
 
 form{
@@ -367,10 +370,45 @@ button:hover{
 }
 
 
+.container, h1, input, button{
+    animation: slide-in-anim 1.2s ease-out forwards;
+
+}
 
 
 
+@keyframes slide-in-anim {
+    0%{
+        opacity: 0;
+        transform: translateX(150%);
+    }
+    70%{
+        transform: translateX(-2%);
+    }
+    80%{
+        transform: translateX(3%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
 
+
+
+@keyframes slide-out-anim {
+    0%{
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    50%{
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-150%);
+    }
+}
 
 
 

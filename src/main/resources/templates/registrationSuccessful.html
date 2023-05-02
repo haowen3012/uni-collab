@@ -26,7 +26,7 @@
                 <span class="go-next">Go Next </span>
                 <span class="arrow-next">>>></span>
             </h1>
-            <button id="next" type="submit" >Next</button>
+            <button id="next" type="submit" onclick="fade_out()" >Next</button>
         </div>
     </div>
 </form>
@@ -54,5 +54,14 @@
 
     }
 
+</script>
+<script>
+    function fade_out(){
+
+        var container = document.getElementById('container');
+
+
+        container.style.animation ="slide-out-anim 1.5s ease-out forwards";
+    }
 </script>
 </html>

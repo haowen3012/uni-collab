@@ -62,14 +62,21 @@ public class AuthenticationController {
     @RequestMapping(value={"login/oauth2/user"}, method = RequestMethod.GET)
     public String addUniversityToUser(Model model){
 
+
         User loggedUser = this.sessionData.getLoggedOAuth2User();
         model.addAttribute("user",loggedUser);
+
+        if(loggedUser.getCourseAttended()!=null ){
+            return "homepage.html";
+        }
+
+
         model.addAttribute("universities",universityService.getAllUniversities());
         return "registrationSuccessful.html";
     }
 
 
-    @RequestMapping(value ={"/user/register"}, method = RequestMethod.GET)
+    @RequestMapping(value ={"/login"}, method = RequestMethod.GET)
     public String showLoginAndRegisterForm(Model model ){
 
          model.addAttribute("userForm", new User());
