@@ -7,6 +7,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+<div id="errors">
+<div class="error" th:if="${#fields.hasErrors('credentialsForm.userName')}"
+    th:errors="${credentialsForm.userName}" ></div>
+
+<div class="error" th:if="${#fields.hasErrors('credentialsForm.password')}"
+    th:errors="${credentialsForm.password}" ></div>
+
+<div class="error"  th:if="${#fields.hasErrors('userForm.firstName')}"
+    th:errors="${userForm.firstName}" ></div>
+
+<div class="error"  th:if="${#fields.hasErrors('userForm.lastName')}"
+    th:errors="${userForm.lastName}" ></div>
+</div>
+
 <div class="slider">
   <div class="container" id="main">
     <div class="sign-up">
@@ -27,8 +41,6 @@
         </div>
 
         <span id="username-valid"></span>
-        <td th:if="${#fields.hasErrors('credentialsForm.userName')}"
-            th:errors="${credentialsForm.userName}" th:style="'color:red'"></td>
 
         <div class="input-container" id="id-password">
           <i class="fa fa-key icon"></i>
@@ -37,8 +49,6 @@
           <div class="times" id="times-password"><i class="fa fa-times"></i></div>
         </div>
         <span id="password-valid"></span>
-        <td th:if="${#fields.hasErrors('credentialsForm.password')}"
-            th:errors="${credentialsForm.password}" th:style="'color:red'"></td>
 
 
         <div class="input-container"  id="id-firstname">
@@ -48,8 +58,6 @@
           <div class="times" id="times-firstname"><i class="fa fa-times"></i></div>
         </div>
         <span id="firstname-valid"></span>
-        <td th:if="${#fields.hasErrors('userForm.firstName')}"
-            th:errors="${userForm.firstName}" th:style="'color:red'"></td>
 
 
         <div class="input-container"   id="id-lastname">
@@ -60,8 +68,6 @@
           <div class="times" id="times-lastname"><i class="fa fa-times"></i></div>
         </div>
         <span id="lastname-valid"></span>
-        <td th:if="${#fields.hasErrors('userForm.lastName')}"
-            th:errors="${userForm.lastName}" th:style="'color:red'"></td>
 
 
         <button onclick="fade_out()">Sign Up</button>
@@ -148,8 +154,8 @@
 
       case 'username': pattern = /.{4,20}/; break;
       case 'password': pattern = /.{6,20}/; break;
-      case 'firstname': pattern = /.{2,100}/; break;
-      case 'lastname': pattern = /.{2,100}/; break;
+      case 'firstname': pattern = /.{1,100}/; break;
+      case 'lastname': pattern = /.{1,100}/; break;
 
     }
 
@@ -209,6 +215,22 @@
 
     main.style.animation ="slide-out-anim 1s ease-out forwards";
   }
+</script>
+<script>
+  var error_element = document.getElementById('errors');
+
+  error_element.addEventListener('animationend', () => {
+
+    setTimeout( function(){
+      error_element.style.animation="slide-out-up 1s ease-out forwards";
+    },2000);
+
+
+    setTimeout( function(){
+      error_element.innerHTML="";
+    },2600);
+  });
+
 </script>
 </body>
 </html>
