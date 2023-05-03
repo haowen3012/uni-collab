@@ -28,7 +28,7 @@ public class MainController {
     public MainController(){
     }
 
-   @RequestMapping(value ={"/index"}, method = RequestMethod.GET)
+   @RequestMapping(value ={"/"}, method = RequestMethod.GET)
     public String index() {
         return "index.html";
     }
