@@ -3,6 +3,7 @@ package it.unicollab.bh.model;
 import jakarta.persistence.*;
 
 import java.io.File;
+import java.util.List;
 
 
 @Entity
@@ -17,6 +18,8 @@ public class Profile {
 
     @OneToOne
     private Curriculum curriculum;
+
+
 
 
 
