@@ -14,8 +14,11 @@ public class PostController {
   private PostService postService;
 
     @RequestMapping(value ={"/createPost"}, method = RequestMethod.POST)
-    public String ciao() {
-        return "index.html";
+    public String creatPost() {
+
+
+
+      return "hompage.html";
     }
 
 

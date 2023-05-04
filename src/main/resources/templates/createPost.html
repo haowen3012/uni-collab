@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Uni-Collab</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" th:href="@{/registrationCompleted.css}" />
+  <link rel="stylesheet" th:href="@{/createPost.css}" />
 </head>
 <body>
 <div id="container">
@@ -13,7 +13,7 @@
     <input placeholder="Create a post"/>
   </div>
 </div>
-<div id="container-2" >
+<form id="container-2">
   <h1 >YOUR NAME</h1>
   <div class="section-1">
     <div class="section-title">PROJECT NAME</div>
@@ -35,7 +35,7 @@
     <button class="publish"  id="go-back"  >go back</button>
     <button class="publish">publish</button>
   </div>
-</div>
+  </form>
 </body>
 <script>
 
@@ -68,6 +68,11 @@
 
 
   });
+
+
+
 </script>
+
+
 
 </html>
