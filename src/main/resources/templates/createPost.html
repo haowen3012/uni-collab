@@ -13,6 +13,43 @@
     <input placeholder="Create a post"/>
   </div>
 </div>
+
+<div id="post" >
+  <div class="owner">
+    <h1>OWNER</h1>
+    <div style="color:#4169e1"> 3 hours ago</div>
+  </div>
+  <div class="project">
+    <h1 class="section-title">PROJECT</h1>
+    <div class="project-name"> PROJECT NAME</div>
+  </div>
+  <div class="project-description">
+    <h1 class="section-title">DESCRIPTION</h1>
+    <div class="description">
+      Il progetto di mobile computing consiste nella creazione di un gioco mobile con autenticazione. Mi servono 3 colleghi di progetto.
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="bottom-left">
+
+      <div class="places-left">
+        <i class="fa-solid fa-circle" ></i>
+        <div>PLACES AVAILABLE </div>
+        <span>3</span>
+      </div>
+
+      <div class="deadline">
+        <div>APPLICATION DEADLINE </div>
+        <span class="time">30/12/2023 19:12</span>
+      </div>
+
+    </div>
+    <div><button class="publish">apply</button></div>
+  </div>
+</div>
+
+<!-----pop up---->
+
 <form id="container-2">
   <h1 >YOUR NAME</h1>
   <div class="section-1">
@@ -35,7 +72,8 @@
     <button class="publish"  id="go-back"  >go back</button>
     <button class="publish">publish</button>
   </div>
-  </form>
+</form>
+<!------------->
 </body>
 <script>
 
@@ -44,24 +82,27 @@
   var post_form = document.getElementById('container-2');
   var go_back = document.getElementById('go-back');
 
+  var post = document.getElementById('post');
+
   container_1.addEventListener('click',()=>{
 
     post_form.style.display= "flex";
     post_form.style.animation ="slide-in-down 1.1s ease-out forwards";
 
 
-    let body = document.querySelector("body");
   });
 
 
 
   go_back.addEventListener('click',()=>{
 
-    post_form.style.animation ="slide-out-anim 1s ease forwards";
+    post_form.style.animation ="slide-out-anim 1s ease-out forwards";
+
+    post.style.animation = "none";
 
 
     setTimeout( function(){
-      post_form.style.display = "none";},800);
+      post_form.style.display = "none";},1000);
 
 
 
