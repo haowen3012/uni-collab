@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{'/addProfile' + '/' + ${user.id}}" th:object="${profile}" method="post" enctype="multipart/form-data">
+  ...
+  <div>
+    <div>Profile Image</div>
+    <input type="file" name="image" accept="image/png, image/jpeg" />
+
+  </div>
+</form>
+</body>
+</html>

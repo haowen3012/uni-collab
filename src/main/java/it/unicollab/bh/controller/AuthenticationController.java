@@ -54,7 +54,7 @@ public class AuthenticationController {
              model.addAttribute("user",loggedUser);
         }
 
-        return "homepage.html";
+        return "createPost.html";
     }
 
 
@@ -83,7 +83,7 @@ public class AuthenticationController {
         model.addAttribute("user",loggedUser);
 
         if(loggedUser.getCourseAttended()!=null ){
-            return "homepage.html";
+            return "createPost.html";
         }
 
 

@@ -3,6 +3,7 @@ package it.unicollab.bh.model;
 import jakarta.persistence.*;
 
 import java.io.File;
+import java.util.List;
 
 
 @Entity
@@ -12,10 +13,13 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private File profileImage;
+    @Column(length = 64)
+    private String profileImage;
 
     @OneToOne
     private Curriculum curriculum;
+
+
 
 
 
@@ -25,14 +29,6 @@ public class Profile {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public File getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(File profileImage) {
-        this.profileImage = profileImage;
     }
 
     public Curriculum getCurriculum() {

@@ -65,36 +65,36 @@ public  class WebSecurityConfig {
     @Bean
     protected SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception{
 
-      httpSecurity
-              .csrf().and().cors().disable()
-              .authorizeHttpRequests()
-              .requestMatchers("/**").permitAll()
-              .requestMatchers("/oauth2/**").authenticated()
-              .requestMatchers(HttpMethod.GET,"/","/index","/user/register").permitAll()
-              .requestMatchers(HttpMethod.POST,"/user/register").permitAll()
-              .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
-              .requestMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
-              .anyRequest().authenticated()
-              .and().formLogin()
-              .loginPage("/login")
-              .permitAll()
-              .defaultSuccessUrl("/successful")
-              .failureUrl("/login?error=true")
-              .and().logout()
-              .logoutUrl("/logout")
-              .logoutSuccessUrl("/index")
-              .invalidateHttpSession(true)
-              .clearAuthentication(true).permitAll()
-              .and()
-              .oauth2Login()
-              .loginPage("/login")
-              .userInfoEndpoint().userService(customOAuth2UserService)
-              .and()
-              .successHandler(oAuth2LoginSuccessHandler);
+        httpSecurity
+                .csrf().and().cors().disable()
+                .authorizeHttpRequests()
+                .requestMatchers("/**").permitAll()
+                .requestMatchers("/oauth2/**").authenticated()
+                .requestMatchers(HttpMethod.GET,"/","/index","/user/register").permitAll()
+                .requestMatchers(HttpMethod.POST,"/user/register").permitAll()
+                .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
+                .requestMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
+                .anyRequest().authenticated()
+                .and().formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .defaultSuccessUrl("/successful")
+                .failureUrl("/login?error=true")
+                .and().logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/index")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true).permitAll()
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
+                .userInfoEndpoint().userService(customOAuth2UserService)
+                .and()
+                .successHandler(oAuth2LoginSuccessHandler);
 
 
 
-      return httpSecurity.build();
+        return httpSecurity.build();
     }
 
 }

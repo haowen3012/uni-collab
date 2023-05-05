@@ -9,11 +9,48 @@
 </head>
 <body>
 <div id="container">
-  <div class="flex-item-1">
+  <div class="flex-item-1" >
     <input placeholder="Create a post"/>
   </div>
 </div>
-<div id="container-2">
+
+<div id="post" >
+  <div class="owner">
+    <h1>OWNER</h1>
+    <div style="color:#4169e1"> 3 hours ago</div>
+  </div>
+  <div class="project">
+    <h1 class="section-title">PROJECT</h1>
+    <div class="project-name"> PROJECT NAME</div>
+  </div>
+  <div class="project-description">
+    <h1 class="section-title">DESCRIPTION</h1>
+    <div class="description">
+      Il progetto di mobile computing consiste nella creazione di un gioco mobile con autenticazione. Mi servono 3 colleghi di progetto.
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="bottom-left">
+
+      <div class="places-left">
+        <i class="fa-solid fa-circle" ></i>
+        <div>PLACES AVAILABLE </div>
+        <span>3</span>
+      </div>
+
+      <div class="deadline">
+        <div>APPLICATION DEADLINE </div>
+        <span class="time">30/12/2023 19:12</span>
+      </div>
+
+    </div>
+    <div><button class="publish">apply</button></div>
+  </div>
+</div>
+
+<!-----pop up---->
+
+<form id="container-2">
   <h1 >YOUR NAME</h1>
   <div class="section-1">
     <div class="section-title">PROJECT NAME</div>
@@ -21,33 +58,62 @@
   </div>
   <div class="section-2">
     <div class="section-title">PROJECT DESCRIPTION</div>
-    <div class="flex-item-2" role="textbox" contenteditable>Enter the project description</div>
+    <div class="flex-item-2" role="textbox" contenteditable>Enter the project description for your project</div>
   </div>
   <div class="section-3">
     <div  class="section-title">MEMBERSHIP</div>
-    <input type="number" id="quantity" name="quantity" min="1" max="7" placeholder="Enter the number of memebers"/>
+    <input type="number" class="special-input" name="quantity" min="1" max="7" placeholder="Enter the number of memebers"/>
   </div>
-  <div class="section-4"><button class="publish">publish</button></div>
-</div>
+  <div class="section-3">
+    <div  class="section-title">DEADLINE</div>
+    <input  class="special-input" type="datetime-local" name="datetime"/>
+  </div>
+  <div class="section-4">
+    <button class="publish"  id="go-back"  >go back</button>
+    <button class="publish">publish</button>
+  </div>
+</form>
+<!------------->
 </body>
 <script>
-  function fade_out(){
-
-    var container = document.getElementById('container');
-    var welcome = document.getElementById('welcome');
-    var finish = document.getElementById('finish');
-    var go_next = document.getElementById('go-next');
-    var arrow_next = document.getElementById('arrow-next');
-    var button = document.getElementById('button');
 
 
-    container.style.animation ="slide-out-anim 1.5s ease-out forwards";
-    welcome.style.animation ="slide-out-anim 1.5s ease-out forwards";
-    finish.style.animation ="slide-out-anim 1.5s ease-out forwards";
-    go_next.style.animation ="slide-out-anim 1.5s ease-out forwards";
-    arrow_next.style.animation ="slide-out-anim 1.5s ease-out forwards";
-    button.style.animation ="slide-out-anim 1.5 ease-out forwards";
+  var container_1 =  document.getElementById('container');
+  var post_form = document.getElementById('container-2');
+  var go_back = document.getElementById('go-back');
 
-  }
+  var post = document.getElementById('post');
+
+  container_1.addEventListener('click',()=>{
+
+    post_form.style.display= "flex";
+    post_form.style.animation ="slide-in-down 1.1s ease-out forwards";
+
+
+  });
+
+
+
+  go_back.addEventListener('click',()=>{
+
+    post_form.style.animation ="slide-out-anim 1s ease-out forwards";
+
+    post.style.animation = "none";
+
+
+    setTimeout( function(){
+      post_form.style.display = "none";},1000);
+
+
+
+
+
+  });
+
+
+
 </script>
+
+
+
 </html>

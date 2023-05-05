@@ -64,4 +64,13 @@ public class MainController {
 
         return "registrationCompleted.html";
     }
+
+
+    /****************CREATE AND SET THE ASSOCIATION BETWEEN USER AND PROFILE*********************/
+
+
+
+
+
+
 }

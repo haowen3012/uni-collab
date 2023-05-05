@@ -6,6 +6,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -40,6 +42,7 @@ public class User {
     @Column(name = "auth_provider")
     private AuthenticationProvider oAuthProvider;
 
+
     /**
      * The profile associated to this user
      */
@@ -51,12 +54,22 @@ public class User {
     private Course courseAttended;
 
 
-
-    /**
-     * The listv of
-     */
     @ManyToMany
     private Set<Project> projects;
+
+
+    /**
+     * the owned posts
+     */
+    @OneToMany(mappedBy = "owner")
+    private Collection<Post> ownedPosts;
+
+    /**
+     * the collection of  accepted post-applys
+     */
+    @ManyToMany(mappedBy = "acceptedUsers")
+    private Collection<Post> acceptedApplies;
+
 
     public Long getId() {
         return id;
@@ -144,5 +157,21 @@ public class User {
 
     public void setCourseAttended(Course courseAttended) {
         this.courseAttended = courseAttended;
+    }
+
+    public Collection<Post> getOwnedPosts() {
+        return ownedPosts;
+    }
+
+    public void setOwnedPosts(Collection<Post> ownedPosts) {
+        this.ownedPosts = ownedPosts;
+    }
+
+    public Collection<Post> getAcceptedApplies() {
+        return acceptedApplies;
+    }
+
+    public void setAcceptedApplies(Collection<Post> acceptedApplies) {
+        this.acceptedApplies = acceptedApplies;
     }
 }
