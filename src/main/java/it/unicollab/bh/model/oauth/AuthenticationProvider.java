@@ -9,7 +9,8 @@ import java.net.http.HttpRequest;
 
 public enum AuthenticationProvider {
 
-    LOCAL, GITHUB
+    LOCAL,OAUTH
+  
 
 
 }

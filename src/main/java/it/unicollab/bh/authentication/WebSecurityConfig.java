@@ -49,6 +49,7 @@ public  class WebSecurityConfig {
         return (web) -> web.ignoring().requestMatchers("/resources/**");
     }*/
 
+    
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -81,20 +82,22 @@ public  class WebSecurityConfig {
                 .defaultSuccessUrl("/successful")
                 .failureUrl("/login?error=true")
                 .and().logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/index")
                 .invalidateHttpSession(true)
                 .clearAuthentication(true).permitAll()
                 .and()
                 .oauth2Login()
                 .loginPage("/login")
-                .userInfoEndpoint().userService(customOAuth2UserService)
-                .and()
-                .successHandler(oAuth2LoginSuccessHandler);
-
+                .userInfoEndpoint()
+            .userService( oAuth2UserService)
+            .and()
+           .successHandler(oAuth2LoginSuccessHandler);
+      
 
 
         return httpSecurity.build();
     }
-
+   @Autowired
+   private CustomOAuth2UserService oAuth2UserService;
+   
+   
 }

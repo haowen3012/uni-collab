@@ -2,6 +2,8 @@ package it.unicollab.bh.model;
 
 import it.unicollab.bh.model.oauth.AuthenticationProvider;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -29,6 +31,10 @@ public class User {
 
 
     private String lastName;
+    
+    @Email
+    @Column(name = "email")
+    String emailAddress;
 
     @CreationTimestamp
     private LocalDateTime creationTimestamp;
@@ -162,7 +168,15 @@ public class User {
         return acceptedApplies;
     }
 
-    public void setAcceptedApplies(Collection<Post> acceptedApplies) {
+    public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public void setAcceptedApplies(Collection<Post> acceptedApplies) {
         this.acceptedApplies = acceptedApplies;
     }
 }
