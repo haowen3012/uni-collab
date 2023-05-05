@@ -25,13 +25,10 @@ public class MainController {
     @Autowired
     private UniversityService universityService;
 
+
     public MainController(){
     }
 
-   @RequestMapping(value ={"/"}, method = RequestMethod.GET)
-    public String index() {
-        return "index.html";
-    }
 
 
 

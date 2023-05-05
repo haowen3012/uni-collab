@@ -37,19 +37,20 @@ public class SessionData {
 
     public User getLoggedUser(){
 
-        this.update();
+
+        try {
+            this.update();
+        }
+        catch(ClassCastException e){
+            this.oauth2Update();
+        }
 
         return this.user;
     }
 
-    public User getLoggedOAuth2User(){
-
-        this.oauth2Update();
-        return this.user;
-    }
 
 
-    private void update(){
+    private void update() throws ClassCastException {
         Object object = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails loggedUserDetails = (UserDetails) object;
 
@@ -60,7 +61,7 @@ public class SessionData {
 
     }
 
-  private void   oauth2Update(){
+  private void   oauth2Update() throws  ClassCastException{
         Object object = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         CustomOAuth2User loggedOAuth2User = (CustomOAuth2User) object;
 

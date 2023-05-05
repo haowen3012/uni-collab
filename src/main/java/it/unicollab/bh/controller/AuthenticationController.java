@@ -44,16 +44,29 @@ public class AuthenticationController {
     @Autowired
     UniversityService universityService;
 
+
+
+    @RequestMapping(value ={"/"}, method = RequestMethod.GET)
+    public String index() {
+
+        try{
+        if(this.sessionData.getLoggedUser()!=null){
+             return "redirect:/user";
+        }
+        }catch(ClassCastException e){
+            return "index.html";
+        }
+
+            return "index.html";
+    }
+
+
     @RequestMapping(value={"/user"}, method = RequestMethod.GET)
     public String user(Model model){
 
-       try {
+
            User loggedUser = this.sessionData.getLoggedUser();
            model.addAttribute("user",loggedUser);
-       }catch(ClassCastException e){
-            User loggedUser = this.sessionData.getLoggedOAuth2User();
-             model.addAttribute("user",loggedUser);
-        }
 
 
         return "createPost.html";
@@ -81,7 +94,7 @@ public class AuthenticationController {
     public String oAuth2Successful(Model model){
 
 
-        User loggedUser = this.sessionData.getLoggedOAuth2User();
+        User loggedUser = this.sessionData.getLoggedUser();
         model.addAttribute("user",loggedUser);
 
         if(loggedUser.getCourseAttended()!=null ){

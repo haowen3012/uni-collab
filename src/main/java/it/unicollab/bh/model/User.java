@@ -24,8 +24,6 @@ public class User {
     private String userName;
 
 
-    private String password;
-
 
     private String firstName;
 
@@ -119,13 +117,6 @@ public class User {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public LocalDateTime getCreationTimestamp() {
         return creationTimestamp;

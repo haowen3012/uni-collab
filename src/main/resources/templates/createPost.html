@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
@@ -13,19 +13,19 @@
     <input placeholder="Create a post"/>
   </div>
 </div>
-
+<div th:each="post : ${posts}">
 <div id="post" >
   <div class="owner">
-    <h1>OWNER</h1>
+    <h1 th:text="${post.owner.userName}">OWNER</h1>
     <div style="color:#4169e1"> 3 hours ago</div>
   </div>
   <div class="project">
     <h1 class="section-title">PROJECT</h1>
-    <div class="project-name"> PROJECT NAME</div>
+    <div class="project-name" th:text="${post.projectName}"> PROJECT NAME</div>
   </div>
   <div class="project-description">
     <h1 class="section-title">DESCRIPTION</h1>
-    <div class="description">
+    <div class="description" th:text="${post.projectDescription}">
       Il progetto di mobile computing consiste nella creazione di un gioco mobile con autenticazione. Mi servono 3 colleghi di progetto.
     </div>
   </div>
@@ -33,45 +33,46 @@
     <div class="bottom-left">
 
       <div class="places-left">
-        <i class="fa-solid fa-circle" ></i>
-        <div>PLACES AVAILABLE </div>
-        <span>3</span>
+        <i class="fa fa-circle" style="color: lawngreen" ></i>
+        <div> PLACES AVAILABLE </div>
+        <span  th:text="${post.membership - post.acceptedUsers.size()}">3</span>
       </div>
 
       <div class="deadline">
         <div>APPLICATION DEADLINE </div>
-        <span class="time">30/12/2023 19:12</span>
+        <span class="time" th:text="${#temporals.format( post.deadline, 'dd/MM/yyyy HH:mm')}">30/12/2023 19:12</span>
       </div>
 
     </div>
     <div><button class="publish">apply</button></div>
   </div>
 </div>
-
-
+</div>
 <!-----pop up---->
 
-<form id="container-2">
+<form id="container-2"
+    th:action="@{/createPost}"  method="post" >
   <h1 >YOUR NAME</h1>
   <div class="section-1">
     <div class="section-title">PROJECT NAME</div>
-    <input class="flex-item" placeholder="Enter your project name"/>
+    <input class="flex-item" placeholder="Enter your project name" type="text"  name="projectName"/>
   </div>
   <div class="section-2">
     <div class="section-title">PROJECT DESCRIPTION</div>
-    <textarea class="flex-item-2" role="textbox" contenteditable>Enter the project description for your project</textarea>
+    <textarea class="flex-item-2" role="textbox" contenteditable type="text"  name="projectDescription">Enter the project description for your project</textarea>
   </div>
   <div class="section-3">
     <div  class="section-title">MEMBERSHIP</div>
-    <input type="number" class="special-input" name="quantity" min="1" max="7" placeholder="Enter the number of memebers"/>
+    <input type="number" class="special-input" min="1" max="7" placeholder="Enter the number of memebers"
+    name="membership"/>
   </div>
   <div class="section-3">
     <div  class="section-title">DEADLINE</div>
-    <input  class="special-input" type="datetime-local" name="datetime"/>
+    <input  class="special-input" type="datetime-local"  name="deadline"/>
   </div>
   <div class="section-4">
-    <button class="publish"  id="go-back"  >go back</button>
-    <button class="publish">publish</button>
+    <button class="publish"  id="go-back" >go back</button>
+    <button class="publish" type ="submit">publish</button>
   </div>
 </form>
 <!------------->

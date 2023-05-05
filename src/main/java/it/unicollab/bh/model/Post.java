@@ -2,9 +2,11 @@ package it.unicollab.bh.model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -25,7 +27,7 @@ public class Post {
     @ManyToOne
     private User owner;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Collection<User> acceptedUsers;
 
 
@@ -41,15 +43,19 @@ public class Post {
      */
     private LocalDateTime  deadline;
 
+    public Post(){
+
+    }
 
     public Post(String projectName, String projectDescription, Integer membership, User owner,LocalDateTime deadline) {
         this.projectName = projectName;
         this.projectDescription = projectDescription;
         this.membership = membership;
         this.owner = owner;
+        this.acceptedUsers = new ArrayList<>();
         this.deadline = deadline;
     }
-    
+
 
     public Long getId() {
         return id;
