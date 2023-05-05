@@ -24,8 +24,14 @@ public class PostService {
 
 
     @Transactional
-    public List<Post> getAllPost(){
+    public Collection<Post> getAllPost(){
 
-        return (List<Post>)this.postRepository.findAll();
+        return (Collection<Post>)this.postRepository.findAll();
+    }
+
+    @Transactional
+    public Collection<Post> getAllPostByOwner(User owner){
+
+        return this.postRepository.findAllByOwner(owner);
     }
 }

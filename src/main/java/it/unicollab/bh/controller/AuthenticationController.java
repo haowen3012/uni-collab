@@ -7,6 +7,7 @@ import it.unicollab.bh.model.User;
 import it.unicollab.bh.service.CredentialsService;
 import it.unicollab.bh.controller.validation.CredentialsValidator;
 import it.unicollab.bh.controller.validation.UserValidator;
+import it.unicollab.bh.service.PostService;
 import it.unicollab.bh.service.UniversityService;
 import it.unicollab.bh.service.UserService;
 import jakarta.validation.Valid;
@@ -45,6 +46,10 @@ public class AuthenticationController {
     UniversityService universityService;
 
 
+    @Autowired
+    PostService postService;
+
+
 
     @RequestMapping(value ={"/"}, method = RequestMethod.GET)
     public String index() {
@@ -68,6 +73,8 @@ public class AuthenticationController {
            User loggedUser = this.sessionData.getLoggedUser();
            model.addAttribute("user",loggedUser);
 
+           model.addAttribute("posts", postService.getAllPostByOwner(loggedUser));
+
 
         return "createPost.html";
     }
@@ -90,6 +97,8 @@ public class AuthenticationController {
         return "registrationSuccessful.html";
     }
 
+
+    /* questo metodo probabilmente dovrà essere cancellato*/
     @RequestMapping(value={"login/oauth2/user"}, method = RequestMethod.GET)
     public String oAuth2Successful(Model model){
 
@@ -98,6 +107,7 @@ public class AuthenticationController {
         model.addAttribute("user",loggedUser);
 
         if(loggedUser.getCourseAttended()!=null ){
+            model.addAttribute("posts", postService.getAllPostByOwner(loggedUser));
             return "createPost.html";
         }
 

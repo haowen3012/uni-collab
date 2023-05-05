@@ -1,6 +1,7 @@
 package it.unicollab.bh.controller;
 
 import it.unicollab.bh.model.Course;
+import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.University;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.service.CourseService;
@@ -66,6 +67,8 @@ public class MainController {
     /****************CREATE AND SET THE ASSOCIATION BETWEEN USER AND PROFILE*********************/
 
 
+
+    /******************CREATE POSTS********************************/
 
 
 

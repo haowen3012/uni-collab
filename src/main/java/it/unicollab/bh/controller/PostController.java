@@ -27,20 +27,20 @@ public class PostController {
   @Autowired
   private SessionData sessionData;
 
-    @RequestMapping(value ={"/createPost"}, method = RequestMethod.POST)
-    public String creatPost(@ModelAttribute Post p, Model model ) {
+  @RequestMapping(value ={"/createPost"}, method = RequestMethod.POST)
+  public String creatPost(@ModelAttribute Post p, Model model ) {
 
 
-      User loggedUser = this.sessionData.getLoggedUser();
+    User loggedUser = this.sessionData.getLoggedUser();
 
-      Post post = new Post(p.getProjectName(),p.getProjectDescription(),p.getMembership(),loggedUser,p.getDeadline());
+    Post post = new Post(p.getProjectName(),p.getProjectDescription(),p.getMembership(),loggedUser,p.getDeadline());
 
-      postService.savePost(post);
+    postService.savePost(post);
 
-      model.addAttribute("posts",postService.getAllPost());
+    model.addAttribute("posts",postService.getAllPost());
 
 
-      return "createPost.html";
-    }
+    return "createPost.html";
+  }
 
 }
