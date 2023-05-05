@@ -42,6 +42,15 @@ public class Post {
     private LocalDateTime  deadline;
 
 
+    public Post(String projectName, String projectDescription, Integer membership, User owner,LocalDateTime deadline) {
+        this.projectName = projectName;
+        this.projectDescription = projectDescription;
+        this.membership = membership;
+        this.owner = owner;
+        this.deadline = deadline;
+    }
+    
+
     public Long getId() {
         return id;
     }

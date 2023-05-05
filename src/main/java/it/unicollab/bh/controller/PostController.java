@@ -27,11 +27,13 @@ public class PostController {
   private SessionData sessionData;
 
     @RequestMapping(value ={"/createPost"}, method = RequestMethod.POST)
-    public String creatPost(@ModelAttribute("post") Post post, Model model ) {
+    public String creatPost(@ModelAttribute Post post, Model model ) {
 
-      User loggedUser = this.sessionData.getLoggedUser();
+
 
       postService.savePost(post);
+
+      User loggedUser = this.sessionData.getLoggedOAuth2User();
 
 
       return "createPost.html";
