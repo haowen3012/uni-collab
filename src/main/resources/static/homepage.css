@@ -6,7 +6,7 @@ overflow: hidden;
   background-color: #fff;
 text-align: center;
    padding: 14px;
-
+border-radius: 10px;
 
 }
 
@@ -114,8 +114,10 @@ background-color: rgb(292, 294, 290);
 }	
 /*----------  left side bar  -------*/
 .left-sidebar{
-  flex-basis: 25%;
+  flex-basis: 18%;
   align-self:flex-start;
+  
+
 
 }
 
@@ -123,6 +125,8 @@ background-color: rgb(292, 294, 290);
 	background-color: #fff;
 	margin-top: 33px;
 	text-align: center;
+	border-radius: 10px;
+
 }
 
 .sidebar-profile-info{
@@ -143,34 +147,19 @@ background-color: rgb(292, 294, 290);
 }
 
 /*----------  right side bar  -------*/
-.right-sidebar{
-  flex-basis: 25%;
-  align-self:flex-start;
-	
 
-}
-
-.sidebar-news{
-	background-color: #fff;
-	padding: 10px 25px;
-	margin-top: 33px;
-}
-.sidebar-news h1{
-text-align: center;
-
-}
-.info-icon{
-	width: 15px;
-	float: right;
-	margin-top: 15px;
-}
 /*----------  main-content  -------*/
 .main-content{
-	 flex-basis: 47%;
+   flex-basis: 47%;
+   display: block;
+    margin-left: auto;
+    margin-right: auto
   }
 .creat-post{
 background-color:#fff ;	
 margin-top:33px ;
+border-radius: 15px;
+
 }
 .creat-post-input{
 padding: 20px 25px 10px;	
@@ -244,6 +233,8 @@ align-items: flex-start;
 background: #fff;
 padding: 20px 25px 5px;
 margin:50px 0 15px;
+border-radius: 15px;
+
 	}
 	
 	
