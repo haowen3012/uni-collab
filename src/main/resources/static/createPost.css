@@ -339,7 +339,7 @@ h1{
 
     top: 10%;
 
-
+   margin-bottom : 10%;
 
     animation: slide-in-down 1.2s ease-out forwards;
 
@@ -370,7 +370,6 @@ h1{
 }
 
 /**********************/
-
 
 .project{
 
@@ -509,7 +508,6 @@ h1{
 
 
 }
-
 
 .places-left div{
 
@@ -674,7 +672,6 @@ button:hover{
 
 @keyframes slide-out-anim {
     0%{
-        opacity: 1;
         transform: translateX(0%);
     }
     50%{
@@ -682,7 +679,7 @@ button:hover{
         transform: translateX(-100%);
     }
     100% {
-        opacity: 1;
+        opacity: 0;
         transform: translateX(-150%);
     }
 }
@@ -715,10 +712,5 @@ a{
     text-decoration: none;
     color: #fff;
 }
-
-
-
-
-
 
 

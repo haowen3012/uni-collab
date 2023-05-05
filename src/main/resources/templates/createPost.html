@@ -13,7 +13,6 @@
     <input placeholder="Create a post"/>
   </div>
 </div>
-
 <div id="post" >
   <div class="owner">
     <h1>OWNER</h1>
@@ -50,27 +49,29 @@
 
 <!-----pop up---->
 
-<form id="container-2">
+<form id="container-2"
+    th:action="@{/createPost}"  method="post"  >
   <h1 >YOUR NAME</h1>
   <div class="section-1">
     <div class="section-title">PROJECT NAME</div>
-    <input class="flex-item" placeholder="Enter your project name"/>
+    <input class="flex-item" placeholder="Enter your project name" type="text" required th:field="${post.projectName}"/>
   </div>
   <div class="section-2">
     <div class="section-title">PROJECT DESCRIPTION</div>
-    <div class="flex-item-2" role="textbox" contenteditable>Enter the project description for your project</div>
+    <div class="flex-item-2" role="textbox" contenteditable type="text" required name="">Enter the project description for your project</div>
   </div>
   <div class="section-3">
     <div  class="section-title">MEMBERSHIP</div>
-    <input type="number" class="special-input" name="quantity" min="1" max="7" placeholder="Enter the number of memebers"/>
+    <input type="number" class="special-input" name="quantity" min="1" max="7" placeholder="Enter the number of memebers" required
+    th:field="${post.membership}"/>
   </div>
   <div class="section-3">
     <div  class="section-title">DEADLINE</div>
-    <input  class="special-input" type="datetime-local" name="datetime"/>
+    <input  class="special-input" type="datetime-local" name="datetime" required th:field ="${post.deadline}"/>
   </div>
   <div class="section-4">
-    <button class="publish"  id="go-back"  >go back</button>
-    <button class="publish">publish</button>
+    <button class="publish"  id="go-back" >go back</button>
+    <button class="publish" type ="submit">publish</button>
   </div>
 </form>
 <!------------->
@@ -110,10 +111,7 @@
 
   });
 
-
-
 </script>
-
 
 
 </html>

@@ -2,6 +2,7 @@ package it.unicollab.bh.controller;
 
 import it.unicollab.bh.controller.session.SessionData;
 import it.unicollab.bh.model.Credentials;
+import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.service.CredentialsService;
 import it.unicollab.bh.controller.validation.CredentialsValidator;
@@ -53,6 +54,7 @@ public class AuthenticationController {
             User loggedUser = this.sessionData.getLoggedOAuth2User();
              model.addAttribute("user",loggedUser);
         }
+
 
         return "createPost.html";
     }

@@ -1,8 +1,15 @@
 package it.unicollab.bh.controller;
 
+import ch.qos.logback.core.model.Model;
+import it.unicollab.bh.controller.session.SessionData;
+import it.unicollab.bh.model.Post;
+import it.unicollab.bh.model.User;
 import it.unicollab.bh.service.PostService;
+import it.unicollab.bh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -13,12 +20,21 @@ public class PostController {
   @Autowired
   private PostService postService;
 
+  @Autowired
+  private UserService userService;
+
+  @Autowired
+  private SessionData sessionData;
+
     @RequestMapping(value ={"/createPost"}, method = RequestMethod.POST)
-    public String creatPost() {
+    public String creatPost(@ModelAttribute("post") Post post, Model model ) {
+
+      User loggedUser = this.sessionData.getLoggedUser();
+
+      postService.savePost(post);
 
 
-
-      return "hompage.html";
+      return "createPost.html";
     }
 
 

@@ -16,6 +16,11 @@ public class Post {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private Long id;
 
+    private String projectName;
+
+    private String projectDescription;
+
+    private Integer membership;
 
     @ManyToOne
     private User owner;
@@ -45,6 +50,30 @@ public class Post {
         this.id = id;
     }
 
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getProjectDescription() {
+        return projectDescription;
+    }
+
+    public void setProjectDescription(String projectDescription) {
+        this.projectDescription = projectDescription;
+    }
+
+    public Integer getMembership() {
+        return membership;
+    }
+
+    public void setMembership(Integer membership) {
+        this.membership = membership;
+    }
+
     public User getOwner() {
         return owner;
     }
@@ -59,5 +88,30 @@ public class Post {
 
     public void setAcceptedUsers(Collection<User> acceptedUsers) {
         this.acceptedUsers = acceptedUsers;
+    }
+
+
+    public LocalDateTime getCreationTimestamp() {
+        return creationTimestamp;
+    }
+
+    public void setCreationTimestamp(LocalDateTime creationTimestamp) {
+        this.creationTimestamp = creationTimestamp;
+    }
+
+    public LocalDateTime getLastUpdateTimestamp() {
+        return lastUpdateTimestamp;
+    }
+
+    public void setLastUpdateTimestamp(LocalDateTime lastUpdateTimestamp) {
+        this.lastUpdateTimestamp = lastUpdateTimestamp;
+    }
+
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
     }
 }
