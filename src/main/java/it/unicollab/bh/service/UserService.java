@@ -58,18 +58,18 @@ public class UserService {
 
     }
 
-    public void registerNewCustomerAfterOAuthLoginSuccess(String loginName, String displayName, AuthenticationProvider provider) {
+    public void registerNewCustomerAfterOAuthLoginSuccess(String loginName, String fullName, AuthenticationProvider provider) {
         User user = new User();
         user.setUserName(loginName);
-        user.setFirstName(displayName);
+        user.setFirstName(fullName);
         user.setCreationTimestamp(LocalDateTime.now());
         user.setoAuthProvider(provider);
 
         userRepository.save(user);
     }
 
-    public void updateExistingUser(User user, String displayName, AuthenticationProvider provider){
-        user.setFirstName(displayName);
+    public void updateExistingUser(User user, String fullName, AuthenticationProvider provider){
+        user.setFirstName(fullName);
         user.setoAuthProvider(provider);   // probabilmente da modificare
 
         userRepository.save(user);

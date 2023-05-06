@@ -15,10 +15,14 @@
 </div>
 <div th:each="post : ${posts}">
 <div id="post" >
-  <div class="owner">
+  <div class="owner" th:if="${post.owner.userName}">
     <h1 th:text="${post.owner.userName}">OWNER</h1>
     <div style="color:#4169e1"> 3 hours ago</div>
   </div>
+    <div th:unless="${post.owner.userName}"class="owner" >
+      <h1 th:text="${post.owner.firstName}">OWNER</h1>
+      <div style="color:#4169e1"> 3 hours ago</div>
+    </div>
   <div class="project">
     <h1 class="section-title">PROJECT</h1>
     <div class="project-name" th:text="${post.projectName}"> PROJECT NAME</div>

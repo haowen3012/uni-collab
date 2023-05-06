@@ -32,8 +32,12 @@ public class OAuth2LoginSuccessHandler  implements AuthenticationSuccessHandler 
        
         String loginName = oAuth2User.getLogin();
         String displayName = oAuth2User.getName();
+        String email = oAuth2User.getEmail();
+        String fullName = oAuth2User.getFullName();
         System.out.println("Login name: " + loginName );
         System.out.println("Display name: " + displayName );
+        System.out.println("email: " + email );
+        System.out.println("fullname: " + fullName );
 
 
         User user= userService.getUser(loginName);
@@ -41,9 +45,9 @@ public class OAuth2LoginSuccessHandler  implements AuthenticationSuccessHandler 
     
 
         if(user == null){
-            userService.registerNewCustomerAfterOAuthLoginSuccess(loginName,displayName,AuthenticationProvider.OAUTH);
+            userService.registerNewCustomerAfterOAuthLoginSuccess(loginName,fullName,AuthenticationProvider.OAUTH);
         }else{
-            userService.updateExistingUser(user, displayName, AuthenticationProvider.OAUTH);
+            userService.updateExistingUser(user, fullName, AuthenticationProvider.OAUTH);
         }
 
         response.sendRedirect("/login/oauth2/user");

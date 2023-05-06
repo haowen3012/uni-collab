@@ -88,7 +88,7 @@ public  class WebSecurityConfig {
                 .oauth2Login()
                 .loginPage("/login")
                 .userInfoEndpoint()
-            .userService( oAuth2UserService)
+            .userService( customOAuth2UserService)
             .and()
            .successHandler(oAuth2LoginSuccessHandler);
       
@@ -96,8 +96,7 @@ public  class WebSecurityConfig {
 
         return httpSecurity.build();
     }
-   @Autowired
-   private CustomOAuth2UserService oAuth2UserService;
+
    
    
 }
