@@ -80,7 +80,7 @@ public  class WebSecurityConfig {
         httpSecurity
                 .csrf().and().cors().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/**").permitAll()
+                .requestMatchers("/**","/ws/**").permitAll()
                 .requestMatchers("/oauth2/**").authenticated()
                 .requestMatchers(HttpMethod.GET,"/","/index","/user/register").permitAll()
                 .requestMatchers(HttpMethod.POST,"/user/register").permitAll()

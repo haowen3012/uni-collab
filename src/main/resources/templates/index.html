@@ -48,10 +48,15 @@
     });
 
 </script>-->
+<div>
+    <button id="sendMessage"  onclick="sendMessage()">send</button>
+    <input type="text"  id='text' placeholder="text" />
+    <div id="messages"> ciao</div>
+</div>
   </body>
   
   <footer class="footer">
-  <div class="footer__addr">
+  <d class="footer__addr">
     <h1 class="footer__logo">Uni_collab</h1>
         
     
@@ -59,8 +64,8 @@
   <ul class="footer__nav">
     
 
-    <li class="nav__item">
-      <h2 class="nav__title">Legal:</h2>
+    <ul class="nav__item">
+        <h2 class="nav__title">Legal:</h2></ul>
       
       <ul class="nav__ul">
         <li>
@@ -75,9 +80,8 @@
           <a href="#">Sitemap</a>
         </li>
       </ul>
-
-
-  
+  </ul>
+  </d>
   <div class="legal">
     <p>Copyright &copy; 2023  All rights reserved.</p>
     <div class="legal__links">
@@ -86,6 +90,50 @@
    </div>
   </div>
 </footer>
+<script ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js">
+    var stompClient = null;
 
+
+    var socket = new SockJS('/ws');
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function(frame) {
+        console.log(frame);
+        stompClient.subscribe('/all/messages', function(result) {
+            show(JSON.parse(result.body));
+        });
+    });
+
+    socket = new SockJS('/ws')
+    privateStompClient = Stomp.over(socket);
+    privateStompClient.connect({}, function (frame) {
+        console.log(frame);
+        privateStompClient.subscribe('/user/specific', function (result) {
+            console.log(result.body);
+            show(JSON.parse(result.body));
+        });
+    });
+
+
+    function sendMessage(){
+        var text = document.getElementById('text');
+        stompClient.send('/app/application', {}, JSON.stringify({'text': text }));
+
+    }
+
+    function sendPrivateMessage(){
+        var text = document.getElementById('privateText').value;
+        var destination = document.getElementById('destination').value;
+        stompClient.send("/app/private",{}, JSON.stringify({'text': text,'destination':destination}));
+    }
+
+    function show(message){
+        var response = document.getElementById('messages');
+        var p = document.createElement('p');
+
+        p.innerHTML ="message" + message.text;
+        response.appendChild(p);
+    }
+</script>
  
 </html>

@@ -41,8 +41,8 @@ public class OAuth2LoginSuccessHandler  implements AuthenticationSuccessHandler 
 
 
         User user= userService.getUser(loginName);
-       
-    
+
+
 
         if(user == null){
             userService.registerNewCustomerAfterOAuthLoginSuccess(loginName,fullName,AuthenticationProvider.OAUTH);
