@@ -1,7 +1,10 @@
 package it.unicollab.bh.authentication;
 
 
+import it.unicollab.bh.model.Credentials;
+import it.unicollab.bh.model.User;
 import it.unicollab.bh.model.oauth.OAuth2LoginSuccessHandler;
+import it.unicollab.bh.repository.CredentialsRepository;
 import it.unicollab.bh.service.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,13 +16,16 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
 import static it.unicollab.bh.model.Credentials.ADMIN_ROLE;
+import static it.unicollab.bh.model.Credentials.DEFAULT_ROLE;
 
 @Configuration
 @EnableWebSecurity
@@ -33,6 +39,11 @@ public  class WebSecurityConfig {
 
     @Autowired
     private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
+
+
+    @Autowired
+    private CredentialsRepository credentialsRepository;  // questo lo toglieremo alla fine
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)
@@ -97,6 +108,23 @@ public  class WebSecurityConfig {
         return httpSecurity.build();
     }
 
-   
-   
+
+
+    @Bean
+    public void createTestUser(){
+        Credentials  testCreddentials = new Credentials();
+        User testUser = new User();
+
+        testUser.setUserName("Dottor Zheng");
+
+        testUser.setFirstName("Haowen");
+        testUser.setLastName("Zheng");
+
+        testCreddentials.setUserName(testUser.getUserName());
+        testCreddentials.setPassword(passwordEncoder().encode("haowenZheng"));
+        testCreddentials.setRole(DEFAULT_ROLE);
+        testCreddentials.setUser(testUser);
+
+        this.credentialsRepository.save(testCreddentials);
+    }
 }

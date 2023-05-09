@@ -13,3 +13,4 @@ INSERT INTO course VALUES('3','Ingegneria Civile','1');
 INSERT INTO course VALUES('4','Biologia','2');
 INSERT INTO course VALUES('5','Scienze Politiche','2');
 INSERT INTO course VALUES('6','Medicina','2');
+
