@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.Column;
+
 
 @Entity
 @Table(name = "users")
@@ -35,7 +37,10 @@ public class User {
     @Email
     @Column(name = "email")
     String emailAddress;
+	
 
+	@Column(nullable = true, length = 64)
+    private String photos;
     @CreationTimestamp
     private LocalDateTime creationTimestamp;
 
@@ -179,4 +184,18 @@ public class User {
 	public void setAcceptedApplies(Collection<Post> acceptedApplies) {
         this.acceptedApplies = acceptedApplies;
     }
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
+	}
+
+	    @Transient
+	    public String getPhotosImagePath() {
+	        if (photos == null || id == null) return null;
+	         
+	        return "/user-photos/" + id + "/" + photos;
+	    }
 }
