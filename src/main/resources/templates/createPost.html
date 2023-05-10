@@ -10,54 +10,75 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 </head>
 <body>
+<div id="container-nav" >
+  <div class="navbar">
+    <div>
+      <i  id="message" class="fa fa-bell" aria-hidden="true"></i>
+      <i style="border-radius:50px" class="fa-solid fa-circle"></i>
+    </div>
+    <div>
+      <i id="home" class="fa fa-home"></i>
+      <i style="border-radius:50px" class="fa-solid fa-circle"></i>
+    </div>
+    <div>
+      <i id="profile" class="fa">&#xf2be;</i>
+      <i style="border-radius:50px" class="fa-solid fa-circle"></i>
+    </div>
+  </div>
+  <div class="padding">
+    <div></div>
+    <div class="search">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <input></input>
+
+    </div>
+    <div></div>
+  </div>
+</div>
 <div id="container">
   <div class="flex-item-1" >
     <input placeholder="Create a post"/>
   </div>
 </div>
 <div th:each="post : ${posts}">
-<div id="post" >
-  <div class="owner" th:if="${post.owner.userName}">
-    <h1 th:text="${post.owner.userName}">OWNER</h1>
-    <div style="color:#4169e1"> 3 hours ago</div>
-  </div>
-    <div th:unless="${post.owner.userName}"class="owner" >
-      <h1 th:text="${post.owner.firstName}">OWNER</h1>
+  <div id="post" >
+    <div th:if="${post.owner.userName}"class="owner" >
+      <h1 th:unless="${post.owner.firstName}">OWNER</h1>
       <div style="color:#4169e1"> 3 hours ago</div>
     </div>
-  <div class="project">
-    <h1 class="section-title">PROJECT</h1>
-    <div class="project-name" th:text="${post.projectName}"> PROJECT NAME</div>
-  </div>
-  <div class="project-description">
-    <h1 class="section-title">DESCRIPTION</h1>
-    <div class="description" th:text="${post.projectDescription}">
-      Il progetto di mobile computing consiste nella creazione di un gioco mobile con autenticazione. Mi servono 3 colleghi di progetto.
+    <div class="project">
+      <h1 class="section-title">PROJECT</h1>
+      <div class="project-name" th:text="${post.projectName}"> PROJECT NAME</div>
+    </div>
+    <div class="project-description">
+      <h1 class="section-title">DESCRIPTION</h1>
+      <div class="description" th:text="${post.projectDescription}">
+        Il progetto di mobile computing consiste nella creazione di un gioco mobile con autenticazione. Mi servono 3 colleghi di progetto.
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="bottom-left">
+
+        <div class="places-left">
+          <i class="fa fa-circle" style="color: lawngreen" ></i>
+          <div> PLACES AVAILABLE </div>
+          <span  th:text="${post.membership - post.acceptedUsers.size()}">3</span>
+        </div>
+
+        <div class="deadline">
+          <div>APPLICATION DEADLINE </div>
+          <span class="time" th:text="${#temporals.format( post.deadline, 'dd/MM/yyyy HH:mm')}">30/12/2023 19:12</span>
+        </div>
+
+      </div>
+      <div><button class="publish">apply</button></div>
     </div>
   </div>
-  <div class="bottom">
-    <div class="bottom-left">
-
-      <div class="places-left">
-        <i class="fa fa-circle" style="color: lawngreen" ></i>
-        <div> PLACES AVAILABLE </div>
-        <span  th:text="${post.membership - post.acceptedUsers.size()}">3</span>
-      </div>
-
-      <div class="deadline">
-        <div>APPLICATION DEADLINE </div>
-        <span class="time" th:text="${#temporals.format( post.deadline, 'dd/MM/yyyy HH:mm')}">30/12/2023 19:12</span>
-      </div>
-
-    </div>
-    <div><button class="publish">apply</button></div>
-  </div>
-</div>
 </div>
 <!-----pop up---->
 
 <form id="container-2"
-    th:action="@{/createPost}"  method="post" >
+      th:action="@{/createPost}"  method="post" >
   <h1 >YOUR NAME</h1>
   <div class="section-1">
     <div class="section-title">PROJECT NAME</div>
@@ -70,7 +91,7 @@
   <div class="section-3">
     <div  class="section-title">MEMBERSHIP</div>
     <input type="number" class="special-input" min="1" max="7" placeholder="Enter the number of memebers"
-    name="membership"/>
+           name="membership"/>
   </div>
   <div class="section-3">
     <div  class="section-title">DEADLINE</div>
