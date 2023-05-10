@@ -1,11 +1,11 @@
 package it.unicollab.bh.controller;
 
 import it.unicollab.bh.model.Course;
-import it.unicollab.bh.model.Picture;
+
 //import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.University;
 import it.unicollab.bh.model.User;
-import it.unicollab.bh.repository.PictureRepository;
+import it.unicollab.bh.repository.ImageRepository;
 //import it.unicollab.bh.repository.UserRepository;
 import it.unicollab.bh.service.CourseService;
 //import it.unicollab.bh.service.FileUploadUtil;
@@ -43,7 +43,7 @@ public class MainController {
     private UniversityService universityService;
     
     @Autowired
-    private PictureRepository pictureRepository;
+    private ImageRepository pictureRepository;
    
 
     public MainController(){
@@ -97,23 +97,7 @@ public class MainController {
          
         return new RedirectView("/users", true);
     }*/
-    @PostMapping("/uploadImage")
-    public String newImage(Model model, @ModelAttribute("image") User user, @RequestParam("file") MultipartFile[] images) throws IOException {
-   List<Picture> pictures = new ArrayList<>();
-
-        for(MultipartFile image : images){
-            Picture picture = new Picture(image.getBytes());
-            this.pictureRepository.save(picture);
-            pictures.add(picture);
-        }
-
-       user.setImages(pictures);
-       this.userService.saveUser(user);
-
-        model.addAttribute("usere",user);
-        model.addAttribute("pictures",pictures);
-        return "user.html";
-    }
+   
     /****************CREATE AND SET THE ASSOCIATION BETWEEN USER AND PROFILE*********************/
 
 

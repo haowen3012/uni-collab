@@ -10,7 +10,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 
@@ -50,14 +49,14 @@ public class User {
     private Profile profile;
     
     @OneToOne(cascade = CascadeType.ALL)
-    private List<Picture> pictures;
+    private List<Image> pictures;
 
 
-    public List<Picture> getImages() {
+    public List<Image> getImages() {
         return pictures;
     }
 
-    public void setImages(List<Picture> pictures) {
+    public void setImages(List<Image> pictures) {
         this.pictures = pictures;
     }
 
