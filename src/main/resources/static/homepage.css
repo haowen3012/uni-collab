@@ -27,6 +27,7 @@ list-style-type: none;
 }
 #navbar a:hover {
   border-bottom: 3px solid gold;
+
 }
 
 #navbar a.active {

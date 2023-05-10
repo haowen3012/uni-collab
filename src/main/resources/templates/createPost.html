@@ -20,9 +20,16 @@
       <i id="home" class="fa fa-home"></i>
       <i style="border-radius:50px" class="fa-solid fa-circle"></i>
     </div>
-    <div>
+    <div class="profile-section">
       <i id="profile" class="fa">&#xf2be;</i>
       <i style="border-radius:50px" class="fa-solid fa-circle"></i>
+
+      <span id="drop-down">
+          <a class="content">profile</a>
+          <a class="content">your posts</a>
+          <a class="content"> Log out</a>
+        </span>
+
     </div>
   </div>
   <div class="padding">
@@ -42,8 +49,12 @@
 </div>
 <div th:each="post : ${posts}">
   <div id="post" >
-    <div th:if="${post.owner.userName}"class="owner" >
-      <h1 th:unless="${post.owner.firstName}">OWNER</h1>
+    <div class="owner" th:if="${post.owner.userName}">
+      <h1 th:text="${post.owner.userName}">OWNER</h1>
+      <div style="color:#4169e1"> 3 hours ago</div>
+    </div>
+    <div th:unless="${post.owner.userName}"class="owner" >
+      <h1 th:text="${post.owner.firstName}">OWNER</h1>
       <div style="color:#4169e1"> 3 hours ago</div>
     </div>
     <div class="project">
@@ -103,9 +114,8 @@
   </div>
 </form>
 <!------------->
-<div id="messages"> </div>
+<!---<div id="messages"> </div>--  NOTIFICHE CON WEBSOCKET-->
 <script>
-
 
   var container_1 =  document.getElementById('container');
   var post_form = document.getElementById('container-2');
@@ -132,8 +142,6 @@
 
     setTimeout( function(){
       post_form.style.display = "none";},1000);
-
-
 
 
   });

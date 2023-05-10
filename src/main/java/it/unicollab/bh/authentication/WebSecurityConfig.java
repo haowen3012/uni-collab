@@ -1,10 +1,12 @@
 package it.unicollab.bh.authentication;
 
 
+import it.unicollab.bh.model.Course;
 import it.unicollab.bh.model.Credentials;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.model.oauth.OAuth2LoginSuccessHandler;
 import it.unicollab.bh.repository.CredentialsRepository;
+import it.unicollab.bh.service.CourseService;
 import it.unicollab.bh.service.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -43,6 +45,8 @@ public  class WebSecurityConfig {
 
     @Autowired
     private CredentialsRepository credentialsRepository;  // questo lo toglieremo alla fine
+
+
 
 
     @Autowired

@@ -27,8 +27,7 @@ body{
 #container{
 
     background : #fff;
-
-
+    margin-top: 10%;
     display: flex;
     align-items:center;
     justify-content: center;
@@ -90,6 +89,8 @@ input:active{
     margin-left:10%;
 
     animation: slide-in-down 1.2s ease-out forwards;
+
+    z-index: 4;
 
 }
 
@@ -714,8 +715,13 @@ a{
 /*********************************************/
 
 #container-nav{
-    width: 100%;
-    height:10em;
+    width:768px;
+    max-width: 100%;
+    min-height:8em;
+    z-index: 2;
+
+    position: fixed;
+    top:0;
 
 
     display:flex;
@@ -725,14 +731,15 @@ a{
     margin-bottom: 5%;
 
 
+    background-color: #ccc;
+
+
 }
 
 .navbar{
     background: #fff;
     width: 100%;
     height:6em;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -740,6 +747,10 @@ a{
     color: #4169e1;
 
 
+}
+
+.navbar i{
+    opacity: 0.8;
 }
 
 
@@ -813,8 +824,16 @@ a{
     font-size: 22px;
     width: 20%;
     height: 1.05em;
+    cursor: pointer;
 
 
+}
+
+
+
+.profile-section:hover
+#drop-down{
+    display: flex;
 }
 
 
@@ -826,11 +845,12 @@ a{
     display: inline-flex;
     justify-content: flex-start;
     align-items: center;
+
 }
 
 .padding div:nth-child(1){
     width:20%;
-    height:2em;
+    height:3em;
 
     background: #fff;
     border-bottom-left-radius: 15px;
@@ -839,13 +859,9 @@ a{
 }
 
 .padding div:nth-child(2){
-    width:80%;
-    height:4em;
+    width:60%;
+    height:3em;
 
-
-
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
 
 
 
@@ -853,11 +869,13 @@ a{
 
 
 
+
 }
 
 .padding div:nth-child(3){
+
     width:20%;
-    height:2em;
+    height:3em;
 
     background: #fff;
     border-bottom-right-radius: 15px;
@@ -885,10 +903,11 @@ a{
 
 }
 .search input{
-    width: 80%;
+    width: 60%;
     margin: 0 2% 0% 2%;
-    border-top-right-radius: 3px;
-    border-bottom-left-radius: 3px;
+
+    background-color: #B9D9EB;
+    opacity: 0.2;
 }
 
 
@@ -896,3 +915,48 @@ a{
 
 
 
+#drop-down{
+
+
+    width:20%;
+    position: absolute;
+    background-color: #B9D9EB;
+    bottom: -50%;
+    height: 100%;
+
+    border-radius:15px;
+
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    align-items : center;
+
+    z-index: 3;
+
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.content{
+
+    width: 100%;
+    color: #fff;
+    margin: 5%;
+
+
+    text-transform:uppercase;
+
+    padding: 1%;
+
+    border-bottom: 4px groove #B9D9EB;
+
+    border-radius: 50px;
+
+}
+
+.content:hover{
+
+}
+
+
+/**********************************/
