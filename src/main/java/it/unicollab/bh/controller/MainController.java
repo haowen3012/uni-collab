@@ -4,6 +4,7 @@ import it.unicollab.bh.model.Course;
 import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.University;
 import it.unicollab.bh.model.User;
+import it.unicollab.bh.repository.UserRepository;
 import it.unicollab.bh.service.CourseService;
 import it.unicollab.bh.service.FileUploadUtil;
 import it.unicollab.bh.service.UniversityService;
@@ -31,7 +32,8 @@ public class MainController {
 
     @Autowired
     private UniversityService universityService;
-
+    @Autowired
+    private UserRepository repo;
 
     public MainController(){
     }
@@ -71,13 +73,12 @@ public class MainController {
 
     /******************Image********************************/
     @PostMapping("/users/save")
-    public RedirectView saveUser(User user,
-            @RequestParam("image") MultipartFile multipartFile) throws IOException {
+    public RedirectView saveUser(User user,@RequestParam("image") MultipartFile multipartFile) throws IOException {
          
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         user.setPhotos(fileName);
          
-        User savedUser =  userService.saveUser(user);
+        User savedUser =  repo.save(user);
  
         String uploadDir = "user-photos/" + savedUser.getId();
  

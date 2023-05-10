@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+	<div>
+		<form th:action="@{/users/save}" th:object="${user}" method="post" enctype="multipart/form-data">
+			<label>Photos: </label>
+			<input type="file" name="image" accept="image/png, image/jpeg" />
+	</div>
+	</form>
+
+
+</body>
+
+</html>

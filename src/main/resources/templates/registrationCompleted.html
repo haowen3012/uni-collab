@@ -10,7 +10,7 @@
 <div id="container">
     <div class="cont-1">
         <h1 id="welcome" th:if="${user.userName}" th:text="'Welcome ' + ${user.userName}">Welcome</h1>
-        <h1  th:unless="${user.userName}" th:text="'Welcome ' + ${user.firstName}">Welcome</h1>
+         <h1  th:unless="${user.userName}" th:text="'Welcome ' + ${user.firstName}">Welcome</h1>
     </div>
 
     <div class="cont-2">
