@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,7 +18,8 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    @Autowired
+    
+	@Autowired
     private UserRepository userRepository;
 
 
@@ -64,6 +64,7 @@ public class UserService {
         user.setFirstName(fullName);
         user.setCreationTimestamp(LocalDateTime.now());
         user.setoAuthProvider(provider);
+        
 
         userRepository.save(user);
     }

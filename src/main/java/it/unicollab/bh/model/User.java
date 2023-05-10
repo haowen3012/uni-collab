@@ -22,24 +22,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-
     private String userName;
-
-
-
     private String firstName;
-
-
     private String lastName;
-    
     @Email
     @Column(name = "email")
     String emailAddress;
 	
 
-	@Column(nullable = true, length = 64)
-    private String photos;
+	/*@Column(nullable = true, length = 64)
+    private String photos;*/
     @CreationTimestamp
     private LocalDateTime creationTimestamp;
 
@@ -56,9 +48,20 @@ public class User {
      */
     @OneToOne(cascade = CascadeType.ALL)
     private Profile profile;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private List<Picture> pictures;
 
 
-    @ManyToOne
+    public List<Picture> getImages() {
+        return pictures;
+    }
+
+    public void setImages(List<Picture> pictures) {
+        this.pictures = pictures;
+    }
+
+	@ManyToOne
     private Course courseAttended;
 
 
@@ -183,18 +186,5 @@ public class User {
 	public void setAcceptedApplies(Collection<Post> acceptedApplies) {
         this.acceptedApplies = acceptedApplies;
     }
-	public String getPhotos() {
-		return photos;
-	}
-
-	public void setPhotos(String photos) {
-		this.photos = photos;
-	}
-
-	    @Transient
-	    public String getPhotosImagePath() {
-	        if (photos == null || id == null) return null;
-	         
-	        return "/user-photos/" + id + "/" + photos;
-	    }
+	
 }
