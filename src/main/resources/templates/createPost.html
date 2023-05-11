@@ -15,26 +15,17 @@
     <div>
       <a th:href="@{/messages}"></a>
       <i  id="message" class="fa fa-bell"></i>
-      <i style="border-radius:50px" class="fa-solid fa-circle"></i>
     </div>
     <div>
       <a th:href="@{/user}"></a>
       <i id="home" class="fa fa-home"></i>
-      <i style="border-radius:50px" class="fa-solid fa-circle"></i>
     </div>
-    <div class="profile-section">
+    <div class="profile-section" onclick="openSideNav()">
       <i id="profile" class="fa">&#xf2be;</i>
-      <i style="border-radius:50px" class="fa-solid fa-circle"></i>
-
-      <span id="drop-down">
-          <a class="content">profile</a>
-          <a class="content">your posts</a>
-          <a class="content"> Log out</a>
-        </span>
-
     </div>
   </div>
-  <div class="padding">
+  <div class="padding"></div>
+  <div class="search-section">
     <div></div>
     <div class="search">
       <i class="fa fa-search" aria-hidden="true"></i>
@@ -95,6 +86,14 @@
     </div>
   </div>
 </div>
+<!----- side nav------->
+<div  id="side_nav" class="side-nav">
+  <div onclick="closeSideNav()">&times;</div>
+  <a href="#">Profile</a>
+  <a href="#">Posts</a>
+  <a href="#">Projects </a>
+  <a href="#"> Log out</a>
+</div>
 <!-----pop up---->
 
 <form id="container-2"
@@ -154,6 +153,22 @@
 
 
   });
+
+  function openSideNav(){
+
+    var side_nav = document.getElementById('side_nav');
+
+    side_nav.style.width="14%";
+
+  }
+
+  function closeSideNav(){
+
+    var side_nav = document.getElementById('side_nav');
+
+    side_nav.style.width="0";
+  }
+
 
 </script>
 
