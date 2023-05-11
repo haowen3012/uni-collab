@@ -1,6 +1,6 @@
 package it.unicollab.bh.authentication;
 
-import java.nio.file.Path;
+//import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.context.annotation.ComponentScan;
@@ -26,7 +26,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer{
      //   registry.addRedirectViewController("/login","/login");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
-   @Override
+   /*@Override
    public void addResourceHandlers(ResourceHandlerRegistry registry) {
        exposeDirectory("user-photos", registry);
    }
@@ -38,5 +38,5 @@ public class WebMvcConfiguration implements WebMvcConfigurer{
        if (dirName.startsWith("../")) dirName = dirName.replace("../", "");
         
        registry.addResourceHandler("/" + dirName + "/**").addResourceLocations("file:/"+ uploadPath + "/");
-   }
+   }*/
 }
