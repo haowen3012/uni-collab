@@ -23,7 +23,7 @@ public class ImageController {
 	    private ImageService imageService;
 
 
-	    @RequestMapping(method = RequestMethod.GET, path = "/images/dinamic/{uid}")
+	    @RequestMapping(method = RequestMethod.GET, path = "images/dinamic/{uid}")
 	    public ResponseEntity<byte[]> getImage(@ModelAttribute(name = "uid") String uid)
 	    {
 	        Image temp = this.imageService.findById(uid);
