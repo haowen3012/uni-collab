@@ -1,4 +1,4 @@
-package it.unicollab.bh.controller.notification;
+package it.unicollab.bh.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,10 +10,14 @@ import org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl;
 public class Message  {
 
 
+   private String source;
 
     private String text;
 
     private String destination;
+
+
+    
 
 
     public void setText(String text) {

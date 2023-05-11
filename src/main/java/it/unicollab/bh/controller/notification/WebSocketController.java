@@ -1,5 +1,6 @@
 package it.unicollab.bh.controller.notification;
 
+import it.unicollab.bh.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
