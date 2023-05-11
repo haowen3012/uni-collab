@@ -12,17 +12,18 @@
 <body>
 <div id="container-nav" >
   <div class="navbar">
-    <div>
-      <a th:href="@{/messages}"></a>
-      <i  id="message" class="fa fa-bell"></i>
-    </div>
-    <div>
-      <a th:href="@{/user}"></a>
+    <a href="/messages">
+      <i id="message" class="fa fa-bell"></i>
+    </a>
+
+    <a href="/user">
       <i id="home" class="fa fa-home"></i>
-    </div>
-    <div class="profile-section" onclick="openSideNav()">
+    </a>
+
+    <a class="profile-section" onclick="openSideNav()">
       <i id="profile" class="fa">&#xf2be;</i>
-    </div>
+    </a>
+
   </div>
   <div class="padding"></div>
   <div class="search-section">
@@ -76,9 +77,8 @@
 
       </div>
       <div>
-        <form th:action="@{/sendApplyMessage}" method="post">
-            <input  hidden name="source"  th:value ="${user.userName}"/>
-            <input  hidden  name="destination" th:value="${post.owner.userName}"/>
+        <form th:action="@{'/sendApplyMessage' + '/' + ${user.id} + '/' + ${post.owner.id} + '/' +
+          ${post.id}}" method="post">
             <input  hidden  name="text"  th:value="${user.userName} + ' has applied  to your post'"/>
         <button class="publish">apply</button>
         </form>

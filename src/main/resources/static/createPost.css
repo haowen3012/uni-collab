@@ -27,7 +27,7 @@ body{
 #container{
 
     background : #fff;
-    margin-top: 15%;
+    margin-top: 10%;
     display: flex;
     align-items:center;
     justify-content: center;
@@ -90,7 +90,7 @@ input:active{
 
     animation: slide-in-down 1.2s ease-out forwards;
 
-    z-index : 4;
+    z-index : 3;
 
 }
 
@@ -706,12 +706,6 @@ button:hover{
 
 
 
-
-a{
-    text-decoration: none;
-    color: #fff;
-}
-
 /*********************************************/
 
 #container-nav{
@@ -754,15 +748,6 @@ a{
 }
 
 
-a{
-
-    position: absolute;
-    width:3%;
-    height: 3em;
-    z-index:2;
-
-}
-
 .navbar *{
 
     margin: 15%;
@@ -771,7 +756,7 @@ a{
 
 }
 
-.navbar div:hover  {
+.navbar a:hover  {
 
     transform: scale(1.1);
     color: #fff;
@@ -782,7 +767,7 @@ a{
 
 
 
-.navbar div:active{
+.navbar a:active{
     transform: scale(0.90);
 }
 
@@ -796,7 +781,7 @@ a{
 }
 
 
-.navbar div:nth-child(1){
+.navbar a:nth-child(1){
 
     width: 2em;
     height: 2em;
@@ -822,15 +807,13 @@ a{
 
 
 
-
-
 }
 
 
 
 /******************************/
 
-.navbar div:nth-child(2){
+.navbar a:nth-child(2){
 
     width: 2em;
     height: 2em;
@@ -840,9 +823,6 @@ a{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-
-
 
 
     padding: 3%;
@@ -865,7 +845,7 @@ a{
 
 /*************************/
 
-.navbar div:nth-child(3){
+.navbar a:nth-child(3){
 
     width: 2em;
     height: 2em;
@@ -1070,5 +1050,9 @@ a{
 }
 
 
+a{
+    color: inherit;
+    text-decoration: none;
+}
 
 /**********************************/

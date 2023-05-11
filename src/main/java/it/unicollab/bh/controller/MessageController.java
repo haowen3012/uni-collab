@@ -1,19 +1,20 @@
 package it.unicollab.bh.controller;
 
 import it.unicollab.bh.controller.session.SessionData;
-import it.unicollab.bh.model.Message;
-import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.User;
-import it.unicollab.bh.repository.MessageRepository;
+import it.unicollab.bh.model.message.Message;
+import it.unicollab.bh.model.message.MessageType;
 import it.unicollab.bh.service.MessageService;
+import it.unicollab.bh.service.PostService;
+import it.unicollab.bh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Collection;
 
@@ -25,13 +26,24 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
+    @Autowired
+    private PostService postService;
 
-    @RequestMapping(value="/sendApplyMessage", method = RequestMethod.POST)
-    public String sendApplyMessage(@ModelAttribute Message m, Model model){
-
-        messageService.saveMessage(m);
+    @Autowired
+    private UserService userService;
 
 
+    @RequestMapping(value="/sendApplyMessage/{sourceId}/{destId}/{postId}",  method = RequestMethod.POST)
+    public String sendApplyMessage(@PathVariable("sourceId") Long idS,@PathVariable("destId") Long idD,
+                                   @PathVariable("postId") Long idP,
+                                   @ModelAttribute Message m, Model model){
+
+        m.setSource(this.userService.getUser(idS));
+        m.setDestination(this.userService.getUser(idD));
+        m.setMessageType(MessageType.REQUEST);
+        m.setPost(this.postService.getPost(idP));
+
+        this.messageService.saveMessage(m);
         return "redirect:/user";
     }
 
@@ -39,13 +51,10 @@ public class MessageController {
     @RequestMapping(value="/messages", method = RequestMethod.GET)
     public String showMessages(Model model){
 
-        String destination = this.sessionData.getLoggedUser().getUserName();
-
-        System.out.println(destination);
+        User destination = this.sessionData.getLoggedUser();
 
         Collection<Message>  messages = this.messageService.getAllMessageByDestination(destination);
 
-        System.out.println(messages.toString());
         model.addAttribute("messages",messages);
 
         return "message.html";

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostService {
@@ -22,6 +23,12 @@ public class PostService {
         return this.postRepository.save(post);
     }
 
+
+    @Transactional
+    public Post getPost(Long id ){
+        Optional<Post> result = this.postRepository.findById(id);
+        return result.orElse(null);
+    }
 
     @Transactional
     public Collection<Post> getAllPost(){

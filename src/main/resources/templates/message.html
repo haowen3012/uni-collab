@@ -41,7 +41,7 @@
 
     <div th:each="message: ${messages}">
         <div id="container">
-        <span th:text="${message.source} + ' applied for your post'">Haowen ZHeng si è candidato ad un tuo post </span>
+        <span th:text="${message.source.userName} + ' applied for your post'">Haowen ZHeng si è candidato ad un tuo post </span>
             <button> ACCECPT</button>
     </div>
 </div>

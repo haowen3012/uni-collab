@@ -1,6 +1,6 @@
 package it.unicollab.bh.controller.notification;
 
-import it.unicollab.bh.model.Message;
+import it.unicollab.bh.model.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -27,7 +27,7 @@ public class WebSocketController {
     }
     @MessageMapping("/private")
     public void sendToSpecificUser(@Payload Message message) {
-        simpMessagingTemplate.convertAndSendToUser(message.getDestination(), "/specific", message);
+        simpMessagingTemplate.convertAndSendToUser(message.getDestination().getUserName(), "/specific", message);
     }
 
 }
