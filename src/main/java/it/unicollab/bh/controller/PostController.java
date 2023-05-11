@@ -28,7 +28,7 @@ public class PostController {
   private SessionData sessionData;
 
   @RequestMapping(value ={"/createPost"}, method = RequestMethod.POST)
-  public String creatPost(@ModelAttribute Post p, Model model ) {
+  public String createPost(@ModelAttribute Post p, Model model ) {
 
 
     User loggedUser = this.sessionData.getLoggedUser();
@@ -37,10 +37,9 @@ public class PostController {
 
     postService.savePost(post);
 
-    model.addAttribute("posts",postService.getAllPost());
 
 
-    return "createPost.html";
+    return "redirect:/user";
   }
 
 }

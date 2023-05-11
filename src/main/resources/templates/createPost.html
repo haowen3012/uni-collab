@@ -13,10 +13,12 @@
 <div id="container-nav" >
   <div class="navbar">
     <div>
-      <i  id="message" class="fa fa-bell" aria-hidden="true"></i>
+      <a th:href="@{/messages}"></a>
+      <i  id="message" class="fa fa-bell"></i>
       <i style="border-radius:50px" class="fa-solid fa-circle"></i>
     </div>
     <div>
+      <a th:href="@{/user}"></a>
       <i id="home" class="fa fa-home"></i>
       <i style="border-radius:50px" class="fa-solid fa-circle"></i>
     </div>

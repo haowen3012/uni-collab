@@ -748,6 +748,16 @@ a{
 
 
 }
+/**************************/
+a{
+
+    position: absolute;
+    width:3%;
+    height: 3em;
+
+    z-index: 2;
+}
+/**********************/
 
 .navbar i{
     opacity: 0.8;

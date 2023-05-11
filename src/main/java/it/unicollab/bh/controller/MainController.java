@@ -1,8 +1,10 @@
 package it.unicollab.bh.controller;
 
+import it.unicollab.bh.controller.session.SessionData;
 import it.unicollab.bh.model.Course;
 
 //import it.unicollab.bh.model.Post;
+import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.University;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.repository.ImageRepository;
@@ -33,6 +35,9 @@ import java.util.*;
 @Controller
 public class MainController {
 
+
+    @Autowired
+    private SessionData sessionData;
     @Autowired
     private UserService userService;
 
@@ -103,6 +108,11 @@ public class MainController {
 
 
     /******************CREATE POSTS********************************/
+
+
+    /*************+****************MESSAGES*********************************************************/
+
+
 
 
 

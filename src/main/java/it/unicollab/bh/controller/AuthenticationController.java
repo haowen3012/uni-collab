@@ -13,7 +13,9 @@ import it.unicollab.bh.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,15 +56,14 @@ public class AuthenticationController {
     @RequestMapping(value ={"/"}, method = RequestMethod.GET)
     public String index() {
 
-        try{
-        if(this.sessionData.getLoggedUser()!=null){
-             return "redirect:/user";
-        }
-        }catch(ClassCastException e){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication instanceof AnonymousAuthenticationToken){
             return "index.html";
         }
+        else{
 
-            return "index.html";
+             return "redirect: /user";
+        }
     }
 
 
@@ -71,10 +72,8 @@ public class AuthenticationController {
 
 
            User loggedUser = this.sessionData.getLoggedUser();
-           model.addAttribute("user",loggedUser);
 
-           model.addAttribute("posts", postService.getAllPostByOwner(loggedUser));
-
+           model.addAttribute("posts", postService.getAllPostByOwnerNot(loggedUser));
 
         return "createPost.html";
     }
