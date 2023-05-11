@@ -49,15 +49,15 @@ public class User {
     private Profile profile;
     
     @OneToOne(cascade = CascadeType.ALL)
-    private List<Image> pictures;
+    private Image picture;
 
 
-    public List<Image> getImages() {
-        return pictures;
+    public  Image getImages() {
+        return picture;
     }
 
-    public void setImages(List<Image> pictures) {
-        this.pictures = pictures;
+    public void setImages(Image picture) {
+        this.picture = picture;
     }
 
 	@ManyToOne
