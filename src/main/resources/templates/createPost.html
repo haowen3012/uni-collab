@@ -86,8 +86,8 @@
       </div>
       <div>
         <form th:action="@{/sendApplyMessage}" method="post">
-            <input  hidden name="source"  th:value ="${post.owner.userName}"/>
-            <input  hidden  name="destination" th:value="${user.userName}"/>
+            <input  hidden name="source"  th:value ="${user.userName}"/>
+            <input  hidden  name="destination" th:value="${post.owner.userName}"/>
             <input  hidden  name="text"  th:value="${user.userName} + ' has applied  to your post'"/>
         <button class="publish">apply</button>
         </form>

@@ -9,6 +9,6 @@ import it.unicollab.bh.model.Image;
 
 public interface ImageRepository extends CrudRepository<Image, Long> {
 
-	public Optional<Image> findById(String id);
+	 Optional<Image> findById(String id);
 
 }

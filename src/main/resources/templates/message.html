@@ -7,7 +7,7 @@
 <body>
 
 
-    <div id="container-nav" >
+  <div id="container-nav" >
         <div class="navbar">
             <div>
                 <i  id="message" class="fa fa-bell" aria-hidden="true"><a href="/messages"></a></i>
@@ -33,17 +33,15 @@
             <div></div>
             <div class="search">
                 <i class="fa fa-search" aria-hidden="true"></i>
-                <input></input>
-
+                <input/>
             </div>
             <div></div>
         </div>
     </div>
 
-
     <div th:each="message: ${messages}">
         <div id="container">
-    <span th:text="${message.source} + ' applied for your post'">Haowen ZHeng si è candidato ad un tuo post </span>
+        <span th:text="${message.source} + ' applied for your post'">Haowen ZHeng si è candidato ad un tuo post </span>
             <button> ACCECPT</button>
     </div>
 </div>

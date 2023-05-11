@@ -41,8 +41,11 @@ public class MessageController {
 
         String destination = this.sessionData.getLoggedUser().getUserName();
 
+        System.out.println(destination);
+
         Collection<Message>  messages = this.messageService.getAllMessageByDestination(destination);
 
+        System.out.println(messages.toString());
         model.addAttribute("messages",messages);
 
         return "message.html";

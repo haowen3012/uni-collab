@@ -8,5 +8,5 @@ import java.util.Collection;
 public interface MessageRepository  extends CrudRepository<Message, Long> {
 
 
-    public Collection<Message> findAllByDestination(String destination);
+     Collection<Message> findAllByDestination(String destination);
 }
