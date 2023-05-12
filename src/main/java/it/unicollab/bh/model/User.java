@@ -24,13 +24,30 @@ public class User {
     private String userName;
     private String firstName;
     private String lastName;
+
+
+    @Column(nullable = true, length = 64)
+
+    private String Photos;
+    public String getPhotos() {
+        return Photos;
+    }
+
+    public void setPhotos(String photos) {
+        Photos = photos;
+    }
+
     @Email
     @Column(name = "email")
     String emailAddress;
-	
 
-	/*@Column(nullable = true, length = 64)
-    private String photos;*/
+    @Transient
+    public String getPhotosImagePath() {
+        if (Photos == null || id == null) return null;
+
+        return "/user-photos/" + id + "/" + Photos;
+    }
+
     @CreationTimestamp
     private LocalDateTime creationTimestamp;
 
@@ -48,17 +65,11 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private Profile profile;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    private Image picture;
+   /*@OneToOne(cascade = CascadeType.ALL)
+    private Image picture;*/
 
 
-    public  Image getImages() {
-        return picture;
-    }
 
-    public void setImages(Image picture) {
-        this.picture = picture;
-    }
 
 	@ManyToOne
     private Course courseAttended;

@@ -7,7 +7,7 @@
   <link rel="stylesheet" th:href="@{/css/registrationSuccessful.css}" />
 </head>
 <body>
-<form th:action="@{'/setCourse' +'/' + ${user.id}}" method="post">
+<form th:action="@{'/setCourse' +'/' + ${user.id}}" method="post" enctype="multipart/form-data">
   <div class="container">
     <div class="cont-1">
       <h1>Final Step</h1>
@@ -27,7 +27,11 @@
         <span class="arrow-next">>>></span>
 
       </h1>
+      <div>
 
+        <label>Photos: </label>
+        <input type="file" name="image" accept="image/png, image/jpeg" />
+     </div>
       <button id="next" onclick="fade_out()">Finish</button></div>
      
   </div>
