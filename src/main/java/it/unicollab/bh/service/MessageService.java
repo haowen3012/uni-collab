@@ -29,5 +29,10 @@ public class MessageService {
     }
 
 
+    @Transactional
+    public Message getMessage(Long id){
+        return this.messageRepository.findById(id).get();
+    }
+
 }
 

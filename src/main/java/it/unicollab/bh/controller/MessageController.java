@@ -33,18 +33,47 @@ public class MessageController {
     private UserService userService;
 
 
-    @RequestMapping(value="/sendMessage/{sourceId}/{destId}/{postId}",  method = RequestMethod.POST)
-    public String sendMessage(@PathVariable("sourceId") Long idS,@PathVariable("destId") Long idD,
-                                   @PathVariable("postId") Long idP,
+    @RequestMapping(value="/sendReply/{sourceId}/{destId}/{postId}/{requestId}",  method = RequestMethod.POST)
+    public String sendReplyMessage(@PathVariable("sourceId") Long idS,@PathVariable("destId") Long idD,
+                                   @PathVariable("postId") Long idP,@PathVariable("requestId") Long idR,
                                    @ModelAttribute Message m, Model model){
 
         m.setSource(this.userService.getUser(idS));
         m.setDestination(this.userService.getUser(idD));
         m.setPost(this.postService.getPost(idP));
 
+        Message sourceRequestMessage = this.messageService.getMessage(idR);
+
+        if(m.getMessageType()==MessageType.ACCEPT){
+            sourceRequestMessage.setMessageType(MessageType.ACCEPTED);
+            this.messageService.saveMessage(sourceRequestMessage);
+        }
+
+        if(m.getMessageType()==MessageType.DECLINE){
+            sourceRequestMessage.setMessageType(MessageType.DECLINED);
+            this.messageService.saveMessage(sourceRequestMessage);
+        }
+
         this.messageService.saveMessage(m);
+
+
+        return "redirect:/messages";
+    }
+
+    @RequestMapping(value="/sendRequest/{sourceId}/{destId}/{postId}",  method = RequestMethod.POST)
+    public String sendReqeustMessage(@PathVariable("sourceId") Long idS,@PathVariable("destId") Long idD,
+                                     @PathVariable("postId") Long idP,
+                                     @ModelAttribute Message m, Model model){
+
+
+        m.setSource(this.userService.getUser(idS));
+        m.setDestination(this.userService.getUser(idD));
+        m.setPost(this.postService.getPost(idP));
+        this.messageService.saveMessage(m);
+
         return "redirect:/user";
     }
+
 
 
     @RequestMapping(value="/messages", method = RequestMethod.GET)

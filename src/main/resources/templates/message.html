@@ -45,19 +45,34 @@
     <a th:text="${message.source.userName}">Haowen Zheng </a>
     <span th:text="${message.text}">applied for your </span>
     <a href="#">post</a>
-    <form method="post" th:action="@{'/sendMessage' + '/' + ${message.destination.id} + '/' + ${message.source.id}
-    + '/' + ${message.post.id}}">
+    <form method="post" th:action="@{'/sendReply' + '/' + ${message.destination.id} + '/' + ${message.source.id}
+    + '/' + ${message.post.id}  + '/' + ${message.id}}">
         <input hidden   name=text th:value="'accepted your application'" />
         <input hidden   name="messageType" th:value="ACCEPT" />
-    <button class="response" id="accepted"> ACCECPT</button>
+        <button class="response" id="accepted"  onclick="acceptRequest()">
+        ACCEPT
+    </button>
     </form>
-    <form method="post" th:action="@{'/sendMessage' + '/' + ${message.destination.id} + '/' + ${message.source.id}
-       + '/' + ${message.post.id}}">
+    <form method="post" th:action="@{'/sendReply' + '/' + ${message.destination.id} + '/' + ${message.source.id}
+       + '/' + ${message.post.id} + '/' + ${message.id}}">
         <input hidden   name=text th:value="'declined your application'" />
         <input hidden   name="messageType" th:value="DECLINE" />
     <button class="response" id="declined"> DECLINE </button>
     </form>
 </div>
+        <div  class="message" id="request-accepted" th:if="${#strings.toString(message.messageType) == 'ACCEPTED'}">
+            <a th:text="${message.source.userName}">Haowen Zheng </a>
+            <span th:text="${message.text}">applied for your </span>
+            <a href="#">post</a>
+            <button disabled  class="response">ACCEPTED</button>
+        </div>
+
+        <div class="message" id="request-declined" th:if="${#strings.toString(message.messageType) == 'DECLINED'}">
+            <a th:text="${message.source.userName}">Haowen Zheng </a>
+            <span th:text="${message.text}">applied for your </span>
+            <a href="#">post</a>
+            <button disabled class="response">DECLINED</button>
+        </div>
 
 <div id="accept" class="message" th:if="${#strings.toString(message.messageType) == 'ACCEPT'}">
     <a th:text="${message.source.userName}">Haowen Zheng </a>
@@ -131,6 +146,41 @@
 
         side_nav.style.width="0";
     }
+
+
+    var accept = document.getElementById('accepted');
+
+    var decline = document.getElementById('declined');
+
+    console.log(decline);
+
+
+    accept.addEventListener('click', ()=>{
+
+        if(accept.innerHTML =="ACCEPTED"){
+            alert(" application already accepted");
+        }
+
+        accept.innerHTML= "ACCEPTED";
+
+        decline.style.display = "none";
+
+
+    });
+
+    decline.addEventListener('click', ()=>{
+
+        if(decline.innerHTML =="DECLINED"){
+            alert(" application already declined");
+        }
+
+
+        decline.innerHTML = "DECLINED";
+
+        accept.style.display ="none";
+
+    });
+
 
 
 </script>

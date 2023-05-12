@@ -26,21 +26,11 @@ body{
     /*  animation: gradient 10s ease infinite;*/
 }
 
-.messages{
-    display: flex;
-    justify-content : center;
-    align-items : center;
-    flex-direction : column;
-}
-
-
-.messages div:first-child{
+.messages div:first-child {
     margin-top: 20%;
-    margin-bottom : 4%;
-
+    margin-bottom: 4%;
 
 }
-
 
 
 .message{
@@ -64,16 +54,18 @@ body{
     word-spacing: 1px;
 
 
+
 }
 
 
 .message * {
     position: relative;
-    font-style:'Cera Round Pro', sans-serif;
+    font-family: 'Cera Round Pro', sans-serif;
 
 
 
 }
+
 
 .message a:nth-child(1){
 
@@ -116,10 +108,14 @@ body{
 
 
 
-#request, #decline{
+
+
+
+#request, #decline, #request-accepted, #request-declined{
     animation: slide-in-anim 1.2s ease-out forwards;
 
 }
+
 
 
 /*****************/
@@ -214,7 +210,19 @@ input:active{
     box-shadow: 0 0 10px 1px tomato;
 }
 
+
+#request-accepted button{
+    background: linear-gradient(90deg, #7eff5a, #34d84b);
+    box-shadow: 0px 0px 10px 1px  rgba(0, 100, 0, 0.5);
+}
+
+#request-declined button {
+
+    background: linear-gradient(to bottom right, #ff6347, #ff4500);
+    box-shadow: 0 0 10px 1px tomato;
+}
 /*********************/
+
 
 @keyframes slide-in-anim {
     0%{
@@ -250,6 +258,7 @@ input:active{
         transform: translateX(0%);
     }
 }
+
 
 
 

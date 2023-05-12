@@ -73,7 +73,7 @@
 
       </div>
       <div>
-        <form th:action="@{'/sendMessage' + '/' + ${user.id} + '/' + ${post.owner.id} + '/' +
+        <form th:action="@{'/sendRequest' + '/' + ${user.id} + '/' + ${post.owner.id} + '/' +
           ${post.id}}" method="post">
           <input  hidden  name="text"  th:value="'has applied to your post'"/>
           <input hidden   name="messageType" th:value="REQUEST" />

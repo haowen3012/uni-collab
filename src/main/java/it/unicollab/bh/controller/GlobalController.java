@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.security.Principal;
 
 @ControllerAdvice
-public class GlobalController
+public  class GlobalController
 {
 
     @Autowired
-    private SessionData sessionData;
+    private  SessionData sessionData;
 
     @ModelAttribute("user")
-    public User getUser(){
+    public   User getUser(){
 
         try {
             return this.sessionData.getLoggedUser();
