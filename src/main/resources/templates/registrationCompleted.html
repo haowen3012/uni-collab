@@ -11,6 +11,7 @@
     <div class="cont-1">
         <h1 id="welcome" th:if="${user.userName}" th:text="'Welcome ' + ${user.userName}">Welcome</h1>
          <h1  th:unless="${user.userName}" th:text="'Welcome ' + ${user.firstName}">Welcome</h1>
+        <img style="width: 200px; height: 200px;" th:src="@{${user.photosImagePath}}" />
     </div>
 
     <div class="cont-2">

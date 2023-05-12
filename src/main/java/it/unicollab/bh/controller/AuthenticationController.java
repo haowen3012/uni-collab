@@ -1,5 +1,6 @@
 package it.unicollab.bh.controller;
 
+import it.unicollab.bh.configuration.FileUploadUtil;
 import it.unicollab.bh.controller.session.SessionData;
 import it.unicollab.bh.model.Credentials;
 import it.unicollab.bh.model.Post;
@@ -19,11 +20,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.print.DocFlavor;
+import java.io.IOException;
 import java.security.Principal;
 
 @Controller
@@ -153,6 +158,20 @@ public class AuthenticationController {
          }
          return "login_slide.html";
      }
+    @PostMapping("/login/oauth2/user")
+    public RedirectView saveUser(User user, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        user.setPhotos(fileName);
+
+        User savedUser =  userService.saveUser(user);
+
+        String uploadDir = "user-photos/" + savedUser.getId();
+
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+
+        return new RedirectView("/users", true);
+    }
 
 
 }

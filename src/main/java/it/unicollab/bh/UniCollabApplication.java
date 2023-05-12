@@ -13,6 +13,7 @@ import java.util.Map;
 
 @SpringBootApplication()
 @RestController
+
 public class UniCollabApplication {
 
     public static void main(String[] args) {
