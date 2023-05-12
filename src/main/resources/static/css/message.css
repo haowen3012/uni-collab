@@ -26,10 +26,22 @@ body{
     /*  animation: gradient 10s ease infinite;*/
 }
 
-#request{
-    margin-top: 25%;
-    margin-bottom : 4%;
+.messages{
+    display: flex;
+    justify-content : center;
+    align-items : center;
+    flex-direction : column;
 }
+
+
+.messages div:first-child{
+    margin-top: 20%;
+    margin-bottom : 4%;
+
+
+}
+
+
 
 .message{
 
@@ -52,13 +64,12 @@ body{
     word-spacing: 1px;
 
 
-
 }
 
 
 .message * {
     position: relative;
-    font-family: 'Cera Round Pro', sans-serif;
+    font-style:'Cera Round Pro', sans-serif;
 
 
 
@@ -205,6 +216,23 @@ input:active{
 
 /*********************/
 
+@keyframes slide-in-anim {
+    0%{
+        opacity: 0;
+        transform: translateX(150%);
+    }
+    70%{
+        transform: translateX(-2%);
+    }
+    80%{
+        transform: translateX(3%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
 
 @keyframes slide-in-anim-left {
     0%{
@@ -222,7 +250,6 @@ input:active{
         transform: translateX(0%);
     }
 }
-
 
 
 

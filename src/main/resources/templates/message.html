@@ -40,7 +40,7 @@
     </div>
 </div>
 <div th:each=" message : ${messages}">
-    
+    <div class="messages">
 <div id="request" class="message" th:if="${#strings.toString(message.messageType) == 'REQUEST'}">
     <a th:text="${message.source.userName}">Haowen Zheng </a>
     <span th:text="${message.text}">applied for your </span>
@@ -69,6 +69,7 @@
     <a th:text="${message.source.userName}">Haowen Zheng </a>
     <span  th:text="${message.text}">declined your application for </span>
     <a href="#">post</a>
+</div>
 </div>
 </div>
 <!----- side nav------->
