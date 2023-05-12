@@ -33,14 +33,13 @@ public class MessageController {
     private UserService userService;
 
 
-    @RequestMapping(value="/sendApplyMessage/{sourceId}/{destId}/{postId}",  method = RequestMethod.POST)
-    public String sendApplyMessage(@PathVariable("sourceId") Long idS,@PathVariable("destId") Long idD,
+    @RequestMapping(value="/sendMessage/{sourceId}/{destId}/{postId}",  method = RequestMethod.POST)
+    public String sendMessage(@PathVariable("sourceId") Long idS,@PathVariable("destId") Long idD,
                                    @PathVariable("postId") Long idP,
                                    @ModelAttribute Message m, Model model){
 
         m.setSource(this.userService.getUser(idS));
         m.setDestination(this.userService.getUser(idD));
-        m.setMessageType(MessageType.REQUEST);
         m.setPost(this.postService.getPost(idP));
 
         this.messageService.saveMessage(m);

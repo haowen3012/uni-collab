@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Uni-Collab</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" th:href="@{/createPost.css}" />
+  <link rel="stylesheet" th:href="@{/css/createPost.css}" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 </head>
@@ -43,12 +43,8 @@
 </div>
 <div th:each="post : ${posts}">
   <div id="post" >
-    <div class="owner" th:if="${post.owner.userName}">
+    <div class="owner">
       <h1 th:text="${post.owner.userName}">OWNER</h1>
-      <div style="color:#4169e1"> 3 hours ago</div>
-    </div>
-    <div th:unless="${post.owner.userName}"class="owner" >
-      <h1 th:text="${post.owner.firstName}">OWNER</h1>
       <div style="color:#4169e1"> 3 hours ago</div>
     </div>
     <div class="project">
@@ -77,9 +73,10 @@
 
       </div>
       <div>
-        <form th:action="@{'/sendApplyMessage' + '/' + ${user.id} + '/' + ${post.owner.id} + '/' +
+        <form th:action="@{'/sendMessage' + '/' + ${user.id} + '/' + ${post.owner.id} + '/' +
           ${post.id}}" method="post">
-            <input  hidden  name="text"  th:value="${user.userName} + ' has applied  to your post'"/>
+          <input  hidden  name="text"  th:value="'has applied to your post'"/>
+          <input hidden   name="messageType" th:value="REQUEST" />
         <button class="publish">apply</button>
         </form>
       </div>

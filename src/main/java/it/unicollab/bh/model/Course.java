@@ -18,6 +18,14 @@ public class Course {
     private University university;
 
 
+    public Course(){
+
+    }
+    public Course(String name, University university) {
+        this.name = name;
+        this.university = university;
+    }
+
     public Long getId() {
         return id;
     }

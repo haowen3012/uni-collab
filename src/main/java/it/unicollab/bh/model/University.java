@@ -18,6 +18,14 @@ public class University {
     private List<Course>  courses;
 
 
+    public University(){
+
+    }
+    public University(String name, List<Course> courses) {
+        this.name = name;
+        this.courses = courses;
+    }
+
     public Long getId() {
         return id;
     }
@@ -37,6 +45,7 @@ public class University {
     public List<Course> getCourses() {
         return courses;
     }
+
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;

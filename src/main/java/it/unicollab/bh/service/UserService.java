@@ -60,8 +60,14 @@ public class UserService {
 
     public void registerNewCustomerAfterOAuthLoginSuccess(String loginName, String fullName, AuthenticationProvider provider) {
         User user = new User();
-        user.setUserName(loginName);
-        user.setFirstName(fullName);
+        if(loginName != null) {
+            user.setUserName(loginName);
+            user.setFirstName(fullName);
+        }
+        else{
+            user.setUserName(fullName);
+        }
+
         user.setCreationTimestamp(LocalDateTime.now());
         user.setoAuthProvider(provider);
         

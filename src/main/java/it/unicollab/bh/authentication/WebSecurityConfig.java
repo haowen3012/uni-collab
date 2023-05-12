@@ -3,6 +3,7 @@ package it.unicollab.bh.authentication;
 
 import it.unicollab.bh.model.Course;
 import it.unicollab.bh.model.Credentials;
+import it.unicollab.bh.model.University;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.model.oauth.OAuth2LoginSuccessHandler;
 import it.unicollab.bh.repository.CredentialsRepository;
@@ -26,6 +27,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
+import java.util.ArrayList;
+
 import static it.unicollab.bh.model.Credentials.ADMIN_ROLE;
 import static it.unicollab.bh.model.Credentials.DEFAULT_ROLE;
 
@@ -45,6 +48,9 @@ public  class WebSecurityConfig {
 
     @Autowired
     private CredentialsRepository credentialsRepository;  // questo lo toglieremo alla fine
+
+
+
 
 
 
@@ -128,6 +134,15 @@ public  class WebSecurityConfig {
         testCreddentials.setPassword(passwordEncoder().encode("haowenZheng"));
         testCreddentials.setRole(DEFAULT_ROLE);
         testCreddentials.setUser(testUser);
+
+      /*  University university = new University("Roma Tre",new ArrayList<>());
+        Course course= new Course("Ingegneria Informatica",university);
+
+        university.getCourses().add(course);
+
+        testUser.setCourseAttended( course);
+        */
+
 
         this.credentialsRepository.save(testCreddentials);
     }

@@ -1,50 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>Uni-Collab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.cdnfonts.com/css/cera-round-pro" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/createPost.css}" />
+    <link rel="stylesheet" th:href="@{/css/message.css}" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 </head>
 <body>
+<div id="container-nav" >
+    <div class="navbar">
+        <a href="/messages">
+            <i id="message" class="fa fa-bell"></i>
+        </a>
 
+        <a href="/user">
+            <i id="home" class="fa fa-home"></i>
+        </a>
 
-  <div id="container-nav" >
-        <div class="navbar">
-            <div>
-                <i  id="message" class="fa fa-bell" aria-hidden="true"><a href="/messages"></a></i>
-                <i class="fa-solid fa-circle"></i>
-            </div>
-            <div>
-                <i id="home" class="fa fa-home"><a href="/user"></a></i>
-                <i  class="fa-solid fa-circle"></i>
-            </div>
-            <div class="profile-section">
-                <i id="profile" class="fa">&#xf2be;<a></a></i>
-                <i  class="fa-solid fa-circle"></i>
+        <a class="profile-section" onclick="openSideNav()">
+            <i id="profile" class="fa">&#xf2be;</i>
+        </a>
 
-                <span id="drop-down">
-          <a class="content">profile</a>
-          <a class="content">your posts</a>
-          <a class="content"> Log out</a>
-        </span>
-
-            </div>
         </div>
-        <div class="padding">
-            <div></div>
-            <div class="search">
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <input/>
-            </div>
-            <div></div>
-        </div>
-    </div>
+        <div class="padding"></div>
+    <div class="search-section">
+        <div></div>
+        <div class="search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input></input>
 
-    <div th:each="message: ${messages}">
-        <div id="container">
-        <span th:text="${message.source.userName} + ' applied for your post'">Haowen ZHeng si è candidato ad un tuo post </span>
-            <button> ACCECPT</button>
+        </div>
+        <div></div>
     </div>
 </div>
+<div th:each=" message : ${messages}">
+    
+<div id="request" class="message" th:if="${#strings.toString(message.messageType) == 'REQUEST'}">
+    <a th:text="${message.source.userName}">Haowen Zheng </a>
+    <span th:text="${message.text}">applied for your </span>
+    <a href="#">post</a>
+    <form method="post" th:action="@{'/sendMessage' + '/' + ${message.destination.id} + '/' + ${message.source.id}
+    + '/' + ${message.post.id}}">
+        <input hidden   name=text th:value="'accepted your application'" />
+        <input hidden   name="messageType" th:value="ACCEPT" />
+    <button class="response" id="accepted"> ACCECPT</button>
+    </form>
+    <form method="post" th:action="@{'/sendMessage' + '/' + ${message.destination.id} + '/' + ${message.source.id}
+       + '/' + ${message.post.id}}">
+        <input hidden   name=text th:value="'declined your application'" />
+        <input hidden   name="messageType" th:value="DECLINE" />
+    <button class="response" id="declined"> DECLINE </button>
+    </form>
+</div>
+
+<div id="accept" class="message" th:if="${#strings.toString(message.messageType) == 'ACCEPT'}">
+    <a th:text="${message.source.userName}">Haowen Zheng </a>
+    <span  th:text="${message.text}">accepted your application for </span>
+    <a href="#">post</a>
+</div>
+
+<div id="decline" class="message" th:if="${#strings.toString(message.messageType) == 'DECLINE'}">
+    <a th:text="${message.source.userName}">Haowen Zheng </a>
+    <span  th:text="${message.text}">declined your application for </span>
+    <a href="#">post</a>
+</div>
+</div>
+<!----- side nav------->
+<div  id="side_nav" class="side-nav">
+    <div onclick="closeSideNav()">&times;</div>
+    <a href="#">Profile</a>
+    <a href="#">Posts</a>
+    <a href="#">Projects </a>
+    <a href="#"> Log out</a>
+</div>
+<!-----pop up---->
+
+<!------------->
+<!---<div id="messages"> </div>--  NOTIFICHE CON WEBSOCKET-->
+<script>
+
+    var container_1 =  document.getElementById('container');
+    var post_form = document.getElementById('container-2');
+    var go_back = document.getElementById('go-back');
+
+    var post = document.getElementById('post');
+
+    container_1.addEventListener('click',()=>{
+
+        post_form.style.display= "flex";
+        post_form.style.animation ="slide-in-down 1.1s ease-out forwards";
+
+
+    });
+
+
+
+    go_back.addEventListener('click',()=>{
+
+        post_form.style.animation ="slide-out-anim 1s ease-out forwards";
+
+        post.style.animation = "none";
+
+
+        setTimeout( function(){
+            post_form.style.display = "none";},1000);
+
+
+    });
+
+
+
+    function openSideNav(){
+
+        var side_nav = document.getElementById('side_nav');
+
+        side_nav.style.width="14%";
+
+    }
+
+    function closeSideNav(){
+
+        var side_nav = document.getElementById('side_nav');
+
+        side_nav.style.width="0";
+    }
+
+
+</script>
 
 </body>
+
 </html>
