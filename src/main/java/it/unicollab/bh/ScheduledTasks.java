@@ -74,8 +74,6 @@ public class ScheduledTasks {
       if(expiredPosts == null) return;
 
 
-      System.out.println(expiredPosts.size());
-
       for (Post post : expiredPosts) {
         post.setPostState(PostState.EXPIRED);
         post.addAcceptedUser(post.getOwner());   // add the post owner to the acceptedUser set
