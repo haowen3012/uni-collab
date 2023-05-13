@@ -1,18 +1,18 @@
 package it.unicollab.bh;
 
 import it.unicollab.bh.model.Post;
-import it.unicollab.bh.model.Project;
-import it.unicollab.bh.model.ProjectState;
+import it.unicollab.bh.model.PostState;
+import it.unicollab.bh.model.Project.Project;
+import it.unicollab.bh.model.Project.ProjectState;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.model.message.Message;
 import it.unicollab.bh.model.message.MessageType;
 import it.unicollab.bh.service.MessageService;
 import it.unicollab.bh.service.PostService;
 import it.unicollab.bh.service.ProjectService;
-import org.hibernate.annotations.Comment;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -32,16 +32,20 @@ public class ScheduledTasks {
 
 
     @Scheduled(fixedRate = 10000)
+    @Transactional
     public void createProject(){
       Collection<Post> fullmembersPosts = postService.getPostByMembershipEqualsAcceptedUsersSize();
 
+      if(fullmembersPosts == null) return;
+
       for (Post post: fullmembersPosts) {
 
-        post.getAcceptedUsers().add(post.getOwner()); // add the post owner to the acceptedUser set
+        post.addAcceptedUser(post.getOwner()); // add the post owner to the acceptedUser set
 
         /*create a new Project from each of these full members posts*/
-        Project project = new Project(post.getProjectName(), post.getProjectDescription(), ProjectState.ACTIVE,
-                post.getAcceptedUsers());
+        Project project = new Project(post.getProjectName(), post.getProjectDescription(), ProjectState.ACTIVE);
+
+        this.projectService.saveProject(project);
 
 
         for(User user : post.getAcceptedUsers()){
@@ -49,33 +53,40 @@ public class ScheduledTasks {
           this.projectService.shareProjectWithUser(project,user);
 
           /*send a message to each memeber*/
-          messageService.saveMessage(new Message(null, user ,"a new Project is active",post, MessageType.PROJECT_ACTIVE));
+          messageService.saveMessage(new Message(null, user ,"a new Project is active",post,project, MessageType.PROJECT_ACTIVE));
         }
 
 
          /*delete these posts*/
-         this.postService.deleteAll(fullmembersPosts);
       }
 
 
     }
 
 
-    @Scheduled(fixedRate = 10000)
-    public void deleteExpiredPosts() {
+   @Scheduled(fixedRate = 10000)
+   @Transactional
+    public void sendPostExpirationMessage() {
 
-      Collection<Post> expiredPosts = this.postService.deleteExpiredPosts(LocalDateTime.now());
+      Collection<Post> expiredPosts = this.postService.getExpiredPosts(LocalDateTime.now(),PostState.EXPIRED);
 
+
+      if(expiredPosts == null) return;
+
+
+      System.out.println(expiredPosts.size());
 
       for (Post post : expiredPosts) {
-        post.getAppliedUsers().add(post.getOwner());   // add the post owner to the acceptedUser set
+        post.setPostState(PostState.EXPIRED);
+        post.addAcceptedUser(post.getOwner());   // add the post owner to the acceptedUser set
 
         for (User user : post.getAcceptedUsers()) {
 
-          messageService.saveMessage(new Message(null, user, "The post is expired", post, MessageType.POST_EXPIRED));
+          messageService.saveMessage(new Message(null, user, "is expired", post, null , MessageType.POST_EXPIRED));
         }
 
       }
     }
+
 
 }

@@ -1,6 +1,5 @@
 package it.unicollab.bh.service;
 
-import it.unicollab.bh.model.Project;
 import it.unicollab.bh.model.University;
 import it.unicollab.bh.repository.UniversityRepository;
 import jakarta.transaction.Transactional;

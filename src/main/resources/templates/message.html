@@ -76,7 +76,9 @@
         </div>
 
     <div class="message" id="project-active" th:if="${#strings.toString(message.messageType) == 'PROJECT_ACTIVE'}">
-        <span th:text="${message.text}"> A new Project is  </span>
+        <span>A new </span>
+        <a href="#">Project</a>
+        <span th:text="${message.text}"> is </span>
         <button disabled class="response">ACTIVE</button>
     </div>
 
@@ -84,7 +86,7 @@
     <div class="message" id="post-expired" th:if="${#strings.toString(message.messageType) == 'POST_EXPIRED'}">
         <span>The</span>
         <a href="#">post</a>
-        <span th:text="${message.text}">is expired </span>
+        <span th:text="${message.text}"> has  expired </span>
         <button disabled class="response">EXPIRED</button>
     </div>
 

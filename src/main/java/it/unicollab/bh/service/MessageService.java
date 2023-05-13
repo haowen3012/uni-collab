@@ -57,7 +57,7 @@ public class MessageService {
         User source = this.userService.getUser(idSource);
 
         post.addAppliedUser(source);
-        source.addAppliedPost(post);    // forse da modificare
+        source.getAppliedPosts().add(post);    // forse da modificare
 
 
         m.setSource(source);
@@ -88,7 +88,7 @@ public class MessageService {
         if(m.getMessageType()== MessageType.ACCEPT){
             sourceRequestMessage.setMessageType(MessageType.ACCEPTED);
             post.getAcceptedUsers().add(destination);
-            source.addAcceptedApply(post);
+            source.getAcceptedApplies().add(post);
 
             this.postService.savePost(post);
             this.userService.saveUser(source);

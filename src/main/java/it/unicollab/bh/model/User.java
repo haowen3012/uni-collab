@@ -1,5 +1,6 @@
 package it.unicollab.bh.model;
 
+import it.unicollab.bh.model.Project.Project;
 import it.unicollab.bh.model.oauth.AuthenticationProvider;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -9,7 +10,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 
@@ -221,7 +221,7 @@ public class User {
         this.getAcceptedApplies().add(post);
     }
 
-    public void addOwnedPost(Post post){
+    public void addOwnedPost(Post post) {
 
         this.getAcceptedApplies().add(post);
     }

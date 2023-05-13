@@ -1,4 +1,4 @@
-package it.unicollab.bh.model;
+package it.unicollab.bh.model.Project;
 
 public enum ProjectState {
 

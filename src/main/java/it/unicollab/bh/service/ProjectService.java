@@ -1,6 +1,6 @@
 package it.unicollab.bh.service;
 
-import it.unicollab.bh.model.Project;
+import it.unicollab.bh.model.Project.Project;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.repository.ProjectRepository;
 import jakarta.transaction.Transactional;
@@ -37,12 +37,12 @@ public class ProjectService {
     }
 
     @Transactional
-    public Project shareProjectWithUser(Project project, User user){
+    public void shareProjectWithUser(Project project, User user){
 
         project.addMember(user);
         user.addProject(project);
         this.userService.saveUser(user);
-        return this.projectRepository.save(project);
+        this.projectRepository.save(project);
     }
 
 }

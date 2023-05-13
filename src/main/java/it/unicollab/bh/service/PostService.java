@@ -1,6 +1,7 @@
 package it.unicollab.bh.service;
 
 import it.unicollab.bh.model.Post;
+import it.unicollab.bh.model.PostState;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.repository.PostRepository;
 import jakarta.transaction.Transactional;
@@ -60,9 +61,9 @@ public class PostService {
     }
 
     @Transactional
-    public Collection<Post> getExpiredPosts(LocalDateTime localDateTime){
+    public Collection<Post> getExpiredPosts(LocalDateTime localDateTime, PostState postState){
 
-        return this.postRepository.findByDeadlineBefore(localDateTime);
+        return this.postRepository.findByDeadlineBeforeAndPostStateNot(localDateTime, postState);
     }
 
     @Transactional

@@ -1,9 +1,6 @@
 package it.unicollab.bh.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.CollectionIdJdbcTypeCode;
-
-import java.util.List;
 
 @Entity
 public class Course {
@@ -18,9 +15,10 @@ public class Course {
     private University university;
 
 
-    public Course(){
+    public Course() {
 
     }
+
     public Course(String name, University university) {
         this.name = name;
         this.university = university;

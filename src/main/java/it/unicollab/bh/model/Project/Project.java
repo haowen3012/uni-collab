@@ -1,9 +1,10 @@
-package it.unicollab.bh.model;
+package it.unicollab.bh.model.Project;
 
+import it.unicollab.bh.model.User;
 import jakarta.persistence.*;
 
 
-import javax.sound.sampled.Port;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,6 +17,7 @@ public class Project {
 
     private String description;
 
+    @Enumerated(EnumType.STRING)
     private ProjectState projectState;
 
     @ManyToMany(mappedBy="projects")
@@ -24,11 +26,11 @@ public class Project {
 
     public Project(){}
 
-    public Project(String name, String description, ProjectState projectState, Set<User> members) {
+    public Project(String name, String description, ProjectState projectState) {
         this.name = name;
         this.description = description;
         this.projectState = projectState;
-        this.members = members;
+        this.members = new HashSet<>();
 
     }
 

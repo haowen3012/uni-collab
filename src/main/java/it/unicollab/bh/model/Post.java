@@ -48,6 +48,9 @@ public class Post {
      */
     private LocalDateTime  deadline;
 
+    @Enumerated(EnumType.STRING)
+    private PostState postState;
+
     public Post(){
 
     }
@@ -59,6 +62,7 @@ public class Post {
         this.owner = owner;
         this.acceptedUsers = new HashSet<>();
         this.deadline = deadline;
+        this.postState = PostState.ACTIVE;
     }
 
 
@@ -152,6 +156,14 @@ public class Post {
 
     public void addAcceptedUser(User user){
         this.getAcceptedUsers().add(user);
+    }
+
+    public PostState getPostState() {
+        return postState;
+    }
+
+    public void setPostState(PostState postState) {
+        this.postState = postState;
     }
 }
 

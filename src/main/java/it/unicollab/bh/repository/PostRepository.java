@@ -1,6 +1,7 @@
 package it.unicollab.bh.repository;
 
 import it.unicollab.bh.model.Post;
+import it.unicollab.bh.model.PostState;
 import it.unicollab.bh.model.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -20,7 +21,7 @@ public interface PostRepository  extends CrudRepository<Post, Long> {
     @Query("SELECT p FROM Post p WHERE p.membership = SIZE(p.acceptedUsers)")
     Collection<Post> findAllByMembershipEqualsAcceptedUsersSize();
 
-    Collection<Post> findByDeadlineBefore(LocalDateTime localDateTime);
+    Collection<Post> findByDeadlineBeforeAndPostStateNot(LocalDateTime localDateTime, PostState postState);
 
 
 
