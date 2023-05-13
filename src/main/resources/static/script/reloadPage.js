@@ -1,4 +1,4 @@
 
 setInterval(function() {
     location.reload();
-}, 5000);
+}, 20000);
