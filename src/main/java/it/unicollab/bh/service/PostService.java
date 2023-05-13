@@ -46,4 +46,13 @@ public class PostService {
     public Collection<Post> getAllPostByOwnerNot(User owner){
          return this.postRepository.findAllByOwnerNot(owner);
     }
+
+
+    @Transactional
+    public Collection<Post> getAllByOwnerNotAndAppliedUsersNotContaining(User owner, User appliedUser){
+        return this.postRepository.findAllByOwnerNotAndAppliedUsersNotContaining(owner, appliedUser);
+    }
+
+
+
 }

@@ -1,12 +1,14 @@
 package it.unicollab.bh.controller;
 
 import it.unicollab.bh.controller.session.SessionData;
+import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.model.message.Message;
 import it.unicollab.bh.model.message.MessageType;
 import it.unicollab.bh.service.MessageService;
 import it.unicollab.bh.service.PostService;
 import it.unicollab.bh.service.UserService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -60,16 +62,26 @@ public class MessageController {
         return "redirect:/messages";
     }
 
+
+    @Transactional  // questo metodo è da modificare
     @RequestMapping(value="/sendRequest/{sourceId}/{destId}/{postId}",  method = RequestMethod.POST)
     public String sendReqeustMessage(@PathVariable("sourceId") Long idS,@PathVariable("destId") Long idD,
                                      @PathVariable("postId") Long idP,
                                      @ModelAttribute Message m, Model model){
 
+        Post post = this.postService.getPost(idP);
+        User source = this.userService.getUser(idS);
+        source.getAppliedPosts().add(post);    // forse da modificare
 
-        m.setSource(this.userService.getUser(idS));
+
+        m.setSource(source);
         m.setDestination(this.userService.getUser(idD));
-        m.setPost(this.postService.getPost(idP));
+        m.setPost(post);
+
+
+        this.userService.saveUser(source);
         this.messageService.saveMessage(m);
+
 
         return "redirect:/user";
     }

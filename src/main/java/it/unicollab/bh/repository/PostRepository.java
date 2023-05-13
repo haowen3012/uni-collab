@@ -13,4 +13,7 @@ public interface PostRepository  extends CrudRepository<Post, Long> {
 
     public Collection<Post>  findAllByOwnerNot(User owner);
 
+    public Collection<Post> findAllByOwnerNotAndAppliedUsersNotContaining(User owner,User appliedUser);
+
+
 }

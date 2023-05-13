@@ -1,5 +1,6 @@
 package it.unicollab.bh.service;
 
+import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.model.oauth.AuthenticationProvider;
 import it.unicollab.bh.repository.UserRepository;
@@ -9,10 +10,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
@@ -55,8 +53,8 @@ public class UserService {
 
         return result;
 
-
     }
+
 
     public void registerNewCustomerAfterOAuthLoginSuccess(String loginName, String fullName, AuthenticationProvider provider) {
         User user = new User();

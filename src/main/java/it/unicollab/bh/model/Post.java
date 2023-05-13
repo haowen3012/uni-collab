@@ -38,6 +38,10 @@ public class Post {
     private LocalDateTime lastUpdateTimestamp;
 
 
+    @ManyToMany(mappedBy = "appliedPosts")
+    private Collection<User> appliedUsers;
+
+
     /**
      *  the post deadline. After this date, the post is no longer visible to users who are not the owner
      */
@@ -128,5 +132,14 @@ public class Post {
 
     public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
+    }
+
+
+    public Collection<User> getAppliedUsers() {
+        return appliedUsers;
+    }
+
+    public void setAppliedUsers(Collection<User> appliedUsers) {
+        this.appliedUsers = appliedUsers;
     }
 }

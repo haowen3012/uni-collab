@@ -56,8 +56,6 @@ public class MainController {
     }
 
 
-
-
     @RequestMapping(value={"addCourse/{user_id}"}, method = RequestMethod.POST)
     public String AddCourseToUser(Model model, @PathVariable Long user_id, @RequestParam("selected-universityId") Long uni_id){
 

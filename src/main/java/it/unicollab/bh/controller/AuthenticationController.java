@@ -78,9 +78,9 @@ public class AuthenticationController {
 
            User loggedUser = this.sessionData.getLoggedUser();
 
-           model.addAttribute("posts", postService.getAllPostByOwnerNot(loggedUser));
+           model.addAttribute("posts", postService.getAllByOwnerNotAndAppliedUsersNotContaining(loggedUser,loggedUser));
 
-        return "createPost.html";
+           return "createPost.html";
     }
 
 
@@ -111,11 +111,9 @@ public class AuthenticationController {
         model.addAttribute("user",loggedUser);
 
         if(loggedUser.getCourseAttended()!=null ){
-            model.addAttribute("posts", postService.getAllPostByOwner(loggedUser));
+            model.addAttribute("posts", postService.getAllPostByOwnerNot(loggedUser));
             return "createPost.html";
         }
-
-
 
         model.addAttribute("universities",universityService.getAllUniversities());
         return "registrationSuccessful.html";

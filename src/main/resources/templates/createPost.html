@@ -12,11 +12,11 @@
 <body>
 <div id="container-nav" >
   <div class="navbar">
-    <a href="/messages">
+    <a href="/messages" >
       <i id="message" class="fa fa-bell"></i>
     </a>
 
-    <a href="/user">
+    <a href="/user" id="home-icon">
       <i id="home" class="fa fa-home"></i>
     </a>
 
@@ -122,6 +122,8 @@
 <!---<div id="messages"> </div>--  NOTIFICHE CON WEBSOCKET-->
 <script>
 
+
+
   var container_1 =  document.getElementById('container');
   var post_form = document.getElementById('container-2');
   var go_back = document.getElementById('go-back');
@@ -167,7 +169,14 @@
   }
 
 
-</script>
+
+  var home_icon = document.getElementById('home-icon');
+  home_icon.style.color ="#fff";
+  home_icon.style.backgroundColor ="#4169e1";
+  home_icon.style.boxShadow="0 5px 20px #4169e1aa, 0 5px 5px #4169e166";
+
+
+ </script>
 
 <script>
   var stompClient = null;

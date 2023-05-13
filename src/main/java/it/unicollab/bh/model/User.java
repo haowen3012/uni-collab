@@ -69,8 +69,6 @@ public class User {
     private Image picture;*/
 
 
-
-
 	@ManyToOne
     private Course courseAttended;
 
@@ -90,6 +88,9 @@ public class User {
      */
     @ManyToMany(mappedBy = "acceptedUsers")
     private Collection<Post> acceptedApplies;
+
+    @ManyToMany
+    private Collection<Post> appliedPosts;
 
 
     public Long getId() {
@@ -196,5 +197,12 @@ public class User {
 	public void setAcceptedApplies(Collection<Post> acceptedApplies) {
         this.acceptedApplies = acceptedApplies;
     }
-	
+
+    public Collection<Post> getAppliedPosts() {
+        return appliedPosts;
+    }
+
+    public void setAppliedPosts(Collection<Post> appliedPosts) {
+        this.appliedPosts = appliedPosts;
+    }
 }

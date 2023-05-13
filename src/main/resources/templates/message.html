@@ -15,7 +15,7 @@
 <body>
 <div id="container-nav" >
     <div class="navbar">
-        <a href="/messages">
+        <a href="/messages" id="message-icon">
             <i id="message" class="fa fa-bell"></i>
         </a>
 
@@ -50,7 +50,7 @@
     + '/' + ${message.post.id}  + '/' + ${message.id}}">
         <input hidden   name=text th:value="'accepted your application'" />
         <input hidden   name="messageType" th:value="ACCEPT" />
-        <button class="response" id="accepted"  onclick="acceptRequest()">
+        <button class="response" id="accepted" >
         ACCEPT
     </button>
     </form>
@@ -103,35 +103,9 @@
 <!---<div id="messages"> </div>--  NOTIFICHE CON WEBSOCKET-->
 <script>
 
-    var container_1 =  document.getElementById('container');
-    var post_form = document.getElementById('container-2');
-    var go_back = document.getElementById('go-back');
-
-    var post = document.getElementById('post');
-
-    container_1.addEventListener('click',()=>{
-
-        post_form.style.display= "flex";
-        post_form.style.animation ="slide-in-down 1.1s ease-out forwards";
-
-
-    });
-
-
-
-    go_back.addEventListener('click',()=>{
-
-        post_form.style.animation ="slide-out-anim 1s ease-out forwards";
-
-        post.style.animation = "none";
-
-
-        setTimeout( function(){
-            post_form.style.display = "none";},1000);
-
-
-    });
-
+    setInterval(function() {
+        location.reload();
+    }, 10000);
 
 
     function openSideNav(){
@@ -150,38 +124,11 @@
     }
 
 
-    var accept = document.getElementById('accepted');
 
-    var decline = document.getElementById('declined');
-
-    console.log(decline);
-
-
-    accept.addEventListener('click', ()=>{
-
-        if(accept.innerHTML =="ACCEPTED"){
-            alert(" application already accepted");
-        }
-
-        accept.innerHTML= "ACCEPTED";
-
-        decline.style.display = "none";
-
-
-    });
-
-    decline.addEventListener('click', ()=>{
-
-        if(decline.innerHTML =="DECLINED"){
-            alert(" application already declined");
-        }
-
-
-        decline.innerHTML = "DECLINED";
-
-        accept.style.display ="none";
-
-    });
+    var message_icon = document.getElementById('message-icon');
+    message_icon.style.color ="#fff";
+    message_icon.style.backgroundColor ="#4169e1";
+    message_icon.style.boxShadow="0 5px 20px #4169e1aa, 0 5px 5px #4169e166";
 
 
 
