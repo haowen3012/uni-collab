@@ -78,7 +78,7 @@ public class AuthenticationController {
 
            User loggedUser = this.sessionData.getLoggedUser();
 
-           model.addAttribute("posts", postService.getAllByOwnerNotAndAppliedUsersNotContaining(loggedUser,loggedUser));
+           model.addAttribute("posts", postService.getPostsByOwnerNotAndAppliedUsersNotContaining(loggedUser,loggedUser));
 
            return "createPost.html";
     }

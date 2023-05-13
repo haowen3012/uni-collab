@@ -75,6 +75,20 @@
             <button disabled class="response">DECLINED</button>
         </div>
 
+    <div class="message" id="project-active" th:if="${#strings.toString(message.messageType) == 'PROJECT_ACTIVE'}">
+        <span th:text="${message.text}"> A new Project is  </span>
+        <button disabled class="response">ACTIVE</button>
+    </div>
+
+
+    <div class="message" id="post-expired" th:if="${#strings.toString(message.messageType) == 'POST_EXPIRED'}">
+        <span>The</span>
+        <a href="#">post</a>
+        <span th:text="${message.text}">is expired </span>
+        <button disabled class="response">EXPIRED</button>
+    </div>
+
+
 <div id="accept" class="message" th:if="${#strings.toString(message.messageType) == 'ACCEPT'}">
     <a th:text="${message.source.userName}">Haowen Zheng </a>
     <span  th:text="${message.text}">accepted your application for </span>
@@ -105,7 +119,7 @@
 
     setInterval(function() {
         location.reload();
-    }, 10000);
+    }, 5000);
 
 
     function openSideNav(){

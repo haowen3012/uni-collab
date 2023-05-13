@@ -28,59 +28,27 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    @Autowired
-    private PostService postService;
-
-    @Autowired
-    private UserService userService;
 
 
     @RequestMapping(value="/sendReply/{sourceId}/{destId}/{postId}/{requestId}",  method = RequestMethod.POST)
     public String sendReplyMessage(@PathVariable("sourceId") Long idS,@PathVariable("destId") Long idD,
                                    @PathVariable("postId") Long idP,@PathVariable("requestId") Long idR,
-                                   @ModelAttribute Message m, Model model){
+                                   @ModelAttribute Message m){
 
-        m.setSource(this.userService.getUser(idS));
-        m.setDestination(this.userService.getUser(idD));
-        m.setPost(this.postService.getPost(idP));
-
-        Message sourceRequestMessage = this.messageService.getMessage(idR);
-
-        if(m.getMessageType()==MessageType.ACCEPT){
-            sourceRequestMessage.setMessageType(MessageType.ACCEPTED);
-            this.messageService.saveMessage(sourceRequestMessage);
-        }
-
-        if(m.getMessageType()==MessageType.DECLINE){
-            sourceRequestMessage.setMessageType(MessageType.DECLINED);
-            this.messageService.saveMessage(sourceRequestMessage);
-        }
-
-        this.messageService.saveMessage(m);
-
+        this.messageService.saveReplyMessage(idS,idD,idP,idR,m);
 
         return "redirect:/messages";
     }
 
 
-    @Transactional  // questo metodo è da modificare
+
     @RequestMapping(value="/sendRequest/{sourceId}/{destId}/{postId}",  method = RequestMethod.POST)
     public String sendReqeustMessage(@PathVariable("sourceId") Long idS,@PathVariable("destId") Long idD,
                                      @PathVariable("postId") Long idP,
-                                     @ModelAttribute Message m, Model model){
-
-        Post post = this.postService.getPost(idP);
-        User source = this.userService.getUser(idS);
-        source.getAppliedPosts().add(post);    // forse da modificare
+                                     @ModelAttribute Message m){
 
 
-        m.setSource(source);
-        m.setDestination(this.userService.getUser(idD));
-        m.setPost(post);
-
-
-        this.userService.saveUser(source);
-        this.messageService.saveMessage(m);
+    this.messageService.SaveRequestMessage(idS,idD,idP,m);
 
 
         return "redirect:/user";

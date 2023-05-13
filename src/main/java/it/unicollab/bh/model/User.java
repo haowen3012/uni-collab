@@ -205,4 +205,24 @@ public class User {
     public void setAppliedPosts(Collection<Post> appliedPosts) {
         this.appliedPosts = appliedPosts;
     }
+
+
+    /********************************************************/
+
+    public void addProject(Project project){
+        this.getProjects().add(project);
+    }
+
+    public void addAppliedPost(Post post){
+        this.getAppliedPosts().add(post);
+    }
+
+    public void addAcceptedApply(Post post){
+        this.getAcceptedApplies().add(post);
+    }
+
+    public void addOwnedPost(Post post){
+
+        this.getAcceptedApplies().add(post);
+    }
 }

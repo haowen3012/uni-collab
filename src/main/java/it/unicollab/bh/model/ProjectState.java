@@ -1,2 +1,6 @@
-package it.unicollab.bh.model;public enum ProjectState {
+package it.unicollab.bh.model;
+
+public enum ProjectState {
+
+    ACTIVE, TERMINATED
 }

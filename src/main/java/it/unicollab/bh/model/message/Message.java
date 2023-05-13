@@ -8,6 +8,7 @@ import org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 
 @Entity
@@ -27,8 +28,10 @@ public class Message  {
     @ManyToOne
     private  User  destination;
 
+
     @ManyToOne
     private Post post;
+
 
     @Enumerated(EnumType.STRING)
     private MessageType messageType;
@@ -37,8 +40,15 @@ public class Message  {
     private LocalDateTime creationTimestamp;
 
 
+    public Message(){}
 
-
+    public Message( User source, User destination, String text,Post post, MessageType messageType) {
+        this.text = text;
+        this.source = source;
+        this.destination = destination;
+        this.post = post;
+        this.messageType = messageType;
+    }
 
     public Long getId() {
         return id;

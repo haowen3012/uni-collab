@@ -8,7 +8,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -28,7 +29,7 @@ public class Post {
     private User owner;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<User> acceptedUsers;
+    private Set<User> acceptedUsers;
 
 
     @CreationTimestamp
@@ -39,7 +40,7 @@ public class Post {
 
 
     @ManyToMany(mappedBy = "appliedPosts")
-    private Collection<User> appliedUsers;
+    private Set<User> appliedUsers;
 
 
     /**
@@ -56,7 +57,7 @@ public class Post {
         this.projectDescription = projectDescription;
         this.membership = membership;
         this.owner = owner;
-        this.acceptedUsers = new ArrayList<>();
+        this.acceptedUsers = new HashSet<>();
         this.deadline = deadline;
     }
 
@@ -101,11 +102,11 @@ public class Post {
         this.owner = owner;
     }
 
-    public Collection<User> getAcceptedUsers() {
+    public Set<User> getAcceptedUsers() {
         return acceptedUsers;
     }
 
-    public void setAcceptedUsers(Collection<User> acceptedUsers) {
+    public void setAcceptedUsers(Set<User> acceptedUsers) {
         this.acceptedUsers = acceptedUsers;
     }
 
@@ -135,11 +136,22 @@ public class Post {
     }
 
 
-    public Collection<User> getAppliedUsers() {
+    public Set<User> getAppliedUsers() {
         return appliedUsers;
     }
 
-    public void setAppliedUsers(Collection<User> appliedUsers) {
+    public void setAppliedUsers(Set<User> appliedUsers) {
         this.appliedUsers = appliedUsers;
     }
+
+
+
+    public void addAppliedUser(User user){
+        this.getAppliedUsers().add(user);
+    }
+
+    public void addAcceptedUser(User user){
+        this.getAcceptedUsers().add(user);
+    }
 }
+

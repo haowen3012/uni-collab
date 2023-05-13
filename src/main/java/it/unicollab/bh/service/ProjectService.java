@@ -13,7 +13,10 @@ import java.util.Optional;
 public class ProjectService {
 
     @Autowired
-    protected ProjectRepository projectRepository;
+    ProjectRepository projectRepository;
+
+    @Autowired
+    UserService userService;
 
 
 
@@ -35,7 +38,10 @@ public class ProjectService {
 
     @Transactional
     public Project shareProjectWithUser(Project project, User user){
+
         project.addMember(user);
+        user.addProject(project);
+        this.userService.saveUser(user);
         return this.projectRepository.save(project);
     }
 
