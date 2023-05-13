@@ -25,18 +25,19 @@ body{
 
     /*  animation: gradient 10s ease infinite;*/
 }
-
-.messages div:first-child {
-    margin-top: 20%;
-    margin-bottom: 4%;
+ .mes-cont:first-of-type{
+     position: relative;
+    margin-top:20%;
 
 }
 
+ .mes-cont{
+     margin-bottom: 4%;
+ }
 
 .message{
 
     background : #fff;
-    margin-bottom : 4%;
     display: inline-flex;
     align-items:center;
     justify-content: center;

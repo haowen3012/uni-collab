@@ -673,7 +673,7 @@ button:hover{
     0%{
         transform: translateX(0%);
     }
-    50%{
+    50% {
         opacity: 0;
         transform: translateX(-100%);
     }
