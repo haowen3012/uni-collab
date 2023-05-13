@@ -24,6 +24,7 @@ public interface PostRepository  extends CrudRepository<Post, Long> {
     Collection<Post> findByDeadlineBeforeAndPostStateNot(LocalDateTime localDateTime, PostState postState);
 
 
+    Collection<Post> findAllByOwnerNotAndAppliedUsersNotContainingAndPostState(User owner, User appliedUser, PostState postState);
 
     /*************++delete queries*******/
 

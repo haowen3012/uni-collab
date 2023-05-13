@@ -4,6 +4,7 @@ import it.unicollab.bh.configuration.FileUploadUtil;
 import it.unicollab.bh.controller.session.SessionData;
 import it.unicollab.bh.model.Credentials;
 import it.unicollab.bh.model.Post;
+import it.unicollab.bh.model.PostState;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.service.CredentialsService;
 import it.unicollab.bh.controller.validation.CredentialsValidator;
@@ -78,7 +79,7 @@ public class AuthenticationController {
 
            User loggedUser = this.sessionData.getLoggedUser();
 
-           model.addAttribute("posts", postService.getPostsByOwnerNotAndAppliedUsersNotContaining(loggedUser,loggedUser));
+           model.addAttribute("posts", postService.getHomePagePost(loggedUser,loggedUser, PostState.ACTIVE));
 
            return "createPost.html";
     }

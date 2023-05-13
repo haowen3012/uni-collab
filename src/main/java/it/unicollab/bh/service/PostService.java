@@ -66,6 +66,13 @@ public class PostService {
         return this.postRepository.findByDeadlineBeforeAndPostStateNot(localDateTime, postState);
     }
 
+
+    /*returns the posts that you didn't crete, didn't applied and is not expired ( postState = active)*/
+    @Transactional
+    public Collection<Post> getHomePagePost(User owner, User appliedUser, PostState postState){
+        return this.postRepository.findAllByOwnerNotAndAppliedUsersNotContainingAndPostState(owner, appliedUser, postState);
+    }
+
     @Transactional
     public void deletePost(Long id){
         this.postRepository.deleteById(id);
