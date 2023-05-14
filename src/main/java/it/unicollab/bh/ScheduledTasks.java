@@ -47,6 +47,7 @@ public class ScheduledTasks {
 
         this.projectService.saveProject(project);
 
+        post.setPostState(PostState.EXPIRED);
 
         for(User user : post.getAcceptedUsers()){
 

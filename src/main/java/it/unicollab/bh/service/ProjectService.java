@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @Service
@@ -45,4 +46,10 @@ public class ProjectService {
         this.projectRepository.save(project);
     }
 
+    @Transactional
+    public Collection<Project> getProjectsByMember(User member){
+
+        return this.projectRepository.findByMembersContains(member);
+
+    }
 }

@@ -18,7 +18,7 @@ public interface PostRepository  extends CrudRepository<Post, Long> {
 
      Collection<Post> findAllByOwnerNotAndAppliedUsersNotContaining(User owner,User appliedUser);
 
-    @Query("SELECT p FROM Post p WHERE p.membership = SIZE(p.acceptedUsers)")
+    @Query("SELECT p FROM Post p WHERE p.membership = SIZE(p.acceptedUsers) AND p.postState='ACTIVE' ")
     Collection<Post> findAllByMembershipEqualsAcceptedUsersSize();
 
     Collection<Post> findByDeadlineBeforeAndPostStateNot(LocalDateTime localDateTime, PostState postState);

@@ -17,7 +17,7 @@ public  class GlobalController
     private  SessionData sessionData;
 
     @ModelAttribute("user")
-    public   User getUser(){
+    public  User getUser(){
 
         try {
             return this.sessionData.getLoggedUser();

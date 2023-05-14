@@ -3,30 +3,31 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Swiper demo</title>
+    <title>Uni-Collab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-
-    <!-- Demo styles -->
+    <link rel="stylesheet" th:href="@{/css/project.css}" />
+</head>
 
 <body>
+<a href="/user" id="back-home"><i id="home" class="fa fa-home"></i></a>
 <!-- Swiper -->
 <div class="swiper mySwiper">
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
+        <div  th:each="project: ${projects}"class="swiper-slide">
             <div class="proj-box">
-                <h1 class="proj-name">Project Name</h1>
+                <h1 class="proj-name" th:text="${project.name}">Project Name</h1>
                 <div class="proj-description">
                     <h1>Description</h1>
-                    <div><span class="proj-text"> CIao sono Haowen</span></div>
+                    <div><span class="proj-text" th:text="${project.description}"> CIao sono Haowen</span></div>
                 </div>
                 <div class="proj-member">
                     <h1>Members</h1>
-                    <a> Haowen Zheng</a>
-                    <a>Bishoy Zackary</a>
+                    <a th:each="member: ${project.members}" th:text="${member.userName}"> Haowen Zheng</a>
                 </div>
-                <div class="proj-state">ACTIVE</div>
+                <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'ACTIVE'}">ACTIVE</div>
+                <div class="proj-state" id="terminated" th:if="${#strings.toString(project.projectState) == 'TERMINATED'}">TERMINATED</div>
             </div>
         </div>
     </div>

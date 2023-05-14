@@ -21,9 +21,41 @@ body {
 
 }
 
+/*codice duplicato*/
+#back-home{
+    margin-top: 3%;
+    padding: 2%;
+    color: #4169e1;
+    border-radius: 50px;
+}
+
+#home{
+
+
+    font-size: 2em;
+
+
+
+}
+
+#back-home:active{
+    transform : scale(0.9);
+}
+
+#back-home:hover{
+    transform: scale(1.1);
+    color: #fff;
+    background: #4169e1;
+    box-shadow: 0 5px 20px #4169e1aa, 0 5px 5px #4169e166;
+}
+
+
+/********************/
+
+
 .swiper {
     width: 100%;
-    padding-top: 50px;
+    padding-top: 3%;
     padding-bottom: 50px;
 
 }
@@ -35,6 +67,7 @@ body {
     height: 700px;
     margin: 1%;
     filter: blur(4px);
+
 
 }
 
@@ -49,24 +82,26 @@ body {
     letter-spacing : 2px;
     word-spacing:4px;
 
+
 }
 
-.project-box{
+.proj-box{
 
     width: 100%;
     height: 100%;
     background: #fff;
     border-radius: 15px;
-    filter: blur(8px);
 
 
 
-    background: rgba(255, 255, 255, 0.12);
+
+    /* From https://css.glass */
+    background: rgba(68, 177, 237, 0.32);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(8.2px);
-    -webkit-backdrop-filter: blur(8.2px);
-    border: 1px solid rgba(255, 255, 255, 0.59);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(68, 177, 237, 0.92);
 
 
     display: flex;

@@ -2,9 +2,12 @@ package it.unicollab.bh.model.Project;
 
 import it.unicollab.bh.model.User;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 @Entity
@@ -20,9 +23,11 @@ public class Project {
     @Enumerated(EnumType.STRING)
     private ProjectState projectState;
 
-    @ManyToMany(mappedBy="projects")
+    @ManyToMany(mappedBy="projects", fetch = FetchType.EAGER)
     private Set<User> members;
 
+    @CreationTimestamp
+    private LocalDateTime creationTimestamp;
 
     public Project(){}
 
@@ -31,7 +36,6 @@ public class Project {
         this.description = description;
         this.projectState = projectState;
         this.members = new HashSet<>();
-
     }
 
 
@@ -77,5 +81,14 @@ public class Project {
 
     public void addMember(User user) {
         this.getMembers().add(user);
+    }
+
+
+    public LocalDateTime getCreationTimestamp() {
+        return creationTimestamp;
+    }
+
+    public void setCreationTimestamp(LocalDateTime creationTimestamp) {
+        this.creationTimestamp = creationTimestamp;
     }
 }
