@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+
+      xmlns="http://www.w3.org/1999/html">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
@@ -46,7 +49,7 @@
   <div id="post" >
     <div class="owner">
       <h1 th:text="${post.owner.userName}">OWNER</h1>
-      <div style="color:#4169e1"> 3 hours ago</div>
+      <div style="color:#4169e1"  th:text="${#temporals.format( post.creationTimestamp, 'dd/MM/yyyy HH:mm')}"> 3 hours ago</div>
     </div>
     <div class="project">
       <h1 class="section-title">PROJECT</h1>
@@ -94,7 +97,7 @@
 </div>
 
 <!------ side filter---->
-<form id="side-filter" th:action="@{/filterAndOrder}" method="get">
+<form id="side-filter" th:action="@{/user}" method="get">
   <h1>FILTER BY</h1>
   <select name="filter" >
     <option>Exam</option>
@@ -103,7 +106,8 @@
   </select>
   <h1>SORT BY</h1>
   <div id="check-box">
-    <input type="checkbox" name="orderBy" value="true"/>
+    <input type="checkbox"  th:if="${orderBy}"name="orderBy" checked/>
+    <input type="checkbox"  th:unless="${orderBy}"name="orderBy" value="true"/>
     <label>Recent</label>
   </div>
   <button class="filter-button">apply</button>
@@ -113,7 +117,7 @@
 
 <form id="container-2"
       th:action="@{/createPost}"  method="post" >
-  <h1 >YOUR NAME</h1>
+  <h1 th:text="${user.userName}">YOUR NAME</h1>
   <div class="section-1">
     <div class="section-title">PROJECT NAME</div>
     <input class="flex-item" placeholder="Enter your project name" type="text" required name="projectName"/>

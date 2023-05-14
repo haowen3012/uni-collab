@@ -45,7 +45,7 @@ public class PostController {
   }
 
 
-  @RequestMapping(value={"/filterAndOrder"}, method = RequestMethod.GET)
+  /*@RequestMapping(value={"/filterAndOrder"}, method = RequestMethod.GET)
   public String filterAndOrder(@RequestParam(name="filter") String filter,@RequestParam(name="orderBy",defaultValue = "false") boolean orderBy , Model model){
 
     User loggedUser = this.sessionData.getLoggedUser();
@@ -55,5 +55,5 @@ public class PostController {
 
     return "createPost.html";
   }
-
+*/
 }

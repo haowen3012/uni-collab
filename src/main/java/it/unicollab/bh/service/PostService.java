@@ -1,5 +1,6 @@
 package it.unicollab.bh.service;
 
+import it.unicollab.bh.model.Course;
 import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.PostState;
 import it.unicollab.bh.model.User;
@@ -69,8 +70,8 @@ public class PostService {
 
     /*returns the posts that you didn't crete, didn't applied and is not expired ( postState = active)*/
     @Transactional
-    public Collection<Post> getHomePagePost(User owner, User appliedUser, PostState postState){
-        return this.postRepository.findAllByOwnerNotAndAppliedUsersNotContainingAndPostState(owner, appliedUser, postState);
+    public Collection<Post> getHomePagePost(Course course, User owner, User appliedUser, PostState postState){
+        return this.postRepository.findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostState( course,owner, appliedUser, postState);
     }
 
     @Transactional

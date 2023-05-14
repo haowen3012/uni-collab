@@ -1,5 +1,6 @@
 package it.unicollab.bh.repository;
 
+import it.unicollab.bh.model.Course;
 import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.PostState;
 import it.unicollab.bh.model.User;
@@ -24,7 +25,8 @@ public interface PostRepository  extends CrudRepository<Post, Long> {
     Collection<Post> findByDeadlineBeforeAndPostStateNot(LocalDateTime localDateTime, PostState postState);
 
 
-    Collection<Post> findAllByOwnerNotAndAppliedUsersNotContainingAndPostState(User owner, User appliedUser, PostState postState);
+    Collection<Post> findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostState(Course course, User owner, User appliedUser, PostState postState);
+
 
     /*************++delete queries*******/
 
