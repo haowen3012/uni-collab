@@ -157,20 +157,7 @@ public class AuthenticationController {
          }
          return "login_slide.html";
      }
-    @PostMapping("/login/oauth2/user")
-    public RedirectView saveUser(User user, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        user.setPhotos(fileName);
-
-        User savedUser =  userService.saveUser(user);
-
-        String uploadDir = "user-photos/" + savedUser.getId();
-
-        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-
-        return new RedirectView("/users", true);
-    }
 
 
 }

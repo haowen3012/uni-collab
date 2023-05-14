@@ -13,8 +13,25 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 64)
-    private String profileImage;
+    @Column(nullable = true, length = 64)
+
+    private String Photos;
+    public String getPhotos() {
+        return Photos;
+    }
+
+    public void setPhotos(String photos) {
+        Photos = photos;
+    }
+
+
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (Photos == null || id == null) return null;
+
+        return "/profile-photos/" + id + "/" + Photos;
+    }
 
     @OneToOne
     private Curriculum curriculum;

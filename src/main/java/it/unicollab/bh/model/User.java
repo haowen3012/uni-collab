@@ -24,29 +24,11 @@ public class User {
     private String userName;
     private String firstName;
     private String lastName;
-
-
-    @Column(nullable = true, length = 64)
-
-    private String Photos;
-    public String getPhotos() {
-        return Photos;
-    }
-
-    public void setPhotos(String photos) {
-        Photos = photos;
-    }
-
     @Email
     @Column(name = "email")
     String emailAddress;
 
-    @Transient
-    public String getPhotosImagePath() {
-        if (Photos == null || id == null) return null;
 
-        return "/user-photos/" + id + "/" + Photos;
-    }
 
     @CreationTimestamp
     private LocalDateTime creationTimestamp;
