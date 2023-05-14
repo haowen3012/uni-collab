@@ -31,6 +31,9 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.print.DocFlavor;
 import java.io.IOException;
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Locale;
 
 @Controller
 public class AuthenticationController {
@@ -74,12 +77,25 @@ public class AuthenticationController {
 
 
     @RequestMapping(value={"/user"}, method = RequestMethod.GET)
-    public String user(Model model){
+    public String user(Model model,@RequestParam(name="filter",required = false) String filter ,@RequestParam(name="orderBy" ,defaultValue = "false",required = false) boolean orderBy){
 
 
            User loggedUser = this.sessionData.getLoggedUser();
 
-           model.addAttribute("posts", postService.getHomePagePost(loggedUser,loggedUser, PostState.ACTIVE));
+
+           if(orderBy){
+
+
+               model.addAttribute("posts",this.postService.getHomePagePostOrderedByCreationTimeDesc(loggedUser,loggedUser, PostState.ACTIVE));
+               model.addAttribute("orderBy",orderBy);
+
+               return "createPost.html";
+           }
+
+
+
+           model.addAttribute("posts", postService.getHomePagePost(loggedUser.getCourseAttended(),loggedUser,loggedUser, PostState.ACTIVE));
+
 
            return "createPost.html";
     }

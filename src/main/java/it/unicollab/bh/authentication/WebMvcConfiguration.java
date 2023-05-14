@@ -2,6 +2,8 @@ package it.unicollab.bh.authentication;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 @Configuration
 public class WebMvcConfiguration implements WebMvcConfigurer{
@@ -38,4 +41,6 @@ public class WebMvcConfiguration implements WebMvcConfigurer{
         
        registry.addResourceHandler("/" + dirName + "/**").addResourceLocations("file:/"+ uploadPath + "/");
    }
+
+
 }
