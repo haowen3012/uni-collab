@@ -1,0 +1,230 @@
+
+@import url('https://fonts.cdnfonts.com/css/cera-round-pro');
+
+body {
+
+    height: 100%;
+}
+
+body {
+    background: #eee;
+    font-family: 'Cera Round Pro', sans-serif;
+    font-size: 14px;
+    color:#4169e1;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 400px;
+    height: 700px;
+    margin: 1%;
+    filter: blur(4px);
+
+}
+
+.swiper-slide-active{
+
+    filter: blur(0px);
+}
+
+
+.mySwiper{
+
+    letter-spacing : 2px;
+    word-spacing:4px;
+
+}
+
+.project-box{
+
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 15px;
+    filter: blur(8px);
+
+
+
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.2px);
+    -webkit-backdrop-filter: blur(8.2px);
+    border: 1px solid rgba(255, 255, 255, 0.59);
+
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.proj-name{
+
+    margin-top : 0;
+    padding-top: 5%;
+    padding-left: 3%;
+    width: 90%;
+    border-right:  4px solid gold;
+    height: 10%;
+    border-bottom-right-radius: 15pc;
+
+
+}
+
+.proj-description{
+
+
+    width: 100%;
+    min-height: 40%;
+    max-height: 70%;
+    border-left: solid;
+
+
+    border-top-left-radius: 15pc;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+
+.proj-description h1{
+
+    width: 95%;
+    height: 10%;
+    border-top-left-radius: 15pc;
+    text-align : right;
+    font-size: 1.7em;
+
+
+
+}
+
+.proj-description div{
+
+    width: 100%;
+    height: 90%;
+
+
+    border-top-left-radius: 15pc;
+
+
+
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+
+.proj-text{
+    opacity: 1;
+
+    width: 80%;
+    height: 70%;
+    margin-right: 2%;
+    word-wrap: break-word;
+
+
+    letter-spacing : 0.3em;
+
+
+}
+
+.proj-member{
+    width:97%;
+
+
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+
+    padding-left: 3%;
+
+    border-right: solid ;
+    border-bottom-right-radius: 15pc;
+
+
+}
+
+.proj-member h1{
+    font-size: 1.7em;
+
+    padding: 2%;
+    border-radius: 20px;
+    background: rgba(255, 215, 0, 1)
+
+
+
+
+
+}
+
+.proj-member a{
+    display: block;
+    margin-bottom:5%;
+
+}
+
+.proj-state{
+    margin-top: 8%;
+    text-align: center;
+    border: 3px solid ;
+    font-size : 1.7em;
+    font-weight: 550;
+    padding: 3%;
+    border-radius: 5px;
+    background-color: #1abc9c;
+    color: #fff;
+    box-shadow: 0px 4px 8px rgba(26, 188, 156, 0.4);
+
+    animation:  pulse 1.2s ease-out infinite;
+
+}
+
+
+#terminated{
+    background-color: tomato;
+    box-shadow: 0px 4px 8px rgba(255, 99, 71, 0.4);
+
+}
+
+@keyframes pulse{
+
+    0%{
+        transform: scale(1);
+    }
+    50%{
+
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(0.9);
+    }
+
+}
+
+
