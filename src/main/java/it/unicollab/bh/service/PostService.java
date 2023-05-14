@@ -74,6 +74,13 @@ public class PostService {
     }
 
     @Transactional
+    public Collection<Post> getHomePagePostOrderedByCreationTimeDesc(User owner, User appliedUser, PostState postState){
+
+        return this.postRepository.findAllByOwnerNotAndAppliedUsersNotContainingAndPostStateOrderByCreationTimestampDesc(
+                owner, appliedUser, postState);
+    }
+
+    @Transactional
     public void deletePost(Long id){
         this.postRepository.deleteById(id);
     }

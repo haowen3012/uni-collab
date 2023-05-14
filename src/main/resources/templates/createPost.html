@@ -29,11 +29,10 @@
   </div>
   <div class="padding"></div>
   <div class="search-section">
-    <div></div>
+    <div id="filter" onclick="openFilter()"><span>FILTER</span></div>
     <div class="search">
       <i class="fa fa-search" aria-hidden="true"></i>
       <input></input>
-
     </div>
     <div></div>
   </div>
@@ -79,7 +78,7 @@
           ${post.id}}" method="post">
           <input  hidden  name="text"  th:value="'has applied to your post'"/>
           <input hidden   name="messageType" th:value="REQUEST" />
-        <button class="publish">apply</button>
+          <button class="publish">apply</button>
         </form>
       </div>
     </div>
@@ -93,6 +92,23 @@
   <a href="/projects">Projects </a>
   <a href="#"> Log out</a>
 </div>
+
+<!------ side filter---->
+<form id="side-filter" th:action="@{/filterAndOrder}" method="get">
+  <h1>FILTER BY</h1>
+  <select name="filter" >
+    <option>Exam</option>
+    <option >SIW</option>
+    <option>APS</option>
+  </select>
+  <h1>SORT BY</h1>
+  <div id="check-box">
+    <input type="checkbox" name="orderBy" value="true"/>
+    <label>Recent</label>
+  </div>
+  <button class="filter-button">apply</button>
+  <div onclick="closeSideFilter()" class="close-filter">&times;</div>
+</form>
 <!-----pop up---->
 
 <form id="container-2"
@@ -170,6 +186,23 @@
     side_nav.style.width="0";
   }
 
+  function openFilter(){
+
+    var side_filter = document.getElementById('side-filter');
+
+    side_filter.style.width="15%";
+    side_filter.style.height="30%";
+
+  }
+
+  function closeSideFilter(){
+
+    var side_filter = document.getElementById('side-filter');
+
+    side_filter.style.width="0";
+    side_filter.style.height="0";
+  }
+
 
 
   var home_icon = document.getElementById('home-icon');
@@ -178,7 +211,7 @@
   home_icon.style.boxShadow="0 5px 20px #4169e1aa, 0 5px 5px #4169e166";
 
 
- </script>
+</script>
 
 <script>
   var stompClient = null;
