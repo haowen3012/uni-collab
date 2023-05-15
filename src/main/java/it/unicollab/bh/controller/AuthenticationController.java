@@ -90,7 +90,7 @@ public class AuthenticationController {
 
                model.addAttribute("posts",this.postService.getHomePagePostFilteredByExam(loggedUser.getCourseAttended(),loggedUser, loggedUser,
                        PostState.ACTIVE, this.examService.getExam(Long.parseLong(filter))));
-               model.addAttribute("filter",Long.parseLong(filter));
+
 
                return "createPost.html";
            }

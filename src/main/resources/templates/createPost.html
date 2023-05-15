@@ -104,7 +104,7 @@
 <form id="side-filter" th:action="@{/user}" method="get">
   <h1>FILTER BY</h1>
   <select name="filter">
-    <option th:unless="${filter}" th:each="exam : ${user.courseAttended.courseExams}"
+    <option  th:each="exam : ${user.courseAttended.courseExams}"
             th:value="${exam.id}"
             th:text="${exam.name}">
       Select the exam your project is for
