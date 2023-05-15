@@ -2,6 +2,8 @@ package it.unicollab.bh.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class Course {
 
@@ -13,6 +15,9 @@ public class Course {
 
     @ManyToOne
     private University university;
+
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+    private Set<Exam> courseExams;
 
 
     public Course() {
@@ -48,4 +53,11 @@ public class Course {
         this.university = university;
     }
 
+    public Set<Exam> getCourseExams() {
+        return courseExams;
+    }
+
+    public void setCourseExams(Set<Exam> courseExams) {
+        this.courseExams = courseExams;
+    }
 }

@@ -3,6 +3,7 @@ package it.unicollab.bh.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -51,11 +52,15 @@ public class Post {
     @Enumerated(EnumType.STRING)
     private PostState postState;
 
+
+    @ManyToOne
+    private Exam exam;
+
     public Post(){
 
     }
 
-    public Post(String projectName, String projectDescription, Integer membership, User owner,LocalDateTime deadline) {
+    public Post(String projectName, String projectDescription, Integer membership, User owner,LocalDateTime deadline,Exam exam) {
         this.projectName = projectName;
         this.projectDescription = projectDescription;
         this.membership = membership;
@@ -63,6 +68,7 @@ public class Post {
         this.acceptedUsers = new HashSet<>();
         this.deadline = deadline;
         this.postState = PostState.ACTIVE;
+        this.exam = exam;
     }
 
 
@@ -164,6 +170,15 @@ public class Post {
 
     public void setPostState(PostState postState) {
         this.postState = postState;
+    }
+
+
+    public Exam getExam() {
+        return exam;
+    }
+
+    public void setExam(Exam exam) {
+        this.exam = exam;
     }
 }
 

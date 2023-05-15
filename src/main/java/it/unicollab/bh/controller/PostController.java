@@ -5,6 +5,7 @@ import it.unicollab.bh.controller.session.SessionData;
 import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.PostState;
 import it.unicollab.bh.model.User;
+import it.unicollab.bh.service.ExamService;
 import it.unicollab.bh.service.PostService;
 import it.unicollab.bh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,21 +25,22 @@ public class PostController {
   private PostService postService;
 
   @Autowired
-  private UserService userService;
+  private ExamService examService;
 
   @Autowired
   private SessionData sessionData;
 
   @RequestMapping(value ={"/createPost"}, method = RequestMethod.POST)
-  public String createPost(@ModelAttribute Post p, Model model ) {
+  public String createPost(@ModelAttribute Post p,@RequestParam("selected_exam") Long idExam, Model model ) {
 
 
     User loggedUser = this.sessionData.getLoggedUser();
 
-    Post post = new Post(p.getProjectName(),p.getProjectDescription(),p.getMembership(),loggedUser,p.getDeadline());
+
+    Post post = new Post(p.getProjectName(),p.getProjectDescription(),p.getMembership(),loggedUser,p.getDeadline(),
+            this.examService.getExam(idExam));
 
     postService.savePost(post);
-
 
 
     return "redirect:/user";

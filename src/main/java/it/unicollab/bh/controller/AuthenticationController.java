@@ -83,8 +83,10 @@ public class AuthenticationController {
            User loggedUser = this.sessionData.getLoggedUser();
 
 
-           if(orderBy){
 
+
+
+           if(orderBy){
 
                model.addAttribute("posts",this.postService.getHomePagePostOrderedByCreationTimeDesc(loggedUser,loggedUser, PostState.ACTIVE));
                model.addAttribute("orderBy",orderBy);
