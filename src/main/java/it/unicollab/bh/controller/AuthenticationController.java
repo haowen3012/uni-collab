@@ -6,12 +6,9 @@ import it.unicollab.bh.model.Credentials;
 import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.PostState;
 import it.unicollab.bh.model.User;
-import it.unicollab.bh.service.CredentialsService;
+import it.unicollab.bh.service.*;
 import it.unicollab.bh.controller.validation.CredentialsValidator;
 import it.unicollab.bh.controller.validation.UserValidator;
-import it.unicollab.bh.service.PostService;
-import it.unicollab.bh.service.UniversityService;
-import it.unicollab.bh.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
@@ -57,8 +54,15 @@ public class AuthenticationController {
     UniversityService universityService;
 
 
+
     @Autowired
     PostService postService;
+
+
+    @Autowired
+    ExamService examService;
+
+
 
 
 
@@ -77,18 +81,26 @@ public class AuthenticationController {
 
 
     @RequestMapping(value={"/user"}, method = RequestMethod.GET)
-    public String user(Model model,@RequestParam(name="filter",required = false) String filter ,@RequestParam(name="orderBy" ,defaultValue = "false",required = false) boolean orderBy){
+    public String user(Model model,@RequestParam(name="filter",required = false,defaultValue = "") String filter ,@RequestParam(name="orderBy" ,defaultValue = "false",required = false) boolean orderBy){
 
 
            User loggedUser = this.sessionData.getLoggedUser();
 
+           if(!filter.isEmpty()){
 
+               model.addAttribute("posts",this.postService.getHomePagePostFilteredByExam(loggedUser.getCourseAttended(),loggedUser, loggedUser,
+                       PostState.ACTIVE, this.examService.getExam(Long.parseLong(filter))));
+               model.addAttribute("filter",Long.parseLong(filter));
+
+               return "createPost.html";
+           }
 
 
 
            if(orderBy){
 
-               model.addAttribute("posts",this.postService.getHomePagePostOrderedByCreationTimeDesc(loggedUser,loggedUser, PostState.ACTIVE));
+               model.addAttribute("posts",this.postService.getHomePagePostOrderedByCreationTimeDesc(loggedUser.getCourseAttended(),
+                       loggedUser,loggedUser, PostState.ACTIVE));
                model.addAttribute("orderBy",orderBy);
 
                return "createPost.html";

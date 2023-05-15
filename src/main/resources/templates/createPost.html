@@ -103,10 +103,12 @@
 <!------ side filter---->
 <form id="side-filter" th:action="@{/user}" method="get">
   <h1>FILTER BY</h1>
-  <select name="filter" >
-    <option>Exam</option>
-    <option >SIW</option>
-    <option>APS</option>
+  <select name="filter">
+    <option th:unless="${filter}" th:each="exam : ${user.courseAttended.courseExams}"
+            th:value="${exam.id}"
+            th:text="${exam.name}">
+      Select the exam your project is for
+    </option>
   </select>
   <h1>SORT BY</h1>
   <div id="check-box">

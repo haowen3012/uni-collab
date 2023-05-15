@@ -1,9 +1,6 @@
 package it.unicollab.bh.service;
 
-import it.unicollab.bh.model.Course;
-import it.unicollab.bh.model.Post;
-import it.unicollab.bh.model.PostState;
-import it.unicollab.bh.model.User;
+import it.unicollab.bh.model.*;
 import it.unicollab.bh.repository.PostRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,12 +72,18 @@ public class PostService {
     }
 
     @Transactional
-    public Collection<Post> getHomePagePostOrderedByCreationTimeDesc(User owner, User appliedUser, PostState postState){
+    public Collection<Post> getHomePagePostOrderedByCreationTimeDesc(Course course, User owner, User appliedUser, PostState postState){
 
-        return this.postRepository.findAllByOwnerNotAndAppliedUsersNotContainingAndPostStateOrderByCreationTimestampDesc(
-                owner, appliedUser, postState);
+        return this.postRepository.findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostStateOrderByCreationTimestampDesc(
+           course ,owner, appliedUser, postState);
     }
 
+
+    @Transactional
+    public Collection<Post> getHomePagePostFilteredByExam(Course course,User owner, User appliedUser, PostState postState, Exam exam){
+
+        return this.postRepository.findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostStateAndExam(course, owner,appliedUser,postState,exam);
+    }
     @Transactional
     public void deletePost(Long id){
         this.postRepository.deleteById(id);

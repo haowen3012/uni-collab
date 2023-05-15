@@ -1,9 +1,6 @@
 package it.unicollab.bh.repository;
 
-import it.unicollab.bh.model.Course;
-import it.unicollab.bh.model.Post;
-import it.unicollab.bh.model.PostState;
-import it.unicollab.bh.model.User;
+import it.unicollab.bh.model.*;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -33,6 +30,10 @@ public interface PostRepository  extends CrudRepository<Post, Long> {
     Collection<Post> deleteByDeadlineBefore(LocalDateTime localDateTime);
 
 
-    Collection<Post> findAllByOwnerNotAndAppliedUsersNotContainingAndPostStateOrderByCreationTimestampDesc(User owner, User appliedUser, PostState postState);
+    Collection<Post> findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostStateOrderByCreationTimestampDesc(Course course,User owner, User appliedUser, PostState postState);
+
+
+    /*trova tutti i post di cui l'utente loggato non è proprietario, a cui non si è candidato, che sono ancora attivi e che si riferiscono ad un certo esame*/
+    Collection<Post>  findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostStateAndExam( Course course, User owner, User appliedUser, PostState postState, Exam exam);
 
 }
