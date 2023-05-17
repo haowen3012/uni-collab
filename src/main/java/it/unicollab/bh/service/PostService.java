@@ -36,9 +36,9 @@ public class PostService {
     }
 
     @Transactional
-    public Collection<Post> getAllPostByOwner(User owner){
+    public Collection<Post> getAllPostByOwnerOrderedByCreationTIme(User owner){
 
-        return this.postRepository.findAllByOwner(owner);
+        return this.postRepository.findAllByOwnerOrderByCreationTimestampDesc(owner);
     }
 
     @Transactional

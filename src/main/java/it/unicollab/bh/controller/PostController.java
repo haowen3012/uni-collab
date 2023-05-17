@@ -58,4 +58,16 @@ public class PostController {
     return "createPost.html";
   }
 */
+
+  @RequestMapping(value={"/posts"}, method= RequestMethod.GET)
+  public String showPosts(Model model){
+
+    User loggedUser = this.sessionData.getLoggedUser();
+
+    model.addAttribute("posts", this.postService.getAllPostByOwnerOrderedByCreationTIme(loggedUser));
+
+    return "post.html";
+
+  }
+
 }

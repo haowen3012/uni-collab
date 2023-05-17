@@ -10,7 +10,7 @@ import java.util.Collection;
 public interface PostRepository  extends CrudRepository<Post, Long> {
 
 
-     Collection<Post> findAllByOwner(User owner);
+     Collection<Post> findAllByOwnerOrderByCreationTimestampDesc(User owner);
 
      Collection<Post>  findAllByOwnerNot(User owner);
 
@@ -33,7 +33,9 @@ public interface PostRepository  extends CrudRepository<Post, Long> {
     Collection<Post> findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostStateOrderByCreationTimestampDesc(Course course,User owner, User appliedUser, PostState postState);
 
 
-    /*trova tutti i post di cui l'utente loggato non è proprietario, a cui non si è candidato, che sono ancora attivi e che si riferiscono ad un certo esame*/
+    /**
+     *
+     * trova tutti i post di cui l'utente loggato non è proprietario, a cui non si è candidato, che sono ancora attivi e che si riferiscono ad un certo esame*/
     Collection<Post>  findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostStateAndExam( Course course, User owner, User appliedUser, PostState postState, Exam exam);
 
 }
