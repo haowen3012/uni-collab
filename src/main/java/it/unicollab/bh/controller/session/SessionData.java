@@ -58,7 +58,6 @@ public class SessionData {
         UserDetails loggedUserDetails = (UserDetails) object;
 
         this.credentials = this.credentialsRepository.findByUserName(loggedUserDetails.getUsername()).get();
-        this.credentials.setPassword("[PROTECTED]");
         this.user = this.credentials.getUser();
 
 
