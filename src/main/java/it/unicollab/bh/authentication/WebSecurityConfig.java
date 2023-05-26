@@ -24,6 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 
 import static it.unicollab.bh.model.Credentials.ADMIN_ROLE;
 import static it.unicollab.bh.model.Credentials.DEFAULT_ROLE;
+import static javax.management.Query.and;
 
 @Configuration
 @EnableWebSecurity
@@ -109,13 +111,17 @@ public  class WebSecurityConfig {
                 .oauth2Login()
                 .loginPage("/login")
                 .userInfoEndpoint()
-            .userService( customOAuth2UserService)
-            .and()
-           .successHandler(oAuth2LoginSuccessHandler);
-      
-
-
-        return httpSecurity.build();
+                .userService( customOAuth2UserService)
+                .and()
+               .successHandler(oAuth2LoginSuccessHandler)
+                .and().logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .clearAuthentication(true).permitAll();
+                return httpSecurity.build();
     }
 
 
@@ -142,8 +148,6 @@ public  class WebSecurityConfig {
 
         testUser.setCourseAttended( course);
         */
-
-
-        this.credentialsRepository.save(testCreddentials);
+     this.credentialsRepository.save(testCreddentials);
     }
 }

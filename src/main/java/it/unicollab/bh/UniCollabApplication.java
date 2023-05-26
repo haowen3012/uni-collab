@@ -14,6 +14,7 @@ import java.util.Map;
 
 @SpringBootApplication()
 @RestController
+
 @EnableScheduling
 public class UniCollabApplication {
 

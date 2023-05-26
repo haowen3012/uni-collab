@@ -2,6 +2,7 @@ package it.unicollab.bh.controller.session;
 
 import it.unicollab.bh.model.Credentials;
 import it.unicollab.bh.model.User;
+import it.unicollab.bh.model.Profile;
 import it.unicollab.bh.model.oauth.CustomOAuth2User;
 import it.unicollab.bh.repository.CredentialsRepository;
 import it.unicollab.bh.repository.UserRepository;
@@ -20,7 +21,7 @@ import java.util.NoSuchElementException;
 public class SessionData {
 
     private User user;
-
+    private Profile profile;
     private Credentials credentials;
 
     @Autowired
