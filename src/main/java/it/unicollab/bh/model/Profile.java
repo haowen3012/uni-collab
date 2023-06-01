@@ -1,6 +1,7 @@
 package it.unicollab.bh.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 
 import java.io.File;
 import java.util.List;
@@ -13,29 +14,15 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = true, length = 64)
-
-    private String Photos;
-    public String getPhotos() {
-        return Photos;
-    }
-
-    public void setPhotos(String photos) {
-        Photos = photos;
-    }
+    @Column(length = 500)
+    private String personalInformation;
 
 
+    private String physicaladdress;
 
-    @Transient
-    public String getPhotosImagePath() {
-        if (Photos == null || id == null) return null;
-
-        return "/profile-photos/" + id + "/" + Photos;
-    }
-
-    @OneToOne
-    private Curriculum curriculum;
-
+    @Email
+    @Column(name = "email")
+    private String emailAddress;
 
 
 
@@ -48,11 +35,27 @@ public class Profile {
         this.id = id;
     }
 
-    public Curriculum getCurriculum() {
-        return curriculum;
+    public String getPersonalInformation() {
+        return personalInformation;
     }
 
-    public void setCurriculum(Curriculum curriculum) {
-        this.curriculum = curriculum;
+    public void setPersonalInformation(String personalInformation) {
+        this.personalInformation = personalInformation;
+    }
+
+    public String getPhysicaladdress() {
+        return physicaladdress;
+    }
+
+    public void setPhysicaladdress(String physicaladdress) {
+        this.physicaladdress = physicaladdress;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 }

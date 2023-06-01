@@ -1,0 +1,15 @@
+<div class="proj-box">
+    <h1 class="proj-name" th:text="${project.name}">Project Name</h1>
+    <div class="proj-description">
+        <h1>Description</h1>
+        <div><span class="proj-text" th:text="${project.description}"> CIao sono Haowen</span></div>
+    </div>
+    <div class="proj-member">
+        <h1>Members</h1>
+        <a th:each="member: ${project.members}" th:text="${member.userName}"> Haowen Zheng</a>
+    </div>
+    <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'ACTIVE'}">ACTIVE</div>
+
+</div>
+        
+

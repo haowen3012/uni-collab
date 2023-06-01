@@ -1,0 +1,31 @@
+
+
+#back-home{
+    margin-top: 1%;
+    padding: 2%;
+    color: #4169e1;
+    border-radius: 50px;
+    margin-bottom: 2%;
+}
+
+#home{
+
+
+    font-size: 1.7em;
+
+
+}
+
+#back-home:active{
+    transform : scale(0.9);
+}
+
+#back-home:hover{
+    transform: scale(1.1);
+    color: #fff;
+    background: #4169e1;
+    box-shadow: 0 5px 20px #4169e1aa, 0 5px 5px #4169e166;
+}
+
+
+

@@ -1,14 +1,150 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Profile | UniCollab</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/profile.css}" />
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" th:href="@{/css/post.css}" />
+    <link rel="stylesheet" th:href="@{/css/project.css}" />
 </head>
 <body>
+<div id="profile-images">
+    <img class="background" src="https://i.postimg.cc/3NJZZPR3/interstellar-Scene2.png"></img>
+    <img class="main-image" src="https://i.postimg.cc/SKFwk7Vc/eren-profile.jpg"/>
+    <i id="edit-icon" class="fa">&#xf044;</i>
+    <div class="personal-information">
 
- <img th:src="@{${user.photosImagePath}}" />
- <li><a href="image">Edit image</a></li>
+        <h1 class="name">Haowen Zheng</h1>
 
+        <div class="contacts-inf">
+
+            <div class="cell-num">39 351 514 6857</div>
+            <div class="email">haowenz01@gmail.com</div>
+            <div class="address">Via Francesco Borromini 10</div>
+        </div>
+    </div>
+</div>
+
+<div id="presentation">
+    <i id="edit-icon" class="fa">&#xf044;</i>
+    <h1 class="inf">Information</h1>
+    <div class="content">Sono uno studente frequentante il terzo anno del percorso di studi in
+        Ingegneria Informatica presso l'Università di Roma Tre (laurea prevista per Luglio 2023).
+
+        ESPERIENZA LAVORATIVA:
+        - Lavorato presso Burger King italia dal 24/07/2021 al 31/10/2021.
+
+        - Masioni svolte durante il periodo lavorativo presso Burger King:
+        • Addettto alla cassa
+        • Addetto al lavaggio e preparazione verdure quali pomodori, insalata e cipolle.
+        • Addetto alla cottura e preparazione panini.
+        • Addetto al lavaggio serale(lavaggio di tutti gli utensili usati durante la giornata lavorativa) e pulizia
+        generale ( es. gettare la spazzatura, pulire i pavimenti e banconi).
+        • Addetto allo scarico merci.
+
+
+        TIROCINIO:
+        - Svolto il tirocinio curriculare(obbligatorio per la laurea) presso Ringmaster srl.
+        - Ambito di approfondimento: Docker e Kubernetes.
+
+
+        COMPETENZE ORGANIZZATIVE:
+        - Gestione autonoma e ottima capacità di adattamento accompagnate dal
+        pieno rispetto dei tempi di scadenza.
+        - Capacità di lavorare sotto stress , corroborata da "problem solving skills", acquisita durante gli anni di
+        percorso liceale e nell'ultimo anno di frequentazione universitaria.
+        - Forte motivazione e attitudine, sempre desideroso di dare il meglio di me in qualunque situazione.
+
+        COMPETENZE COMUNICATIVE E INTERPERSONALI:
+        - Ottime capacietà relazionali e di adattamento acquisitedurante l'esperienza amatoriale come aiuto-commesso nell'azienda di gestione familiare e soprattuto
+        durante il periodo lavorativo(ufficialmente professionale) presso Burger King.</div>
+
+</div>
+
+<div id="profile-post">
+    <h1 class="title">Active Posts</h1>
+    <div id="posts">
+
+        <iframe src="single-post.html"></iframe>
+
+</div>
+
+</div>
+
+
+<div id="profile-project">
+    <h1 class="title">ACTIVE PROJECTS</h1>
+    <div id="projects">
+
+        <iframe src="single-project.html"></iframe>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<script>
+    const slider = document.querySelector('#posts');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('active');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    });
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove('active');
+    });
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('active');
+    });
+    slider.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 3; //scroll-fast
+        slider.scrollLeft = scrollLeft - walk;
+        console.log(walk);
+    });
+</script>
+
+<script>
+    const slider_2 = document.querySelector('#projects');
+
+
+    slider_2.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider_2.classList.add('active');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    });
+    slider_2.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider_2.classList.remove('active');
+    });
+    slider_2.addEventListener('mouseup', () => {
+        isDown = false;
+        slider_2.classList.remove('active');
+    });
+    slider_2.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider_2.offsetLeft;
+        const walk = (x - startX) * 3; //scroll-fast
+        slider_2.scrollLeft = scrollLeft - walk;
+        console.log(walk);
+    });
+</script>
 </body>
 </html>

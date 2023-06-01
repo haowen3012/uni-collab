@@ -86,19 +86,20 @@ public class MainController {
         return "registrationCompleted.html";
     }
 
-    /******************Image********************************/
-
-    /****************CREATE AND SET THE ASSOCIATION BETWEEN USER AND PROFILE*********************/
+    /************************************************************/
 
 
+    @RequestMapping(value={"/profile"}, method = RequestMethod.GET)
+    public String getUserProfile(Model model){
 
-    /******************CREATE POSTS********************************/
+        User loggedUser = this.sessionData.getLoggedUser();
 
+        model.addAttribute("profile",loggedUser.getProfile());
 
-    /*************+****************MESSAGES*********************************************************/
+        model.addAttribute("owner",loggedUser );
 
-
-
+        return "profile.html";
+    }
 
 
 

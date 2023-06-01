@@ -24,9 +24,6 @@ public class User {
     private String userName;
     private String firstName;
     private String lastName;
-    @Email
-    @Column(name = "email")
-    String emailAddress;
 
 
 
@@ -73,6 +70,8 @@ public class User {
 
     @ManyToMany
     private Collection<Post> appliedPosts;
+
+
 
 
     public Long getId() {
@@ -168,13 +167,6 @@ public class User {
         return acceptedApplies;
     }
 
-    public String getEmailAddress() {
-		return emailAddress;
-	}
-
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
-	}
 
 	public void setAcceptedApplies(Collection<Post> acceptedApplies) {
         this.acceptedApplies = acceptedApplies;
@@ -187,6 +179,8 @@ public class User {
     public void setAppliedPosts(Collection<Post> appliedPosts) {
         this.appliedPosts = appliedPosts;
     }
+
+
 
 
     /********************************************************/
