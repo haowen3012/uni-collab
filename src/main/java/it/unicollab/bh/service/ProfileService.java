@@ -16,7 +16,7 @@ import java.util.Optional;
 @Service
 public class ProfileService {
     @Autowired
-    ProfileRepository  profileRepository;
+    ProfileRepository profileRepository;
 
     @Transactional
     public Profile getUser(long id) {
@@ -25,17 +25,25 @@ public class ProfileService {
     }
 
     @Transactional
-    public Profile saveProfile(Profile profile){
+    public Profile saveProfile(Profile profile) {
         return this.profileRepository.save(profile);
     }
 
     @Transactional
-    public List<Profile> getAllprofile(){
+    public List<Profile> getAllprofile() {
         List<Profile> result = new ArrayList<>();
         Iterable<Profile> iterable = this.profileRepository.findAll();
-        for(Profile profile: iterable) result.add(profile);
+        for (Profile profile : iterable) result.add(profile);
 
         return result;
 
+    }
+
+    public void findById(Long profileId) {
+        Profile profile = profileRepository.findById(profileId).orElse(null);
+        if (profile != null) {
+            User user = profile.getUser();
+            // Use the user associated with the profile
+        }
     }
 }

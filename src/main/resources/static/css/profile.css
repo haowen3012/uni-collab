@@ -7,17 +7,26 @@
 
 
 
+<<<<<<< HEAD
 body{
 
     display:flex;
     justify-content: center;
     align-items : center;
+=======
+body {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+>>>>>>> fcf9c6c9eb00c3750f393ed3b47701cf9b204ccd
     flex-direction: column;
     background-color: #ccc;
     /*  background-size: 400% 400%;*/
     font-family: 'Cera Round Pro', sans-serif;
     font-size: 13px;
     min-height: 100%;
+<<<<<<< HEAD
 
     margin:0;
 
@@ -544,3 +553,7 @@ body{
 
 
 /***************/
+=======
+    margin-top: 0;
+}
+>>>>>>> fcf9c6c9eb00c3750f393ed3b47701cf9b204ccd

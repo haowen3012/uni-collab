@@ -7,14 +7,17 @@ import it.unicollab.bh.model.Course;
 //import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.University;
 import it.unicollab.bh.model.User;
+import it.unicollab.bh.model.Profile;
 //import it.unicollab.bh.repository.UserRepository;
 import it.unicollab.bh.service.CourseService;
 //import it.unicollab.bh.service.FileUploadUtil;
+import it.unicollab.bh.service.ProfileService;
 import it.unicollab.bh.service.UniversityService;
 import it.unicollab.bh.service.UserService;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 //import org.springframework.util.StringUtils;
@@ -48,8 +51,8 @@ public class MainController {
     @Autowired
     private UniversityService universityService;
     
-   /* @Autowired
-    private ImageRepository pictureRepository;*/
+   @Autowired
+    private ProfileService profileService;
    
 
     public MainController(){
@@ -86,8 +89,33 @@ public class MainController {
         return "registrationCompleted.html";
     }
 
+<<<<<<< HEAD
     /************************************************************/
+=======
 
+
+    /****************CREATE AND SET THE ASSOCIATION BETWEEN USER AND PROFILE*********************/
+   @PostMapping("/{userId}/profile")
+    public ResponseEntity<String> associateProfileWithUser(
+            @PathVariable("userId") Long userId, @RequestBody Profile profile)
+    {
+        Optional<User> userOptional = userService.findById(userId);
+        if (userOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+>>>>>>> fcf9c6c9eb00c3750f393ed3b47701cf9b204ccd
+
+        User user = userOptional.get();
+
+        Profile p = new Profile();
+
+        // Set other profile properties as needed
+        // Set both sides of the association
+        user.setProfile(p);
+        userService.saveUser(user);
+      profileService.saveProfile(p);
+   return ResponseEntity.ok("Profile associated with the user successfully.");
+    }
 
     @RequestMapping(value={"/profile"}, method = RequestMethod.GET)
     public String getUserProfile(Model model){

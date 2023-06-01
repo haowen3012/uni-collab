@@ -1,13 +1,11 @@
 package it.unicollab.bh.service;
 
-import it.unicollab.bh.model.Post;
+import it.unicollab.bh.model.Profile;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.model.oauth.AuthenticationProvider;
 import it.unicollab.bh.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -80,4 +78,15 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public Optional<User> findById(Long userId) {
+        // Logic to retrieve the user by its ID from the data source
+        // ...
+        // Assuming the user is retrieved and returned as an Optional
+        User user = userRepository.findById(userId).orElse(null);
+        if (user != null) {
+            Profile profile = user.getProfile();
+            // Use the profile associated with the user
+        }
+        return null;
+    }
 }
