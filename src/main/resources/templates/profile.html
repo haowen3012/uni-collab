@@ -26,7 +26,7 @@
 
     <img class="main-image" th:if="${profile.image}" th:src="@{'/display/image/' + ${profile.image.id}}" />
     <img class="main-image" th:unless="${profile.image}" src="https://i.postimg.cc/JzFQwGcn/profile-Image-Default.jpg" />
-    <i  class="fa">&#xf044;</i>
+    <i  id="edit-img" class="fa">&#xf044;</i>
     <div class="personal-information">
 
         <h1 class="name" th:text="${owner.userName}">Haowen Zheng</h1>
@@ -40,7 +40,7 @@
 </div>
 
 <div id="presentation">
-    <i class="fa" >&#xf044;</i>
+    <i id="edit-inf" class="fa" >&#xf044;</i>
     <h1 class="inf">Information</h1>
     <div class="content"  th:text="${profile.personalInformation !=null} ? ${profile.personalInformation} : 'Add some infos about you'">Sono uno studente frequentante il terzo anno del percorso di studi in
         Ingegneria Informatica presso l'Università di Roma Tre (laurea prevista per Luglio 2023).
@@ -265,7 +265,7 @@
 
 <script>
 
-    var edit_icon_1 = document.getElementsByClassName('fa')[0];
+    var edit_icon_1 = document.getElementById('edit-img');
     var upload_images = document.getElementById('upload-images');
     var close_upIm = document.getElementsByClassName('close')[0];
 
@@ -289,7 +289,7 @@
     });
 
 
-    var edit_icon_2 = document.getElementsByClassName('fa')[1];
+    var edit_icon_2 = document.getElementById('edit-inf');
     var close_inf = document.getElementsByClassName('close')[1];
     var update_inf = document.getElementById('update-inf');
 
