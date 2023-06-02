@@ -30,22 +30,15 @@ public class FileController {
 
 
     @GetMapping("/display/file/{id}")
-    public ResponseEntity<File> displayItemFile(@PathVariable("id") Long id) {
-        File file = this.fileRepository.findById(id).orElse(null);
+    public ResponseEntity<byte[]> displayItemFile(@PathVariable("id") Long id) {
 
-        if (file != null) {
-            ByteArrayResource resource = new ByteArrayResource(file.getBytes());
+        File f = this.fileRepository.findById(id).get();
+        byte[] file = f.getBytes();
 
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentDisposition(ContentDisposition.inline().filename(file.getName()).build());
-            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("attachment",  "curriculum.pdf");
 
-            return ResponseEntity.ok()
-                    .headers(headers)
-                    .body(file);
-        } else {
-            // Handle the case when the image is not found
-            return ResponseEntity.notFound().build();
-        }
+        return new ResponseEntity<>(file, headers, HttpStatus.OK);
     }
 }

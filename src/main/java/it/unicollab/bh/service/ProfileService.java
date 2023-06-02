@@ -89,4 +89,23 @@ public class ProfileService {
         return profile;
     }
 
+
+    @Transactional
+    public Profile updateProfileCurriculum(Long idProfile, MultipartFile curri){
+
+        Profile profile = this.getProfile(idProfile);
+
+       try{
+           if(curri!= null){
+               File curriculum = this.fileRepository.save(new File(curri.getName(), curri.getBytes()));
+               profile.setCurriculum(curriculum);
+
+           }
+
+           this.saveProfile(profile);
+       }catch (IOException e){
+
+       }
+        return profile;
+    }
 }

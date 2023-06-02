@@ -16,6 +16,7 @@ import it.unicollab.bh.service.UniversityService;
 import it.unicollab.bh.service.UserService;
 
 
+import org.hibernate.internal.util.MutableLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -148,13 +149,21 @@ public class MainController {
                                      @RequestParam(value = "email",required = false)String email,
                                      @RequestParam(value = "address", required = false)String address){
 
-            model.addAttribute(this.profileService.updateProfileImages(idProfile,image, background, email, address));
+           this.profileService.updateProfileImages(idProfile,image, background, email, address);
 
 
             return "redirect:/profile";
     }
 
 
+    @RequestMapping(value={"/profile/updateCurriculum/{idP}"}, method = RequestMethod.POST)
+    public String updateProfileCurriculum(Model model, @PathVariable("idP") Long idProfile,
+                                          @RequestParam(value = "curriculum",required = false) MultipartFile curriculum){
+
+        this.profileService.updateProfileCurriculum(idProfile,curriculum);
+
+        return "redirect:/profile";
+    }
 
 
 

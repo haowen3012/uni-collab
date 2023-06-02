@@ -9,8 +9,6 @@
     <link rel="stylesheet" th:href="@{/css/profile.css}" />
     <link rel="stylesheet" th:href="@{/css/animation.css}" />
     <link rel="stylesheet" th:href="@{/css/button.css}" />
-    <link rel="stylesheet" th:href="@{/css/post.css}" />
-    <link rel="stylesheet" th:href="@{/css/project.css}" />
     <link rel="stylesheet" th:href="@{/css/home.css}" />
 </head>
 <body>
@@ -39,9 +37,25 @@
     </div>
 </div>
 
+<div id="curriculum-section">
+    <h1>Take a look at my Curriculum</h1>
+    <a class="curriculum" download  th:if="${profile.curriculum}" th:href="@{'/display/file/' + ${profile.curriculum.id}}" >
+        click here
+    </a>
+    <a class="curriculum"  disabled="true" th:unless="${profile.curriculum}" >
+        click here
+    </a>
+    <i  id="edit-curri" class="fa">&#xf044;</i>
+
+
+</div>
+
 <div id="presentation">
-    <i id="edit-inf" class="fa" >&#xf044;</i>
+
+    <div class="inf-header">
     <h1 class="inf">Information</h1>
+        <i id="edit-inf" class="fa" >&#xf044;</i>
+        </div>
     <div class="content"  th:text="${profile.personalInformation !=null} ? ${profile.personalInformation} : 'Add some infos about you'">Sono uno studente frequentante il terzo anno del percorso di studi in
         Ingegneria Informatica presso l'Università di Roma Tre (laurea prevista per Luglio 2023).
 
@@ -80,8 +94,7 @@
     <h1 class="title">Active Posts</h1>
     <div id="posts">
 
-
-        <div id="post"  th:each=" project : ${owner.ownedPosts}">
+        <div id="post"  th:each=" post : ${owner.ownedPosts}">
             <div class="project">
                 <h1 class="section-title">PROJECT</h1>
                 <div class="project-name" th:text="${post.projectName}"> PROJECT NAME</div>
@@ -204,6 +217,30 @@
 
 <!----------------------------->
 
+
+
+<form id="update-curri" th:action="'/profile' + '/' + 'updateCurriculum' + '/' + ${profile.id}" method="post" enctype="multipart/form-data">
+
+    <label for="file-upload" class="custom-file-upload">
+        <i class="fa fa-cloud-upload"></i> Upload Image
+    </label>
+    <input id="file-upload" name="curriculum" type="file"  accept="/application/pdf" style="display:none;">
+
+    <button class="submit">submit</button>
+
+</form>
+
+<script>
+
+    $('#file-upload').change(function() {
+        var i = $(this).prev('label').clone();
+        var file = $('#file-upload')[0].files[0].name;
+        $(this).prev('label').text(file);
+    });
+</script>
+
+
+<!------------------------------>
 <script>
     $(document).ready(function(){
         $('input[name="directorsToAdd"]').click(function (){
@@ -228,6 +265,8 @@
     });
 
 
+
+
     $(document).ready(function(){
 
 
@@ -239,6 +278,8 @@
         $('#main-img').change(function(){
             showImageThumbnail(this,2);
         });
+
+
 
     });
 
@@ -311,6 +352,33 @@
 
         setTimeout( function(){
             update_inf.style.display = "none";},1000);
+
+    });
+
+
+
+    var edit_icon_3 = document.getElementById('edit-curri');
+    var close_curri = document.getElementsByClassName('close')[2];
+    var update_curri = document.getElementById('update-curri');
+
+
+
+    edit_icon_3.addEventListener('click', () => {
+        update_curri.style.display = "flex";
+
+        update_curri.style.animation ="slide-in-down 1.1s ease-out forwards";
+    });
+
+
+    close_curri.addEventListener('click', () => {
+
+        update_curri.style.animation ="slide-out-anim 1s ease-out forwards";
+
+
+
+
+        setTimeout( function(){
+            update_curri.style.display = "none";},1000);
 
     });
 

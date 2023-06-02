@@ -34,6 +34,9 @@ public class Profile {
     private File curriculum;
 
 
+    @OneToOne(mappedBy = "profile")
+    private User user;
+
 
     public Profile(){
 
@@ -98,5 +101,13 @@ public class Profile {
 
     public void setCurriculum(File curriculum) {
         this.curriculum = curriculum;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
