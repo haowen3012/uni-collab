@@ -43,23 +43,19 @@ public class User {
      */
     @OneToOne(cascade = CascadeType.ALL)
     private Profile profile;
-    
-   /*@OneToOne(cascade = CascadeType.ALL)
-    private Image picture;*/
-
 
 	@ManyToOne
     private Course courseAttended;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Project> projects;
 
 
     /**
      * the owned posts
      */
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private Collection<Post> ownedPosts;
 
     /**
@@ -72,7 +68,14 @@ public class User {
     private Collection<Post> appliedPosts;
 
 
+   public User(){
 
+   }
+
+   public User(Profile profile){
+
+       this.profile = profile;
+   }
 
     public Long getId() {
         return id;

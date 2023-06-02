@@ -5,34 +5,44 @@
     <meta name="viewport" content="width=device-width">
     <title>JS Bin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/profile.css}" />
-    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" th:href="@{/css/animation.css}" />
+    <link rel="stylesheet" th:href="@{/css/button.css}" />
     <link rel="stylesheet" th:href="@{/css/post.css}" />
     <link rel="stylesheet" th:href="@{/css/project.css}" />
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
 </head>
 <body>
+
+
+<a href="/user" id="back-home">
+    <i id="home" class="fa fa-home"></i>
+</a>
+
 <div id="profile-images">
-    <img class="background" src="https://i.postimg.cc/3NJZZPR3/interstellar-Scene2.png"></img>
-    <img class="main-image" src="https://i.postimg.cc/SKFwk7Vc/eren-profile.jpg"/>
-    <i id="edit-icon" class="fa">&#xf044;</i>
+    <img class="background"  th:if="${profile.background}" th:src="@{'/display/image/' + ${profile.background.id}}"/>
+    <img class="background"  th:unless="${profile.background}" src="https://i.postimg.cc/8PPdjhZc/background-image-Default.jpg"/>
+
+    <img class="main-image" th:if="${profile.image}" th:src="@{'/display/image/' + ${profile.image.id}}" />
+    <img class="main-image" th:unless="${profile.image}" src="https://i.postimg.cc/JzFQwGcn/profile-Image-Default.jpg" />
+    <i  class="fa">&#xf044;</i>
     <div class="personal-information">
 
-<<<<<<< HEAD
-        <h1 class="name">Haowen Zheng</h1>
+        <h1 class="name" th:text="${owner.userName}">Haowen Zheng</h1>
 
         <div class="contacts-inf">
 
-            <div class="cell-num">39 351 514 6857</div>
-            <div class="email">haowenz01@gmail.com</div>
-            <div class="address">Via Francesco Borromini 10</div>
+            <div class="email" th:text="${profile.emailAddress!=null} ? ${profile.emailAddress} : 'no email added'">haowenz01@gmail.com</div>
+            <div class="address" th:text="${profile.physicalAddress!=null} ? ${profile.physicalAddress}: 'no address added'">Via Francesco Borromini 10</div>
         </div>
     </div>
 </div>
 
 <div id="presentation">
-    <i id="edit-icon" class="fa">&#xf044;</i>
+    <i class="fa" >&#xf044;</i>
     <h1 class="inf">Information</h1>
-    <div class="content">Sono uno studente frequentante il terzo anno del percorso di studi in
+    <div class="content"  th:text="${profile.personalInformation !=null} ? ${profile.personalInformation} : 'Add some infos about you'">Sono uno studente frequentante il terzo anno del percorso di studi in
         Ingegneria Informatica presso l'Università di Roma Tre (laurea prevista per Luglio 2023).
 
         ESPERIENZA LAVORATIVA:
@@ -43,7 +53,7 @@
         • Addetto al lavaggio e preparazione verdure quali pomodori, insalata e cipolle.
         • Addetto alla cottura e preparazione panini.
         • Addetto al lavaggio serale(lavaggio di tutti gli utensili usati durante la giornata lavorativa) e pulizia
-        generale ( es. gettare la spazzatura, pulire i pavimenti e banconi).
+          generale ( es. gettare la spazzatura, pulire i pavimenti e banconi).
         • Addetto allo scarico merci.
 
 
@@ -61,7 +71,8 @@
 
         COMPETENZE COMUNICATIVE E INTERPERSONALI:
         - Ottime capacietà relazionali e di adattamento acquisitedurante l'esperienza amatoriale come aiuto-commesso nell'azienda di gestione familiare e soprattuto
-        durante il periodo lavorativo(ufficialmente professionale) presso Burger King.</div>
+        durante il periodo lavorativo(ufficialmente professionale) presso Burger King.
+    </div>
 
 </div>
 
@@ -69,10 +80,51 @@
     <h1 class="title">Active Posts</h1>
     <div id="posts">
 
-        <iframe src="single-post.html"></iframe>
 
-</div>
+        <div id="post"  th:each=" project : ${owner.ownedPosts}">
+            <div class="project">
+                <h1 class="section-title">PROJECT</h1>
+                <div class="project-name" th:text="${post.projectName}"> PROJECT NAME</div>
+            </div>
+            <div class="exam">
+                <div th:text="${post.exam.name}">EXAM NAME</div>
+                <h1 class="section-title">EXAM</h1>
+            </div>
+            <div class="project-description">
+                <h1 class="section-title">DESCRIPTION</h1>
+                <div class="description" th:text="${post.projectDescription}">
+                    Il progetto di mobile computing consiste nella creazione di un gioco mobile con autenticazione. Mi servono 3 colleghi di progetto.
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="bottom-left">
 
+
+                    <div class="deadline">
+                        <div> DEADLINE </div>
+                        <span class="time" th:text="${#temporals.format( post.deadline, 'dd/MM/yyyy HH:mm')}">30/12/2023 19:12</span>
+                    </div>
+
+                </div>
+                <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'ACTIVE'}">
+                    <button  class="modify">MODIFY</button>
+                    <div class="proj-state" >ACTIVE</div>
+                </div>
+                <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'EXPIRED'}">
+                    <button  class="modify">DELETE</button>
+                    <div class="#terminated">TERMINATED</div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    </div>
 </div>
 
 
@@ -80,7 +132,24 @@
     <h1 class="title">ACTIVE PROJECTS</h1>
     <div id="projects">
 
-        <iframe src="single-project.html"></iframe>
+
+        <div class="proj-box" th:each=" project : ${owner.projects}">
+            <h1 class="proj-name" th:text="${project.name}">Project Name</h1>
+            <div class="proj-description">
+                <h1>Description</h1>
+                <div><span class="proj-text" th:text="${project.description}"> CIao sono Haowen</span></div>
+            </div>
+            <div class="proj-member">
+                <h1>Members</h1>
+                <a th:each="member: ${project.members}"  th:text="${member.userName}"> Haowen Zheng</a>
+            </div>
+            <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'ACTIVE'}">ACTIVE</div>
+            <div class="proj-state" id="terminated" th:if="${#strings.toString(project.projectState) == 'TERMINATED'}">TERMINATED</div>
+        </div>
+    </div>
+
+
+
 
     </div>
 
@@ -88,6 +157,167 @@
 
 
 </div>
+
+
+
+<!-------------------->
+
+<form id="upload-images" th:action="@{'/profile' + '/' + 'updateImages' + '/' + ${profile.id}}" method="post" enctype="multipart/form-data">
+
+
+    <div class="image">
+        <input type="file" id="back-img" name="background" accept="image/png, image/jpeg" hidden  />
+        <img id="thumbnail-1"  th:src="@{'/display/image/' + ${profile.background.id}}" />
+        <i class="fa fa-plus" id="plus-1" ></i>
+    </div>
+
+    <div class="image-p">
+        <input type="file" id="main-img" name="image" accept="image/png, image/jpeg" hidden />
+        <img id="thumbnail-2"  th:src="@{'/display/image/' + ${profile.image.id}}"/>
+        <i class="fa fa-plus" id="plus-2" ></i>
+    </div>
+
+    <input placeholder="Enter your email" th:field="${profile.emailAddress}" name="email"/>
+    <input placeholder="Enter your address" th:field="${profile.physicalAddress}" name="address" />
+
+
+
+
+    <div class="close" >&times;</div>
+
+    <button>Submit</button>
+
+</form>
+
+<!----------------------------->
+
+<form id="update-inf" th:action="@{'/profile' + '/' + 'updatePersonalInformation' + '/' + ${profile.id}}" method="post">
+    <h1>Tell About You</h1>
+    <textarea name="infos" th:text="${profile.personalInformation}">
+
+   </textarea>
+
+    <div class="close" >&times;</div>
+    <button>Submit</button>
+
+</form>
+
+<!----------------------------->
+
+<script>
+    $(document).ready(function(){
+        $('input[name="directorsToAdd"]').click(function (){
+            $('input[name="directorsToAdd"]').not(this).prop('checked',false);
+        });
+    });
+</script>
+<script>
+
+    document.getElementById('plus-1').addEventListener('click', function() {
+
+
+        document.getElementById('back-img').click();
+
+    });
+
+    document.getElementById('plus-2').addEventListener('click', function() {
+
+
+        document.getElementById('main-img').click();
+
+    });
+
+
+    $(document).ready(function(){
+
+
+        $('#back-img').change(function(){
+            showImageThumbnail(this,1);
+        });
+
+
+        $('#main-img').change(function(){
+            showImageThumbnail(this,2);
+        });
+
+    });
+
+    function  showImageThumbnail(fileInput, n){
+
+        var thumbnail = document.getElementById('thumbnail-'+ n);
+
+        file = fileInput.files[0];
+        reader = new FileReader();
+
+        console.log(n);
+        reader.onload = function(e){
+            $('#thumbnail-' + n).attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(file);
+
+        thumbnail.style.border ="none";
+    }
+
+
+
+</script>
+
+<script>
+
+    var edit_icon_1 = document.getElementsByClassName('fa')[0];
+    var upload_images = document.getElementById('upload-images');
+    var close_upIm = document.getElementsByClassName('close')[0];
+
+    edit_icon_1.addEventListener('click', () => {
+        upload_images.style.display = "flex";
+
+        upload_images.style.animation ="slide-in-down 1.1s ease-out forwards";
+    });
+
+
+    close_upIm.addEventListener('click', () => {
+
+        upload_images.style.animation ="slide-out-anim 1s ease-out forwards";
+
+
+
+
+        setTimeout( function(){
+            upload_images.style.display = "none";},1000);
+
+    });
+
+
+    var edit_icon_2 = document.getElementsByClassName('fa')[1];
+    var close_inf = document.getElementsByClassName('close')[1];
+    var update_inf = document.getElementById('update-inf');
+
+
+
+    edit_icon_2.addEventListener('click', () => {
+        update_inf.style.display = "flex";
+
+        update_inf.style.animation ="slide-in-down 1.1s ease-out forwards";
+    });
+
+
+    close_inf.addEventListener('click', () => {
+
+        update_inf.style.animation ="slide-out-anim 1s ease-out forwards";
+
+
+
+
+        setTimeout( function(){
+            update_inf.style.display = "none";},1000);
+
+    });
+
+
+</script>
+
+<!---------------------->
 
 
 <script>
@@ -147,8 +377,7 @@
         console.log(walk);
     });
 </script>
-=======
- <h2>hello there</h2>
->>>>>>> fcf9c6c9eb00c3750f393ed3b47701cf9b204ccd
+
+
 </body>
 </html>

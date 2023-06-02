@@ -11,12 +11,12 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-<<<<<<< HEAD
     @Column(length = 500)
     private String personalInformation;
 
 
-    private String physicaladdress;
+    @Column(name="address")
+    private String physicalAddress;
 
     @Email
     @Column(name = "email")
@@ -24,34 +24,25 @@ public class Profile {
 
 
 
-=======
-    @Column(nullable = true, length = 2000)
-    private String Photos;
-    public String getPhotos() {
-        return Photos;
-    }
-
-    public Profile() {
-        this.user = user;
-    }
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-    public void setPhotos(String photos) {
-        Photos = photos;
-    }
-    @Transient
-    public String getPhotosImagePath() {
-        if (Photos == null || id == null) return null;
-
-        return "/profile-photos/" + id + "/" + Photos;
-    }
-
+    @OneToOne
+    private File image;
 
     @OneToOne
-    private Curriculum curriculum;
->>>>>>> fcf9c6c9eb00c3750f393ed3b47701cf9b204ccd
+    private File background;
+
+    @OneToOne
+    private File curriculum;
+
+
+
+    public Profile(){
+
+    }
+
+    public Profile(String emailAddress){
+
+        this.emailAddress= emailAddress;
+    }
 
     public Long getId() {
         return id;
@@ -69,12 +60,12 @@ public class Profile {
         this.personalInformation = personalInformation;
     }
 
-    public String getPhysicaladdress() {
-        return physicaladdress;
+    public String getPhysicalAddress() {
+        return physicalAddress;
     }
 
-    public void setPhysicaladdress(String physicaladdress) {
-        this.physicaladdress = physicaladdress;
+    public void setPhysicalAddress(String physicalAddress) {
+        this.physicalAddress = physicalAddress;
     }
 
     public String getEmailAddress() {
@@ -85,11 +76,27 @@ public class Profile {
         this.emailAddress = emailAddress;
     }
 
-    public User getUser() {
-        return user;
+    public File getImage() {
+        return image;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setImage(File image) {
+        this.image = image;
+    }
+
+    public File getBackground() {
+        return background;
+    }
+
+    public void setBackground(File background) {
+        this.background = background;
+    }
+
+    public File getCurriculum() {
+        return curriculum;
+    }
+
+    public void setCurriculum(File curriculum) {
+        this.curriculum = curriculum;
     }
 }

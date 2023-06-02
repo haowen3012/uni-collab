@@ -126,7 +126,7 @@ public  class WebSecurityConfig {
 
 
 
-    @Bean
+  /*  @Bean
     public void createTestUser(){
         Credentials  testCreddentials = new Credentials();
         User testUser = new User();
@@ -148,6 +148,10 @@ public  class WebSecurityConfig {
 
         testUser.setCourseAttended( course);
         */
+    /*
      this.credentialsRepository.save(testCreddentials);
     }
+    */
+
+
 }

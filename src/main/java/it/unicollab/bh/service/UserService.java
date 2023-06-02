@@ -54,8 +54,9 @@ public class UserService {
     }
 
 
-    public void registerNewCustomerAfterOAuthLoginSuccess(String loginName, String fullName, AuthenticationProvider provider) {
-        User user = new User();
+    public void registerNewCustomerAfterOAuthLoginSuccess(String loginName, String fullName,String email,AuthenticationProvider provider) {
+
+        User user = new User(new Profile(email));
         if(loginName != null) {
             user.setUserName(loginName);
             user.setFirstName(fullName);
@@ -78,15 +79,4 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Optional<User> findById(Long userId) {
-        // Logic to retrieve the user by its ID from the data source
-        // ...
-        // Assuming the user is retrieved and returned as an Optional
-        User user = userRepository.findById(userId).orElse(null);
-        if (user != null) {
-            Profile profile = user.getProfile();
-            // Use the profile associated with the user
-        }
-        return null;
-    }
 }

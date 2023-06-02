@@ -89,12 +89,12 @@ public class MainController {
         return "registrationCompleted.html";
     }
 
-<<<<<<< HEAD
     /************************************************************/
-=======
 
 
     /****************CREATE AND SET THE ASSOCIATION BETWEEN USER AND PROFILE*********************/
+
+    /*
    @PostMapping("/{userId}/profile")
     public ResponseEntity<String> associateProfileWithUser(
             @PathVariable("userId") Long userId, @RequestBody Profile profile)
@@ -103,7 +103,6 @@ public class MainController {
         if (userOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
->>>>>>> fcf9c6c9eb00c3750f393ed3b47701cf9b204ccd
 
         User user = userOptional.get();
 
@@ -116,18 +115,46 @@ public class MainController {
       profileService.saveProfile(p);
    return ResponseEntity.ok("Profile associated with the user successfully.");
     }
+*/
 
-    @RequestMapping(value={"/profile"}, method = RequestMethod.GET)
-    public String getUserProfile(Model model){
+
+    @RequestMapping(value = {"/profile"}, method = RequestMethod.GET)
+    public String getUserProfile(Model model) {
 
         User loggedUser = this.sessionData.getLoggedUser();
 
-        model.addAttribute("profile",loggedUser.getProfile());
+        model.addAttribute("profile", loggedUser.getProfile());
 
-        model.addAttribute("owner",loggedUser );
+        model.addAttribute("owner", loggedUser);
 
         return "profile.html";
     }
+
+    @RequestMapping(value={"/profile/updatePersonalInformation/{idP}"}, method = RequestMethod.POST)
+    public String updatePersonalInformation(Model model,@PathVariable("idP") Long idProfile, @RequestParam("infos") String pf){
+
+        model.addAttribute(this.profileService.updatePersonalInformation(idProfile, pf));
+
+
+        return "redirect:/profile";
+
+    }
+
+
+    @RequestMapping(value={"/profile/updateImages/{idP}"}, method = RequestMethod.POST)
+    public String updateProfieImages(Model model,@PathVariable("idP") Long idProfile
+            , @RequestParam(value = "image",required = false) MultipartFile image,
+                                     @RequestParam(value = "background",required = false) MultipartFile background,
+                                     @RequestParam(value = "email",required = false)String email,
+                                     @RequestParam(value = "address", required = false)String address){
+
+            model.addAttribute(this.profileService.updateProfileImages(idProfile,image, background, email, address));
+
+
+            return "redirect:/profile";
+    }
+
+
 
 
 

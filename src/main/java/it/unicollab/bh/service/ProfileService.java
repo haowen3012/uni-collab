@@ -1,14 +1,18 @@
 package it.unicollab.bh.service;
 
 
+import it.unicollab.bh.model.File;
 import it.unicollab.bh.model.Profile;
 
 import it.unicollab.bh.model.User;
+import it.unicollab.bh.repository.FileRepository;
 import it.unicollab.bh.repository.ProfileRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,32 +22,71 @@ public class ProfileService {
     @Autowired
     ProfileRepository profileRepository;
 
-    @Transactional
-    public Profile getUser(long id) {
-        Optional<Profile> result = this.profileRepository.findById(id);
-        return result.orElse(null);
-    }
 
+    @Autowired
+    private FileRepository fileRepository;
+
+
+    @Transactional
+    public Profile getProfile(Long id){
+        return this.profileRepository.findById(id).get();
+    }
     @Transactional
     public Profile saveProfile(Profile profile) {
         return this.profileRepository.save(profile);
     }
 
+
     @Transactional
-    public List<Profile> getAllprofile() {
-        List<Profile> result = new ArrayList<>();
-        Iterable<Profile> iterable = this.profileRepository.findAll();
-        for (Profile profile : iterable) result.add(profile);
+    public Profile updatePersonalInformation(Long id, String pf){
 
-        return result;
+        Profile profile = this.getProfile(id);
 
+        profile.setPersonalInformation(pf);
+
+        this.saveProfile(profile);
+
+        return profile;
     }
 
-    public void findById(Long profileId) {
-        Profile profile = profileRepository.findById(profileId).orElse(null);
-        if (profile != null) {
-            User user = profile.getUser();
-            // Use the user associated with the profile
+    @Transactional
+    public Profile updateProfileImages(Long id, MultipartFile img, MultipartFile bg, String email ,String address) {
+
+        Profile profile = this.getProfile(id);
+
+
+        if(email != null){
+            profile.setEmailAddress(email);
         }
+
+        if(address != null){
+            profile.setPhysicalAddress(address);
+        }
+
+            try {
+            if(img != null) {
+                File image = this.fileRepository.save(new File(img.getName(), img.getBytes()));
+                profile.setImage(image);
+            }
+
+            if(bg !=null) {
+                File background = this.fileRepository.save(new File(bg.getName(), bg.getBytes()));
+                profile.setBackground(background);
+            }
+
+
+
+
+                this.saveProfile(profile);
+
+
+            } catch (IOException e) {
+
+
+            }
+
+
+        return profile;
     }
+
 }
