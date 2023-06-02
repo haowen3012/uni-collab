@@ -180,13 +180,13 @@
 
     <div class="image">
         <input type="file" id="back-img" name="background" accept="image/png, image/jpeg" hidden  />
-        <img id="thumbnail-1"  th:src="@{'/display/image/' + ${profile.background.id}}" />
+        <img id="thumbnail-1" th:src="@{'/display/image/' + ${profile.background.id}}" />
         <i class="fa fa-plus" id="plus-1" ></i>
     </div>
 
     <div class="image-p">
         <input type="file" id="main-img" name="image" accept="image/png, image/jpeg" hidden />
-        <img id="thumbnail-2"  th:src="@{'/display/image/' + ${profile.image.id}}"/>
+        <img id="thumbnail-2" th:src="@{'/display/image/' + ${profile.image.id}}"/>
         <i class="fa fa-plus" id="plus-2" ></i>
     </div>
 
