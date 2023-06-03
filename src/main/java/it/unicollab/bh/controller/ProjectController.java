@@ -7,8 +7,12 @@ import it.unicollab.bh.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDateTime;
 
 @Controller
 public class ProjectController {
@@ -32,4 +36,14 @@ public class ProjectController {
         return "project.html";
 
     }
+
+
+    @RequestMapping( value={"/setProjectDeadline/{idP}"}, method = RequestMethod.POST)
+    public String setProjectDeadline(@PathVariable("idP") Long idProject, @RequestParam(value = "deadline", required = false)LocalDateTime deadline){
+
+        this.projectService.setProjectDeadline(idProject,deadline);
+
+        return "redirect:/projects";
+    }
+
 }

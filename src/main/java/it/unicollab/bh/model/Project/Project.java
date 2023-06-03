@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Locale;
@@ -28,6 +29,9 @@ public class Project {
 
     @CreationTimestamp
     private LocalDateTime creationTimestamp;
+
+
+    private LocalDateTime deadline;
 
     public Project(){}
 
@@ -90,5 +94,14 @@ public class Project {
 
     public void setCreationTimestamp(LocalDateTime creationTimestamp) {
         this.creationTimestamp = creationTimestamp;
+    }
+
+
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
     }
 }

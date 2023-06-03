@@ -11,4 +11,6 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
 
     Collection<Project> findByMembersContains(User member);
 
+    Collection<Project> findByMembersContainsOrderByCreationTimestampDesc(User member);
+
 }

@@ -2,6 +2,7 @@ package it.unicollab.bh.service;
 
 
 import it.unicollab.bh.model.Post;
+import it.unicollab.bh.model.Project.Project;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.model.message.Message;
 import it.unicollab.bh.model.message.MessageType;
@@ -29,6 +30,9 @@ public class MessageService {
     @Autowired
     PostService postService;
 
+    @Autowired
+    ProjectService projectService;
+
     @Transactional
     public Message saveMessage(Message message){
 
@@ -40,6 +44,14 @@ public class MessageService {
 
         return this.messageRepository.findAllByDestination(destination);
     }
+
+
+    @Transactional
+    public Collection<Message> getAllMessageByDestinationOrderByCreationTime(User destination){
+
+        return this.messageRepository.findByDestinationOrderByCreationTimestampDesc(destination);
+    }
+
 
 
     @Transactional
@@ -102,6 +114,5 @@ public class MessageService {
         this.saveMessage(m);
 
     }
-
 }
 

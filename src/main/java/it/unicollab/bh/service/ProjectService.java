@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -52,4 +53,22 @@ public class ProjectService {
         return this.projectRepository.findByMembersContains(member);
 
     }
+
+    @Transactional
+    public Collection<Project> getProjectsByMemeberOrderByCreationTime(User member){
+        return this.projectRepository.findByMembersContainsOrderByCreationTimestampDesc(member);
+    }
+
+
+    @Transactional
+    public void setProjectDeadline(Long idProject, LocalDateTime deadline){
+
+       Project project = this.getProject(idProject);
+
+       project.setDeadline(deadline);
+
+       this.saveProject(project);
+    }
 }
+
+

@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/profile.css}" />
     <link rel="stylesheet" th:href="@{/css/animation.css}" />
+    <link rel="stylesheet" th:href="@{/css/project.css}" />
     <link rel="stylesheet" th:href="@{/css/button.css}" />
     <link rel="stylesheet" th:href="@{/css/home.css}" />
 </head>
@@ -180,13 +181,15 @@
 
     <div class="image">
         <input type="file" id="back-img" name="background" accept="image/png, image/jpeg" hidden  />
-        <img id="thumbnail-1" th:src="@{'/display/image/' + ${profile.background.id}}" />
+        <img id="thumbnail-1" th:if="${profile.background != null}" th:src="@{'/display/image/' + ${profile.background.id}}" alt="Profile background" />
+        <img id="thumbnail-1" th:if="${profile.background == null}" src="https://i.postimg.cc/8PPdjhZc/background-image-Default.jpg" alt="Default background" />
         <i class="fa fa-plus" id="plus-1" ></i>
     </div>
 
     <div class="image-p">
         <input type="file" id="main-img" name="image" accept="image/png, image/jpeg" hidden />
-        <img id="thumbnail-2" th:src="@{'/display/image/' + ${profile.image.id}}"/>
+        <img id="thumbnail-2" th:if="${profile.image != null}" th:src="@{'/display/image/' + ${profile.image.id}}" alt="Profile image"/>
+        <img id="thumbnail-2" th:if="${profile.image == null}" src="https://i.postimg.cc/JzFQwGcn/profile-Image-Default.jpg" alt="Default image"/>
         <i class="fa fa-plus" id="plus-2" ></i>
     </div>
 
@@ -198,7 +201,7 @@
 
     <div class="close" >&times;</div>
 
-    <button>Submit</button>
+    <button class="submit">Submit</button>
 
 </form>
 
@@ -211,7 +214,7 @@
    </textarea>
 
     <div class="close" >&times;</div>
-    <button>Submit</button>
+    <button class="submit">Submit</button>
 
 </form>
 
@@ -226,6 +229,7 @@
     </label>
     <input id="file-upload" name="curriculum" type="file"  accept="/application/pdf" style="display:none;">
 
+    <div class="close" >&times;</div>
     <button class="submit">submit</button>
 
 </form>

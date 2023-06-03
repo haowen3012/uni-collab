@@ -59,40 +59,24 @@ body{
 
 
 
-.swiper {
-    width: 100%;
-    padding-top: 1%;
-    padding-bottom: 50px;
+#posts{
+    width:100%;
 
-}
+    margin-top:5%;
 
-.swiper-slide {
-    background-position: center;
-    background-size: cover;
-    width: 768px;
-    max-width: 100%;
-    min-height:8em;
-    margin: 1%;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
 
-
+    overflow-x: hidden;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
 
 
 }
 
-.swiper-slide-active{
-
-    filter: blur(0px);
-}
 
 
-
-.mySwiper{
-
-    letter-spacing : 2px;
-    word-spacing:4px;
-
-
-}
 
 
 /************    POST   ************************/
@@ -100,6 +84,8 @@ body{
 
 #post{
 
+    flex: auto 0 0 ;
+    margin: 3%;
     background : #fff;
 
     display: flex;

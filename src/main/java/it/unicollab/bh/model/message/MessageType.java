@@ -6,5 +6,7 @@ public enum MessageType {
 
     POST_EXPIRED,
 
-    PROJECT_ACTIVE
+    PROJECT_ACTIVE,
+
+    PROJECT_TERMINATED
 }

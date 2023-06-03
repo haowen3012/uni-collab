@@ -9,6 +9,8 @@
   <title>Uni-Collab</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" th:href="@{/css/createPost.css}" />
+  <link rel="stylesheet" th:href="@{/css/postForm.css}" />
+  <link rel="stylesheet" th:href="@{/css/animation.css}" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 
@@ -121,7 +123,7 @@
 </form>
 <!-----pop up-------------------------pop up-------------------------pop up------------------------->
 
-<form id="container-2"
+<form class="container-2"
       th:action="@{/createPost}"  method="post" >
   <h1 th:text="${user.userName}">YOUR NAME</h1>
   <div class="section-1">
@@ -165,7 +167,7 @@
 
 
   var container_1 =  document.getElementById('container');
-  var post_form = document.getElementById('container-2');
+  var post_form = document.getElementsByClassName('container-2')[0];
   var go_back = document.getElementById('go-back');
 
   var post = document.getElementById('post');

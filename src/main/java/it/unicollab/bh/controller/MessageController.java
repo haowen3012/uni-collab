@@ -57,14 +57,16 @@ public class MessageController {
 
 
     @RequestMapping(value="/messages", method = RequestMethod.GET)
-    public String showMessages(Model model){
+    public String showMessages(Model model) {
 
         User destination = this.sessionData.getLoggedUser();
 
-        Collection<Message>  messages = this.messageService.getAllMessageByDestination(destination);
+        Collection<Message> messages = this.messageService.getAllMessageByDestination(destination);
 
-        model.addAttribute("messages",messages);
+        model.addAttribute("messages", messages);
 
         return "message.html";
     }
+
+
 }

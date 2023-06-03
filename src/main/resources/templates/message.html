@@ -42,7 +42,7 @@
 <div></div>
 <div class="messages">
 <div th:each=" message : ${messages}" class="mes-cont">
-<div id="request" class="message" th:if="${#strings.toString(message.messageType) == 'REQUEST'}">
+<div id="request" class="message" th:if="${#strings.toString(message.messageType) == 'REQUEST' && message.post!=null}">
     <a th:text="${message.source.userName}">Haowen Zheng </a>
     <span th:text="${message.text}">applied for your </span>
     <a href="#">post</a>
@@ -61,6 +61,7 @@
     <button class="response" id="declined"> DECLINE </button>
     </form>
 </div>
+
         <div  class="message" id="request-accepted" th:if="${#strings.toString(message.messageType) == 'ACCEPTED'}">
             <a th:text="${message.source.userName}">Haowen Zheng </a>
             <span th:text="${message.text}">applied for your </span>
