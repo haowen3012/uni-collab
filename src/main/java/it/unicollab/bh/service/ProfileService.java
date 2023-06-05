@@ -66,15 +66,16 @@ public class ProfileService {
             try {
             if(!img.isEmpty()) {
 
-              File oldImage = this.fileRepository.findByBytes(img.getBytes());
+              File oldImage = profile.getImage();
 
 
               if(oldImage==null){
-                  File image = this.fileRepository.save(new File(img.getName(), img.getBytes()));
+                  File image = this.fileRepository.save(new File(img.getOriginalFilename(), img.getBytes()));
                   profile.setImage(image);
 
               }else{
 
+                  oldImage.setName(img.getOriginalFilename());
                   oldImage.setBytes(img.getBytes());
                   this.fileRepository.save(oldImage);
               }
@@ -84,14 +85,15 @@ public class ProfileService {
 
             if(!bg.isEmpty()) {
 
-                File oldBackground = this.fileRepository.findByBytes(bg.getBytes());
+                File oldBackground = profile.getBackground();
 
                 if(oldBackground==null) {
-                    File background = this.fileRepository.save(new File(bg.getName(), bg.getBytes()));
+                    File background = this.fileRepository.save(new File(bg.getOriginalFilename(), bg.getBytes()));
                     profile.setBackground(background);
 
                 }else{
 
+                    oldBackground.setName(bg.getOriginalFilename());
                     oldBackground.setBytes(bg.getBytes());
                     this.fileRepository.save(oldBackground);
                 }
