@@ -137,9 +137,23 @@ public class MainController {
 
         model.addAttribute("owner", loggedUser);
 
+        System.out.println(loggedUser.getOwnedPosts());
+
         return "profile.html";
     }
 
+
+    @RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)
+    public String getProfile(Model model,@PathVariable("id")Long idUser){
+
+        User user = this.userService.getUser(idUser);
+
+        model.addAttribute("profile", user.getProfile());
+
+        model.addAttribute("owner",user);
+
+        return "profile.html";
+    }
     @RequestMapping(value={"/profile/updatePersonalInformation/{idP}"}, method = RequestMethod.POST)
     public String updatePersonalInformation(Model model,@PathVariable("idP") Long idProfile, @RequestParam("infos") String pf){
 

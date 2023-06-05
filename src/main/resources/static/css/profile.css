@@ -299,7 +299,7 @@ body{
 
 #posts{
 
-    width:100%;
+    width:90%;
     margin-top:3%;
     display: inline-flex;
     justify-content:  flex-start;
@@ -310,12 +310,13 @@ body{
     overflow-y: hidden;
 
 
-    margin-left:20%;
+    margin-left:10%;
 }
 
 
 #post{
 
+    flex: auto 0 0;
 
 
     background : #fff;
@@ -332,6 +333,7 @@ body{
     box-shadow: 0 14px 28px rgba(0,0,0,0.25),
     0 10px 10px rgba(0,0,0,0.22);
 
+    margin-right: 3%;
 
     margin-bottom : 10%;
 

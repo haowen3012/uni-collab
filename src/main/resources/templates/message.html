@@ -9,6 +9,7 @@
     <link rel="stylesheet" th:href="@{/css/createPost.css}" />
     <link rel="stylesheet" th:href="@{/css/message.css}" />
     <link rel="stylesheet" th:href="@{/css/animation.css}" />
+    <link rel="stylesheet" th:href="@{/css/emptySection.css}" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
@@ -41,6 +42,9 @@
     </div>
 </div>
 <div></div>
+<h1 class="empty" style="position: absolute; top:50%; font-size:3em;" th:if="${messages.isEmpty}">
+    No Messages
+</h1>
 <div class="messages">
 <div th:each=" message : ${messages}" class="mes-cont">
 <div id="request" class="message" th:if="${#strings.toString(message.messageType) == 'REQUEST' && message.post!=null}">

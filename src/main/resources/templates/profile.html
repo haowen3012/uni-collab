@@ -11,6 +11,7 @@
     <link rel="stylesheet" th:href="@{/css/button.css}" />
     <link rel="stylesheet" th:href="@{/css/home.css}" />
     <link rel="stylesheet" th:href="@{/css/error.css}" />
+    <link rel="stylesheet" th:href="@{/css/emptySection.css}" />
 </head>
 <body>
 
@@ -42,7 +43,7 @@
 
     <img class="main-image" th:if="${profile.image}" th:src="@{'/display/image/' + ${profile.image.id}}" />
     <img class="main-image" th:unless="${profile.image}" src="https://i.postimg.cc/JzFQwGcn/profile-Image-Default.jpg" />
-    <i  id="edit-img" class="fa">&#xf044;</i>
+    <i  id="edit-img" class="fa"  th:if="${user.id == owner.id}">&#xf044;</i>
     <div class="personal-information">
 
         <h1 class="name" th:text="${owner.userName}">Haowen Zheng</h1>
@@ -63,7 +64,7 @@
     <a class="curriculum"  disabled="true" th:unless="${profile.curriculum}" >
         click here
     </a>
-    <i  id="edit-curri" class="fa">&#xf044;</i>
+    <i  id="edit-curri" class="fa"  th:if="${user.id == owner.id}" >&#xf044;</i>
 
 
 </div>
@@ -72,7 +73,7 @@
 
     <div class="inf-header">
     <h1 class="inf">Information</h1>
-        <i id="edit-inf" class="fa" >&#xf044;</i>
+        <i id="edit-inf" class="fa" th:if="${user.id == owner.id}" >&#xf044;</i>
         </div>
     <div class="content"  th:text="${profile.personalInformation !=null} ? ${profile.personalInformation} : 'Add some infos about you'">Sono uno studente frequentante il terzo anno del percorso di studi in
         Ingegneria Informatica presso l'Università di Roma Tre (laurea prevista per Luglio 2023).
@@ -111,6 +112,11 @@
 <div id="profile-post">
     <h1 class="title">Active Posts</h1>
     <div id="posts">
+
+        <h1 th:if="${owner.ownedPosts.isEmpty}" class="empty">
+            Empty Section
+        </h1>
+
 
         <div id="post"  th:each=" post : ${owner.ownedPosts}">
             <div class="project">
@@ -162,6 +168,10 @@
 <div id="profile-project">
     <h1 class="title">ACTIVE PROJECTS</h1>
     <div id="projects">
+
+   <h1 th:if="${owner.projects.isEmpty}" class="empty">
+       Empty Section
+   </h1>
 
 
         <div class="proj-box" th:each=" project : ${owner.projects}">

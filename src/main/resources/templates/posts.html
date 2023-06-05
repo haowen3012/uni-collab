@@ -8,6 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/post.css}" />
     <link rel="stylesheet" th:href="@{/css/button.css}" />
     <link rel="stylesheet" th:href="@{/css/animation.css}" />
+    <link rel="stylesheet" th:href="@{/css/event-warn.css}" />
 </head>
 <body>
 
@@ -58,7 +59,12 @@
         </div>
     </div>
 </div>
-
+<!---pop up for deleting review---->
+<div id="event-warn" th:if="${postDeleted}">
+    The post  has been successfully deleted
+</div>
+<script src="/script/event-warn.js"></script>
+<!-------->
 
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

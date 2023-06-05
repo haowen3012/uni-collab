@@ -56,16 +56,16 @@ public class User {
      * the owned posts
      */
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
-    private Collection<Post> ownedPosts;
+    private Set<Post> ownedPosts;
 
     /**
      * the collection of  accepted post-applys
      */
     @ManyToMany(mappedBy = "acceptedUsers")
-    private Collection<Post> acceptedApplies;
+    private Set<Post> acceptedApplies;
 
     @ManyToMany
-    private Collection<Post> appliedPosts;
+    private Set<Post> appliedPosts;
 
 
    public User(){
@@ -158,28 +158,28 @@ public class User {
         this.courseAttended = courseAttended;
     }
 
-    public Collection<Post> getOwnedPosts() {
+    public Set<Post> getOwnedPosts() {
         return ownedPosts;
     }
 
-    public void setOwnedPosts(Collection<Post> ownedPosts) {
+    public void setOwnedPosts(Set<Post> ownedPosts) {
         this.ownedPosts = ownedPosts;
     }
 
-    public Collection<Post> getAcceptedApplies() {
+    public Set<Post> getAcceptedApplies() {
         return acceptedApplies;
     }
 
 
-	public void setAcceptedApplies(Collection<Post> acceptedApplies) {
+	public void setAcceptedApplies(Set<Post> acceptedApplies) {
         this.acceptedApplies = acceptedApplies;
     }
 
-    public Collection<Post> getAppliedPosts() {
+    public Set<Post> getAppliedPosts() {
         return appliedPosts;
     }
 
-    public void setAppliedPosts(Collection<Post> appliedPosts) {
+    public void setAppliedPosts(Set<Post> appliedPosts) {
         this.appliedPosts = appliedPosts;
     }
 

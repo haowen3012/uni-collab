@@ -115,7 +115,7 @@ public class PostService {
 
         this.messageRepository.deleteAll(messages);
 
-        
+
         this.postRepository.delete(post);
 
     }

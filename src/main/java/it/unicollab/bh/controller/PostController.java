@@ -18,6 +18,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class PostController {
 
@@ -37,7 +39,8 @@ public class PostController {
 
 
   @RequestMapping(value ={"/createPost"}, method = RequestMethod.POST)
-  public String createPost(@Valid @ModelAttribute Post p, BindingResult postBindingResult, @RequestParam(value = "selected_exam", required = false) Long idExam, Model model, RedirectAttributes redirectAttributes) {
+  public String createPost(@Valid @ModelAttribute Post p, BindingResult postBindingResult, @RequestParam(value = "selected_exam", required = false) Long idExam,
+                           Model model, RedirectAttributes redirectAttributes) {
 
 
     User loggedUser = this.sessionData.getLoggedUser();
@@ -53,6 +56,8 @@ public class PostController {
    if(!postBindingResult.hasErrors()){
 
      this.postService.createPost(p);
+
+     redirectAttributes.addFlashAttribute("postCreated", true);
 
 
      return "redirect:/user";
@@ -91,7 +96,14 @@ public class PostController {
   @RequestMapping(value="/updatePost/{idP}", method = RequestMethod.GET)
   public  String updatePost(Model model, @PathVariable("idP") Long idPost){
 
-    model.addAttribute(this.postService.getPost(idPost));
+    Post post =this.postService.getPost(idPost);
+
+    if(post.getDeadline().isBefore(LocalDateTime.now())){
+      return "redirect:/posts";
+    }
+
+    model.addAttribute(post);
+
 
      return "postForm.html";
   }
@@ -100,15 +112,19 @@ public class PostController {
   @RequestMapping(value="/updatePost/{idP}", method = RequestMethod.POST)
   public  String updatePost(Model model, @PathVariable("idP") Long idPost,@RequestParam("selected_exam") Long idExam,@ModelAttribute Post newPost){
 
+
     model.addAttribute( "post",this.postService.updatePost(idPost, newPost, idExam));
 
-    return "post.html";
+    return "redirect:/post.html";
   }
 
   @RequestMapping(value="/deletePost/{idP}", method = RequestMethod.GET)
-  public String deletePost(Model model , @PathVariable("idP") Long idPost){
+  public String deletePost(Model model , @PathVariable("idP") Long idPost, RedirectAttributes redirectAttributes){
 
     this.postService.deletePost(idPost);
+
+    redirectAttributes.addFlashAttribute("postDeleted", true);
+
 
     return "redirect:/posts";
   }

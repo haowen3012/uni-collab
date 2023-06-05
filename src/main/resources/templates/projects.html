@@ -25,7 +25,8 @@
                 </div>
                 <div class="proj-member">
                     <h1>Members</h1>
-                    <a th:each="member: ${project.members}" th:text="${member.userName}"> Haowen Zheng</a>
+                    <a th:each="member: ${project.members}" th:text="${member.userName}" th:href="@{'/profile' +'/'
+                     + ${member.id}}"> Haowen Zheng</a>
                 </div>
                 <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'ACTIVE'}">ACTIVE</div>
 

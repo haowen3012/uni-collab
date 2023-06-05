@@ -13,6 +13,8 @@
   <link rel="stylesheet" th:href="@{/css/animation.css}" />
   <link rel="stylesheet" th:href="@{/css/button.css}" />
   <link rel="stylesheet" th:href="@{/css/error.css}" />
+  <link rel="stylesheet" th:href="@{/css/event-warn.css}" />
+  <link rel="stylesheet" th:href="@{/css/emptySection.css}" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 
@@ -53,6 +55,11 @@
     <input placeholder="Create a post"/>
   </div>
 </div>
+
+<h1 class="empty" style="position: absolute; top:50%; font-size:3em;" th:if="${posts.isEmpty}">
+  Your feed is empty
+</h1>
+
 <div th:each="post : ${posts}">
   <div id="post" >
     <div class="owner">
@@ -170,6 +177,15 @@
 </form>
 <!------------->
 <!---<div id="messages"> </div>--  NOTIFICHE CON WEBSOCKET-->
+
+
+<!---pop up for deleting review---->
+<div id="event-warn" th:if="${postCreated}">
+  The post  has been successfully created
+</div>
+<script src="/script/event-warn.js"></script>
+<!-------->
+
 <script>
 
 
