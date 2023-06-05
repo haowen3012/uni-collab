@@ -1,6 +1,8 @@
 package it.unicollab.bh.service;
 
 import it.unicollab.bh.model.*;
+import it.unicollab.bh.model.message.Message;
+import it.unicollab.bh.repository.MessageRepository;
 import it.unicollab.bh.repository.PostRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
@@ -21,6 +23,10 @@ public class PostService {
 
     @Autowired
     private ExamService examService;
+
+    @Autowired
+    private MessageRepository messageRepository;
+
 
     @Transactional
     public Post savePost(Post post){
@@ -105,7 +111,11 @@ public class PostService {
             user.getAppliedPosts().remove(post);
         }
 
+        Collection<Message> messages = this.messageRepository.findByPost(post);
 
+        this.messageRepository.deleteAll(messages);
+
+        
         this.postRepository.delete(post);
 
     }
@@ -141,6 +151,7 @@ public class PostService {
     @Transactional
     public Post createPost(Post post){
 
+        post.setPostState(PostState.ACTIVE);
         this.savePost(post);
 
         return post;

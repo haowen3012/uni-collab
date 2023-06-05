@@ -42,6 +42,7 @@ public class PostController {
 
     User loggedUser = this.sessionData.getLoggedUser();
 
+    System.out.println(idExam);
     if(idExam!=null) {
       p.setExam(this.examService.getExam(idExam));
     }
@@ -105,7 +106,7 @@ public class PostController {
   }
 
   @RequestMapping(value="/deletePost/{idP}", method = RequestMethod.GET)
-  public String deletePost(Model model , @PathVariable Long idPost){
+  public String deletePost(Model model , @PathVariable("idP") Long idPost){
 
     this.postService.deletePost(idPost);
 

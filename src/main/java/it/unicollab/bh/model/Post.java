@@ -60,7 +60,6 @@ public class Post {
     private PostState postState;
 
 
-    @NotNull
     @ManyToOne
     private Exam exam;
 

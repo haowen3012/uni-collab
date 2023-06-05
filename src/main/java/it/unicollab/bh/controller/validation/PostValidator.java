@@ -36,6 +36,10 @@ public class PostValidator implements Validator {
 
         }
 
+        if(post.getExam()==null){
+            errors.rejectValue("exam", "required");
+        }
+
         if( post.getDeadline()!=null && post.getDeadline().isBefore(LocalDateTime.now())){
 
             errors.rejectValue("deadline", "invalidLocalDateTime");

@@ -60,6 +60,13 @@ public class MessageService {
     }
 
 
+    @Transactional
+    public Collection<Message> getMessagesByPost(Post post){
+        return this.messageRepository.findByPost(post);
+    }
+
+
+
 
     @Transactional
     public void SaveRequestMessage(Long idSource,  Long idDestination,
@@ -114,5 +121,14 @@ public class MessageService {
         this.saveMessage(m);
 
     }
+
+
+    @Transactional
+    public void deleteAll(Collection<Message> messages){
+
+        this.messageRepository.deleteAll(messages);
+    }
+
 }
+
 

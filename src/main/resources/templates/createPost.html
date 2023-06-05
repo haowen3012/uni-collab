@@ -146,7 +146,7 @@
 
   <div class="section-2">
     <div class="section-title">EXAM</div>
-    <select required name="selected_exam" >
+    <select required name="selected_exam">
       <option value="" >Choose the exam your project is for</option>
       <option th:each="exam: ${user.courseAttended.courseExams}"  th:value="${exam.id}" th:text="${exam.name}">Select the exam your project is for</option>
     </select>
