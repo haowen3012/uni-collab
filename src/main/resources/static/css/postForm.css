@@ -1,5 +1,37 @@
+@import url('https://fonts.cdnfonts.com/css/cera-round-pro');
+
+*{
+
+    box-sizing: border-box;
+}
+
+
+
+body{
+
+    display:flex;
+    justify-content: center;
+    align-items : center;
+    flex-direction: column;
+    background-color: #ccc;
+    /*  background-size: 400% 400%;*/
+    font-family: 'Cera Round Pro', sans-serif;
+    font-size: 13px;
+    min-height: 100%;
+    margin-top: 0;
+
+
+
+
+    /*  animation: gradient 10s ease infinite;*/
+}
+
+
+
+
 .container-2{
-    position: fixed;
+
+    position: absolute;
     background : #fff;
     display: none;
     align-items:center;
@@ -256,9 +288,42 @@ h1{
 
     background : #f10c45;
     box-shadow: 0 1px 7px red;
+    color: #fff;
 
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 55px;
+    margin: 20px;
+    border-radius: 20px;
+    border: 2px solid white;
+    outline: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+
+    background-size: 300% 200%;
+
+    text-decoration: none;
+
+
+    transition: all .4s ease-in-out;
+    box-shadow: 0 1px 7px 0 rgba(233, 191, 34, 0.75);
+
+    animation: slide-in-anim 1.2s ease-out forwards;
 }
 
+
+
+#go-back:active{
+    transform: scale(0.90);
+}
+
+#go-back:hover{
+    background-position: 100% 0;
+    transition: all .4s ease-in-out;
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,0.25);
+}
 
 /******************************/
 

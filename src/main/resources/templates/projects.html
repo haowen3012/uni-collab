@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Uni-Collab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" th:href="@{/css/project.css}" />
+    <link rel="stylesheet" th:href="@{/css/animation.css}" />
+</head>
+
+<body>
+<a href="/user" id="back-home"><i id="home" class="fa fa-home"></i></a>
+<!-- Swiper -->
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+        <div  th:each="project: ${projects}"class="swiper-slide">
+            <div class="proj-box">
+                <h1 class="proj-name" th:text="${project.name}">Project Name</h1>
+                <div class="proj-description">
+                    <h1>Description</h1>
+                    <div><span class="proj-text" th:text="${project.description}"> CIao sono Haowen</span></div>
+                </div>
+                <div class="proj-member">
+                    <h1>Members</h1>
+                    <a th:each="member: ${project.members}" th:text="${member.userName}"> Haowen Zheng</a>
+                </div>
+                <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'ACTIVE'}">ACTIVE</div>
+
+                <a class="deadline"  th:attr="onclick=|chooseDeadline('${project.id}')|"
+                   th:text="${project.deadline} ? ${#temporals.format( project.deadline, 'dd/MM/yyyy HH:mm')} : 'choose deadline'">choose deadline</a>
+            </div>
+            <form  th:id="'prj-deadline-' + ${project.id}" class="prj-deadline" method="post" th:action="@{'setProjectDeadline'+ '/' + ${project.id}}" >
+
+                <div class="close"  th:attr="onclick=|closeForm( '${project.id}')|" >&times;</div>
+                <input type="datetime-local" id="ddInput" name="deadline" />
+                <button class="submit" >submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: false,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 3,
+            slideShadows: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+    });
+</script>
+</body>
+
+<!---------------->
+
+
+<script>
+
+
+
+
+
+    function chooseDeadline(id){
+
+        var form = document.getElementById('prj-deadline-'+ id);
+
+
+        form.style.display = "flex";
+
+        form.style.animation = "slide-in-down 1s ease-out forwards";
+
+
+
+    }
+
+
+
+</script>
+
+<script>
+
+
+    function closeForm(id){
+
+
+        var element = document.getElementById('prj-deadline-' + id);
+
+        element.style.animation = "slide-out-anim 1s ease-out forwards";
+
+
+
+
+
+        setTimeout( function(){
+            element.style.display = "none";},1000);
+
+
+
+
+    }
+
+
+</script>
+<!---------------->
+
+</html>

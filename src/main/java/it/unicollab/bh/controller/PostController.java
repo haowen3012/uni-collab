@@ -2,20 +2,21 @@ package it.unicollab.bh.controller;
 
 
 import it.unicollab.bh.controller.session.SessionData;
+import it.unicollab.bh.controller.validation.PostValidator;
 import it.unicollab.bh.model.Post;
 import it.unicollab.bh.model.PostState;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.service.ExamService;
 import it.unicollab.bh.service.PostService;
 import it.unicollab.bh.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class PostController {
@@ -28,22 +29,38 @@ public class PostController {
   private ExamService examService;
 
   @Autowired
+  private PostValidator postValidator;
+
+  @Autowired
   private SessionData sessionData;
 
+
+
   @RequestMapping(value ={"/createPost"}, method = RequestMethod.POST)
-  public String createPost(@ModelAttribute Post p,@RequestParam("selected_exam") Long idExam, Model model ) {
+  public String createPost(@Valid @ModelAttribute Post p, BindingResult postBindingResult, @RequestParam(value = "selected_exam", required = false) Long idExam, Model model, RedirectAttributes redirectAttributes) {
 
 
     User loggedUser = this.sessionData.getLoggedUser();
 
+    if(idExam!=null) {
+      p.setExam(this.examService.getExam(idExam));
+    }
+    p.setOwner(loggedUser);
 
-    Post post = new Post(p.getProjectName(),p.getProjectDescription(),p.getMembership(),loggedUser,p.getDeadline(),
-            this.examService.getExam(idExam));
+    this.postValidator.validate(p, postBindingResult);
 
-    postService.savePost(post);
+   if(!postBindingResult.hasErrors()){
+
+     this.postService.createPost(p);
 
 
-    return "redirect:/user";
+     return "redirect:/user";
+
+   }
+
+   model.addAttribute("post",p);
+
+    return "errorPostCreation";
   }
 
 
@@ -66,8 +83,32 @@ public class PostController {
 
     model.addAttribute("posts", this.postService.getAllPostByOwnerOrderedByCreationTIme(loggedUser));
 
-    return "post.html";
+    return "posts.html";
 
   }
 
+  @RequestMapping(value="/updatePost/{idP}", method = RequestMethod.GET)
+  public  String updatePost(Model model, @PathVariable("idP") Long idPost){
+
+    model.addAttribute(this.postService.getPost(idPost));
+
+     return "postForm.html";
+  }
+
+
+  @RequestMapping(value="/updatePost/{idP}", method = RequestMethod.POST)
+  public  String updatePost(Model model, @PathVariable("idP") Long idPost,@RequestParam("selected_exam") Long idExam,@ModelAttribute Post newPost){
+
+    model.addAttribute( "post",this.postService.updatePost(idPost, newPost, idExam));
+
+    return "post.html";
+  }
+
+  @RequestMapping(value="/deletePost/{idP}", method = RequestMethod.GET)
+  public String deletePost(Model model , @PathVariable Long idPost){
+
+    this.postService.deletePost(idPost);
+
+    return "redirect:/posts";
+  }
 }

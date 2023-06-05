@@ -88,4 +88,26 @@ public class ScheduledTasks {
     }
 
 
+  @Scheduled(fixedRate = 10000)
+  @Transactional
+  public void terminateProject(){
+
+      Collection<Project> terminateProjects = this.projectService.getTerminateProjects(LocalDateTime.now(), ProjectState.TERMINATED);
+
+      if(terminateProjects == null)  return;
+
+
+      for(Project project : terminateProjects){
+        project.setProjectState(ProjectState.TERMINATED);
+
+
+        for (User user : project.getMembers() ) {
+
+          messageService.saveMessage(new Message(null, user, "is terminated", null, project , MessageType.PROJECT_TERMINATED));
+        }
+      }
+
+
+  }
+
 }

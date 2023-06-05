@@ -1,16 +1,17 @@
 package it.unicollab.bh.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -20,10 +21,15 @@ public class Post {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private Long id;
 
+    @NotBlank
     private String projectName;
 
+    @NotBlank
     private String projectDescription;
 
+    @Min(1)
+    @Max(5)
+    @NotNull
     private Integer membership;
 
     @ManyToOne
@@ -47,12 +53,14 @@ public class Post {
     /**
      *  the post deadline. After this date, the post is no longer visible to users who are not the owner
      */
+    @NotNull
     private LocalDateTime  deadline;
 
     @Enumerated(EnumType.STRING)
     private PostState postState;
 
 
+    @NotNull
     @ManyToOne
     private Exam exam;
 
@@ -179,6 +187,20 @@ public class Post {
 
     public void setExam(Exam exam) {
         this.exam = exam;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return Objects.equals(projectName, post.projectName) && Objects.equals(exam, post.exam);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(projectName, exam);
     }
 }
 

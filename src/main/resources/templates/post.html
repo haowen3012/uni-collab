@@ -2,168 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>uni-Collab</title>
+    <title>Uni Collab</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" th:href="@{/css/post.css}" />
-    <link rel="stylesheet" th:href="@{/css/postForm.css}" />
     <link rel="stylesheet" th:href="@{/css/button.css}" />
     <link rel="stylesheet" th:href="@{/css/animation.css}" />
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
 </head>
 <body>
-
-<a href="/user" id="back-home">
-    <i id="home" class="fa fa-home"></i>
-</a>
-
-        <div id="posts">
-            <div id="post"  th:each="post : ${posts}" >
-                <div class="project">
-                    <h1 class="section-title">PROJECT</h1>
-                    <div class="project-name" th:text="${post.projectName}"> PROJECT NAME</div>
-                </div>
-                <div class="exam">
-                    <div th:text="${post.exam.name}">EXAM NAME</div>
-                    <h1 class="section-title">EXAM</h1>
-                </div>
-                <div class="project-description">
-                    <h1 class="section-title">DESCRIPTION</h1>
-                    <div class="description" th:text="${post.projectDescription}">
-                        Il progetto di mobile computing consiste nella creazione di un gioco mobile con autenticazione. Mi servono 3 colleghi di progetto.
-                    </div>
-                </div>
-                <div class="bottom">
-                    <div class="bottom-left">
+<a href="/user" id="back-home"><i id="home" class="fa fa-home"></i></a>
+<div id="post" >
+    <div class="project">
+        <h1 class="section-title">PROJECT</h1>
+        <div class="project-name" th:text="${post.projectName}"> PROJECT NAME</div>
+    </div>
+    <div class="exam">
+        <div th:text="${post.exam.name}">EXAM NAME</div>
+        <h1 class="section-title">EXAM</h1>
+    </div>
+    <div class="project-description">
+        <h1 class="section-title">DESCRIPTION</h1>
+        <div class="description" th:text="${post.projectDescription}">
+            Il progetto di mobile computing consiste nella creazione di un gioco mobile con autenticazione. Mi servono 3 colleghi di progetto.
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="bottom-left">
 
 
-                        <div class="deadline">
-                            <div> DEADLINE </div>
-                            <span class="time" th:text="${#temporals.format( post.deadline, 'dd/MM/yyyy HH:mm')}">30/12/2023 19:12</span>
-                        </div>
+            <div class="deadline">
+                <div> DEADLINE </div>
+                <span class="time" th:text="${#temporals.format( post.deadline, 'dd/MM/yyyy HH:mm')}">30/12/2023 19:12</span>
+            </div>
 
-                    </div>
-                    <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'ACTIVE'}">
-                        <button  class="modify"  th:attr="onclick=|openPostForm( '${post.id}')|" >MODIFY</button>
-                        <div class="proj-state" >ACTIVE</div>
-                    </div>
-                    <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'EXPIRED'}">
-                        <button  class="modify">DELETE</button>
-                        <div class="#terminated">TERMINATED</div>
-                    </div>
-
-
-
-  <!--------------POST FORM--->
-            <form th:id="'container-2-' + ${post.id}" class="container-2"
-                  th:action="@{/createPost}"  method="post" >
-                <h1 th:text="${user.userName}">YOUR NAME</h1>
-                <div class="section-1">
-                    <div class="section-title">PROJECT NAME</div>
-                    <input class="flex-item" placeholder="Enter your project name" type="text" required name="projectName"/>
-                </div>
-
-                <div class="section-2">
-                    <div class="section-title">PROJECT DESCRIPTION</div>
-                    <textarea class="flex-item-2" role="textbox" contenteditable type="text"  required name="projectDescription">Enter the project description for your project</textarea>
-                </div>
-
-                <div class="section-2">
-                    <div class="section-title">EXAM</div>
-                    <select required name="selected_exam" >
-                        <option value="" >Choose the exam your project is for</option>
-                        <option th:each="exam: ${user.courseAttended.courseExams}"  th:value="${exam.id}" th:text="${exam.name}">Select the exam your project is for</option>
-                    </select>
-                </div>
-
-                <div class="section-3">
-                    <div  class="section-title">MEMBERSHIP</div>
-                    <input type="number" class="special-input" min="1" max="7" required placeholder="Enter the number of memebers"
-                           name="membership"/>
-                </div>
-
-                <div class="section-3">
-                    <div  class="section-title">DEADLINE</div>
-                    <input  class="special-input" type="datetime-local" required  name="deadline"/>
-                </div>
-
-                <div class="section-4">
-                    <button class="publish"  type="button" id="go-back"  th:attr="onclick=|closeForm( '${post.id}')|" >go back</button>
-                    <button class="publish" type ="submit">publish</button>
-                </div>
-            </form>
-            <!---------->
-
+        </div>
+        <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'ACTIVE'}">
+            <button  class="modify"  th:href="@{'/updatePost' + '/' + ${post.id}}">MODIFY</button>
+            <div class="proj-state" >ACTIVE</div>
+        </div>
+        <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'EXPIRED'}">
+            <button  class="modify">DELETE</button>
+            <div   class="proj-state" id="terminated">EXPIRED</div>
         </div>
     </div>
 </div>
 
-
-<script>
-    const slider = document.querySelector('#posts');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    slider.addEventListener('mousedown', (e) => {
-        isDown = true;
-        slider.classList.add('active');
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-    });
-    slider.addEventListener('mouseleave', () => {
-        isDown = false;
-        slider.classList.remove('active');
-    });
-    slider.addEventListener('mouseup', () => {
-        isDown = false;
-        slider.classList.remove('active');
-    });
-    slider.addEventListener('mousemove', (e) => {
-        if(!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 3; //scroll-fast
-        slider.scrollLeft = scrollLeft - walk;
-        console.log(walk);
-    });
-</script>
-
-<script>
-
-
-
-    var post_form;
-
-    var post = document.getElementById('post');
-
-    function openPostForm(id) {
-
-
-         post_form =  document.getElementById('container-2-' + id );
-
-        post_form.style.display = "flex";
-        post_form.style.animation = "slide-in-down 1.1s ease-out forwards";
-
-    }
-
-
-
-      function closeForm(id) {
-
-         post_form =  document.getElementById('container-2-' + id );
-
-        post_form.style.animation = "slide-out-anim 1s ease-out forwards";
-
-        post.style.animation = "none";
-
-
-        setTimeout(function () {
-            post_form.style.display = "none";
-        }, 1000);
-
-
-    }
-
-    </script>
 </body>
 </html>

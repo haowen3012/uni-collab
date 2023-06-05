@@ -99,6 +99,7 @@ public  class WebSecurityConfig {
                 .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
                 .requestMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
                 .anyRequest().authenticated()
+                .and().exceptionHandling().accessDeniedPage("/index")
                 .and().formLogin()
                 .loginPage("/login")
                 .permitAll()

@@ -1,6 +1,7 @@
 package it.unicollab.bh.service;
 
 import it.unicollab.bh.model.Project.Project;
+import it.unicollab.bh.model.Project.ProjectState;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.repository.ProjectRepository;
 import jakarta.transaction.Transactional;
@@ -68,6 +69,13 @@ public class ProjectService {
        project.setDeadline(deadline);
 
        this.saveProject(project);
+    }
+
+
+    @Transactional
+    public  Collection<Project> getTerminateProjects(LocalDateTime localDateTime, ProjectState projectState){
+
+        return this.projectRepository.findByDeadlineBeforeAndProjectStateNot(localDateTime, projectState);
     }
 }
 

@@ -1,7 +1,9 @@
 package it.unicollab.bh.controller;
 
+import it.unicollab.bh.FileUploadWrapper;
 import it.unicollab.bh.configuration.FileUploadUtil;
 import it.unicollab.bh.controller.session.SessionData;
+import it.unicollab.bh.controller.validation.MultipartFileValidator;
 import it.unicollab.bh.model.Course;
 
 //import it.unicollab.bh.model.Post;
@@ -16,6 +18,7 @@ import it.unicollab.bh.service.UniversityService;
 import it.unicollab.bh.service.UserService;
 
 
+import jakarta.validation.Valid;
 import org.hibernate.internal.util.MutableLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +26,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 //import org.springframework.util.StringUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 //import org.springframework.web.servlet.view.RedirectView;
 
@@ -54,6 +60,9 @@ public class MainController {
     
    @Autowired
     private ProfileService profileService;
+
+   @Autowired
+   private MultipartFileValidator multipartFileValidator;
    
 
     public MainController(){
@@ -143,16 +152,33 @@ public class MainController {
 
 
     @RequestMapping(value={"/profile/updateImages/{idP}"}, method = RequestMethod.POST)
-    public String updateProfieImages(Model model,@PathVariable("idP") Long idProfile
-            , @RequestParam(value = "image",required = false) MultipartFile image,
-                                     @RequestParam(value = "background",required = false) MultipartFile background,
+    public String updateProfieImages(Model model, @PathVariable("idP") Long idProfile
+            , @Valid @ModelAttribute FileUploadWrapper fileUploadWrapper, BindingResult fileUploadWrapperBindingResult,
                                      @RequestParam(value = "email",required = false)String email,
-                                     @RequestParam(value = "address", required = false)String address){
+                                     @RequestParam(value = "address", required = false)String address,
+                                     RedirectAttributes redirectAttributes){
 
-           this.profileService.updateProfileImages(idProfile,image, background, email, address);
+          this.multipartFileValidator.validate(fileUploadWrapper,fileUploadWrapperBindingResult);
+
+          if(!fileUploadWrapperBindingResult.hasErrors() ) {
 
 
-            return "redirect:/profile";
+              this.profileService.updateProfileImages(idProfile,fileUploadWrapper.getImage(), fileUploadWrapper.getBackground(), email, address);
+
+              return "redirect:/profile";
+          }
+          else{
+
+              System.out.println(fileUploadWrapper.getImage().isEmpty());
+              redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.fileUploadWrapper", fileUploadWrapperBindingResult);
+              redirectAttributes.addFlashAttribute("fileUploadWrapper", fileUploadWrapper);
+
+              return "redirect:/profile";
+
+          }
+
+
+
     }
 
 

@@ -1,0 +1,76 @@
+
+
+
+body{
+    background: #ccc;
+    overflow: scroll;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#errors{
+    width: 70%;
+    text-align: center;
+    margin: 1%;
+    font-size: 15px;
+    z-index: 3;
+    color: rgb(234, 76, 70);
+    animation: slide-in-down 1.2s ease-out forwards;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+
+
+}
+
+.error{
+    margin: 3%;
+    padding: 3%;
+    background-color: red;
+    border: solid #fff;
+    color:#fff;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 1px 7px 0 red;
+    animation: slide-in-down 1.2s ease-out forwards;
+    text-shadow: 1px 1px 1px black;
+
+}
+
+.retry{
+
+
+
+    background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    text-shadow: 1px 1px 1px black;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.retry:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+.retry:active{
+    transform: scale(0.90);
+}

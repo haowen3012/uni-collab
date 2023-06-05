@@ -64,20 +64,40 @@ public class ProfileService {
         }
 
             try {
-            if(img != null) {
-                File image = this.fileRepository.save(new File(img.getName(), img.getBytes()));
-                profile.setImage(image);
+            if(!img.isEmpty()) {
+
+              File oldImage = this.fileRepository.findByBytes(img.getBytes());
+
+
+              if(oldImage==null){
+                  File image = this.fileRepository.save(new File(img.getName(), img.getBytes()));
+                  profile.setImage(image);
+
+              }else{
+
+                  oldImage.setBytes(img.getBytes());
+                  this.fileRepository.save(oldImage);
+              }
+
+
             }
 
-            if(bg !=null) {
-                File background = this.fileRepository.save(new File(bg.getName(), bg.getBytes()));
-                profile.setBackground(background);
+            if(!bg.isEmpty()) {
+
+                File oldBackground = this.fileRepository.findByBytes(bg.getBytes());
+
+                if(oldBackground==null) {
+                    File background = this.fileRepository.save(new File(bg.getName(), bg.getBytes()));
+                    profile.setBackground(background);
+
+                }else{
+
+                    oldBackground.setBytes(bg.getBytes());
+                    this.fileRepository.save(oldBackground);
+                }
             }
 
-
-
-
-                this.saveProfile(profile);
+            this.saveProfile(profile);
 
 
             } catch (IOException e) {

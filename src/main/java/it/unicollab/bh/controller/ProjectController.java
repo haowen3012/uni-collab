@@ -33,7 +33,7 @@ public class ProjectController {
 
         System.out.println(this.projectService.getProjectsByMember(loggedUser).size());
 
-        return "project.html";
+        return "projects.html";
 
     }
 

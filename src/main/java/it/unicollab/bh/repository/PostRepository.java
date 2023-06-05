@@ -38,4 +38,8 @@ public interface PostRepository  extends CrudRepository<Post, Long> {
      * trova tutti i post di cui l'utente loggato non è proprietario, a cui non si è candidato, che sono ancora attivi e che si riferiscono ad un certo esame*/
     Collection<Post>  findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostStateAndExam( Course course, User owner, User appliedUser, PostState postState, Exam exam);
 
+
+    /******************************/
+
+    boolean existsByProjectNameAndExam(String projectName, Exam exam);
 }

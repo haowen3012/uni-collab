@@ -3,6 +3,7 @@ package it.unicollab.bh.service;
 import it.unicollab.bh.model.*;
 import it.unicollab.bh.repository.PostRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ public class PostService {
 
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
+    private ExamService examService;
 
     @Transactional
     public Post savePost(Post post){
@@ -86,7 +90,24 @@ public class PostService {
     }
     @Transactional
     public void deletePost(Long id){
-        this.postRepository.deleteById(id);
+
+        Post post = this.getPost(id);
+
+        post.getOwner().getOwnedPosts().remove(post); // remove the post from the owner side
+
+        for(User user : post.getAcceptedUsers()){   // remove the post from the accepted  users side
+
+            user.getAcceptedApplies().remove(post);
+        }
+
+        for(User user : post.getAppliedUsers()){ // remove the post from the applied users side
+
+            user.getAppliedPosts().remove(post);
+        }
+
+
+        this.postRepository.delete(post);
+
     }
 
     @Transactional
@@ -98,5 +119,30 @@ public class PostService {
     public Collection<Post> deleteExpiredPosts(LocalDateTime localDateTime){
 
        return  this.postRepository.deleteByDeadlineBefore(localDateTime);
+    }
+
+    @Transactional
+    public Post updatePost(Long idOldPost, Post newPost, Long idExam ){
+
+
+        Post oldPost = this.getPost(idOldPost);
+
+        BeanUtils.copyProperties(newPost, oldPost, new String[]{"id","owner","creationTimestamp","postState"});
+
+        oldPost.setExam(this.examService.getExam(idExam));
+
+
+        this.savePost(oldPost);
+
+        return oldPost;
+
+    }
+
+    @Transactional
+    public Post createPost(Post post){
+
+        this.savePost(post);
+
+        return post;
     }
 }
