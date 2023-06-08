@@ -11,7 +11,7 @@
 </head>
 <body>
 <a href="/user" id="back-home"><i id="home" class="fa fa-home"></i></a>
-<div class="proj-box">
+<div class="proj-box" th:fragment="singleProject">
   <h1 class="proj-name" th:text="${project.name}">Project Name</h1>
   <div class="proj-description">
     <h1>Description</h1>
@@ -33,6 +33,5 @@
   <button class="submit" >submit</button>
 
 </form>
-</div>
 </body>
 </html>

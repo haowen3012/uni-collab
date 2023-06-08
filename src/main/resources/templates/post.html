@@ -11,7 +11,7 @@
 </head>
 <body>
 <a href="/user" id="back-home"><i id="home" class="fa fa-home"></i></a>
-<div id="post" >
+<div id="post" th:fragment="singlePost" >
     <div class="project">
         <h1 class="section-title">PROJECT</h1>
         <div class="project-name" th:text="${post.projectName}"> PROJECT NAME</div>

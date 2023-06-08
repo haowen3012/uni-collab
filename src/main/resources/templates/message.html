@@ -15,32 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 </head>
 <body>
-<div id="container-nav" >
-    <div class="navbar">
-        <a href="/messages" id="message-icon">
-            <i id="message" class="fa fa-bell"></i>
-        </a>
-
-        <a href="/user">
-            <i id="home" class="fa fa-home"></i>
-        </a>
-
-        <a class="profile-section" onclick="openSideNav()">
-            <i id="profile" class="fa">&#xf2be;</i>
-        </a>
-
-        </div>
-        <div class="padding"></div>
-    <div class="search-section">
-        <div></div>
-        <div class="search">
-            <i class="fa fa-search" aria-hidden="true"></i>
-            <input></input>
-
-        </div>
-        <div></div>
-    </div>
-</div>
+<div th:replace="createPost.html :: navBar"></div>
 <div></div>
 <h1 class="empty" style="position: absolute; top:50%; font-size:3em;" th:if="${messages.isEmpty}">
     No Messages

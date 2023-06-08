@@ -2,10 +2,7 @@ package it.unicollab.bh.controller;
 
 import it.unicollab.bh.configuration.FileUploadUtil;
 import it.unicollab.bh.controller.session.SessionData;
-import it.unicollab.bh.model.Credentials;
-import it.unicollab.bh.model.Post;
-import it.unicollab.bh.model.PostState;
-import it.unicollab.bh.model.User;
+import it.unicollab.bh.model.*;
 import it.unicollab.bh.service.*;
 import it.unicollab.bh.controller.validation.CredentialsValidator;
 import it.unicollab.bh.controller.validation.UserValidator;
@@ -178,6 +175,7 @@ public class AuthenticationController {
              //set the user and store the credentials
              //this also stores the User, thanks to Cascade.ALL polocy
              credentials.setUser(user);
+             user.setProfile(new Profile());
              credentialsService.saveCredentials(credentials);
 
              model.addAttribute("user",user);
