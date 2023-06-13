@@ -24,7 +24,7 @@
 </head>
 <body>
 <!----------------------------------------------------------------------------->
-<div id="errors">
+<div id="errors" th:if="${post!=null}">
 
   <div class="error" th:if="${#fields.hasErrors('post.projectName')}"
        th:errors="${post.deadline}" >Campo Obbligatorio</div>

@@ -1,92 +1,29 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <title>Uni-Collab</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet"  href="/index.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Uni Collab</title>
+    <link rel="stylesheet" th:href="@{/css/animation.css}" />
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
 </head>
 <body>
 
-<div id="bg-img">
-    <div id="abc">
-        <nav>
-            <ul>
-                <li><a href="/">HOME</a></li>
-                <li><a id="login-button" th:href="@{/login}" >LOG IN</a></li>
+<div id="navbar">
 
-            </ul>
-        </nav>
-    </div>
+    <a class="login" >LOGIN</a>
+
 </div>
-    <div id="bodytext">
-      <h1> welcome to Uni-collab </h1>
 
-      </div>
-   
+<div id="content">
 
-<!---->
-<!--<script>
-    function openForm() {
-        document.getElementById("auth").style.display = "flex";
-        document.getElementById("bg-img").style.filter = "blur(8px)";
-    }
+    <div class="main">
+        <div class="title">UnI Collab</div>
 
-    function closeForm() {
-        document.getElementById("auth").style.display = "none";
-        document.getElementById("bg-img").style.filter = "none";
-    }
-</script>
-<script>
-    const signUpButton = document.getElementById('signUp');
-    const signInButton = document.getElementById('signIn');
-    const main = document.getElementById('main');
-
-    signUpButton.addEventListener('click',()=>{
-        main.classList.add("right-panel-active");
-    });
-    signInButton.addEventListener('click',()=>{
-        main.classList.remove("right-panel-active");
-    });
-
-</script>-->
-  </body>
-
-  <footer class="footer">
-  <d class="footer__addr">
-    <h1 class="footer__logo">Uni_collab</h1>
+        <a class="begin">start your exerience</a>
+    </div>
 
 
-
-  <ul class="footer__nav">
-
-
-    <ul class="nav__item">
-        <h2 class="nav__title">Legal:</h2></ul>
-
-      <ul class="nav__ul">
-        <li>
-          <a href="#">Privacy Policy</a>
-        </li>
-
-        <li>
-          <a href="#">Terms of Use</a>
-        </li>
-
-        <li>
-          <a href="#">Sitemap</a>
-        </li>
-      </ul>
-  </ul>
-  </d>
-  <div class="legal">
-    <p>Copyright &copy; 2023  All rights reserved.</p>
-    <div class="legal__links">
-    </span> Made by Bishoy Zakhary </span>
-    </span> and Hawoen  Zheng</span>
-   </div>
-  </div>
-</footer>
-
+</div>
+</body>
 </html>
