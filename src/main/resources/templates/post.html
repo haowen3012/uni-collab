@@ -12,36 +12,36 @@
 <body>
 <a href="/user" id="back-home"><i id="home" class="fa fa-home"></i></a>
 <div id="post" th:fragment="singlePost" >
-    <div class="project">
+    <div class="project" th:fragment="post-project">
         <h1 class="section-title">PROJECT</h1>
         <div class="project-name" th:text="${post.projectName}"> PROJECT NAME</div>
     </div>
-    <div class="exam">
+    <div class="exam"  th:fragment="post-exam">
         <div th:text="${post.exam.name}">EXAM NAME</div>
         <h1 class="section-title">EXAM</h1>
     </div>
-    <div class="project-description">
+    <div class="project-description"  th:fragment="post-porjectDesc">
         <h1 class="section-title">DESCRIPTION</h1>
         <div class="description" th:text="${post.projectDescription}">
             Il progetto di mobile computing consiste nella creazione di un gioco mobile con autenticazione. Mi servono 3 colleghi di progetto.
         </div>
     </div>
-    <div class="bottom">
+    <div class="bottom" th:fragment="post-bottom">
         <div class="bottom-left">
 
 
-            <div class="deadline">
+            <div class="deadline" >
                 <div> DEADLINE </div>
                 <span class="time" th:text="${#temporals.format( post.deadline, 'dd/MM/yyyy HH:mm')}">30/12/2023 19:12</span>
             </div>
 
         </div>
         <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'ACTIVE'}">
-            <button  class="modify"  th:href="@{'/updatePost' + '/' + ${post.id}}">MODIFY</button>
+            <a  class="modify"  th:href="@{'/updatePost' + '/' + ${post.id}}">MODIFY</a>
             <div class="proj-state" >ACTIVE</div>
         </div>
         <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'EXPIRED'}">
-            <button  class="modify">DELETE</button>
+            <a  class="modify">DELETE</a>
             <div   class="proj-state" id="terminated">EXPIRED</div>
         </div>
     </div>

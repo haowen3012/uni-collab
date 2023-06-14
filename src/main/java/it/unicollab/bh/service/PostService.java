@@ -78,21 +78,21 @@ public class PostService {
     /*returns the posts that you didn't crete, didn't applied and is not expired ( postState = active)*/
     @Transactional
     public Collection<Post> getHomePagePost(Course course, User owner, User appliedUser, PostState postState){
-        return this.postRepository.findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostState( course,owner, appliedUser, postState);
+        return this.postRepository.findAllByOwnerCourseAttendedAndOwnerNotAndPostState( course,owner, postState);
     }
 
     @Transactional
     public Collection<Post> getHomePagePostOrderedByCreationTimeDesc(Course course, User owner, User appliedUser, PostState postState){
 
-        return this.postRepository.findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostStateOrderByCreationTimestampDesc(
-           course ,owner, appliedUser, postState);
+        return this.postRepository.findAllByOwnerCourseAttendedAndOwnerNotAndPostStateOrderByCreationTimestampDesc(
+           course ,owner, postState);
     }
 
 
     @Transactional
     public Collection<Post> getHomePagePostFilteredByExam(Course course,User owner, User appliedUser, PostState postState, Exam exam){
 
-        return this.postRepository.findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostStateAndExam(course, owner,appliedUser,postState,exam);
+        return this.postRepository.findAllByOwnerCourseAttendedAndOwnerNotAndPostStateAndExam(course, owner,postState,exam);
     }
     @Transactional
     public void deletePost(Long id){

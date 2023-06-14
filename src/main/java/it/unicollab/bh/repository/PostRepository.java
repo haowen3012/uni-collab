@@ -22,7 +22,7 @@ public interface PostRepository  extends CrudRepository<Post, Long> {
     Collection<Post> findByDeadlineBeforeAndPostStateNot(LocalDateTime localDateTime, PostState postState);
 
 
-    Collection<Post> findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostState(Course course, User owner, User appliedUser, PostState postState);
+    Collection<Post> findAllByOwnerCourseAttendedAndOwnerNotAndPostState(Course course, User owner, PostState postState);
 
 
     /*************++delete queries*******/
@@ -30,13 +30,13 @@ public interface PostRepository  extends CrudRepository<Post, Long> {
     Collection<Post> deleteByDeadlineBefore(LocalDateTime localDateTime);
 
 
-    Collection<Post> findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostStateOrderByCreationTimestampDesc(Course course,User owner, User appliedUser, PostState postState);
+    Collection<Post> findAllByOwnerCourseAttendedAndOwnerNotAndPostStateOrderByCreationTimestampDesc(Course course,User owner, PostState postState);
 
 
     /**
      *
-     * trova tutti i post di cui l'utente loggato non è proprietario, a cui non si è candidato, che sono ancora attivi e che si riferiscono ad un certo esame*/
-    Collection<Post>  findAllByOwnerCourseAttendedAndOwnerNotAndAppliedUsersNotContainingAndPostStateAndExam( Course course, User owner, User appliedUser, PostState postState, Exam exam);
+     * trova tutti i post di cui l'utente loggato non è proprietario, che sono ancora attivi e che si riferiscono ad un certo esame*/
+    Collection<Post>  findAllByOwnerCourseAttendedAndOwnerNotAndPostStateAndExam( Course course, User owner, PostState postState, Exam exam);
 
 
     /******************************/

@@ -12,20 +12,23 @@
 <body>
 <a href="/user" id="back-home"><i id="home" class="fa fa-home"></i></a>
 <div class="proj-box" th:fragment="singleProject">
-  <h1 class="proj-name" th:text="${project.name}">Project Name</h1>
-  <div class="proj-description">
+  <h1 class="proj-name" th:text="${project.name}" th:fragment="proj-projName">Project Name</h1>
+  <div class="proj-description" th:fragment="proj-projectDesc">
     <h1>Description</h1>
     <div><span class="proj-text" th:text="${project.description}"> CIao sono Haowen</span></div>
   </div>
-  <div class="proj-member">
+  <div class="proj-member" th:fragment="proj-projMember">
     <h1>Members</h1>
     <a th:each="member: ${project.members}" th:text="${member.userName}"> Haowen Zheng</a>
   </div>
-  <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'ACTIVE'}">ACTIVE</div>
+  <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'ACTIVE'}" th:fragemnt="proj-projState">ACTIVE</div>
+  <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'TERMINATED'}" th:fragemnt="proj-projState">TERMINATED</div>
 
   <a class="deadline"  th:attr="onclick=|chooseDeadline('${project.id}')|"
      th:text="${project.deadline} ? ${#temporals.format( project.deadline, 'dd/MM/yyyy HH:mm')} : 'choose deadline'">choose deadline</a>
 </div>
+
+
 <form  th:id="'prj-deadline-' + ${project.id}" class="prj-deadline" method="post" th:action="@{'setProjectDeadline'+ '/' + ${project.id}}" >
 
   <div class="close"  th:attr="onclick=|closeForm( '${project.id}')|" >&times;</div>

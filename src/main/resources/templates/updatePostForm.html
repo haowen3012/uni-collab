@@ -9,7 +9,8 @@
 </head>
 <body>
 <form  class="container-2" th:fragment="postForm"
-       th:action="@{'/updatePost' + ${post.id}}"  method="post" >
+       th:action="@{'/updatePost' + '/' + ${post.id}}"  method="post"  style="background: rgba(0,0,0,0); box-shadow: none; border: none; border-radius: 0;
+ animation: slide-in-anim 0.7s ease-in forwards;">
     <h1 th:text="${user.userName}">YOUR NAME</h1>
     <div class="section-1" th:fragment="projectNameInput">
         <div class="section-title">PROJECT NAME</div>
@@ -42,31 +43,9 @@
 
     <div class="section-4" th:fragment="bottomPart">
         <a class="publish"  type="button" id="go-back" th:href="@{/posts}" >go back</a>
-        <button class="publish" type ="submit">publish</button>
+        <button class="publish" type ="submit">update</button>
     </div>
 </form>
-<script>
-
-    var post_form = document.getElementsByClassName('container-2')[0];
-    var go_back = document.getElementById('go-back');
-
-    post_form.style.display ="flex";
-
-    post_form.style.animation ="slide-in-down 1s ease-in forwards";
-
-
-    go_back.addEventListener('click',()=>{
-
-        post_form.style.animation ="slide-out-anim 1s ease-out forwards";
-
-        post.style.animation = "none";
-
-
-        setTimeout( function(){
-            post_form.style.display = "none";},1000);
-
-
-    });
-</script>
+<script th:src="@{/script/postFormPopUp.js}"></script>
 </body>
 </html>

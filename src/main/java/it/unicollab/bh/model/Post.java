@@ -46,7 +46,7 @@ public class Post {
     private LocalDateTime lastUpdateTimestamp;
 
 
-    @ManyToMany(mappedBy = "appliedPosts")
+    @ManyToMany(mappedBy = "appliedPosts", fetch = FetchType.EAGER)
     private Set<User> appliedUsers;
 
 

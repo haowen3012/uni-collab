@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+import org.thymeleaf.standard.expression.Each;
 
 import javax.print.DocFlavor;
 import java.io.IOException;
@@ -107,6 +108,7 @@ public class AuthenticationController {
 
            model.addAttribute("posts", postService.getHomePagePost(loggedUser.getCourseAttended(),loggedUser,loggedUser, PostState.ACTIVE));
 
+           postService.getHomePagePost(loggedUser.getCourseAttended(),loggedUser,loggedUser, PostState.ACTIVE).forEach(post -> System.out.println(post.getAppliedUsers()));
 
            return "createPost.html";
     }

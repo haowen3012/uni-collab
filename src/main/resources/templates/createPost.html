@@ -120,8 +120,11 @@
 
       </div>
       <div>
+
+        <button type="button"  th:if="${post.appliedUsers.contains(user)}">applied</button>
+
         <form th:action="@{'/sendRequest' + '/' + ${user.id} + '/' + ${post.owner.id} + '/' +
-          ${post.id}}" method="post">
+          ${post.id}}" method="post" th:unless="${post.appliedUsers.contains(user)}">
           <input  hidden  name="text"  th:value="'has applied to your post'"/>
           <input hidden   name="messageType" th:value="REQUEST" />
           <button class="publish">apply</button>

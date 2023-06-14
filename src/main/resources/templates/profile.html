@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>JS Bin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -50,8 +50,8 @@
 
         <div class="contacts-inf">
 
-            <div class="email" th:text="${profile.emailAddress!=null} ? ${profile.emailAddress} : 'no email added'">haowenz01@gmail.com</div>
-            <div class="address" th:text="${profile.physicalAddress!=null} ? ${profile.physicalAddress}: 'no address added'">Via Francesco Borromini 10</div>
+            <div class="email" th:text="${owner.courseAttended.name}">haowenz01@gmail.com</div>
+            <div class="address" th:text="${owner.courseAttended.university.name}">Via Francesco Borromini 10</div>
         </div>
     </div>
 </div>
@@ -118,48 +118,20 @@
         </h1>
 
 
-        <div id="post"  th:each=" post : ${owner.ownedPosts}">
-            <div class="project">
-                <h1 class="section-title">PROJECT</h1>
-                <div class="project-name" th:text="${post.projectName}"> PROJECT NAME</div>
-            </div>
-            <div class="exam">
-                <div th:text="${post.exam.name}">EXAM NAME</div>
-                <h1 class="section-title">EXAM</h1>
-            </div>
-            <div class="project-description">
-                <h1 class="section-title">DESCRIPTION</h1>
-                <div class="description" th:text="${post.projectDescription}">
-                    Il progetto di mobile computing consiste nella creazione di un gioco mobile con autenticazione. Mi servono 3 colleghi di progetto.
-                </div>
-            </div>
-            <div class="bottom">
-                <div class="bottom-left">
+        <div id="post" th:each=" post : ${owner.ownedPosts}">
 
+            <div  th:replace=" post.html ::post-project"></div>
 
-                    <div class="deadline">
-                        <div> DEADLINE </div>
-                        <span class="time" th:text="${#temporals.format( post.deadline, 'dd/MM/yyyy HH:mm')}">30/12/2023 19:12</span>
-                    </div>
+            <div th:replace="post.html :: post-exam"></div>
 
-                </div>
-                <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'ACTIVE'}">
-                    <a  class="modify">MODIFY</a>
-                    <div class="proj-state" >ACTIVE</div>
-                </div>
-                <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'EXPIRED'}">
-                    <a  class="modify">DELETE</a>
-                    <div  class="proj-state"  id="terminated">TERMINATED</div>
-                </div>
+            <div  th:replace="post.html :: post-porjectDesc"></div>
+
+            <div th:replace=" post.html :: post-bottom">
             </div>
+
         </div>
 
-
-
-
-
-
-
+        </div>
 
     </div>
 </div>
@@ -175,20 +147,20 @@
 
 
         <div class="proj-box" th:each=" project : ${owner.projects}">
-            <h1 class="proj-name" th:text="${project.name}">Project Name</h1>
-            <div class="proj-description">
-                <h1>Description</h1>
-                <div><span class="proj-text" th:text="${project.description}"> CIao sono Haowen</span></div>
-            </div>
-            <div class="proj-member">
-                <h1>Members</h1>
-                <a th:each="member: ${project.members}"  th:text="${member.userName}"> Haowen Zheng</a>
-            </div>
-            <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'ACTIVE'}">ACTIVE</div>
-            <div class="proj-state" id="terminated" th:if="${#strings.toString(project.projectState) == 'TERMINATED'}">TERMINATED</div>
+
+
+            <div th:replace=" project.html :: proj-projName">Project Name</div>
+
+            <div th:replace=" project.html :: proj-projectDesc"></div>
+
+            <div th:replace=" project.html :: proj-projMember"></div>
+
+            <div  th:replace=" project.html :: proj-projState">ACTIVE</div>
+
+
+
         </div>
     </div>
-
 
 
 
@@ -208,15 +180,15 @@
 
     <div class="image">
         <input type="file" id="back-img" name="background"  hidden  />
-        <img id="thumbnail-1" th:if="${profile.background != null}" th:src="@{'/display/image/' + ${profile.background.id}}" alt="Profile background" />
-        <img id="thumbnail-1" th:if="${profile.background == null}" src="https://i.postimg.cc/8PPdjhZc/background-image-Default.jpg" alt="Default background" />
+        <img class="thumbnail-1" th:if="${profile.background != null}" th:src="@{'/display/image/' + ${profile.background.id}}" alt="Profile background" />
+        <img class="thumbnail-1" th:if="${profile.background == null}" src="https://i.postimg.cc/8PPdjhZc/background-image-Default.jpg" alt="Default background" />
         <i class="fa fa-plus" id="plus-1" ></i>
     </div>
 
     <div class="image-p">
         <input type="file" id="main-img" name="image" accept="image/png, image/jpeg" hidden />
-        <img id="thumbnail-2" th:if="${profile.image != null}" th:src="@{'/display/image/' + ${profile.image.id}}" alt="Profile image"/>
-        <img id="thumbnail-2" th:if="${profile.image == null}" src="https://i.postimg.cc/JzFQwGcn/profile-Image-Default.jpg" alt="Default image"/>
+        <img class="thumbnail-2" th:if="${profile.image != null}" th:src="@{'/display/image/' + ${profile.image.id}}" alt="Profile image"/>
+        <img class="thumbnail-2" th:if="${profile.image == null}" src="https://i.postimg.cc/JzFQwGcn/profile-Image-Default.jpg" alt="Default image"/>
         <i class="fa fa-plus" id="plus-2" ></i>
     </div>
 
@@ -316,7 +288,7 @@
 
     function  showImageThumbnail(fileInput, n){
 
-        var thumbnail = document.getElementById('thumbnail-'+ n);
+        var thumbnail = document.getElementsByClassName('thumbnail-'+ n)[0];
 
         file = fileInput.files[0];
         reader = new FileReader();

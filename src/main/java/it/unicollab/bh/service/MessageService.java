@@ -76,7 +76,7 @@ public class MessageService {
         User source = this.userService.getUser(idSource);
 
         post.addAppliedUser(source);
-        source.getAppliedPosts().add(post);    // forse da modificare
+        source.addAppliedPost(post);    // forse da modificare
 
 
         m.setSource(source);
