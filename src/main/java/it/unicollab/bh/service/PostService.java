@@ -82,7 +82,7 @@ public class PostService {
     }
 
     @Transactional
-    public Collection<Post> getHomePagePostOrderedByCreationTimeDesc(Course course, User owner, User appliedUser, PostState postState){
+    public Collection<Post> getHomePagePostOrderedByCreationTimeDesc(Course course, User owner,User appliedUser, PostState postState){
 
         return this.postRepository.findAllByOwnerCourseAttendedAndOwnerNotAndPostStateOrderByCreationTimestampDesc(
            course ,owner, postState);

@@ -50,20 +50,12 @@ public class ProfileService {
     }
 
     @Transactional
-    public Profile updateProfileImages(Long id, MultipartFile img, MultipartFile bg, String email ,String address) {
+    public Profile updateProfileImages(Long id, MultipartFile img, MultipartFile bg, String email ,String address) throws  IOException{
 
         Profile profile = this.getProfile(id);
 
 
-        if(email != null){
-            profile.setEmailAddress(email);
-        }
 
-        if(address != null){
-            profile.setPhysicalAddress(address);
-        }
-
-            try {
             if(!img.isEmpty()) {
 
               File oldImage = profile.getImage();
@@ -102,10 +94,6 @@ public class ProfileService {
             this.saveProfile(profile);
 
 
-            } catch (IOException e) {
-
-
-            }
 
 
         return profile;
@@ -113,21 +101,26 @@ public class ProfileService {
 
 
     @Transactional
-    public Profile updateProfileCurriculum(Long idProfile, MultipartFile curri){
+    public Profile updateProfileCurriculum(Long idProfile, MultipartFile curri) throws IOException{
 
         Profile profile = this.getProfile(idProfile);
 
-       try{
-           if(curri!= null){
-               File curriculum = this.fileRepository.save(new File(curri.getName(), curri.getBytes()));
-               profile.setCurriculum(curriculum);
+        if(!curri.isEmpty()){
+
+              if(profile.getCurriculum()==null) {
+                  File curriculum = this.fileRepository.save(new File(curri.getName(), curri.getBytes()));
+                  profile.setCurriculum(curriculum);
+              }else{
+
+                  File curriculum = profile.getCurriculum();
+                  curriculum.setName(curri.getOriginalFilename());
+                  curriculum.setBytes(curri.getBytes());
+              }
 
            }
 
            this.saveProfile(profile);
-       }catch (IOException e){
 
-       }
         return profile;
     }
 }

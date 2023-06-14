@@ -1,4 +1,4 @@
-package it.unicollab.bh.controller.notification;
+/*package it.unicollab.bh.controller.notification;
 
 import it.unicollab.bh.model.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,3 +32,4 @@ public class WebSocketController {
 
 }
 
+*/

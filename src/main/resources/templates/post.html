@@ -41,7 +41,7 @@
             <div class="proj-state" >ACTIVE</div>
         </div>
         <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'EXPIRED'}">
-            <a  class="modify">DELETE</a>
+            <a  class="modify" th:href="@{'/deletePost' + '/' + ${post.id}}">DELETE</a>
             <div   class="proj-state" id="terminated">EXPIRED</div>
         </div>
     </div>

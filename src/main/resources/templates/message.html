@@ -22,10 +22,12 @@
 </h1>
 <div class="messages">
 <div th:each=" message : ${messages}" class="mes-cont">
+    <div class="time-date" th:text="${#temporals.format(message.creationTimestamp, 'HH:mm dd MMMM yyyy')}" >12:12 19 dicembre 2023</div>
+
 <div id="request" class="message" th:if="${#strings.toString(message.messageType) == 'REQUEST' && message.post!=null}">
-    <a th:text="${message.source.userName}">Haowen Zheng </a>
+    <a th:text="${message.source.userName}" th:href="'/profile/' + ${message.source.id}">Haowen Zheng </a>
     <span th:text="${message.text}">applied for your </span>
-    <a href="#">post</a>
+    <a th:href="'/post/' + ${post.id}">post</a>
     <form method="post" th:action="@{'/sendReply' + '/' + ${message.destination.id} + '/' + ${message.source.id}
     + '/' + ${message.post.id}  + '/' + ${message.id}}">
         <input hidden   name=text th:value="'accepted your application'" />
@@ -43,29 +45,29 @@
 </div>
 
         <div  class="message" id="request-accepted" th:if="${#strings.toString(message.messageType) == 'ACCEPTED'}">
-            <a th:text="${message.source.userName}">Haowen Zheng </a>
+            <a th:text="${message.source.userName}"  th:href="'/profile/' + ${message.source.id}">Haowen Zheng </a>
             <span th:text="${message.text}">applied for your </span>
-            <a href="#">post</a>
+            <a th:href="'/post/' + ${post.id}">post</a>
             <button disabled  class="response">ACCEPTED</button>
         </div>
 
         <div class="message" id="request-declined" th:if="${#strings.toString(message.messageType) == 'DECLINED'}">
-            <a th:text="${message.source.userName}">Haowen Zheng </a>
+            <a th:text="${message.source.userName}" th:href="'/profile/' + ${message.source.id}" >Haowen Zheng </a>
             <span th:text="${message.text}">applied for your </span>
-            <a href="#">post</a>
+            <a th:href="'/post/' + ${post.id}">post</a>
             <button disabled class="response">DECLINED</button>
         </div>
 
     <div class="message" id="project-active" th:if="${#strings.toString(message.messageType) == 'PROJECT_ACTIVE'}">
         <span>A new </span>
-        <a href="#">Project</a>
+        <a th:href="'/project/' + ${project.id}">Project</a>
         <span th:text="${message.text}"> is </span>
         <button disabled class="response">ACTIVE</button>
     </div>
 
     <div class="message" id="project-terminated" th:if="${#strings.toString(message.messageType) == 'PROJECT_TERMINATED'}">
         <span>The </span>
-        <a href="#">Project</a>
+        <a th:href="'/project/' + ${project.id}">Project</a>
         <span th:text="${message.text}"> is </span>
         <button disabled class="response">TERMINATED</button>
     </div>
@@ -73,22 +75,22 @@
 
     <div class="message" id="post-expired" th:if="${#strings.toString(message.messageType) == 'POST_EXPIRED'}">
         <span>The</span>
-        <a href="#">post</a>
+        <a th:href="'/post/' + ${post.id}">post</a>
         <span th:text="${message.text}"> has</span>
         <button disabled class="response">EXPIRED</button>
     </div>
 
 
 <div id="accept" class="message" th:if="${#strings.toString(message.messageType) == 'ACCEPT'}">
-    <a th:text="${message.source.userName}">Haowen Zheng </a>
+    <a th:text="${message.source.userName}" th:href="'/profile/' + ${message.source.id}" >Haowen Zheng </a>
     <span  th:text="${message.text}">accepted your application for </span>
-    <a href="#">post</a>
+    <a th:href="'/post/' + ${post.id}">post</a>
 </div>
 
 <div id="decline" class="message" th:if="${#strings.toString(message.messageType) == 'DECLINE'}">
-    <a th:text="${message.source.userName}">Haowen Zheng </a>
+    <a th:text="${message.source.userName}" th:href="'/profile/' + ${message.source.id}" >Haowen Zheng </a>
     <span  th:text="${message.text}">declined your application for </span>
-    <a href="#">post</a>
+    <a h th:href="'/post/' + ${post.id}">post</a>
 </div>
 </div>
 </div>

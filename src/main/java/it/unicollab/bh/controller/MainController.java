@@ -155,9 +155,9 @@ public class MainController {
         return "profile.html";
     }
     @RequestMapping(value={"/profile/updatePersonalInformation/{idP}"}, method = RequestMethod.POST)
-    public String updatePersonalInformation(Model model,@PathVariable("idP") Long idProfile, @RequestParam("infos") String pf){
+    public String updatePersonalInformation(@PathVariable("idP") Long idProfile, @RequestParam("infos") String pf){
 
-        model.addAttribute(this.profileService.updatePersonalInformation(idProfile, pf));
+        this.profileService.updatePersonalInformation(idProfile, pf);
 
 
         return "redirect:/profile";
@@ -166,7 +166,7 @@ public class MainController {
 
 
     @RequestMapping(value={"/profile/updateImages/{idP}"}, method = RequestMethod.POST)
-    public String updateProfieImages(Model model, @PathVariable("idP") Long idProfile
+    public String updateProfileImages(Model model, @PathVariable("idP") Long idProfile
             , @Valid @ModelAttribute FileUploadWrapper fileUploadWrapper, BindingResult fileUploadWrapperBindingResult,
                                      @RequestParam(value = "email",required = false)String email,
                                      @RequestParam(value = "address", required = false)String address,
@@ -177,9 +177,16 @@ public class MainController {
           if(!fileUploadWrapperBindingResult.hasErrors() ) {
 
 
-              this.profileService.updateProfileImages(idProfile,fileUploadWrapper.getImage(), fileUploadWrapper.getBackground(), email, address);
 
-              return "redirect:/profile";
+              try {
+                  this.profileService.updateProfileImages(idProfile, fileUploadWrapper.getImage(), fileUploadWrapper.getBackground(), email, address);
+
+
+              }catch(IOException e){
+
+                  redirectAttributes.addFlashAttribute("fileUploadError","An error occured while uploading the input files");
+
+              }
           }
           else{
 
@@ -187,22 +194,40 @@ public class MainController {
               redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.fileUploadWrapper", fileUploadWrapperBindingResult);
               redirectAttributes.addFlashAttribute("fileUploadWrapper", fileUploadWrapper);
 
-              return "redirect:/profile";
 
           }
 
+        return "redirect:/profile";
 
 
     }
 
 
     @RequestMapping(value={"/profile/updateCurriculum/{idP}"}, method = RequestMethod.POST)
-    public String updateProfileCurriculum(Model model, @PathVariable("idP") Long idProfile,
-                                          @RequestParam(value = "curriculum",required = false) MultipartFile curriculum){
+    public String updateProfileCurriculum(@PathVariable("idP") Long idProfile,
+                                          @RequestParam(value = "curriculum",required = false) MultipartFile curriculum,BindingResult bindingResult,
+                                          RedirectAttributes redirectAttributes){
 
-        this.profileService.updateProfileCurriculum(idProfile,curriculum);
+        this.multipartFileValidator.validate(curriculum,bindingResult);
+
+        if(!bindingResult.hasErrors()) {
+
+            try {
+                this.profileService.updateProfileCurriculum(idProfile, curriculum);
+
+            } catch (IOException e) {
+                redirectAttributes.addFlashAttribute("fileUploadError", "An error occured while uploading the input files");
+
+            }
+        }else{
+
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.curriculum",bindingResult);
+            redirectAttributes.addFlashAttribute("post",curriculum);
+
+        }
 
         return "redirect:/profile";
+
     }
 
 

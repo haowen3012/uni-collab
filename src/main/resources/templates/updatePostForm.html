@@ -8,6 +8,9 @@
     <link rel="stylesheet" th:href="@{/css/animation.css}" />
 </head>
 <body>
+
+<div th:replace="createPost.html :: postErrors"></div>
+
 <form  class="container-2" th:fragment="postForm"
        th:action="@{'/updatePost' + '/' + ${post.id}}"  method="post"  style="background: rgba(0,0,0,0); box-shadow: none; border: none; border-radius: 0;
  animation: slide-in-anim 0.7s ease-in forwards;">

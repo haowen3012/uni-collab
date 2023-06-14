@@ -13,6 +13,10 @@
 
 <body>
 <a href="/user" id="back-home"><i id="home" class="fa fa-home"></i></a>
+
+<h1 class="empty" style="position: absolute; top:50%; font-size:3em;" th:if="${projects.isEmpty}">
+    No Projects
+</h1>
 <!-- Swiper -->
 <div class="swiper mySwiper">
     <div class="swiper-wrapper">

@@ -27,9 +27,13 @@
     <div class="error" th:if="${fileUploadWrapper!=null and  #fields.hasErrors('fileUploadWrapper.curriculum')}"
          th:errors="${fileUploadWrapper.curriculum}" ></div>
 
+    <div class="error" th:if="${ fileUploadError}"
+         th:text="${fileUploadError}"></div>
+
+    <script src="/script/errorLogs.js"></script>
 </div>
 
-<script src="/script/errorLogs.js"></script>
+
 <!----------------------------->
 
 <a href="/user" id="back-home">
@@ -179,16 +183,16 @@
 
 
     <div class="image">
-        <input type="file" id="back-img" name="background"  hidden  />
-        <img class="thumbnail-1" th:if="${profile.background != null}" th:src="@{'/display/image/' + ${profile.background.id}}" alt="Profile background" />
-        <img class="thumbnail-1" th:if="${profile.background == null}" src="https://i.postimg.cc/8PPdjhZc/background-image-Default.jpg" alt="Default background" />
+        <input type="file" id="back-img" name="background"  accept="image/png, image/jpeg"  hidden  />
+        <img id="thumbnail-1" th:if="${profile.background != null}" th:src="@{'/display/image/' + ${profile.background.id}}" alt="Profile background" />
+        <img id="thumbnail-1" th:if="${profile.background == null}" src="https://i.postimg.cc/8PPdjhZc/background-image-Default.jpg" alt="Default background" />
         <i class="fa fa-plus" id="plus-1" ></i>
     </div>
 
     <div class="image-p">
         <input type="file" id="main-img" name="image" accept="image/png, image/jpeg" hidden />
-        <img class="thumbnail-2" th:if="${profile.image != null}" th:src="@{'/display/image/' + ${profile.image.id}}" alt="Profile image"/>
-        <img class="thumbnail-2" th:if="${profile.image == null}" src="https://i.postimg.cc/JzFQwGcn/profile-Image-Default.jpg" alt="Default image"/>
+        <img id="thumbnail-2" th:if="${profile.image != null}" th:src="@{'/display/image/' + ${profile.image.id}}" alt="Profile image"/>
+        <img id="thumbnail-2" th:if="${profile.image == null}" src="https://i.postimg.cc/JzFQwGcn/profile-Image-Default.jpg" alt="Default image"/>
         <i class="fa fa-plus" id="plus-2" ></i>
     </div>
 
@@ -288,7 +292,7 @@
 
     function  showImageThumbnail(fileInput, n){
 
-        var thumbnail = document.getElementsByClassName('thumbnail-'+ n)[0];
+        var thumbnail = document.getElementsByClassName('thumbnail-'+ n);
 
         file = fileInput.files[0];
         reader = new FileReader();

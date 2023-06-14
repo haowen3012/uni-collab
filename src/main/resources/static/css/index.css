@@ -175,3 +175,7 @@ body{
 a{
   text-decoration: none;
 }
+
+a:active{
+  transform: scale(0.95);
+}

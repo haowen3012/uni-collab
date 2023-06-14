@@ -24,15 +24,17 @@
 </head>
 <body>
 <!----------------------------------------------------------------------------->
-<div id="errors" th:if="${post!=null}">
+<div id="errors" th:if="${post!=null}" th:fragment="postErrors">
+
+  <div class="error" th:if="${#fields.hasErrors('post')}"
+       th:errors="${post}" >Campo Obbligatorio</div>
 
   <div class="error" th:if="${#fields.hasErrors('post.projectName')}"
        th:errors="${post.deadline}" >Campo Obbligatorio</div>
 
 
-
   <div class="error" th:if="${#fields.hasErrors('post.projectDescription')}"
-       th:errors="${post.deadline}" ></div>
+       th:errors="${post.projectDescription}" ></div>
 
   <div class="error" th:if="${#fields.hasErrors('post.exam')}"
        th:errors="${post.exam}" ></div>
@@ -44,9 +46,10 @@
        th:errors="${post.deadline}" ></div>
 
 
+  <script th:src="@{script/errorLogs.js}"></script>
 </div>
 
-<script th:src="@{script/errorLogs.js}"></script>
+
 <!------------------------------------------------------->
 
 <div id="container-nav" th:fragment="navBar" >
@@ -168,7 +171,7 @@
 
 
 <!---pop up for deleting review---->
-<div id="event-warn" th:if="${postCreated}">
+<div class="event-warn" th:if="${postCreated}">
   The post  has been successfully created
 </div>
 <script src="/script/event-warn.js"></script>

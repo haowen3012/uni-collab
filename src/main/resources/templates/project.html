@@ -29,12 +29,13 @@
 </div>
 
 
-<form  th:id="'prj-deadline-' + ${project.id}" class="prj-deadline" method="post" th:action="@{'setProjectDeadline'+ '/' + ${project.id}}" >
+<form  th:id="'prj-deadline-' + ${project.id}" class="prj-deadline" method="post" th:action="@{'setProjectDeadline'+ '/' + ${project.id}}" onclick="chooseDeadline(project.deadline)" >
 
   <div class="close"  th:attr="onclick=|closeForm( '${project.id}')|" >&times;</div>
   <input type="datetime-local" id="ddInput" name="deadline" />
   <button class="submit" >submit</button>
 
 </form>
+
 </body>
 </html>

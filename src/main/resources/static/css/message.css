@@ -31,8 +31,23 @@ body{
 
 }
 
+
 .mes-cont{
-    margin-bottom: 4%;
+    margin-bottom:   5%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.time-date{
+    padding:2%;
+    color: grey;
+    border-top:solid;
+    font-size:1.2em;
+
+    animation: slide-in-anim 1.2s ease-out forwards;
 }
 
 .message{
