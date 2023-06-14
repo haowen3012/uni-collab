@@ -105,7 +105,7 @@ public class PostController {
     model.addAttribute(post);
 
 
-     return "postForm.html";
+     return "updatePostForm.html";
   }
 
 

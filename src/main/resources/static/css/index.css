@@ -117,7 +117,7 @@ body{
   margin-left:3%;
 
 
-  font-size: 15em;
+  font-size: 10em;
 
   font-weight: bold;
 
@@ -172,4 +172,6 @@ body{
   text-decoration: none;
 }
 
-
+a{
+  text-decoration: none;
+}
