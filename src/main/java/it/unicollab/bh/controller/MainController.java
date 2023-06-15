@@ -1,7 +1,6 @@
 package it.unicollab.bh.controller;
 
 import it.unicollab.bh.FileUploadWrapper;
-import it.unicollab.bh.configuration.FileUploadUtil;
 import it.unicollab.bh.controller.session.SessionData;
 import it.unicollab.bh.controller.validation.MultipartFileValidator;
 import it.unicollab.bh.model.Course;

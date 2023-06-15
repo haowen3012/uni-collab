@@ -12,6 +12,8 @@
     <link rel="stylesheet" th:href="@{/css/home.css}" />
     <link rel="stylesheet" th:href="@{/css/error.css}" />
     <link rel="stylesheet" th:href="@{/css/emptySection.css}" />
+    <link rel="stylesheet" th:href="@{/css/project.css}" />
+    <link rel="stylesheet" th:href="@{/css/post.css}" />
 </head>
 <body>
 
@@ -115,12 +117,10 @@
 
 <div id="profile-post">
     <h1 class="title">Active Posts</h1>
+    <h1 th:if="${owner.ownedPosts.isEmpty}" class="empty">
+        Empty Section
+    </h1>
     <div id="posts">
-
-        <h1 th:if="${owner.ownedPosts.isEmpty}" class="empty">
-            Empty Section
-        </h1>
-
 
         <div id="post" th:each=" post : ${owner.ownedPosts}">
 
@@ -149,9 +149,8 @@
        Empty Section
    </h1>
 
-
-        <div class="proj-box" th:each=" project : ${owner.projects}">
-
+   <div th:each=" project : ${owner.projects}" class="project-swiper">
+        <div class="proj-box" >
 
             <div th:replace=" project.html :: proj-projName">Project Name</div>
 
@@ -159,12 +158,14 @@
 
             <div th:replace=" project.html :: proj-projMember"></div>
 
-            <div  th:replace=" project.html :: proj-projState">ACTIVE</div>
+            <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'ACTIVE'}" th:fragemnt="proj-projState">ACTIVE</div>
+            <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'TERMINATED'}" th:fragemnt="proj-projState">TERMINATED</div>
 
 
 
         </div>
     </div>
+        </div>
 
 
 
@@ -195,11 +196,6 @@
         <img id="thumbnail-2" th:if="${profile.image == null}" src="https://i.postimg.cc/JzFQwGcn/profile-Image-Default.jpg" alt="Default image"/>
         <i class="fa fa-plus" id="plus-2" ></i>
     </div>
-
-    <input placeholder="Enter your email" th:field="${profile.emailAddress}" name="email"/>
-    <input placeholder="Enter your address" th:field="${profile.physicalAddress}" name="address" />
-
-
 
 
     <div class="close" >&times;</div>

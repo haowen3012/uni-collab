@@ -11,6 +11,7 @@
 </head>
 <body>
 <a href="/user" id="back-home"><i id="home" class="fa fa-home"></i></a>
+<div  class="project-swiper">
 <div class="proj-box" th:fragment="singleProject">
   <h1 class="proj-name" th:text="${project.name}" th:fragment="proj-projName">Project Name</h1>
   <div class="proj-description" th:fragment="proj-projectDesc">
@@ -25,7 +26,8 @@
   <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'TERMINATED'}" th:fragemnt="proj-projState">TERMINATED</div>
 
   <a class="deadline"  th:attr="onclick=|chooseDeadline('${project.id}')|"
-     th:text="${project.deadline} ? ${#temporals.format( project.deadline, 'dd/MM/yyyy HH:mm')} : 'choose deadline'">choose deadline</a>
+     th:text="${project.deadline} ? ${#temporals.format( project.deadline, 'dd/MM/yyyy HH:mm')} : 'choose deadline'"
+  th:if="${project.members.contains(user)}">choose deadline</a>
 </div>
 
 
@@ -36,6 +38,6 @@
   <button class="submit" >submit</button>
 
 </form>
-
+</div>
 </body>
 </html>

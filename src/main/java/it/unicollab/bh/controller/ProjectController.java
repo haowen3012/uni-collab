@@ -38,6 +38,18 @@ public class ProjectController {
     }
 
 
+    @RequestMapping(value = {"/project/{id}"}, method = RequestMethod.GET)
+    public String getProject(Model model,@PathVariable("id") Long id){
+
+
+
+      model.addAttribute("project", this.projectService.getProject(id));
+
+        return "project.html";
+
+    }
+
+
     @RequestMapping( value={"/setProjectDeadline/{idP}"}, method = RequestMethod.POST)
     public String setProjectDeadline(@PathVariable("idP") Long idProject, @RequestParam(value = "deadline", required = false)LocalDateTime deadline){
 

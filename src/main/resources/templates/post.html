@@ -37,11 +37,11 @@
 
         </div>
         <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'ACTIVE'}">
-            <a  class="modify"  th:href="@{'/updatePost' + '/' + ${post.id}}">MODIFY</a>
+            <a  class="modify"  th:href="@{'/updatePost' + '/' + ${post.id}}" th:if="${post.owner == user}">MODIFY</a>
             <div class="proj-state" >ACTIVE</div>
         </div>
         <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'EXPIRED'}">
-            <a  class="modify" th:href="@{'/deletePost' + '/' + ${post.id}}">DELETE</a>
+            <a  class="modify" th:href="@{'/deletePost' + '/' + ${post.id}}" th:if="${post.owner == user}" >DELETE</a>
             <div   class="proj-state" id="terminated">EXPIRED</div>
         </div>
     </div>

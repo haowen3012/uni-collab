@@ -15,22 +15,13 @@ public class Profile {
     private String personalInformation;
 
 
-    @Column(name="address")
-    private String physicalAddress;
-
-    @Email
-    @Column(name = "email")
-    private String emailAddress;
-
-
-
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private File image;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private File background;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private File curriculum;
 
 
@@ -42,10 +33,6 @@ public class Profile {
 
     }
 
-    public Profile(String emailAddress){
-
-        this.emailAddress= emailAddress;
-    }
 
     public Long getId() {
         return id;
@@ -63,21 +50,6 @@ public class Profile {
         this.personalInformation = personalInformation;
     }
 
-    public String getPhysicalAddress() {
-        return physicalAddress;
-    }
-
-    public void setPhysicalAddress(String physicalAddress) {
-        this.physicalAddress = physicalAddress;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
 
     public File getImage() {
         return image;

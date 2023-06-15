@@ -94,6 +94,16 @@ public class PostController {
 
   }
 
+  @RequestMapping(value={"/post/{id}"}, method= RequestMethod.GET)
+  public String getPost(Model model,@PathVariable("id") Long id){
+
+    model.addAttribute("post",this.postService.getPost(id));
+
+    return "post.html";
+
+  }
+
+
   @RequestMapping(value="/updatePost/{idP}", method = RequestMethod.GET)
   public  String updatePost(Model model, @PathVariable("idP") Long idPost){
 

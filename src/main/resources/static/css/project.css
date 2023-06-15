@@ -1,10 +1,6 @@
 
 @import url('https://fonts.cdnfonts.com/css/cera-round-pro');
 
-body {
-
-    height: 100%;
-}
 
 body {
     background: #eee;
@@ -59,21 +55,16 @@ body {
 
 }
 
-.swiper-slide {
+.project-swiper {
     background-position: center;
     background-size: cover;
     width: 400px;
     height: 700px;
     margin: 1%;
-    filter: blur(4px);
 
 
 }
 
-.swiper-slide-active{
-
-    filter: blur(0px);
-}
 
 
 .mySwiper{
@@ -230,7 +221,7 @@ body {
 
 }
 
-.proj-state{
+ #project-swiper .proj-state{
     margin-top: 8%;
     text-align: center;
     border: 3px solid ;
@@ -247,7 +238,7 @@ body {
 }
 
 
-#terminated{
+#project-swiper #terminated{
     background-color: tomato;
     box-shadow: 0px 4px 8px rgba(255, 99, 71, 0.4);
 
@@ -259,7 +250,7 @@ body {
 
 
 
-.deadline{
+ #project-swiper .deadline{
 
     background-image: linear-gradient(to right, #EB3349 0%, #F45C43  51%, #EB3349  100%);
     margin-top: 5%;
@@ -282,13 +273,13 @@ body {
 
 
 
-.deadline:hover {
+ #project-swiper .deadline:hover {
     background-position: right center; /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
 }
 
-.deadline:active{
+ #project-swiper .deadline:active{
     transform: scale(0.90);
 
 }

@@ -56,7 +56,7 @@ public class UserService {
 
     public void registerNewCustomerAfterOAuthLoginSuccess(String loginName, String fullName,String email,AuthenticationProvider provider) {
 
-        User user = new User(new Profile(email));
+        User user = new User(new Profile());
         if(loginName != null) {
             user.setUserName(loginName);
             user.setFirstName(fullName);

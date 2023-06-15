@@ -1,6 +1,5 @@
 package it.unicollab.bh.controller;
 
-import it.unicollab.bh.configuration.FileUploadUtil;
 import it.unicollab.bh.controller.session.SessionData;
 import it.unicollab.bh.model.*;
 import it.unicollab.bh.service.*;
@@ -123,7 +122,7 @@ public class AuthenticationController {
         model.addAttribute("user",loggedUser);
 
         if(loggedUser.getCourseAttended()!=null ){
-            return "createPost.html";
+            return "redirect:/user";
         }
 
 
@@ -173,6 +172,7 @@ public class AuthenticationController {
 
              model.addAttribute("user",user);
              model.addAttribute("universities",universityService.getAllUniversities());
+             model.addAttribute("registrated",true);
 
              return "login_slide.html";
          }

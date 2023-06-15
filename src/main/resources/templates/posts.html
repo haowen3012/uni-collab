@@ -35,7 +35,7 @@
 <!-------->
 
 
-<div class="swiper mySwiper">
+<div class="swiper mySwiper" th:fragment="swiperPost">
     <div class="swiper-wrapper">
         <div th:each="post : ${posts}" class="swiper-slide" >
         <div th:replace="post.html :: singlePost"></div>

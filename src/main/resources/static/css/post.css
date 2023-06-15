@@ -74,14 +74,6 @@ body{
     min-height: 8em;
     margin: 1%;
 
-
-
-
-}
-
-.swiper-slide-active{
-
-    filter: blur(0px);
 }
 
 
@@ -385,7 +377,7 @@ body{
 }
 
 
-.proj-state{
+ .bottom-right .proj-state{
     margin-right: 5%;
     text-align: center;
     border: 3px solid ;
@@ -402,14 +394,14 @@ body{
 }
 
 
-#terminated{
+.bottom-right #terminated{
     background-color: tomato;
     box-shadow: 0px 4px 8px rgba(255, 99, 71, 0.4);
 
 }
 
 
-.modify{
+ .bottom-right .modify{
 
     color: #fff;
     background: linear-gradient(to right,orange,gold, yellow, orange);
@@ -437,11 +429,11 @@ body{
 }
 
 
-.modify:active{
+ .bottom-right .modify:active{
     transform: scale(0.90);
 }
 
-.modify:hover{
+ .bottom-right .modify:hover{
     background-position: 100% 0;
     transition: all .4s ease-in-out;
     box-shadow: 0 4px 15px 0 rgba(0,0,0,0.25);
