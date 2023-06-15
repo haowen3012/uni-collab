@@ -11,7 +11,7 @@
 </head>
 <body>
 <a href="/user" id="back-home"><i id="home" class="fa fa-home"></i></a>
-<div  class="project-swiper">
+
 <div class="proj-box" th:fragment="singleProject">
   <h1 class="proj-name" th:text="${project.name}" th:fragment="proj-projName">Project Name</h1>
   <div class="proj-description" th:fragment="proj-projectDesc">
@@ -23,21 +23,45 @@
     <a th:each="member: ${project.members}" th:text="${member.userName}"> Haowen Zheng</a>
   </div>
   <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'ACTIVE'}" th:fragemnt="proj-projState">ACTIVE</div>
-  <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'TERMINATED'}" th:fragemnt="proj-projState">TERMINATED</div>
+  <div class="proj-state" id="terminated" th:if="${#strings.toString(project.projectState) == 'TERMINATED'}" th:fragemnt="proj-projState">TERMINATED</div>
 
   <a class="deadline"  th:attr="onclick=|chooseDeadline('${project.id}')|"
      th:text="${project.deadline} ? ${#temporals.format( project.deadline, 'dd/MM/yyyy HH:mm')} : 'choose deadline'"
   th:if="${project.members.contains(user)}">choose deadline</a>
+
+
+  <form  th:id="'prj-deadline-' + ${project.id}" class="prj-deadline" method="post" th:action="@{'setProjectDeadline'+ '/' + ${project.id}}" onclick="chooseDeadline(project.deadline)" >
+
+    <div class="close"  th:attr="onclick=|closeForm( '${project.id}')|" >&times;</div>
+    <input type="datetime-local" id="ddInput" name="deadline" />
+    <button class="submit" >submit</button>
+
+  </form>
 </div>
 
 
-<form  th:id="'prj-deadline-' + ${project.id}" class="prj-deadline" method="post" th:action="@{'setProjectDeadline'+ '/' + ${project.id}}" onclick="chooseDeadline(project.deadline)" >
+<script>
 
-  <div class="close"  th:attr="onclick=|closeForm( '${project.id}')|" >&times;</div>
-  <input type="datetime-local" id="ddInput" name="deadline" />
-  <button class="submit" >submit</button>
 
-</form>
-</div>
+
+
+
+  function chooseDeadline(id){
+
+    var form = document.getElementById('prj-deadline-'+ id);
+
+
+    form.style.display = "flex";
+
+    form.style.animation = "slide-in-down 1s ease-out forwards";
+
+
+
+  }
+
+
+
+</script>
+
 </body>
 </html>

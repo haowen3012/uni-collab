@@ -49,7 +49,7 @@ public class MessageService {
     @Transactional
     public Collection<Message> getAllMessageByDestinationOrderByCreationTime(User destination){
 
-        return this.messageRepository.findByDestinationOrderByCreationTimestampDesc(destination);
+        return this.messageRepository.findByDestinationOrderByCreationTimestamp(destination);
     }
 
 

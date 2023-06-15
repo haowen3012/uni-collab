@@ -15,6 +15,10 @@ body {
     align-items: center;
     flex-direction: column;
 
+    overflow-x: hidden;
+
+
+
 }
 
 /*codice duplicato*/
@@ -47,43 +51,41 @@ body {
 
 /********************/
 
+#projects {
 
-.swiper {
-    width: 100%;
-    padding-top: 1%;
-    padding-bottom: 50px;
-
-}
-
-.project-swiper {
-    background-position: center;
-    background-size: cover;
-    width: 400px;
-    height: 700px;
-    margin: 1%;
-
-
-}
+    width: 100vw;
+    height: 100%;
 
 
 
-.mySwiper{
+    margin-top: 1%;
+    margin-left: 10%;
+    margin-bottom:2%;
 
-    letter-spacing : 2px;
-    word-spacing:4px;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
 
 
 }
 
 .proj-box{
 
-    width: 100%;
-    height: 100%;
-    background: #fff;
+
+
+    width: 400px;
+    height: 700px;
+
+    flex:  0 0 auto;
+
     border-radius: 15px;
 
-
-
+    margin: 3%;
 
     /* From https://css.glass */
     /*   background: rgba(68, 177, 237, 0.32);
@@ -221,7 +223,7 @@ body {
 
 }
 
- .project-swiper .proj-state{
+ .proj-box .proj-state{
     margin-top: 8%;
     text-align: center;
     border: 3px solid ;
@@ -238,7 +240,7 @@ body {
 }
 
 
-.project-swiper #terminated{
+.proj-box #terminated{
     background-color: tomato;
     box-shadow: 0px 4px 8px rgba(255, 99, 71, 0.4);
 
@@ -250,7 +252,7 @@ body {
 
 
 
- .project-swiper .deadline{
+ .proj-box .deadline{
 
     background-image: linear-gradient(to right, #EB3349 0%, #F45C43  51%, #EB3349  100%);
     margin-top: 5%;
@@ -273,13 +275,13 @@ body {
 
 
 
- .project-swiper .deadline:hover {
+ .proj-box .deadline:hover {
     background-position: right center; /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
 }
 
- .project-swiper .deadline:active{
+ .proj-box .deadline:active{
     transform: scale(0.90);
 
 }

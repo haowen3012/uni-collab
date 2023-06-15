@@ -16,7 +16,7 @@ public interface MessageRepository  extends CrudRepository<Message, Long> {
              User destination);
 
 
-     Collection<Message> findByDestinationOrderByCreationTimestampDesc(User destination);
+     Collection<Message> findByDestinationOrderByCreationTimestamp(User destination);
 
      Collection<Message> findByPost(Post post);
 }

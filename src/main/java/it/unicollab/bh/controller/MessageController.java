@@ -61,7 +61,7 @@ public class MessageController {
 
         User destination = this.sessionData.getLoggedUser();
 
-        Collection<Message> messages = this.messageService.getAllMessageByDestination(destination);
+        Collection<Message> messages = this.messageService.getAllMessageByDestinationOrderByCreationTime(destination);
 
         model.addAttribute("messages", messages);
 

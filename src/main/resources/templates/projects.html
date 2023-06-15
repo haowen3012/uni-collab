@@ -18,71 +18,66 @@
     No Projects
 </h1>
 <!-- Swiper -->
-<div class="swiper mySwiper" th:fragment="projectSwiper">
-    <div class="swiper-wrapper">
-        <div  th:each="project: ${projects}"class="project-swiper">
 
-            <div th:replace="project.html :: singleProject"></div>
+<div  id="projects">
+        <div class="proj-box"  th:each="project : ${projects}">
 
-            <form  th:id="'prj-deadline-' + ${project.id}" class="prj-deadline" method="post" th:action="@{'setProjectDeadline'+ '/' + ${project.id}}" >
+            <div th:replace=" project.html :: proj-projName">Project Name</div>
+
+            <div th:replace=" project.html :: proj-projectDesc"></div>
+
+            <div th:replace=" project.html :: proj-projMember"></div>
+
+            <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'ACTIVE'}" th:fragemnt="proj-projState">ACTIVE</div>
+            <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'TERMINATED'}" th:fragemnt="proj-projState">TERMINATED</div>
+            <a class="deadline"  th:attr="onclick=|chooseDeadline('${project.id}')|"
+               th:text="${project.deadline} ? ${#temporals.format( project.deadline, 'dd/MM/yyyy HH:mm')} : 'choose deadline'"
+               th:if="${project.members.contains(user)}">choose deadline</a>
+
+            <form  th:id="'prj-deadline-' + ${project.id}" class="prj-deadline" method="post" th:action="@{'setProjectDeadline'+ '/' + ${project.id}}" style="z-index: 5">
 
                 <div class="close"  th:attr="onclick=|closeForm( '${project.id}')|" >&times;</div>
                 <input type="datetime-local" id="ddInput" name="deadline" />
                 <button class="submit" >submit</button>
-
             </form>
         </div>
     </div>
-</div>
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-<!-- Initialize Swiper -->
+
 <script>
-    var swiper = new Swiper(".mySwiper", {
-        effect: "coverflow",
-        grabCursor: false,
-        centeredSlides: true,
-        slidesPerView: "auto",
-        coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 100,
-            modifier: 3,
-            slideShadows: false,
-        },
-        pagination: {
-            el: ".swiper-pagination",
-        },
+    const slider = document.querySelector('#projects');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('active');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    });
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove('active');
+    });
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('active');
+    });
+    slider.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 3; //scroll-fast
+        slider.scrollLeft = scrollLeft - walk;
+        console.log(walk);
     });
 </script>
+
 </body>
 
 <!---------------->
 
-
-<script>
-
-
-
-
-
-    function chooseDeadline(id){
-
-        var form = document.getElementById('prj-deadline-'+ id);
-
-
-        form.style.display = "flex";
-
-        form.style.animation = "slide-in-down 1s ease-out forwards";
-
-
-
-    }
-
-
-
-</script>
 
 <script>
 
@@ -105,6 +100,28 @@
 
 
     }
+
+
+</script>
+<script>
+
+
+
+
+
+    function chooseDeadline(id){
+
+        var form = document.getElementById('prj-deadline-'+ id);
+
+
+        form.style.display = "flex";
+
+        form.style.animation = "slide-in-down 1s ease-out forwards";
+
+
+
+    }
+
 
 
 </script>

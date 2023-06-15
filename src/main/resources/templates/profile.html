@@ -149,8 +149,7 @@
        Empty Section
    </h1>
 
-   <div th:each=" project : ${owner.projects}" class="project-swiper">
-        <div class="proj-box" >
+        <div class="proj-box" th:each=" project : ${owner.projects}"  >
 
             <div th:replace=" project.html :: proj-projName">Project Name</div>
 
@@ -162,10 +161,8 @@
             <div class="proj-state" th:if="${#strings.toString(project.projectState) == 'TERMINATED'}" th:fragemnt="proj-projState">TERMINATED</div>
 
 
-
         </div>
     </div>
-        </div>
 
 
 
