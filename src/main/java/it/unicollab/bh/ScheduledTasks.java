@@ -31,7 +31,7 @@ public class ScheduledTasks {
   MessageService messageService;
 
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 20000)
     @Transactional
     public void createProject(){
       Collection<Post> fullmembersPosts = postService.getPostByMembershipEqualsAcceptedUsersSize();
@@ -65,7 +65,7 @@ public class ScheduledTasks {
     }
 
 
-   @Scheduled(fixedRate = 10000)
+   @Scheduled(fixedRate = 20000)
    @Transactional
     public void sendPostExpirationMessage() {
 
@@ -88,7 +88,7 @@ public class ScheduledTasks {
     }
 
 
-  @Scheduled(fixedRate = 10000)
+  @Scheduled(fixedRate = 20000)
   @Transactional
   public void terminateProject(){
 

@@ -20,7 +20,7 @@
 <!-- Swiper -->
 <div class="swiper mySwiper" th:fragment="projectSwiper">
     <div class="swiper-wrapper">
-        <div  th:each="project: ${projects}"class="swiper-slide">
+        <div  th:each="project: ${projects}"class="project-swiper">
 
             <div th:replace="project.html :: singleProject"></div>
 

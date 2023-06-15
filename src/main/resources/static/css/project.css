@@ -221,7 +221,7 @@ body {
 
 }
 
- #project-swiper .proj-state{
+ .project-swiper .proj-state{
     margin-top: 8%;
     text-align: center;
     border: 3px solid ;
@@ -238,7 +238,7 @@ body {
 }
 
 
-#project-swiper #terminated{
+.project-swiper #terminated{
     background-color: tomato;
     box-shadow: 0px 4px 8px rgba(255, 99, 71, 0.4);
 
@@ -250,7 +250,7 @@ body {
 
 
 
- #project-swiper .deadline{
+ .project-swiper .deadline{
 
     background-image: linear-gradient(to right, #EB3349 0%, #F45C43  51%, #EB3349  100%);
     margin-top: 5%;
@@ -273,13 +273,13 @@ body {
 
 
 
- #project-swiper .deadline:hover {
+ .project-swiper .deadline:hover {
     background-position: right center; /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
 }
 
- #project-swiper .deadline:active{
+ .project-swiper .deadline:active{
     transform: scale(0.90);
 
 }

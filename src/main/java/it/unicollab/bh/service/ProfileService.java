@@ -31,6 +31,11 @@ public class ProfileService {
     public Profile getProfile(Long id){
         return this.profileRepository.findById(id).get();
     }
+
+    @Transactional
+    public Profile getProfileByUser(User user){
+        return this.profileRepository.findProfileByUser(user);
+    }
     @Transactional
     public Profile saveProfile(Profile profile) {
         return this.profileRepository.save(profile);

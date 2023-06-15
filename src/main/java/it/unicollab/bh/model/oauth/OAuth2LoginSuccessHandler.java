@@ -39,8 +39,14 @@ public class OAuth2LoginSuccessHandler  implements AuthenticationSuccessHandler 
         System.out.println("email: " + email );
         System.out.println("fullname: " + fullName );
 
+        User user;
+        if(loginName != null) {
 
-        User user= userService.getUser(loginName);
+          user = userService.getUser(loginName);
+        }else{
+
+             user = userService.getUser(fullName);
+        }
 
 
 
