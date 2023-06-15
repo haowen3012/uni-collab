@@ -1,5 +1,5 @@
 # uni-collab
-Progetto di Bishoy Zakhary e Haowen Zheng.
+Progetto di Bishoy Zakhary e Haowen Zheng.\n
 Il sito consiste in un sito rivolto agli studenti universitari che vogliono cercare colleghi per affrontare un progetto universitario insieme.
 
 # DCD
