@@ -50,8 +50,8 @@
 
         <div class="contacts-inf">
 
-            <div class="email" th:text="${profile.emailAddress!=null} ? ${profile.emailAddress} : 'no email added'">haowenz01@gmail.com</div>
-            <div class="address" th:text="${profile.physicalAddress!=null} ? ${profile.physicalAddress}: 'no address added'">Via Francesco Borromini 10</div>
+            <div class="email" th:text="${owner.courseAttended.name}">haowenz01@gmail.com</div>
+            <div class="address" th:text="${owner.courseAttended.university.name}">Via Francesco Borromini 10</div>
         </div>
     </div>
 </div>
