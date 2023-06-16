@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collection;
 
@@ -43,13 +44,14 @@ public class MessageController {
 
 
     @RequestMapping(value="/sendRequest/{sourceId}/{destId}/{postId}",  method = RequestMethod.POST)
-    public String sendReqeustMessage(@PathVariable("sourceId") Long idS,@PathVariable("destId") Long idD,
+    public String sendReqeustMessage(@PathVariable("sourceId") Long idS, @PathVariable("destId") Long idD,
                                      @PathVariable("postId") Long idP,
-                                     @ModelAttribute Message m){
+                                     @ModelAttribute Message m, RedirectAttributes redirectAttributes){
 
 
     this.messageService.SaveRequestMessage(idS,idD,idP,m);
 
+    redirectAttributes.addFlashAttribute("applied", true);
 
         return "redirect:/user";
     }

@@ -51,6 +51,16 @@
 
 <!------------------------------------------------------->
 
+<!---pop up for deleting review---->
+<div class="event-warn" th:if="${postCreated}">
+  The post  has been successfully created
+</div>
+<div class="event-warn" th:if="${applied}">
+  Thank you for applying
+</div>
+<script src="/script/event-warn.js"></script>
+<!-------->
+
 
 <div id="container-nav" >
   <div class="navbar">
@@ -166,13 +176,6 @@
 <!------------->
 <!---<div id="messages"> </div>--  NOTIFICHE CON WEBSOCKET-->
 
-
-<!---pop up for deleting review---->
-<div id="event-warn" th:if="${postCreated}">
-  The post  has been successfully created
-</div>
-<script src="/script/event-warn.js"></script>
-<!-------->
 
 <script>
 
