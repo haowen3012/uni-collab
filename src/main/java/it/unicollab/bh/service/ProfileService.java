@@ -31,6 +31,11 @@ public class ProfileService {
     public Profile getProfile(Long id){
         return this.profileRepository.findById(id).get();
     }
+
+    @Transactional
+    public Profile getProfileByUser(User user){
+        return this.profileRepository.findProfileByUser(user);
+    }
     @Transactional
     public Profile saveProfile(Profile profile) {
         return this.profileRepository.save(profile);
@@ -50,62 +55,50 @@ public class ProfileService {
     }
 
     @Transactional
-    public Profile updateProfileImages(Long id, MultipartFile img, MultipartFile bg, String email ,String address) {
+    public Profile updateProfileImages(Long id, MultipartFile img, MultipartFile bg, String email ,String address) throws  IOException{
 
         Profile profile = this.getProfile(id);
 
 
-        if(email != null){
-            profile.setEmailAddress(email);
+
+        if(!img.isEmpty()) {
+
+            File oldImage = profile.getImage();
+
+
+            if(oldImage==null){
+                File image = this.fileRepository.save(new File(img.getOriginalFilename(), img.getBytes()));
+                profile.setImage(image);
+
+            }else{
+
+                oldImage.setName(img.getOriginalFilename());
+                oldImage.setBytes(img.getBytes());
+                this.fileRepository.save(oldImage);
+            }
+
+
         }
 
-        if(address != null){
-            profile.setPhysicalAddress(address);
+        if(!bg.isEmpty()) {
+
+            File oldBackground = profile.getBackground();
+
+            if(oldBackground==null) {
+                File background = this.fileRepository.save(new File(bg.getOriginalFilename(), bg.getBytes()));
+                profile.setBackground(background);
+
+            }else{
+
+                oldBackground.setName(bg.getOriginalFilename());
+                oldBackground.setBytes(bg.getBytes());
+                this.fileRepository.save(oldBackground);
+            }
         }
 
-            try {
-            if(!img.isEmpty()) {
-
-              File oldImage = profile.getImage();
+        this.saveProfile(profile);
 
 
-              if(oldImage==null){
-                  File image = this.fileRepository.save(new File(img.getOriginalFilename(), img.getBytes()));
-                  profile.setImage(image);
-
-              }else{
-
-                  oldImage.setName(img.getOriginalFilename());
-                  oldImage.setBytes(img.getBytes());
-                  this.fileRepository.save(oldImage);
-              }
-
-
-            }
-
-            if(!bg.isEmpty()) {
-
-                File oldBackground = profile.getBackground();
-
-                if(oldBackground==null) {
-                    File background = this.fileRepository.save(new File(bg.getOriginalFilename(), bg.getBytes()));
-                    profile.setBackground(background);
-
-                }else{
-
-                    oldBackground.setName(bg.getOriginalFilename());
-                    oldBackground.setBytes(bg.getBytes());
-                    this.fileRepository.save(oldBackground);
-                }
-            }
-
-            this.saveProfile(profile);
-
-
-            } catch (IOException e) {
-
-
-            }
 
 
         return profile;
@@ -113,21 +106,26 @@ public class ProfileService {
 
 
     @Transactional
-    public Profile updateProfileCurriculum(Long idProfile, MultipartFile curri){
+    public Profile updateProfileCurriculum(Long idProfile, MultipartFile curri) throws IOException{
 
         Profile profile = this.getProfile(idProfile);
 
-       try{
-           if(curri!= null){
-               File curriculum = this.fileRepository.save(new File(curri.getName(), curri.getBytes()));
-               profile.setCurriculum(curriculum);
+        if(!curri.isEmpty()){
 
-           }
+            if(profile.getCurriculum()==null) {
+                File curriculum = this.fileRepository.save(new File(curri.getName(), curri.getBytes()));
+                profile.setCurriculum(curriculum);
+            }else{
 
-           this.saveProfile(profile);
-       }catch (IOException e){
+                File curriculum = profile.getCurriculum();
+                curriculum.setName(curri.getOriginalFilename());
+                curriculum.setBytes(curri.getBytes());
+            }
 
-       }
+        }
+
+        this.saveProfile(profile);
+
         return profile;
     }
 }
