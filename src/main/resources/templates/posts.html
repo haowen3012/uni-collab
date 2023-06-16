@@ -12,9 +12,27 @@
 </head>
 <body>
 
+<!---pop up for deleting review---->
+<div class="event-warn" th:if="${postDeleted}">
+    The post  has been successfully deleted
+
+</div>
+
+<div class="event-warn" th:if="${postModified}">
+    The post  has been successfully modified
+
+</div>
+
+<script src="/script/event-warn.js"></script>
+
+<!-------->
+
 <a href="/user" id="back-home">
     <i id="home" class="fa fa-home"></i>
 </a>
+
+<h1 class="empty" style="position: absolute; top:50%; font-size:3em;" th:if="${posts.isEmpty}">No Posts</h1>
+
 <div class="swiper mySwiper">
     <div class="swiper-wrapper">
         <div th:each="post : ${posts}" class="swiper-slide" >
@@ -25,12 +43,7 @@
         </div>
     </div>
 </div>
-<!---pop up for deleting review---->
-<div id="event-warn" th:if="${postDeleted}">
-    The post  has been successfully deleted
-</div>
-<script src="/script/event-warn.js"></script>
-<!-------->
+
 
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

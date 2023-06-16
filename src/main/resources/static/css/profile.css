@@ -1133,7 +1133,7 @@ img{
 #update-inf{
 
     justify-content: flex-start;
-    top: 50%;
+    top: 30%;
 }
 
 #update-inf h1{
@@ -1216,7 +1216,7 @@ img{
 
 #update-curri{
     height:20em;
-    top: 50%;
+    top: 10%;
 
     justify-content: flex-start;
     align-items: center;

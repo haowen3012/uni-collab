@@ -209,11 +209,6 @@
         <i class="fa fa-plus" id="plus-2" ></i>
     </div>
 
-    <input placeholder="Enter your email" th:field="${profile.emailAddress}" name="email"/>
-    <input placeholder="Enter your address" th:field="${profile.physicalAddress}" name="address" />
-
-
-
 
     <div class="close" >&times;</div>
 
@@ -241,7 +236,7 @@
 <form id="update-curri" th:action="'/profile' + '/' + 'updateCurriculum' + '/' + ${profile.id}" method="post" enctype="multipart/form-data">
 
     <label for="file-upload" class="custom-file-upload">
-        <i class="fa fa-cloud-upload"></i> Upload Image
+        <i class="fa fa-cloud-upload"></i> Upload curriculum
     </label>
     <input id="file-upload" name="curriculum" type="file"  accept="/application/pdf" style="display:none;">
 

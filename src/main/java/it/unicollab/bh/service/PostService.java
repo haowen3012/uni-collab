@@ -120,6 +120,7 @@ public class PostService {
 
     }
 
+
     @Transactional
     public void deleteAll(Collection<Post> posts){
         this.postRepository.deleteAll(posts);

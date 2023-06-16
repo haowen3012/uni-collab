@@ -8,6 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/animation.css}" />
 </head>
 <body>
+<div th:replace="createPost.html :: postErrors"></div>
 <form  class="container-2"
        th:action="@{'/updatePost' + '/' + ${post.id}}"  method="post" >
     <h1 th:text="${user.userName}">YOUR NAME</h1>

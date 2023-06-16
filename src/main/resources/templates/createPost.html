@@ -20,6 +20,21 @@
 
 </head>
 <body>
+
+<!---pop up ---->
+<div class="event-warn" th:if="${postCreated}">
+  The post  has been successfully created
+
+</div>
+
+<div class="event-warn" th:if="${applied}">
+  Thank you for applying
+
+</div>
+
+<script th:src="@{/script/event-warn.js}"></script>
+<!-------->
+
 <!----------------------------------------------------------------------------->
 <div id="errors" th:if="${post!=null}" th:fragment="postErrors">
 
@@ -49,15 +64,6 @@
 
 <!------------------------------------------------------->
 
-<!---pop up for deleting review---->
-<div class="event-warn" th:if="${postCreated}">
-  The post  has been successfully created
-</div>
-<div class="event-warn" th:if="${applied}">
-  Thank you for applying
-</div>
-<script src="/script/event-warn.js"></script>
-<!-------->
 
 
 <div id="container-nav" >
