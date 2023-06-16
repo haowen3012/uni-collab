@@ -8,40 +8,43 @@
     <link rel="stylesheet" th:href="@{/css/animation.css}" />
 </head>
 <body>
-<form  class="container-2"
-       th:action="@{'/updatePost' + '/' + ${post.id}}"  method="post" >
+
+<form class="container-2"
+      th:action="@{/createPost}"  method="post"  th:fragment="postForm" >
+
+
     <h1 th:text="${user.userName}">YOUR NAME</h1>
     <div class="section-1">
         <div class="section-title">PROJECT NAME</div>
-        <input class="flex-item" placeholder="Enter your project name"  th:field="${post.projectName}" type="text" required name="projectName"/>
+        <input class="flex-item" placeholder="Enter your project name" type="text" required  name="projectName"/>
     </div>
 
     <div class="section-2">
         <div class="section-title">PROJECT DESCRIPTION</div>
-        <textarea class="flex-item-2" role="textbox" contenteditable type="text" th:field="${post.projectDescription}" required name="projectDescription">Enter the project description for your project</textarea>
+        <textarea class="flex-item-2" role="textbox" contenteditable type="text"  required  name="projectDescription">Enter the project description for your project</textarea>
     </div>
 
     <div class="section-2">
         <div class="section-title">EXAM</div>
-        <select required name="selected_exam" >
+        <select required name="selected_exam">
             <option value="" >Choose the exam your project is for</option>
-            <option th:each="exam: ${user.courseAttended.courseExams}"  th:field="${post.exam}" th:value="${exam.id}" th:text="${exam.name}">Select the exam your project is for</option>
+            <option th:each="exam: ${user.courseAttended.courseExams}"  th:value="${exam.id}" th:text="${exam.name}">Select the exam your project is for</option>
         </select>
     </div>
 
     <div class="section-3">
         <div  class="section-title">MEMBERSHIP</div>
-        <input type="number" class="special-input" min="1" max="7"  th:field ="${post.membership}" required placeholder="Enter the number of memebers"
+        <input type="number" class="special-input" min="1" max="7"  required placeholder="Enter the number of memebers"
                name="membership"/>
     </div>
 
     <div class="section-3">
         <div  class="section-title">DEADLINE</div>
-        <input  class="special-input" type="datetime-local" required th:field="${post.deadline}" th:value="${post.deadline}" name="deadline"/>
+        <input  class="special-input" type="datetime-local"  required name="deadline"/>
     </div>
 
     <div class="section-4">
-        <a class="publish"  type="button" id="go-back" th:href="@{/posts}" >go back</a>
+        <button class="publish"  type="button" id="go-back" >go back</button>
         <button class="publish" type ="submit">publish</button>
     </div>
 </form>
