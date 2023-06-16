@@ -53,20 +53,21 @@ public class PostController {
 
     this.postValidator.validate(p, postBindingResult);
 
-   if(!postBindingResult.hasErrors()){
+    if(!postBindingResult.hasErrors()){
 
-     this.postService.createPost(p);
+      this.postService.createPost(p);
 
-     redirectAttributes.addFlashAttribute("postCreated", true);
+      redirectAttributes.addFlashAttribute("postCreated", true);
 
 
-     return "redirect:/user";
+      return "redirect:/user";
 
-   }
+    }
 
-   model.addAttribute("post",p);
+    redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.post",postBindingResult);
+    redirectAttributes.addFlashAttribute("post",p);
 
-    return "errorPostCreation";
+    return "redirect:/user";
   }
 
 
@@ -110,14 +111,39 @@ public class PostController {
 
 
   @RequestMapping(value="/updatePost/{idP}", method = RequestMethod.POST)
-  public  String updatePost(Model model, @PathVariable("idP") Long idPost,@RequestParam("selected_exam") Long idExam,@ModelAttribute Post newPost){
+  public  String updatePost(Model model, @PathVariable("idP") Long idPost,@RequestParam("selected_exam") Long idExam,@ModelAttribute Post newPost, BindingResult postBindingResult,
+                            RedirectAttributes redirectAttributes){
+
+    User loggedUser = this.sessionData.getLoggedUser();
+
+    if(idExam!=null) {
+      newPost.setExam(this.examService.getExam(idExam));
+    }
+    newPost.setOwner(loggedUser);
 
 
-    model.addAttribute( "post",this.postService.updatePost(idPost, newPost, idExam));
+    this.postValidator.setUpdating(true);
 
-    return "redirect:/post.html";
+    this.postValidator.validate(newPost,postBindingResult);
+
+    this.postValidator.setUpdating(false);
+
+    if(!postBindingResult.hasErrors()) {
+      this.postService.updatePost(idPost, newPost, idExam);
+
+      redirectAttributes.addFlashAttribute("postModified", true);
+
+      return "redirect:/posts";
+    }else{
+
+
+      redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.newPost",postBindingResult);
+      redirectAttributes.addFlashAttribute("post",newPost);
+
+      return "redirect:/updatePost/" + idPost;
+    }
+
   }
-
   @RequestMapping(value="/deletePost/{idP}", method = RequestMethod.GET)
   public String deletePost(Model model , @PathVariable("idP") Long idPost, RedirectAttributes redirectAttributes){
 

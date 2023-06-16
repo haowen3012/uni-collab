@@ -15,10 +15,15 @@ import java.time.LocalDateTime;
 @Component
 public class PostValidator implements Validator {
 
+    private boolean updating = false;
 
     @Autowired
     private PostRepository postRepository;
 
+
+    public void setUpdating(boolean updating) {
+        this.updating = updating;
+    }
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -30,7 +35,7 @@ public class PostValidator implements Validator {
 
         Post post = (Post) o;
 
-        if (post.getProjectName() !=null &&  post.getExam() != null
+        if (!updating && post.getProjectName() !=null &&  post.getExam() != null
                 && postRepository.existsByProjectNameAndExam(post.getProjectName(), post.getExam())) {
             errors.reject("post.duplicate");
 
