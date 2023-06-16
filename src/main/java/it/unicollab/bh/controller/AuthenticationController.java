@@ -121,7 +121,7 @@ public class AuthenticationController {
         model.addAttribute("user",loggedUser);
 
         if(loggedUser.getCourseAttended()!=null ){
-            return "homepage.html";
+            return "rediect:/user";
         }
 
 
@@ -132,19 +132,9 @@ public class AuthenticationController {
 
     /* questo metodo probabilmente dovrà essere cancellato*/
     @RequestMapping(value={"login/oauth2/user"}, method = RequestMethod.GET)
-    public String oAuth2Successful(Model model){
+    public String oAuth2Successful(){
 
-
-        User loggedUser = this.sessionData.getLoggedUser();
-        model.addAttribute("user",loggedUser);
-
-        if(loggedUser.getCourseAttended()!=null ){
-            model.addAttribute("posts", postService.getAllPostByOwnerNot(loggedUser));
-            return "createPost.html";
-        }
-
-        model.addAttribute("universities",universityService.getAllUniversities());
-        return "registrationSuccessful.html";
+         return  "redirect:/successful";
     }
 
 /**************************************************************************************************/

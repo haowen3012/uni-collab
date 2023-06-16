@@ -375,40 +375,6 @@ button:hover{
 }
 
 
-
-@keyframes slide-in-anim {
-    0%{
-        opacity: 0;
-        transform: translateX(150%);
-    }
-    70%{
-        transform: translateX(-2%);
-    }
-    80%{
-        transform: translateX(3%);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0%);
-    }
-}
-
-
-
-@keyframes slide-out-anim {
-    0%{
-        opacity: 1;
-        transform: translateX(0%);
-    }
-    50%{
-        transform: translateX(-100%);
-    }
-    100% {
-        opacity: 0;
-        transform: translateX(-150%);
-    }
-}
-
 #errors{
     width: 70%;
 
@@ -430,43 +396,6 @@ button:hover{
     box-shadow: 0 1px 7px 0 red;
     animation: slide-in-down 1.2s ease-out forwards;
 
-}
-
-@keyframes slide-in-down {
-
-    0%{
-        opacity: 0;
-        transform: translateY(-150%);
-    }
-    70%{
-        opacity: 0.5;
-        transform: translateY(3%);
-    }
-    80%{
-        opacity: 0.7;
-        transform: translateY(-2%);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0%);
-    }
-}
-
-
-
-@keyframes slide-out-up {
-
-    0%{
-        opacity: 1;
-        transform: translateY(0%);
-    }
-    50%{
-        transform: translateY(-100%);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-150%);
-    }
 }
 
 

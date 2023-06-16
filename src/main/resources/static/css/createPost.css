@@ -632,12 +632,16 @@ button:hover{
     text-align : center;
 
 }
-.search input{
+.search form{
     width: 60%;
     margin: 0 2% 0% 2%;
 
     background-color: #B9D9EB;
     opacity: 0.2;
+}
+.search input{
+
+    width:100%;
 }
 
 
