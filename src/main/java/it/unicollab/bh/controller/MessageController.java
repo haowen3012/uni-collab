@@ -34,9 +34,13 @@ public class MessageController {
     @RequestMapping(value="/sendReply/{sourceId}/{destId}/{postId}/{requestId}",  method = RequestMethod.POST)
     public String sendReplyMessage(@PathVariable("sourceId") Long idS,@PathVariable("destId") Long idD,
                                    @PathVariable("postId") Long idP,@PathVariable("requestId") Long idR,
-                                   @ModelAttribute Message m){
+                                   @ModelAttribute Message m, RedirectAttributes redirectAttributes){
 
-        this.messageService.saveReplyMessage(idS,idD,idP,idR,m);
+
+        if(this.messageService.saveReplyMessage(idS,idD,idP,idR,m)==null){
+
+            redirectAttributes.addFlashAttribute("invalidReply", "Cannot accept an apply of a exipired post");
+        }
 
         return "redirect:/messages";
     }

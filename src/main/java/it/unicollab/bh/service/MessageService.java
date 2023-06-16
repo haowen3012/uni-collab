@@ -2,6 +2,7 @@ package it.unicollab.bh.service;
 
 
 import it.unicollab.bh.model.Post;
+import it.unicollab.bh.model.PostState;
 import it.unicollab.bh.model.Project.Project;
 import it.unicollab.bh.model.User;
 import it.unicollab.bh.model.message.Message;
@@ -90,13 +91,18 @@ public class MessageService {
     }
 
     @Transactional
-    public void saveReplyMessage( Long idSource, Long idDestination,
+    public Message saveReplyMessage( Long idSource, Long idDestination,
                                   Long idPost, Long idRequest,
                                    Message m){
 
         Post post = this.postService.getPost(idPost);
         User source = this.userService.getUser(idSource);
         User destination = this.userService.getUser(idDestination);
+
+        if(post.getPostState()== PostState.EXPIRED){
+
+            return  null ;
+        }
 
         m.setSource(source);
         m.setDestination(destination);
@@ -118,7 +124,7 @@ public class MessageService {
         }
 
         this.saveMessage(sourceRequestMessage);
-        this.saveMessage(m);
+        return this.saveMessage(m);
 
     }
 

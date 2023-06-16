@@ -15,8 +15,7 @@
   <link rel="stylesheet" th:href="@{/css/error.css}" />
   <link rel="stylesheet" th:href="@{/css/event-warn.css}" />
   <link rel="stylesheet" th:href="@{/css/emptySection.css}" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+
 
 </head>
 <body>
@@ -148,7 +147,7 @@
   </div>
 </div>
 <!----- side nav------->
-<div  id="side_nav" class="side-nav">
+<div  id="side_nav" class="side-nav" th:fragment="sideNav">
   <div onclick="closeSideNav()">&times;</div>
   <a href="/profile">Profile</a>
   <a href="/posts">Posts</a>
@@ -254,52 +253,6 @@
   home_icon.style.boxShadow="0 5px 20px #4169e1aa, 0 5px 5px #4169e166";
 
 
-</script>
-
-<script>
-  var stompClient = null;
-  var privateStompClient = null;
-
-  var socket = new SockJS('/ws');
-  stompClient = Stomp.over(socket);
-  stompClient.connect({}, function(frame) {
-    console.log(frame);
-    stompClient.subscribe('/all/messages', function(result) {
-      console.log(result.body);
-      show(JSON.parse(result.body));
-    });
-  });
-
-  socket = new SockJS('/ws');
-  privateStompClient = Stomp.over(socket);
-  privateStompClient.connect({}, function (frame) {
-    console.log(frame);
-    privateStompClient.subscribe('/user/specific', function (result) {
-      console.log(result.body);
-      show(JSON.parse(result.body));
-    });
-  });
-
-
-  function sendMessage(){
-    var text = document.getElementById('text').value;
-
-    stompClient.send('/app/application', {}, JSON.stringify({ text: text }));
-  }
-
-  function sendPrivateMessage(){
-    var text = document.getElementById('privateText').value;
-    var destination = document.getElementById('destination').value;
-    stompClient.send("/app/private",{}, JSON.stringify({ text: text, destination: destination}));
-  }
-
-  function show(message){
-    var response = document.getElementById('messages');
-    var p = document.createElement('p');
-
-    p.innerHTML ="message:" + message.text;
-    response.appendChild(p);
-  }
 </script>
 
 </body>

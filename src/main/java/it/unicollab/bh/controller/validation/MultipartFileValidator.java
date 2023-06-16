@@ -25,7 +25,8 @@ public class MultipartFileValidator implements Validator {
         FileUploadWrapper fileUploadWrapper = (FileUploadWrapper) o;
 
 
-        if( !fileUploadWrapper.getImage().isEmpty() && !fileUploadWrapper.getImage().isEmpty() &&  !fileUploadWrapper.getImage().getOriginalFilename().endsWith(".png") &&
+        if( fileUploadWrapper.getImage()!=null &&
+                !fileUploadWrapper.getImage().isEmpty() && !fileUploadWrapper.getImage().isEmpty() &&  !fileUploadWrapper.getImage().getOriginalFilename().endsWith(".png") &&
                 !fileUploadWrapper.getImage().getOriginalFilename().endsWith(".jpg") &&
                 !fileUploadWrapper.getImage().getOriginalFilename().endsWith(".jpeg")
         ){
@@ -35,7 +36,8 @@ public class MultipartFileValidator implements Validator {
         }
 
 
-        if( !fileUploadWrapper.getBackground().isEmpty() && !fileUploadWrapper.getBackground().isEmpty() &&  !fileUploadWrapper.getBackground().getOriginalFilename().endsWith(".png") &&
+        if(fileUploadWrapper.getBackground()!=null &&
+                !fileUploadWrapper.getBackground().isEmpty() && !fileUploadWrapper.getBackground().isEmpty() &&  !fileUploadWrapper.getBackground().getOriginalFilename().endsWith(".png") &&
                 !fileUploadWrapper.getBackground().getOriginalFilename().endsWith(".jpg")
                 && !fileUploadWrapper.getBackground().getOriginalFilename().endsWith(".jpeg")
         ){
@@ -46,7 +48,8 @@ public class MultipartFileValidator implements Validator {
 
 
 
-        if( !fileUploadWrapper.getCurriculum().isEmpty() && !fileUploadWrapper.getCurriculum().isEmpty() && !fileUploadWrapper.getCurriculum().getOriginalFilename().endsWith(".pdf")){
+        if( fileUploadWrapper.getCurriculum()!=null &&
+                !fileUploadWrapper.getCurriculum().isEmpty() && !fileUploadWrapper.getCurriculum().isEmpty() && !fileUploadWrapper.getCurriculum().getOriginalFilename().endsWith(".pdf")){
 
             errors.rejectValue("curriculum","invalidFormat");
 

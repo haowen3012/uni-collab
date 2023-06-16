@@ -189,7 +189,6 @@ public class MainController {
         }
         else{
 
-            System.out.println(fileUploadWrapper.getImage().isEmpty());
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.fileUploadWrapper", fileUploadWrapperBindingResult);
             redirectAttributes.addFlashAttribute("fileUploadWrapper", fileUploadWrapper);
 
@@ -204,15 +203,15 @@ public class MainController {
 
     @RequestMapping(value={"/profile/updateCurriculum/{idP}"}, method = RequestMethod.POST)
     public String updateProfileCurriculum(@PathVariable("idP") Long idProfile,
-                                          @RequestParam(value = "curriculum",required = false) MultipartFile curriculum,BindingResult bindingResult,
+                                          @ModelAttribute FileUploadWrapper fileUploadWrapper,BindingResult bindingResult,
                                           RedirectAttributes redirectAttributes){
 
-        this.multipartFileValidator.validate(curriculum,bindingResult);
+        this.multipartFileValidator.validate(fileUploadWrapper,bindingResult);
 
         if(!bindingResult.hasErrors()) {
 
             try {
-                this.profileService.updateProfileCurriculum(idProfile, curriculum);
+                this.profileService.updateProfileCurriculum(idProfile, fileUploadWrapper.getCurriculum());
 
             } catch (IOException e) {
                 redirectAttributes.addFlashAttribute("fileUploadError", "An error occured while uploading the input files");
@@ -220,8 +219,8 @@ public class MainController {
             }
         }else{
 
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.curriculum",bindingResult);
-            redirectAttributes.addFlashAttribute("post",curriculum);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.fileUplaodWrapper",bindingResult);
+            redirectAttributes.addFlashAttribute("fileUploadWrapper",fileUploadWrapper);
 
         }
 

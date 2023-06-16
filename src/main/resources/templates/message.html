@@ -15,6 +15,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 </head>
 <body>
+
+!----------------------------------------------------------------------------->
+<div id="errors" th:if="${post!=null}" th:fragment="postErrors">
+
+    <div class="error" th:if="${invalidReply}"
+         th:text="${invalidReply}" >Campo Obbligatorio</div>
+
+
+
+
+
+
+    <script th:src="@{script/errorLogs.js}"></script>
+</div>
+
+
 <div id="container-nav" >
     <div class="navbar">
         <a href="/messages" id="message-icon">
@@ -122,13 +138,7 @@
 </div>
 
 <!----- side nav------->
-<div  id="side_nav" class="side-nav">
-    <div onclick="closeSideNav()">&times;</div>
-    <a href="#">Profile</a>
-    <a href="#">Posts</a>
-    <a href="/projects">Projects </a>
-    <a href="#"> Log out</a>
-</div>
+<div th:replace="createPost.html :: sideNav"></div>
 <!-----pop up---->
 
 <!------------->

@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" th:href="@{/css/login_slide.css}" />
+  <link rel="stylesheet" th:href="@{/css/animation.css}" />
+  <link rel="stylesheet" th:href="@{/css/event-warn.css}" />
+  <link rel="stylesheet" th:href="@{/css/error.css}" />
+  <link rel="stylesheet" th:href="@{/css/button.css}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -20,7 +24,20 @@
 
 <div class="error"  th:if="${#fields.hasErrors('userForm.lastName')}"
     th:errors="${userForm.lastName}" ></div>
+
+  <div  class="error" th:if="${param.error}">
+    Invalid username and password.</div>
 </div>
+
+
+<!------------------------------>
+
+<div class="event-warn" th:if="${registered}" style="top: 5%;">
+  Thank you for registering. Please sign in
+
+</div>
+<script th:src="@{/script/event-warn.js}"></script>
+<!-------->
 
 <!----------------------------->
 <div class="slider">
@@ -76,8 +93,6 @@
     </div>
     <div class="sign-in">
       <form  th:action="@{/login}" method='post'>
-        <div th:if="${param.error}">
-          Invalid username and password.</div>
         <h1>Sign In</h1>
         <div class="social-container">
           <a href="/oauth2/authorization/facebook" class="social" id="facebook"><i class="fa fa-facebook"></i></a>
