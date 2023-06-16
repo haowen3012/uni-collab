@@ -54,7 +54,7 @@ public class ScheduledTasks {
           this.projectService.shareProjectWithUser(project,user);
 
           /*send a message to each memeber*/
-          messageService.saveMessage(new Message(null, user ,"a new Project is active",post,project, MessageType.PROJECT_ACTIVE));
+          messageService.saveMessage(new Message(null, user ," is active",post,project, MessageType.PROJECT_ACTIVE));
         }
 
 

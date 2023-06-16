@@ -59,7 +59,6 @@ public class PostController {
 
       redirectAttributes.addFlashAttribute("postCreated", true);
 
-
       return "redirect:/user";
 
     }

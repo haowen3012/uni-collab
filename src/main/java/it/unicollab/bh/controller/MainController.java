@@ -231,15 +231,17 @@ public class MainController {
     @RequestMapping(value = "/searchProfile", method = RequestMethod.GET)
     public String searchProfile(@RequestParam("username") String username, RedirectAttributes redirectAttributes,Model model){
 
-        if(this.userService.getUser(username)==null){
+        User user = this.userService.getUser(username);
+
+        if(user == null){
 
             redirectAttributes.addFlashAttribute("profileNotFound", true);
             return "redirect:/user";
         }else{
 
-            model.addAttribute("profile",this.userService.getUser(username).getProfile());
+            redirectAttributes.addFlashAttribute("profile",user.getProfile());
 
-            return "profile.html";
+            return "redirect:/profile/" + user.getId() ;
         }
 
     }

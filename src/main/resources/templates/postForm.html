@@ -40,7 +40,7 @@
 
     <div class="section-3">
         <div  class="section-title">DEADLINE</div>
-        <input  class="special-input" type="datetime-local"  required name="deadline"/>
+        <input  class="special-input" type="datetime-local"  th:min="${#dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm')}" required name="deadline"/>
     </div>
 
     <div class="section-4">

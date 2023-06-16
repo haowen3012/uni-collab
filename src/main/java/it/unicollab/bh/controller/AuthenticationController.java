@@ -72,7 +72,7 @@ public class AuthenticationController {
         }
         else{
 
-             return "redirect: /user";
+             return "redirect:/user";
         }
     }
 
@@ -121,7 +121,7 @@ public class AuthenticationController {
         model.addAttribute("user",loggedUser);
 
         if(loggedUser.getCourseAttended()!=null ){
-            return "rediect:/user";
+            return "redirect:/user";
         }
 
 

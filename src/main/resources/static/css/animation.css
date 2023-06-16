@@ -213,3 +213,48 @@
     }
 
 }
+@keyframes translate{
+
+    0%{
+        transform: translate(-100%,-300%);
+        opacity: 0;
+    }
+
+    80%{
+
+        transform: translate(1%,1%);
+
+        opacity: 0.5;
+    }
+
+
+
+}
+
+
+@keyframes open-anim {
+
+    0%{
+
+        opacity: 0%;
+        transform: rotateX(180deg);
+    }
+    25%{
+        opacity: 0.3;
+
+    }
+    50%{
+        opacity: 0.3;
+
+    }
+
+    75%{
+        opacity: 0.5;
+    }
+
+    100%{
+        opacity: 1;
+
+    }
+
+}

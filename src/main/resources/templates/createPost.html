@@ -21,15 +21,6 @@
 <body>
 
 <!---pop up ---->
-<div class="event-warn" th:if="${postCreated}">
-  The post  has been successfully created
-
-</div>
-
-<div class="event-warn" th:if="${applied}">
-  Thank you for applying
-
-</div>
 
 <script th:src="@{/script/event-warn.js}"></script>
 <!-------->
@@ -56,10 +47,23 @@
   <div class="error" th:if="${#fields.hasErrors('post.deadline')}"
        th:errors="${post.deadline}" ></div>
 
+  <div class="error"  th:if="${profileNotFound}">Profile not found</div>
+
+
+</div>
+
+<div id="errors">
+<div class="error" style="background: green ; box-shadow: 1px 3px 20px green; padding:2%;" th:if="${postCreated}">
+  The post  has been successfully created
+
+</div>
+
+<div class="error"  style="background: green ; box-shadow: 1px 3px 20px green; padding: 2%"th:if="${applied}">
+  Thank you for applying
+</div>
 
   <script th:src="@{script/errorLogs.js}"></script>
 </div>
-
 
 <!------------------------------------------------------->
 
@@ -85,7 +89,7 @@
     <div id="filter" onclick="openFilter()"><span>FILTER</span></div>
     <div class="search">
       <i class="fa fa-search" aria-hidden="true"></i>
-      <form>
+      <form th:action="@{/searchProfile}"  method="get">
       <input  name="username" type="text"/>
       <input type="submit" hidden/>
       </form>

@@ -68,10 +68,7 @@ body {
 
 }
 
-.swiper-slide-active{
 
-    filter: blur(0px);
-}
 
 
 .mySwiper{
@@ -217,9 +214,6 @@ body {
     background: rgba(255, 215, 0, 1)
 
 
-
-
-
 }
 
 .proj-member a{
@@ -298,6 +292,7 @@ body {
     position: absolute;
 
     top:10%;
+    left: -10%;
 
 
     width: 40em;
