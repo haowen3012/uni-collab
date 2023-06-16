@@ -1,7 +1,6 @@
 package it.unicollab.bh.controller;
 
 import it.unicollab.bh.FileUploadWrapper;
-import it.unicollab.bh.configuration.FileUploadUtil;
 import it.unicollab.bh.controller.session.SessionData;
 import it.unicollab.bh.controller.validation.MultipartFileValidator;
 import it.unicollab.bh.model.Course;
@@ -57,13 +56,13 @@ public class MainController {
 
     @Autowired
     private UniversityService universityService;
-    
-   @Autowired
+
+    @Autowired
     private ProfileService profileService;
 
-   @Autowired
-   private MultipartFileValidator multipartFileValidator;
-   
+    @Autowired
+    private MultipartFileValidator multipartFileValidator;
+
 
     public MainController(){
     }
@@ -73,8 +72,8 @@ public class MainController {
     public String AddCourseToUser(Model model, @PathVariable Long user_id, @RequestParam("selected-universityId") Long uni_id){
 
         User user = userService.getUser(user_id);
-      University university = universityService.getUniversity(uni_id);
-      List<Course> courseList =  courseService.getCourseByUniversity(university);
+        University university = universityService.getUniversity(uni_id);
+        List<Course> courseList =  courseService.getCourseByUniversity(university);
 
         model.addAttribute("user", user);
         model.addAttribute("courses",courseList);
@@ -155,9 +154,9 @@ public class MainController {
         return "profile.html";
     }
     @RequestMapping(value={"/profile/updatePersonalInformation/{idP}"}, method = RequestMethod.POST)
-    public String updatePersonalInformation(Model model,@PathVariable("idP") Long idProfile, @RequestParam("infos") String pf){
+    public String updatePersonalInformation(@PathVariable("idP") Long idProfile, @RequestParam("infos") String pf){
 
-        model.addAttribute(this.profileService.updatePersonalInformation(idProfile, pf));
+        this.profileService.updatePersonalInformation(idProfile, pf);
 
 
         return "redirect:/profile";
@@ -166,45 +165,85 @@ public class MainController {
 
 
     @RequestMapping(value={"/profile/updateImages/{idP}"}, method = RequestMethod.POST)
-    public String updateProfieImages(Model model, @PathVariable("idP") Long idProfile
+    public String updateProfileImages(Model model, @PathVariable("idP") Long idProfile
             , @Valid @ModelAttribute FileUploadWrapper fileUploadWrapper, BindingResult fileUploadWrapperBindingResult,
-                                     @RequestParam(value = "email",required = false)String email,
-                                     @RequestParam(value = "address", required = false)String address,
-                                     RedirectAttributes redirectAttributes){
+                                      @RequestParam(value = "email",required = false)String email,
+                                      @RequestParam(value = "address", required = false)String address,
+                                      RedirectAttributes redirectAttributes){
 
-          this.multipartFileValidator.validate(fileUploadWrapper,fileUploadWrapperBindingResult);
+        this.multipartFileValidator.validate(fileUploadWrapper,fileUploadWrapperBindingResult);
 
-          if(!fileUploadWrapperBindingResult.hasErrors() ) {
+        if(!fileUploadWrapperBindingResult.hasErrors() ) {
 
 
-              this.profileService.updateProfileImages(idProfile,fileUploadWrapper.getImage(), fileUploadWrapper.getBackground(), email, address);
 
-              return "redirect:/profile";
-          }
-          else{
+            try {
+                this.profileService.updateProfileImages(idProfile, fileUploadWrapper.getImage(), fileUploadWrapper.getBackground(), email, address);
 
-              System.out.println(fileUploadWrapper.getImage().isEmpty());
-              redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.fileUploadWrapper", fileUploadWrapperBindingResult);
-              redirectAttributes.addFlashAttribute("fileUploadWrapper", fileUploadWrapper);
 
-              return "redirect:/profile";
+            }catch(IOException e){
 
-          }
+                redirectAttributes.addFlashAttribute("fileUploadError","An error occured while uploading the input files");
 
+            }
+        }
+        else{
+
+            System.out.println(fileUploadWrapper.getImage().isEmpty());
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.fileUploadWrapper", fileUploadWrapperBindingResult);
+            redirectAttributes.addFlashAttribute("fileUploadWrapper", fileUploadWrapper);
+
+
+        }
+
+        return "redirect:/profile";
 
 
     }
 
 
     @RequestMapping(value={"/profile/updateCurriculum/{idP}"}, method = RequestMethod.POST)
-    public String updateProfileCurriculum(Model model, @PathVariable("idP") Long idProfile,
-                                          @RequestParam(value = "curriculum",required = false) MultipartFile curriculum){
+    public String updateProfileCurriculum(@PathVariable("idP") Long idProfile,
+                                          @RequestParam(value = "curriculum",required = false) MultipartFile curriculum,BindingResult bindingResult,
+                                          RedirectAttributes redirectAttributes){
 
-        this.profileService.updateProfileCurriculum(idProfile,curriculum);
+        this.multipartFileValidator.validate(curriculum,bindingResult);
+
+        if(!bindingResult.hasErrors()) {
+
+            try {
+                this.profileService.updateProfileCurriculum(idProfile, curriculum);
+
+            } catch (IOException e) {
+                redirectAttributes.addFlashAttribute("fileUploadError", "An error occured while uploading the input files");
+
+            }
+        }else{
+
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.curriculum",bindingResult);
+            redirectAttributes.addFlashAttribute("post",curriculum);
+
+        }
 
         return "redirect:/profile";
+
     }
 
+    @RequestMapping(value = "/searchProfile", method = RequestMethod.GET)
+    public String searchProfile(@RequestParam("username") String username, RedirectAttributes redirectAttributes,Model model){
 
+        if(this.userService.getUser(username)==null){
 
+            redirectAttributes.addFlashAttribute("profileNotFound", true);
+            return "redirect:/user";
+        }else{
+
+            model.addAttribute("profile",this.userService.getUser(username).getProfile());
+
+            return "profile.html";
+        }
+
+    }
+
+    
 }
