@@ -18,43 +18,9 @@
 <div class="swiper mySwiper">
     <div class="swiper-wrapper">
         <div th:each="post : ${posts}" class="swiper-slide" >
-            <div id="post" >
-                <div class="project">
-                    <h1 class="section-title">PROJECT</h1>
-                    <div class="project-name" th:text="${post.projectName}"> PROJECT NAME</div>
-                </div>
-                <div class="exam">
-                    <div th:text="${post.exam.name}">EXAM NAME</div>
-                    <h1 class="section-title">EXAM</h1>
-                </div>
-                <div class="project-description">
-                    <h1 class="section-title">DESCRIPTION</h1>
-                    <div class="description" th:text="${post.projectDescription}">
-                        Il progetto di mobile computing consiste nella creazione di un gioco mobile con autenticazione. Mi servono 3 colleghi di progetto.
-                    </div>
-                </div>
-                <div class="bottom">
-                    <div class="bottom-left">
 
 
-                        <div class="deadline">
-                            <div> DEADLINE </div>
-                            <span class="time" th:text="${#temporals.format( post.deadline, 'dd/MM/yyyy HH:mm')}">30/12/2023 19:12</span>
-                        </div>
-
-                    </div>
-                    <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'ACTIVE'}">
-                        <a  class="modify"  th:href="@{'/updatePost' + '/' + ${post.id}}">MODIFY</a>
-                        <div class="proj-state" >ACTIVE</div>
-                    </div>
-                    <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'EXPIRED'}">
-                        <a  class="modify" th:href="'/deletePost' + '/' + ${post.id}">DELETE</a>
-                        <div  class="proj-state" id="terminated">EXPIRED</div>
-                    </div>
-                </div>
-            </div>
-
-
+      <div th:replace="post.html :: singlePost"></div>
 
         </div>
     </div>

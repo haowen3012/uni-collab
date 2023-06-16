@@ -21,7 +21,9 @@
 .error{
     margin: 3%;
     padding: 6px;
-    background-color: #fff;
+    background: tomato;
+    color: #fff;
+    border: solid #fff;
     border-radius: 10px;
     box-shadow: 0 1px 7px 0 red;
     animation: slide-in-down 1.2s ease-out forwards;

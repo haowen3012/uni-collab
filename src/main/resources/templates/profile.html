@@ -165,9 +165,8 @@
        Empty Section
    </h1>
 
-
         <div class="proj-box" th:each=" project : ${owner.projects}">
-            <h1 class="proj-name" th:text="${project.name}">Project Name</h1>
+            <h1 class="proj-name" th:text="${project.name}" >Project Name</h1>
             <div class="proj-description">
                 <h1>Description</h1>
                 <div><span class="proj-text" th:text="${project.description}"> CIao sono Haowen</span></div>
@@ -180,8 +179,6 @@
             <div class="proj-state" id="terminated" th:if="${#strings.toString(project.projectState) == 'TERMINATED'}">TERMINATED</div>
         </div>
     </div>
-
-
 
 
     </div>

@@ -285,7 +285,7 @@ body{
 #projects {
 
     width: 100%;
-    margin-top: 5%;
+    margin-top: 3%;
     margin-left: 10%;
 
     display: inline-flex;
@@ -570,7 +570,7 @@ body{
     border: 2px solid #00ff00;
 }
 
- .places-left .deadline div{
+ .bottom-left .deadline div{
 
     margin: 1%;
     color: #4169e1;
@@ -579,7 +579,7 @@ body{
     font-family: 'monserrat', sans-serif;
 }
 
- .places-left .time{
+ .bottom-left .time{
     color: #4169e1;
     font-size: 1.1em;
     margin: 2%;
