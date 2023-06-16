@@ -144,18 +144,13 @@
 
                 </div>
                 <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'ACTIVE'}">
-                    <a  class="modify">MODIFY</a>
                     <div class="proj-state" >ACTIVE</div>
                 </div>
                 <div  class="bottom-right" th:if="${#strings.toString(post.postState) == 'EXPIRED'}">
-                    <a  class="modify">DELETE</a>
                     <div  class="proj-state"  id="terminated">TERMINATED</div>
                 </div>
             </div>
         </div>
-
-
-
 
         
     </div>

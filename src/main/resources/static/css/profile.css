@@ -570,7 +570,7 @@ body{
     border: 2px solid #00ff00;
 }
 
-.deadline div{
+ .places-left .deadline div{
 
     margin: 1%;
     color: #4169e1;
@@ -579,7 +579,7 @@ body{
     font-family: 'monserrat', sans-serif;
 }
 
-.time{
+ .places-left .time{
     color: #4169e1;
     font-size: 1.1em;
     margin: 2%;
@@ -606,7 +606,7 @@ body{
 }
 
 
-.proj-state{
+ .bottom-right .proj-state{
     margin-right: 5%;
     text-align: center;
     border: 3px solid ;
@@ -623,7 +623,7 @@ body{
 }
 
 
-#terminated{
+.bottom-right #terminated{
     background-color: tomato;
     box-shadow: 0px 4px 8px rgba(255, 99, 71, 0.4);
 
@@ -674,6 +674,327 @@ body{
 
 /**********************************/
 
+
+/********************/
+
+#projects {
+
+    width: 100vw;
+    height: 100%;
+
+
+
+    margin-top: 1%;
+    margin-left: 10%;
+    margin-bottom:2%;
+
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+
+
+}
+
+.proj-box{
+
+
+
+    width: 400px;
+    height: 700px;
+
+    flex:  0 0 auto;
+
+    border-radius: 15px;
+
+    margin: 3%;
+
+    /* From https://css.glass */
+    /*   background: rgba(68, 177, 237, 0.32);
+       border-radius: 16px;
+       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+       backdrop-filter: blur(5px);
+       -webkit-backdrop-filter: blur(5px);
+       border: 1px solid rgba(68, 177, 237, 0.92);*/
+
+    background: rgba(255, 255, 255, 0.32);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.92);
+
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.proj-name{
+
+    margin-top : 0;
+    padding-top: 5%;
+    padding-left: 3%;
+    width: 90%;
+    border-right:  4px solid gold;
+    height: 10%;
+    border-bottom-right-radius: 15pc;
+
+
+}
+
+.proj-description{
+
+
+    width: 100%;
+    min-height: 40%;
+    max-height: 70%;
+    border-left: solid;
+
+
+    border-top-left-radius: 15pc;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+
+.proj-description h1{
+
+    width: 95%;
+    height: 10%;
+    border-top-left-radius: 15pc;
+    text-align : right;
+    font-size: 1.7em;
+
+
+
+}
+
+.proj-description div{
+
+    width: 100%;
+    height: 90%;
+
+
+    border-top-left-radius: 15pc;
+
+
+
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+
+.proj-text{
+    opacity: 1;
+
+    width: 80%;
+    height: 70%;
+    margin-right: 2%;
+    word-wrap: break-word;
+
+
+    letter-spacing : 0.3em;
+
+
+}
+
+.proj-member{
+    width:97%;
+
+
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+
+    padding-left: 3%;
+
+    border-right: solid ;
+    border-bottom-right-radius: 15pc;
+
+
+}
+
+.proj-member h1{
+    font-size: 1.7em;
+
+    padding: 2%;
+    border-radius: 20px;
+    background: rgba(255, 215, 0, 1)
+
+
+
+
+
+}
+
+.proj-member a{
+    display: block;
+    margin-bottom:5%;
+
+}
+
+.proj-box .proj-state{
+    margin-top: 8%;
+    text-align: center;
+    border: 3px solid ;
+    font-size : 1.7em;
+    font-weight: 550;
+    padding: 3%;
+    border-radius: 5px;
+    background-color: #1abc9c;
+    color: #fff;
+    box-shadow: 0px 4px 8px rgba(26, 188, 156, 0.4);
+
+    animation:  pulse 1.2s ease-out infinite;
+
+}
+
+
+.proj-box #terminated{
+    background-color: tomato;
+    box-shadow: 0px 4px 8px rgba(255, 99, 71, 0.4);
+
+}
+
+
+
+
+
+
+
+.proj-box .deadline{
+
+    background-image: linear-gradient(to right, #EB3349 0%, #F45C43  51%, #EB3349  100%);
+    margin-top: 5%;
+    padding:2%;
+    border:  2px solid #fff;
+    border-radius: 15px;
+
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    background-size: 200% auto;
+    transition: 0.5s;
+
+    text-shadow: 1px 2px 20px #ffff;
+    box-shadow: 1px 2px 10px  #e52d27;
+
+}
+
+
+
+.proj-box .deadline:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+.proj-box .deadline:active{
+    transform: scale(0.90);
+
+}
+
+/******************/
+
+
+.prj-deadline{
+    position: absolute;
+
+    top:10%;
+    left:30%;
+
+    width: 40em;
+    height:13em;
+
+    border-radius: 15px;
+    background: #fff;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    z-index : 6;
+
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+    0 10px 10px rgba(0,0,0,0.22);
+
+
+}
+
+.prj-deadline input{
+    margin-top: 1%;
+    width: 70%;
+
+    padding:4%;
+    border-radius: 15px;
+    border: solid #fff;;
+    background: rgba(155,155,200,0.3)
+
+}
+
+
+
+.prj-deadline button{
+    background-image: linear-gradient(to right, #314755 0%, #26a0da  51%, #314755  100%);
+    margin-top: 3%;
+
+    padding: 1%;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    border:solid #fff;
+    box-shadow: 1px 3px 20px #02AAB0;
+}
+
+.prj-deadline button:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+/***************/
+
+
+.close{
+    margin-top: 1%;
+    margin-left: 90%;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: tomato;
+    cursor: pointer;
+}
+
+.close:active{
+    transform: scale(0.95);
+
+}
 
 
 
